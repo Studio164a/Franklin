@@ -1,0 +1,477 @@
+/*
+Theme Name: Projection
+Theme URI: http://164a.com
+Author: Studio164a
+Author URI: http://164a.com
+Description: A single-page crowdfunding Wordpress theme.
+Version: 0.1
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: 
+Text Domain: projection
+*/
+
+/**
+ * Table of Contents:
+ * 
+ * 1.0 - Baseline
+ * 	 1.1 - Reset
+ *   1.2 - Typography
+ *   1.3 - Links
+ *   1.4 - Lists 
+ * 	 1.5 - Forms
+ *   1.6 - Images
+ *   1.7 - Tables
+ * 2.0 - Site Structure 
+ *   2.1 - Default
+ *   2.2 - Admin bar
+ * 3.0 - Header
+ *   3.1 - Navigation
+ *   3.2 - Title & Tagline
+ * 4.0 - Campaign
+ * 5.0 - Content
+ *   5.1 - Entry Header
+ *   5.2 - Entry Meta
+ *   5.3 - Entry Content
+ *   5.4 - Galleries
+ *   5.5 - Post Formats
+ *   5.6 - Attachments
+ *   5.7 - Post/Paging Navigation
+ *   5.8 - Author Bio
+ *   5.9 - Archives
+ *   5.10 - Search Results/No posts
+ *   5.11 - 404
+ *   5.12 - Comments
+ * 6.0 - Sidebar
+ * 7.0 - Footer
+ *   7.1 - Widgets
+ * 8.0 - Media Queries
+ *   8.1 - Greater than 600px
+ * ----------------------------------------------------------------------------
+ */
+
+/* 1.0 -- Baseline
+================================================== */
+
+/* 1.1 -- Reset ***/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline; 
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+body { line-height: 1; }
+ol, ul { list-style: none; }
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after { content: ''; content: none; }
+q:before { content: "\201C"; }
+q:after { content: "\201D"; }
+table { border-collapse: collapse; border-spacing: 0; }
+
+/* 1.2 -- Typography ***/
+
+html {
+	font-size: 62.5%; /* Baseline font size is set to 10px, for easy REM values */
+}
+
+body {
+	font: 15px/22.5px 'PT Serif' , Georgia, 'Times New Roman', Times, serif; font-size: 1.5rem;
+	color: #666;
+}
+
+h1, h2, h3, h4, h5, h6, 
+#site-navigation li,
+input[type=submit], 
+input[type=reset], 
+button,
+.button, 
+.campaign-summary span {
+	font-family: 'PT Sans Narrow';
+}
+
+h1 {
+    font-size: 42px; font-size: 4.2rem;
+    line-height: 52px; line-height: 5.2rem;
+}
+
+h2 {
+	font-size: 32px; font-size: 3.2rem;
+	line-height: 42px; line-height: 4.2rem;
+}
+
+h3 {
+    font-size: 26px; font-size: 2.6rem;
+    line-height: 36px; line-height: 3.6rem;
+}
+
+h4 {
+	font-size: 21px; font-size: 2.1rem;
+	line-height: 30px; line-height: 3rem;
+}
+
+h5 {
+	font-size: 18px; font-size: 1.8rem;
+	line-height: 26px; line-height: 2.6rem;
+}
+
+h6 {
+	font-size: 16px; font-size: 1.6rem;
+	line-height: 24px; line-height: 2.4rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 15px 0; margin: 1.5rem 0;
+}
+
+p {
+	margin-bottom: 15px; margin-bottom: 1.5rem;
+}
+
+.entry, 
+.comment {
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+    /* Non standard for webkit */
+    word-break: break-word;
+
+	-webkit-hyphens: auto;
+   	-moz-hyphens: auto;
+    hyphens: auto;
+}
+
+/* 1.3 -- Links ***/
+
+.site-title a,
+.post-header a {
+	text-decoration: none;
+}
+
+/* 1.4 -- Lists ***/
+
+ul, ol, dl { margin-bottom: 15px; margin-bottom: 1.5rem; }
+ul, ol { padding-left: 16px; }
+li { margin-bottom: 7px; margin-bottom: 0.7rem; }
+ol ol,
+ul ul,
+ul ol, 
+ol ul { margin: 7px 0 0 20px; margin-top: 0.7rem; margin-left: 2rem; }
+
+ul { list-style: disc; }
+ul ul { list-style: circle; }
+ol { list-style: decimal; }
+ol ol { list-style: upper-roman; }
+ol ol ol { list-style: lower-roman; }
+
+dt { font-weight: 600; }
+dd { margin-bottom: 15px; margin-bottom: 1.5rem; }
+
+/* 1.5 -- Forms ***/
+
+
+
+
+/* Buttons */
+input[type=submit], 
+input[type=reset], 
+button,
+.button {		
+	padding: 12px 28px; padding: 1.2rem 2.8rem;
+	border: 3px solid transparent; border-width: 0.3rem;
+	font-size: 16px; font-size: 1.6rem;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	box-shadow: none;
+	cursor: pointer;
+
+	/* Transition */
+	-ms-transition: border-color 0.3s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-moz-transition: border-color 0.3s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-o-transition: border-color 0.3s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-webkit-transition: border-color 0.3s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	transition: border-color 0.3s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+
+	-ms-transition: color 0.3s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-moz-transition: color 0.3s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-o-transition: color 0.3s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-webkit-transition: color 0.3s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	transition: color 0.3s cubic-bezier(0.250, 0.250, 0.750, 0.750);	
+}
+
+
+/* 1.6 -- Images ***/
+
+/* 1.7 -- Tables ***/
+
+
+
+/* 2.0 -- Site Structure
+================================================== */
+
+/* 2.1 -- Default ***/
+
+body {		
+	max-width: 100%;
+	overflow-x: hidden;
+}
+
+.partial {
+	padding: 90px 2%; padding-top: 9rem; padding-bottom: 9rem;
+}
+
+#active-campaign .campaign-button,
+#site-navigation .menu-button {
+	position: fixed;
+	top: 0;
+	cursor: pointer;
+	color: #fff;
+	padding: 2px 8px; padding: 0.2rem 0.8rem;
+	text-shadow: 0 -1px 1px rgba(40,40,40,0.4);
+	width: auto;
+}
+
+/* Active campaign and nav are off-screen when inactive */
+#active-campaign, 
+#site-navigation {	
+	position: fixed;
+	top: 0;	
+	padding: 30px 2%; padding-top: 3rem; padding-bottom: 3rem;
+	z-index: 50;
+
+	/* Transition */
+	-ms-transition: left 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-moz-transition: left 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-o-transition: left 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-webkit-transition: left 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	transition: left 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+}
+
+#active-campaign {
+	right: -100%;
+	width: 96%;
+}
+
+#active-campaign .campaign-button {
+	right: 2%;
+}
+
+#site-navigation {	
+	left: -80%;
+	width: 76%;	
+}
+
+#site-navigation .menu-button {
+	position: fixed;
+	left: 2%;
+}
+
+/* Active state */
+#active-campaign.is-active {
+	right: 0;
+}
+
+#site-navigation.is-active {
+	left: 0;
+}
+
+/* 2.2 -- Admin bar ***/
+.admin-bar #header {
+	padding-top: 28px; padding-top: 2.8rem;
+}
+
+.admin-bar #active-campaign .campaign-button, 
+.admin-bar #site-navigation .menu-button, 
+.admin-bar #site-navigation, 
+.admin-bar #active-campaign {
+	top: 28px; top: 2.8rem;
+} 
+
+
+/* 3.0 -- Header
+================================================== */
+
+#header {
+	border-bottom: 3px double #dbdbdb; 
+}
+
+/* 3.1 -- Navigation ***/
+
+#site-navigation {			
+	box-shadow: 1px 0 2px #bbb;
+
+	/* Transition */
+	-ms-transition: left 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-moz-transition: left 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-o-transition: left 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-webkit-transition: left 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	transition: left 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+}
+
+#site-navigation ul {
+	padding: 0;
+}
+
+#site-navigation li {
+	list-style: none;
+	text-transform: uppercase;
+	line-height: 1em; 	
+	border-bottom: 1px solid #fff; border-color: rgba(255, 255, 255, 0.3);
+	text-align: center;
+}
+
+#site-navigation a {	
+	display: block;	
+	width: 100%;
+	padding: 15px 0;
+	text-decoration: none;
+}
+
+/* 3.2 -- Title & Tagline ***/
+
+.site-title {
+	padding: 0 2%;
+	font-size: 28px; font-size: 2.8rem;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
+
+/* 4.0 -- Campaign
+================================================== */
+#active-campaign {	
+	/* Transition */
+	-ms-transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-moz-transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-o-transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-webkit-transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+}
+
+#active-campaign.is-active .campaign-button {
+	width: 6px; width: 0.6rem;
+	height: 12px; height: 1.2rem;
+	overflow: hidden;
+}
+
+#barometer {
+	position: relative;	
+	margin: 0 auto 30px auto; margin-bottom: 3rem;
+	z-index: 30;
+	width: 140px; width: 14rem; 
+	height: 140px; height: 14rem;
+}
+
+#barometer span {
+	position: absolute;
+	left: 0;
+	top: 60px; top: 6rem;
+	width: 140px; width: 14rem;
+	text-align: center;
+}
+
+.campaign-summary {
+	text-align: center;
+	list-style: none;
+	padding-left: 0;
+}
+
+.campaign-summary span {
+	font-size: 13px; font-size: 1.3rem;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	display: block;
+}
+
+.campaign-summary li {
+	padding-bottom: 15px;
+	margin-bottom: 15px; 
+	border-bottom: 1px solid #fff; border-color: rgba(255, 255, 255, 0.1);
+}
+
+.campaign-goal, 
+.campaign-raised {
+	float: left;
+	width: 50%;
+}
+
+.campaign-support {
+	width: 100%;
+	display: block;
+	padding-left: 0;
+	padding-right: 0;
+	margin-top: 30px; margin-top: 3rem;
+	text-align: center;
+}
+
+.edd_download_purchase_form {
+	border-top: 3px double #fff; border-color: rgba(255, 255, 255, 0.3);
+	float: left;
+	width: 100%;
+	margin-top: 30px; 
+	padding-top: 30px;
+}
+
+/* 5.0 -- Content
+================================================== */
+
+.partial {	
+	border-bottom: 3px double #ececec;
+}
+
+/* 5.1 --- Entry Header ***/
+
+
+/* 5.2 --- Entry Meta ***/
+
+
+/* 5.3 --- Entry Content ***/
+
+
+/* 5.4 --- Galleries ***/
+
+
+/* 5.5 --- Post Formats ***/
+
+
+/* 5.6 --- Attachments ***/
+
+
+/* 5.7 --- Post/Paging Navigation ***/
+
+
+/* 5.8 --- Author Bio ***/
+
+
+/* 5.9 --- Archives ***/
+
+
+/* 5.10 --- Search Results/No posts ***/
+
+
+/* 5.11 --- 404 ***/
+
+
+/* 5.12 --- Comments ***/
+
+
+/* 6.0 -- Sidebar
+================================================== */
+
+/* 7.0 -- Footer
+================================================== */
+
+/* 8.0 -- Media Queries
+================================================== */
+
+/* 8.1 --- Greater than 600px ***/
+
+@media all and (min-width: 37.5em) {
+
+	/* Site structure */
+
+	/* Admin bar adjustments */
+
+
+}
