@@ -239,6 +239,8 @@ a { color: <?php echo $accent ?>; }
 input[type=submit], input[type=reset], button, .button { background-color: <?php echo $accent_text ?>; color: <?php echo $accent ?>; border-color: <?php echo $accent_hover ?>;} 
 input[type=submit]:hover, input[type=reset]:hover, button:hover, .button:hover { color: <?php echo $accent_hover ?>; border-color: <?php echo $accent ?>;} 
 
+input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, input[type=email]:focus, textarea:focus { border-color: <?php echo $accent ?>; }
+
 /* Text selection */
 *::selection { background-color:<?php echo $accent ?>; color: <?php echo $accent_text ?>; } 
 *::-moz-selection { background-color:<?php echo $accent ?>; color: <?php echo $accent_text ?>; }

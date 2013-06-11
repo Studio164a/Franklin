@@ -9,7 +9,12 @@
 		circle.attr({ stroke: '#fff', 'stroke-width' : 10 });
 	});
 
-	$(document).ready(function() {
+	$(document)
+	// Initiate foundation
+	.foundation()
+
+	// Perform other actions on ready event
+	.ready(function() {
 
 		$('.menu-button').on( 'click', function() {			
 			$(this).children().toggleClass('icon-th-list').toggleClass('icon-remove');
@@ -20,7 +25,6 @@
 			$(this).toggleClass('icon-remove');
 			$(this).parent().toggleClass('is-active');
 		});
-
 	});
 
 })( jQuery );

@@ -11,8 +11,9 @@
 class Projection_Theme {
 
     /** 
-     * 
+     * @var bool
      */
+    private $crowdfunding_enabled = false;
 
     /**
      * Private constructor. Singleton pattern.
@@ -20,32 +21,30 @@ class Projection_Theme {
 	public function __construct() {         
         $this->sofa = get_sofa_framework();
 
+
+        // Include other files
+  //       require_once('inc/comments.php');
+  //       require_once('inc/shortcodes.php');
+        include_once('inc/helpers.php');
+  //       require_once('inc/template-tags.php');    
+
+        // Admin classes
+        include_once('inc/admin/customize.php');
+
+        if ( class_exists('Easy_Digital_Downloads') && class_exists('ATCF_CrowdFunding')) {
+
+            $this->crowdfunding_enabled = true;
+
+            include_once('inc/crowdfunding/template.php');
+        }
+
+        add_action('wp_footer', array(&$this, 'wp_footer'), 1000);
         add_action('after_setup_theme', array(&$this, 'after_setup_theme'));
 
         if ( !is_admin() )
             add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'), 11);
 
         add_filter('sofa_enabled_modules', array(&$this, 'sofa_enabled_modules_filter'));
-
-
-        // Include other files
-  //       require_once('inc/comments.php');
-  //       require_once('inc/shortcodes.php');
-        require_once('inc/helpers.php');
-  //       require_once('inc/template-tags.php');
-
-  //       // FontAwesome
-  //       require_once('inc/fontawesome/wp-fontawesome.php');        
-    
-  //       // Carousel widget        
-  //       require_once('inc/widgets/carousel-widget.php');
-
-        // Admin classes
-        require_once('inc/admin/customize.php');
-
-        if ( class_exists('Easy_Digital_Downloads') && class_exists('ATCF_CrowdFunding')) {
-            include_once('inc/crowdfunding/template.php');
-        }
 
   //       add_action('wp_head', array(&$this, 'wp_head'));
   //       add_action('after_setup_theme', array(&$this, 'after_setup_theme'));
@@ -75,8 +74,8 @@ class Projection_Theme {
         wp_register_style('main', get_bloginfo('stylesheet_url'));
         wp_enqueue_style('main');
 
-        wp_register_style( 'reveal', sprintf( "%s/media/css/%s", $theme_dir));
-        wp_enqueue_style( 'reveal' );
+        wp_register_style( 'foundation', sprintf( "%s/media/css/foundation.css", $theme_dir));
+        wp_enqueue_style( 'foundation' );
 
         // Skin (light or dark)
         // wp_register_style('skin', sprintf( "%s/media/css/%s.css", $theme_dir, get_theme_mod('skin', 'skin-dark') ) ); 
@@ -92,9 +91,10 @@ class Projection_Theme {
         // wp_register_script('jquery-event-swipe', sprintf( "%s/media/js/jquery.event.swipe.js", $theme_dir ), array( 'jquery', 'jquery-event-move' ), 0.1, true );
         // wp_register_script('contentCarousel', sprintf( "%s/media/js/jquery.contentCarousel.js", get_template_directory_uri() ), array('jquery-event-swipe', 'transit'), 0.1, true );
 
-        wp_register_script('reveal', sprintf( "%s/media/js/jquery.reveal.js", $theme_dir ), array('jquery'), 0.1, true);
+        wp_register_script('foundation', sprintf( "%s/media/js/foundation.min.js", $theme_dir ), array(), 0.1, true);
+        wp_register_script('foundation-reveal', sprintf( "%s/media/js/foundation.reveal.js", $theme_dir ), array('foundation'), 0.1, true);
         wp_register_script('raphael', sprintf( "%s/media/js/raphael-min.js", $theme_dir ), array(), 0.1, true);
-        wp_register_script('main', sprintf( "%s/media/js/main.js", $theme_dir ), array('hoverIntent', 'raphael', 'jquery'), 0.1, true);        
+        wp_register_script('main', sprintf( "%s/media/js/main.js", $theme_dir ), array('hoverIntent', 'raphael', 'foundation-reveal', 'jquery'), 0.1, true);        
 	    wp_enqueue_script('main');
 
         // If Symple Shortcodes is installed, dequeue its stylesheet
@@ -138,6 +138,27 @@ class Projection_Theme {
         register_nav_menus( array(
             'primary_navigation' => 'Primary Navigation'
         ) );        
+    }
+
+    /**
+     * Executes on the wp_footer hook
+     * 
+     * @return void
+     */
+    public function wp_footer() {
+        if ( $this->crowdfunding_enabled ) {
+            $campaign = projection_get_campaign();
+            ?>            
+            <div id="campaign-form" class="reveal-modal">
+                <a class="close-reveal-modal"><i class="icon-remove"></i></a>
+                <?php echo edd_get_purchase_link( array( 'download_id' => $campaign->ID ) ); ?>
+            </div>
+            <?php
+        }     
+
+        ?>
+        <!-- <div class="loading-overlay"></div> -->
+        <?php   
     }
 
     /**
@@ -231,19 +252,6 @@ class Projection_Theme {
             // Save custom fields found in our $settings variable
             update_post_meta( $post_id, '_projection_hide_post_meta', ( $_POST['_projection_hide_post_meta'] == 'on' ? 1 : 0 ) );
         }
-    }
-
-    /**
-     * Executes on wp_footer hook.
-     * 
-     * @return void
-     */
-    public function wp_footer() {
-        if (is_front_page()) :
-        ?>
-        <div class="loading-overlay"></div>
-        <?php
-        endif;
     }
 
     /**

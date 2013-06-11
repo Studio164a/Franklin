@@ -5,31 +5,21 @@
 
 get_header() ?>
 
-	<div id="main_wrap" class="inner_wrap cf<?php if ($featured_image) : ?> has_featured_image<?php endif ?>">	
+	<div class="partial">	
 
-		<div class="page_wrap">
+		<?php if ( have_posts() ) : ?>			
 
-			<div id="content">				
+			<?php while ( have_posts() ) : ?>
 
-				<?php if ( have_posts() ) : ?>			
+				<?php the_post() ?>
+				
+				<?php get_template_part( 'content', 'page' ) ?>
 
-					<?php while ( have_posts() ) : ?>
+				<?php comments_template('', true) ?>
 
-						<?php the_post() ?>
-						
-						<?php get_template_part( 'content', 'page' ) ?>
+			<?php endwhile ?>
 
-						<?php comments_template('', true) ?>
-
-					<?php endwhile ?>
-
-				<?php endif ?>
-
-			</div>
-
-			<?php get_sidebar() ?>
-
-		</div>
+		<?php endif ?>
 
 	</div>
 

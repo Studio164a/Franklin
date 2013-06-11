@@ -21,5 +21,6 @@
 	<!-- Congratulations, you've reached the end -->
 
 	<?php wp_footer() ?>
+
 </body>
 </html>

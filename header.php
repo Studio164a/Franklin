@@ -63,13 +63,7 @@
 
 		<p><a class="button campaign-support" data-reveal-id="campaign-form" href="#"><?php _e( 'Support', 'projection' ) ?></a></p>
 
-		<div id="campaign-form" class="reveal-modal">
-			<a class="close-reveal-modal"><i class="icon-remove"></i></a>
-			<?php echo edd_get_purchase_link( array( 'download_id' => $campaign->ID ) ); ?>
-		</div>
-
 	</section>
-
 	<!-- End active campaign -->
 
 
