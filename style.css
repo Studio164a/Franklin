@@ -22,6 +22,7 @@ Text Domain: projection
  * 	 1.5 - Forms
  *   1.6 - Images
  *   1.7 - Tables
+ *   1.8 - Re-usable classes
  * 2.0 - Site Structure 
  *   2.1 - Default
  *   2.2 - Admin bar
@@ -161,6 +162,10 @@ a:focus {
 	text-decoration: none;
 }
 
+.button {
+	display: block;
+}
+
 /* 1.4 -- Lists ***/
 
 ul, ol, dl { margin-bottom: 15px; margin-bottom: 1.5rem; }
@@ -258,6 +263,34 @@ img {
 /* 1.7 -- Tables ***/
 
 
+/* 1.8 -- Reusable classes **/
+
+/* Clearfix */
+.cf:before,
+.cf:after { content: " "; display: table; }
+.cf:after { clear: both; }
+.cf { *zoom: 1; } /* IE 6/7 only. Include this rule to trigger hasLayout and contain floats. */
+
+/* Assistive text */
+.assistive-text,
+.site .screen-reader-text {
+	position: absolute !important;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);	
+}
+
+/* Hidden blocks */
+.hidden {
+	position: absolute !important;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+	padding: 0 !important;
+	border: 0 !important;
+	height: 1px !important;
+	width: 1px !important;
+	overflow: hidden;
+} 
+/* credit: http://designfestival.com/when-and-how-to-visually-hide-content/ */
 
 /* 2.0 -- Site Structure
 ================================================== */
@@ -273,7 +306,7 @@ body {
 	padding: 90px 2%; padding-top: 9rem; padding-bottom: 9rem;
 }
 
-#active-campaign .campaign-button,
+.active-campaign .campaign-button,
 #site-navigation .menu-button {
 	position: fixed;
 	top: 0;
@@ -285,11 +318,10 @@ body {
 }
 
 /* Active campaign and nav are off-screen when inactive */
-#active-campaign, 
+.active-campaign.flyout, 
 #site-navigation {	
 	position: fixed;
-	top: 0;	
-	padding: 30px 2%; padding-top: 3rem; padding-bottom: 3rem;
+	top: 0;		
 	z-index: 50;
 
 	/* Transition */
@@ -300,12 +332,12 @@ body {
 	transition: left 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
 }
 
-#active-campaign {
+.active-campaign.flyout {
 	right: -100%;
 	width: 96%;
 }
 
-#active-campaign .campaign-button {
+.active-campaign.flyout .campaign-button {
 	right: 2%;
 }
 
@@ -320,7 +352,7 @@ body {
 }
 
 /* Active state */
-#active-campaign.is-active {
+.active-campaign.flyout.is-active {
 	right: 0;
 }
 
@@ -333,10 +365,10 @@ body {
 	padding-top: 28px; padding-top: 2.8rem;
 }
 
-.admin-bar #active-campaign .campaign-button, 
+.admin-bar .active-campaign .campaign-button, 
 .admin-bar #site-navigation .menu-button, 
 .admin-bar #site-navigation, 
-.admin-bar #active-campaign {
+.admin-bar .active-campaign {
 	top: 28px; top: 2.8rem;
 } 
 
@@ -394,7 +426,7 @@ body {
 
 /* 4.0 -- Campaign
 ================================================== */
-#active-campaign {	
+.active-campaign {		
 	/* Transition */
 	-ms-transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
 	-moz-transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
@@ -403,15 +435,29 @@ body {
 	transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
 }
 
-#active-campaign.is-active .campaign-button {
+.active-campaign .campaign-summary {
+	padding: 30px 2%; padding-top: 3rem; padding-bottom: 3rem;
+}
+
+.active-campaign.is-active .campaign-button {
 	width: 6px; width: 0.6rem;
 	height: 12px; height: 1.2rem;
 	overflow: hidden;
 }
 
+.campaign-excerpt {
+	float: left;
+	margin-bottom: 30px; 
+	padding: 0 5% 15px;
+	border-bottom: 1px solid #fff; border-color: rgba(255, 255, 255, 0.3);
+	text-align: center;
+}
+
 #barometer {
 	position: relative;	
-	margin: 0 auto 30px auto; margin-bottom: 3rem;
+	/*margin: 0 auto 30px auto; margin-bottom: 3rem;*/
+	float: left;
+	margin-right: 30px; margin-right: 3rem;
 	z-index: 30;
 	width: 140px; width: 14rem; 
 	height: 140px; height: 14rem;
@@ -425,10 +471,14 @@ body {
 	text-align: center;
 }
 
-.campaign-summary {
-	text-align: center;
+.campaign-summary ul {
+	float: left;
+	text-align: left;
 	list-style: none;
 	padding-left: 0;
+	width: -webkit-calc(100% - 170px);
+	width: -moz-calc(100% - 170px);
+	width: calc(100% - 170px);
 }
 
 .campaign-summary span {
@@ -439,12 +489,19 @@ body {
 }
 
 .campaign-summary li {
-	padding-bottom: 15px;
-	margin-bottom: 15px; 
+	padding-bottom: 7px;
+	margin-bottom: 8px; 
 	border-bottom: 1px solid #fff; border-color: rgba(255, 255, 255, 0.1);
 }
 
-.campaign-goal, 
+.campaign-support {
+	float: left;
+	width: 96%;
+	padding: 0 2% 30px; padding-bottom: 3rem;
+	text-align: center;
+}
+
+/*.campaign-goal, 
 .campaign-raised {
 	float: left;
 	width: 50%;
@@ -457,7 +514,7 @@ body {
 	padding-right: 0;
 	margin-top: 30px; margin-top: 3rem;
 	text-align: center;
-}
+}*/
 
 .edd_download_purchase_form {
 	border-top: 3px double #fff; border-color: rgba(255, 255, 255, 0.3);

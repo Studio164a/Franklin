@@ -5,16 +5,10 @@
 
 get_header(); ?>
 
-	<?php	
-	$partials = new Sofa_Partials();
-	foreach ( $partials->get_partials() as $partial ) : ?>		
+	<?php get_template_part('campaign', 'blurb') ?>
 
-		<div id="partial-<?php echo $partial->get_ID() ?>" <?php $partial->render_class() ?>>
+	<?php dynamic_sidebar( 'homepage-1' ) ?>
 
-			<?php $partial->render() ?>
-
-		</div>		
-
-	<?php endforeach ?>
+	<?php dynamic_sidebar( 'homepage-2' ) ?>
 
 <?php get_footer() ?> 

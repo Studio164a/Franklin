@@ -38,8 +38,9 @@ class Projection_Theme {
             include_once('inc/crowdfunding/template.php');
         }
 
+        add_action('widgets_init', array(&$this, 'widgets_init'));
         add_action('wp_footer', array(&$this, 'wp_footer'), 1000);
-        add_action('after_setup_theme', array(&$this, 'after_setup_theme'));
+        add_action('after_setup_theme', array(&$this, 'after_setup_theme'));        
 
         if ( !is_admin() )
             add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'), 11);
@@ -47,8 +48,7 @@ class Projection_Theme {
         add_filter('sofa_enabled_modules', array(&$this, 'sofa_enabled_modules_filter'));
 
   //       add_action('wp_head', array(&$this, 'wp_head'));
-  //       add_action('after_setup_theme', array(&$this, 'after_setup_theme'));
-  //       add_action('widgets_init', array(&$this, 'widgets_init'));
+  //       add_action('after_setup_theme', array(&$this, 'after_setup_theme'));        
   //       add_action('admin_menu', array(&$this, 'admin_menu'));        
   //       add_action('admin_init', array(&$this, 'admin_init'));
   //       add_action('add_meta_boxes', array(&$this, 'add_meta_boxes'));
@@ -131,6 +131,7 @@ class Projection_Theme {
 
         // Enable post thumbnail support 
         add_theme_support('post-thumbnails');
+        add_post_type_support('download', 'thumbnail');
         set_post_thumbnail_size(699, 0, true);
         add_image_size('carousel-thumbnail', 252, 9999, false);
 
@@ -165,7 +166,7 @@ class Projection_Theme {
      * Executes on the widgets_init hook
      * @return void
      */
-    public function widgets_init () {
+    public function widgets_init() {
         register_sidebar( array(
             'id' => 'default',            
             'name' => __( 'Default sidebar', 'projection' ),
@@ -184,6 +185,26 @@ class Projection_Theme {
             'before_title' => '<h4 class="widget_title">',
             'after_title' => '</h4>'
         ));
+
+        register_sidebar( array(
+            'id' => 'homepage-1',            
+            'name' => __( 'Homepage 1', 'projection' ),
+            'description' => __( 'First block of widgets on the homepage. Each widget is 33% width.', 'projection' ),
+            'before_widget' => '<aside id="%1$s" class="widget cf %2$s">',
+            'after_widget' => '</aside>',
+            'before_title' => '<h3 class="widget_title">',
+            'after_title' => '</h3>'
+        ));  
+
+        register_sidebar( array(
+            'id' => 'homepage-2',            
+            'name' => __( 'Homepage 2', 'projection' ),
+            'description' => __( 'Second block of widgets on the homepage. Each widget is 50% width.', 'projection' ),
+            'before_widget' => '<aside id="%1$s" class="widget cf %2$s">',
+            'after_widget' => '</aside>',
+            'before_title' => '<h3 class="widget_title">',
+            'after_title' => '</h3>'
+        ));  
     }    
 
     /**

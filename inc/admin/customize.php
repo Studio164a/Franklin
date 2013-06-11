@@ -232,7 +232,7 @@ class OSFA_Customizer {
 <style media="all" type="text/css">   
 /* Accent colour */
 a { color: <?php echo $accent ?>; }
-.campaign-button, .menu-button, #site-navigation, #active-campaign { background-color: <?php echo $accent ?>; color: <?php echo $accent_text ?>; }
+.campaign-button, .menu-button, #site-navigation, .active-campaign { background-color: <?php echo $accent ?>; color: <?php echo $accent_text ?>; }
 #site-navigation a { color: <?php echo $accent_text ?>; }
 
 .barometer .filled { border-color: <?php echo $accent_hover ?>; }
