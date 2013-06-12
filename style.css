@@ -48,6 +48,8 @@ Text Domain: projection
  *   7.1 - Widgets
  * 8.0 - Media Queries
  *   8.1 - Greater than 600px
+ *   8.2 - Greatern than 800px
+ *   8.3 - Greater than 1217px
  * ----------------------------------------------------------------------------
  */
 
@@ -87,13 +89,17 @@ h1, h2, h3, h4, h5, h6,
 #site-navigation li,
 button,
 .button, 
-.campaign-summary span, 
+.campaign-summary span span, 
 .site-title,
 input, 
 textarea, 
 legend {
 	font-family: 'PT Sans Narrow';
 }
+
+/*.barometer span span {
+	font-family: 'PT Serif' , Georgia, 'Times New Roman', Times, serif;
+}*/
 
 h1 {
     font-size: 42px; font-size: 4.2rem;
@@ -312,9 +318,8 @@ body {
 	top: 0;
 	cursor: pointer;
 	color: #fff;
-	padding: 2px 8px; padding: 0.2rem 0.8rem;
-	text-shadow: 0 -1px 1px rgba(40,40,40,0.4);
 	width: auto;
+	padding: 0;
 }
 
 /* Active campaign and nav are off-screen when inactive */
@@ -347,8 +352,11 @@ body {
 }
 
 #site-navigation .menu-button {
-	position: fixed;
-	left: 2%;
+	position: absolute;
+	right: 2%;
+	top: 15px; top: 1.5rem;
+	line-height: 38px; line-height: 3.8rem;
+	font-size: 20px; font-size: 2rem;
 }
 
 /* Active state */
@@ -377,7 +385,8 @@ body {
 ================================================== */
 
 #header {
-	border-bottom: 3px double #dbdbdb; 
+	position: relative;
+	border-bottom: 3px double #dbdbdb; 	
 }
 
 /* 3.1 -- Navigation ***/
@@ -415,13 +424,13 @@ body {
 /* 3.2 -- Title & Tagline ***/
 
 .site-title {
-	margin: 30px 0 15px; margin-top: 3rem; margin-bottom: 1.5rem;
+	float: left;
+	margin: 15px 0 5px; margin-top: 1.5rem; margin-bottom: .5rem;
 	padding: 0 2%;
 	font-size: 28px; font-size: 2.8rem;
 	line-height: 38px; line-height: 3.8rem;
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
-	text-align: center;
 }
 
 /* 4.0 -- Campaign
@@ -435,8 +444,15 @@ body {
 	transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
 }
 
+.active-campaign .wp-post-image {
+	width: 100%;	
+}
+
 .active-campaign .campaign-summary {
 	padding: 30px 2%; padding-top: 3rem; padding-bottom: 3rem;
+	margin: 0 auto;
+	width: 380px; width: 38rem;	
+	max-width: 96%;
 }
 
 .active-campaign.is-active .campaign-button {
@@ -447,51 +463,70 @@ body {
 
 .campaign-excerpt {
 	float: left;
-	margin-bottom: 30px; 
-	padding: 0 5% 15px;
-	border-bottom: 1px solid #fff; border-color: rgba(255, 255, 255, 0.3);
+	padding: 30px 2%; padding-top: 3rem; padding-bottom: 3rem;
 	text-align: center;
+	font-size: 22px; font-size: 2.2rem;
+	line-height: 32px; line-height: 3.2rem;
 }
 
-#barometer {
+.campaign-excerpt p:last-child {
+	margin-bottom: 0;
+}
+
+.barometer {
 	position: relative;	
 	/*margin: 0 auto 30px auto; margin-bottom: 3rem;*/
 	float: left;
 	margin-right: 30px; margin-right: 3rem;
 	z-index: 30;
-	width: 140px; width: 14rem; 
-	height: 140px; height: 14rem;
+	width: 200px; width: 20rem; 
+	height: 200px; height: 20rem;
 }
 
-#barometer span {
+.barometer span {
 	position: absolute;
 	left: 0;
-	top: 60px; top: 6rem;
-	width: 140px; width: 14rem;
+	top: 74px; top: 7.4rem;
+	width: 200px; width: 20rem;
 	text-align: center;
+	display: inline-block;
+	font-size: 18px; font-size: 1.8rem;	
+	font-style: italic;
+}
+
+.barometer span span {
+	position: static;
+	font-size: 22px; font-size: 2.2rem;
+	line-height: 30px; line-height: 3rem;
+	font-style: normal;
 }
 
 .campaign-summary ul {
 	float: left;
-	text-align: left;
+	text-align: right;
 	list-style: none;
 	padding-left: 0;
-	width: -webkit-calc(100% - 170px);
-	width: -moz-calc(100% - 170px);
-	width: calc(100% - 170px);
+	width: -webkit-calc(100% - 230px);
+	width: -moz-calc(100% - 230px);
+	width: calc(100% - 230px);
+	max-width: 180px; max-width: 18rem;
 }
 
-.campaign-summary span {
-	font-size: 13px; font-size: 1.3rem;
+.campaign-summary li span {
+	font-size: 22px; font-size: 2.2rem;
+	line-height: 30px;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	display: block;
+	font-style: normal;
 }
 
 .campaign-summary li {
-	padding-bottom: 7px;
-	margin-bottom: 8px; 
+	font-size: 18px; font-size: 1.8rem;
+	padding-bottom: 9px;
+	margin-bottom: 9px; 
 	border-bottom: 1px solid #fff; border-color: rgba(255, 255, 255, 0.1);
+	font-style: italic;
 }
 
 .campaign-support {
@@ -585,6 +620,88 @@ body {
 @media all and (min-width: 37.5em) {
 
 	/* Site structure */
+
+	/* Navigation */
+	#site-navigation {	
+		position: static;
+		width: 98%;
+		padding-right: 2%;
+		text-align: right;			
+		box-shadow: none;
+	}
+
+	body #site-navigation {
+		background: transparent;
+	}
+
+	#site-navigation .menu-button {
+		display: none;
+	}
+
+	#site-navigation ul {
+		margin: 15px 0 0 0; margin-top: 1.5rem;
+	}
+
+	#site-navigation li {
+		display: inline-block;
+		margin-bottom: 5px; margin-bottom: 0.5rem;
+	}
+
+	#site-navigation a {
+		display: inline-block;
+		padding: 6px 0; padding: 0.6rem 0;
+		margin: 0 12px; margin: 0 1.2rem;
+		font-size: 18px; font-size: 1.8rem;
+		line-height: 26px; line-height: 2.6rem;
+	}
+
+	body #site-navigation a {
+		color: #666;
+	}
+
+}
+
+/* 8.2 --- Greater than 800px ***/
+
+@media all and (min-width: 50em) {
+
+}
+
+/* 8.3 --- Greater than 880px ***/
+
+@media all and (min-width: 55em) {
+
+	/* Campaign */
+	.active-campaign .wp-post-image {
+		width: 52%;
+		width: -moz-calc(96% - 410px);
+		width: -webkit-calc(96% - 410px);
+		width: calc(96% - 410px);
+		float: left;
+	}
+
+	.active-campaign .campaign-summary {
+		float: left;
+		padding-left: 4%;
+		padding-right: 0;
+	}
+
+}
+
+/* 8.3 --- Greater than 1217px ***/
+
+@media all and (min-width: 76.0625em) {
+
+	/* Site structure */
+	html {
+		background-color: #e1e1e1;
+	}
+
+	body {		
+		margin: 0 auto;
+		width: 1170px;
+		background-color: #fff;
+	}
 
 	/* Admin bar adjustments */
 

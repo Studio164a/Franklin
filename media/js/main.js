@@ -3,10 +3,10 @@
 
 
 	$(window).load(function() {
-		var r = Raphael('barometer', 140, 140), 
-			circle = r.circle(70, 70, 60);
+		var r = Raphael( $('.barometer')[0], 200, 200), 
+			circle = r.circle(100, 100, 90);
 
-		circle.attr({ stroke: '#fff', 'stroke-width' : 10 });
+		circle.attr({ stroke: '#fff', 'stroke-width' : 14 });
 	});
 
 	$(document)

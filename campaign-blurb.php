@@ -1,37 +1,40 @@
 <?php $campaign = projection_get_campaign() ?>	
 <!-- Active campaign -->
-<section class="active-campaign cf">	
+<section class="active-campaign cf">
+
+	<div class="campaign-excerpt"><?php echo apply_filters( 'the_content', $campaign->data->post_excerpt ) ?></div>	
+
 	<?php if ( has_post_thumbnail( $campaign->ID ) ) : ?>
 		<?php echo get_the_post_thumbnail( $campaign->ID ) ?>
 	<?php endif ?>
 
-	<div class="campaign-summary cf">
+	<div class="campaign-summary cf">		
 
-		<div class="campaign-excerpt"><?php echo apply_filters( 'the_content', $campaign->data->post_excerpt ) ?></div>
-
-		<div id="barometer"><span><?php printf( _x( "%s funded", 'x percent funded', 'projection' ), $campaign->percent_completed(true) ) ?></span></div>
+		<div class="barometer">
+			<span><?php printf( _x( "%s Funded", 'x percent funded', 'projection' ), '<span>'.$campaign->percent_completed(true).'</span>' ) ?></span></div>
 		<ul>
+			<li class="campaign-raised">
+				<span><?php echo $campaign->current_amount() ?></span>
+				<?php _e( 'Pledged', 'projection' ) ?>		
+			</li>
 			<li class="campaign-goal">
-				<span><?php _e( 'Goal:', 'projection' ) ?></span>
-				<?php echo $campaign->goal() ?>
+				<span><?php echo $campaign->goal() ?></span>
+				<?php _e( 'Goal', 'projection' ) ?>				
 			</li>
 			<li class="campaign-backers">
-				<span><?php _e( 'Backers:', 'projection' ) ?></span>
-				<?php echo $campaign->backers_count() ?>
+				<span><?php echo $campaign->backers_count() ?></span>
+				<?php _e( 'Backers', 'projection' ) ?>
 			</li>
-			<li class="campaign-raised">
-				<span><?php _e( 'Raised:', 'projection' ) ?></span>
-				<?php echo $campaign->current_amount() ?>
-			</li>
-			<li class="campaign-end">
+			
+<!-- 			<li class="campaign-end">
 				<span><?php _e( 'End date', 'projection' ) ?></span>
 				<?php echo mysql2date( 'j F, Y', $campaign->__get( 'campaign_end_date' ) ) ?>
-			</li>
+			</li> -->
 		</ul>
 
-	</div>
+		<p class="campaign-support"><a class="button" data-reveal-id="campaign-form" href="#"><?php _e( 'Support', 'projection' ) ?></a></p>	
 
-	<p class="campaign-support"><a class="button" data-reveal-id="campaign-form" href="#"><?php _e( 'Support', 'projection' ) ?></a></p>	
+	</div>	
 
 </section>
 <!-- End active campaign -->

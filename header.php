@@ -18,9 +18,7 @@
 	<header id="header" class="cf wrapper">
 
 		<!-- Site title -->
-		<div id="banner">
-			<?php sofa_site_title() ?>
-		</div>
+		<?php sofa_site_title() ?>	
 		<!-- End site title -->		
 
 		<!-- Wrapper for the navigation -->

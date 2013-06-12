@@ -34,7 +34,7 @@ class Projection_Theme {
         if ( class_exists('Easy_Digital_Downloads') && class_exists('ATCF_CrowdFunding')) {
 
             $this->crowdfunding_enabled = true;
-
+            include_once('inc/crowdfunding/crowdfunding.php');
             include_once('inc/crowdfunding/template.php');
         }
 
@@ -131,7 +131,7 @@ class Projection_Theme {
 
         // Enable post thumbnail support 
         add_theme_support('post-thumbnails');
-        add_post_type_support('download', 'thumbnail');
+        // add_post_type_support('download', 'thumbnail');
         set_post_thumbnail_size(699, 0, true);
         add_image_size('carousel-thumbnail', 252, 9999, false);
 
