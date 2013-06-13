@@ -1,0 +1,188 @@
+
+.active-campaign {		
+	/* Transition */
+	-ms-transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-moz-transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-o-transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-webkit-transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+}
+
+.active-campaign .wp-post-image {
+	width: 100%;	
+}
+
+.active-campaign .campaign-summary {
+	padding: 30px 2%; padding-top: 3rem; padding-bottom: 3rem;
+	margin: 0 auto;
+	width: 380px; width: 38rem;	
+	max-width: 96%;
+}
+
+.active-campaign.is-active .campaign-button {
+	width: 6px; width: 0.6rem;
+	height: 12px; height: 1.2rem;
+	overflow: hidden;
+}
+
+.campaign-excerpt {
+	float: left;
+	padding: 30px 2%; padding-top: 3rem; padding-bottom: 3rem;
+	text-align: center;
+	font-size: 22px; font-size: 2.2rem;
+	line-height: 32px; line-height: 3.2rem;
+}
+
+.campaign-excerpt p:last-child {
+	margin-bottom: 0;
+}
+
+.barometer {
+	position: relative;	
+	/*margin: 0 auto 30px auto; margin-bottom: 3rem;*/
+	float: left;
+	margin-right: 30px; margin-right: 3rem;
+	z-index: 30;
+	width: 200px; width: 20rem; 
+	height: 200px; height: 20rem;
+}
+
+.barometer span {
+	position: absolute;
+	left: 0;
+	top: 74px; top: 7.4rem;
+	width: 200px; width: 20rem;
+	text-align: center;
+	display: inline-block;
+	font-size: 18px; font-size: 1.8rem;	
+	font-style: italic;
+}
+
+.barometer span span {
+	position: static;
+	font-size: 22px; font-size: 2.2rem;
+	line-height: 30px; line-height: 3rem;
+	font-style: normal;
+}
+
+.campaign-summary ul {
+	float: left;
+	text-align: right;
+	list-style: none;
+	padding-left: 0;
+	width: -webkit-calc(100% - 230px);
+	width: -moz-calc(100% - 230px);
+	width: calc(100% - 230px);
+	max-width: 180px; max-width: 18rem;
+	margin-bottom: 0;
+}
+
+.campaign-summary li span {
+	font-size: 22px; font-size: 2.2rem;
+	line-height: 30px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	display: block;
+	font-style: normal;
+}
+
+.campaign-summary li {
+	font-size: 18px; font-size: 1.8rem;
+	padding-bottom: 10px;
+	margin-bottom: 10px; 
+	border-bottom: 1px solid #fff; border-color: rgba(255, 255, 255, 0.1);
+	font-style: italic;
+	font-weight: 300;
+}
+
+.campaign-countdown {
+	float: left;
+	width: 100%;
+	padding-bottom: 10px;
+	margin-bottom: 20px; 
+	border-bottom: 1px solid #fff; border-color: rgba(255, 255, 255, 0.1);
+}
+
+.campaign-countdown .countdown {
+	float: left; 
+	width: 65%;
+	font-style: normal;
+}
+
+.campaign-countdown > span {
+	font-size: 18px; font-size: 1.8rem;
+	float: right;
+	text-align: right;
+	font-style: italic;
+	width: 35%;
+}
+
+.campaign-support {
+	float: left;
+	width: 96%;
+	padding: 0 2% 30px; padding-bottom: 3rem;
+	text-align: center;
+}
+
+.edd_download_purchase_form {
+	border-top: 3px double #fff; border-color: rgba(255, 255, 255, 0.3);
+	float: left;
+	width: 100%;
+	margin-top: 30px; 
+	padding-top: 30px;
+}
+
+
+
+/* jQuery Countdown styles 1.6.2. */
+.hasCountdown {	
+
+}
+.countdown_rtl {
+	direction: rtl;
+}
+.countdown_holding span {
+	color: #888;
+}
+.countdown_row {
+	clear: both;
+	width: 100%;
+	padding: 0px 2px;
+	text-align: center;
+}
+.countdown_show1 .countdown_section {
+	width: 98%;
+}
+.countdown_show2 .countdown_section {
+	width: 48%;
+}
+.countdown_show3 .countdown_section {
+	width: 32.5%;
+}
+.countdown_show4 .countdown_section {
+	width: 24.5%;
+}
+.countdown_show5 .countdown_section {
+	width: 19.5%;
+}
+.countdown_show6 .countdown_section {
+	width: 16.25%;
+}
+.countdown_show7 .countdown_section {
+	width: 14%;
+}
+.countdown_section {
+	display: block;
+	float: left;	
+	text-align: center;
+	font-size: 14px;
+	font-weight: 300;
+}
+.countdown_amount {	
+	font-size: 18px;
+}
+.countdown_descr {
+	display: block;
+	width: 100%;
+}
+

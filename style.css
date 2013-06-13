@@ -81,7 +81,7 @@ html {
 }
 
 body {
-	font: 15px/22.5px 'PT Serif' , Georgia, 'Times New Roman', Times, serif; font-size: 1.5rem;
+	font: 15px/22.5px 'Merriweather', Georgia, 'Times New Roman', Times, serif; font-size: 1.5rem;
 	color: #666;
 }
 
@@ -89,17 +89,14 @@ h1, h2, h3, h4, h5, h6,
 #site-navigation li,
 button,
 .button, 
-.campaign-summary span span, 
+.campaign-summary li span, 
+.countdown_section,
 .site-title,
 input, 
 textarea, 
 legend {
-	font-family: 'PT Sans Narrow';
+	font-family: 'Oswald', 'Helvetica Neue', Helvetica, sans-serif;
 }
-
-/*.barometer span span {
-	font-family: 'PT Serif' , Georgia, 'Times New Roman', Times, serif;
-}*/
 
 h1 {
     font-size: 42px; font-size: 4.2rem;
@@ -323,8 +320,7 @@ body {
 }
 
 /* Active campaign and nav are off-screen when inactive */
-.active-campaign.flyout, 
-#site-navigation {	
+.active-campaign.flyout {	
 	position: fixed;
 	top: 0;		
 	z-index: 50;
@@ -346,38 +342,21 @@ body {
 	right: 2%;
 }
 
-#site-navigation {	
-	left: -80%;
-	width: 76%;	
-}
-
-#site-navigation .menu-button {
-	position: absolute;
-	right: 2%;
-	top: 15px; top: 1.5rem;
-	line-height: 38px; line-height: 3.8rem;
-	font-size: 20px; font-size: 2rem;
-}
-
 /* Active state */
 .active-campaign.flyout.is-active {
 	right: 0;
 }
 
-#site-navigation.is-active {
-	left: 0;
-}
-
 /* 2.2 -- Admin bar ***/
 .admin-bar #header {
-	padding-top: 28px; padding-top: 2.8rem;
+	/*padding-top: 28px; padding-top: 2.8rem;*/
 }
 
 .admin-bar .active-campaign .campaign-button, 
 .admin-bar #site-navigation .menu-button, 
 .admin-bar #site-navigation, 
 .admin-bar .active-campaign {
-	top: 28px; top: 2.8rem;
+	/*top: 28px; top: 2.8rem;*/
 } 
 
 
@@ -391,27 +370,44 @@ body {
 
 /* 3.1 -- Navigation ***/
 
-#site-navigation {			
-	box-shadow: 1px 0 2px #bbb;
-
-	/* Transition */
-	-ms-transition: left 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
-	-moz-transition: left 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
-	-o-transition: left 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
-	-webkit-transition: left 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
-	transition: left 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+#site-navigation {				
+	float: left;
+	clear: both;
+	height: 0;
+	width: 100%;
 }
 
-#site-navigation ul {
+#site-navigation.is-active {
+	border-top: 3px double #efefef;
+}
+
+#site-navigation ul {	
+	width: 100%;	
+	height: 0;
 	padding: 0;
+	overflow: hidden;
+
+	/* Transition */
+	-ms-transition: max-height 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-moz-transition: max-height 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-o-transition: max-height 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-webkit-transition: max-height 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	transition: max-height 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+}
+
+#site-navigation.is-active ul {
+	height: auto;
+	max-height: 10000px; /* Required for animation */
+	box-shadow: inset 0 -1px 2px #999;
 }
 
 #site-navigation li {
 	list-style: none;
 	text-transform: uppercase;
 	line-height: 1em; 	
-	border-bottom: 1px solid #fff; border-color: rgba(255, 255, 255, 0.3);
+	border-bottom: 1px solid #efefef;
 	text-align: center;
+	margin: 0;
 }
 
 #site-navigation a {	
@@ -419,13 +415,23 @@ body {
 	width: 100%;
 	padding: 15px 0;
 	text-decoration: none;
+	font-weight: 300;
+	color: #666;
+}
+
+#site-navigation .menu-button {
+	position: absolute;
+	right: 2%;
+	top: 15px; top: 1.5rem;
+	line-height: 38px; line-height: 3.8rem;
+	font-size: 20px; font-size: 2rem;
 }
 
 /* 3.2 -- Title & Tagline ***/
 
 .site-title {
 	float: left;
-	margin: 15px 0 5px; margin-top: 1.5rem; margin-bottom: .5rem;
+	margin: 15px 0 15px; margin-top: 1.5rem; margin-bottom: 1.5rem;
 	padding: 0 2%;
 	font-size: 28px; font-size: 2.8rem;
 	line-height: 38px; line-height: 3.8rem;
@@ -435,129 +441,7 @@ body {
 
 /* 4.0 -- Campaign
 ================================================== */
-.active-campaign {		
-	/* Transition */
-	-ms-transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
-	-moz-transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
-	-o-transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
-	-webkit-transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
-	transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
-}
 
-.active-campaign .wp-post-image {
-	width: 100%;	
-}
-
-.active-campaign .campaign-summary {
-	padding: 30px 2%; padding-top: 3rem; padding-bottom: 3rem;
-	margin: 0 auto;
-	width: 380px; width: 38rem;	
-	max-width: 96%;
-}
-
-.active-campaign.is-active .campaign-button {
-	width: 6px; width: 0.6rem;
-	height: 12px; height: 1.2rem;
-	overflow: hidden;
-}
-
-.campaign-excerpt {
-	float: left;
-	padding: 30px 2%; padding-top: 3rem; padding-bottom: 3rem;
-	text-align: center;
-	font-size: 22px; font-size: 2.2rem;
-	line-height: 32px; line-height: 3.2rem;
-}
-
-.campaign-excerpt p:last-child {
-	margin-bottom: 0;
-}
-
-.barometer {
-	position: relative;	
-	/*margin: 0 auto 30px auto; margin-bottom: 3rem;*/
-	float: left;
-	margin-right: 30px; margin-right: 3rem;
-	z-index: 30;
-	width: 200px; width: 20rem; 
-	height: 200px; height: 20rem;
-}
-
-.barometer span {
-	position: absolute;
-	left: 0;
-	top: 74px; top: 7.4rem;
-	width: 200px; width: 20rem;
-	text-align: center;
-	display: inline-block;
-	font-size: 18px; font-size: 1.8rem;	
-	font-style: italic;
-}
-
-.barometer span span {
-	position: static;
-	font-size: 22px; font-size: 2.2rem;
-	line-height: 30px; line-height: 3rem;
-	font-style: normal;
-}
-
-.campaign-summary ul {
-	float: left;
-	text-align: right;
-	list-style: none;
-	padding-left: 0;
-	width: -webkit-calc(100% - 230px);
-	width: -moz-calc(100% - 230px);
-	width: calc(100% - 230px);
-	max-width: 180px; max-width: 18rem;
-}
-
-.campaign-summary li span {
-	font-size: 22px; font-size: 2.2rem;
-	line-height: 30px;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	display: block;
-	font-style: normal;
-}
-
-.campaign-summary li {
-	font-size: 18px; font-size: 1.8rem;
-	padding-bottom: 9px;
-	margin-bottom: 9px; 
-	border-bottom: 1px solid #fff; border-color: rgba(255, 255, 255, 0.1);
-	font-style: italic;
-}
-
-.campaign-support {
-	float: left;
-	width: 96%;
-	padding: 0 2% 30px; padding-bottom: 3rem;
-	text-align: center;
-}
-
-/*.campaign-goal, 
-.campaign-raised {
-	float: left;
-	width: 50%;
-}
-
-.campaign-support {
-	width: 100%;
-	display: block;
-	padding-left: 0;
-	padding-right: 0;
-	margin-top: 30px; margin-top: 3rem;
-	text-align: center;
-}*/
-
-.edd_download_purchase_form {
-	border-top: 3px double #fff; border-color: rgba(255, 255, 255, 0.3);
-	float: left;
-	width: 100%;
-	margin-top: 30px; 
-	padding-top: 30px;
-}
 
 /* 5.0 -- Content
 ================================================== */
@@ -628,10 +512,13 @@ body {
 		padding-right: 2%;
 		text-align: right;			
 		box-shadow: none;
+		height: auto;
+		float: none;
+		clear: none;
 	}
 
 	body #site-navigation {
-		background: transparent;
+		background: transparent;		
 	}
 
 	#site-navigation .menu-button {
@@ -639,26 +526,24 @@ body {
 	}
 
 	#site-navigation ul {
+		height: auto;
+		width: auto;
 		margin: 15px 0 0 0; margin-top: 1.5rem;
 	}
 
 	#site-navigation li {
 		display: inline-block;
 		margin-bottom: 5px; margin-bottom: 0.5rem;
+		border: none;
 	}
 
 	#site-navigation a {
 		display: inline-block;
 		padding: 6px 0; padding: 0.6rem 0;
 		margin: 0 12px; margin: 0 1.2rem;
-		font-size: 18px; font-size: 1.8rem;
+		font-size: 16px; font-size: 1.6rem;
 		line-height: 26px; line-height: 2.6rem;
 	}
-
-	body #site-navigation a {
-		color: #666;
-	}
-
 }
 
 /* 8.2 --- Greater than 800px ***/

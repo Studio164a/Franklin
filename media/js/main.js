@@ -1,14 +1,6 @@
 // Enclose script in an anonymous function to prevent global namespace polution
 ( function( $ ){
 
-
-	$(window).load(function() {
-		var r = Raphael( $('.barometer')[0], 200, 200), 
-			circle = r.circle(100, 100, 90);
-
-		circle.attr({ stroke: '#fff', 'stroke-width' : 14 });
-	});
-
 	$(document)
 	// Initiate foundation
 	.foundation()
@@ -19,11 +11,6 @@
 		$('.menu-button').on( 'click', function() {			
 			$(this).children().toggleClass('icon-th-list').toggleClass('icon-remove');
 			$('#site-navigation').toggleClass('is-active');			
-		});
-
-		$('.campaign-button').on( 'click', function() {
-			$(this).toggleClass('icon-remove');
-			$(this).parent().toggleClass('is-active');
 		});
 	});
 

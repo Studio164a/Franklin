@@ -7,17 +7,12 @@
  * @author Studio164a
  */
 
-
-/** 
- * Get the currently active campaign. 
+/**
+ * Returns whether crowdfunding is enabled.
  * 
- * @return false|ATCF_Campaign
+ * @return bool
+ * @since Projection 0.1
  */
-function projection_get_campaign() {
-	$campaign_id = get_theme_mod('campaign', false);
-
-	if ( false === $campaign_id )
-		return false;
-
-	return new ATCF_Campaign($campaign_id);
+function sofa_using_crowdfunding() {
+	return get_projection_theme()->crowdfunding_enabled;
 }

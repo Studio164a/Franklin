@@ -10,15 +10,20 @@
 
 class Projection_Theme {
 
+    /**
+     * @var Projection_Theme
+     */
+    private static $instance = null;
+
     /** 
      * @var bool
      */
-    private $crowdfunding_enabled = false;
+    public $crowdfunding_enabled = false;
 
     /**
      * Private constructor. Singleton pattern.
      */
-	public function __construct() {         
+	private function __construct() {         
         $this->sofa = get_sofa_framework();
 
 
@@ -34,10 +39,12 @@ class Projection_Theme {
         if ( class_exists('Easy_Digital_Downloads') && class_exists('ATCF_CrowdFunding')) {
 
             $this->crowdfunding_enabled = true;
-            include_once('inc/crowdfunding/crowdfunding.php');
+            include_once('inc/crowdfunding/crowdfunding.class.php');
+            include_once('inc/crowdfunding/helpers.php');
             include_once('inc/crowdfunding/template.php');
         }
 
+        add_action('wp_head', array(&$this, 'wp_head'));
         add_action('widgets_init', array(&$this, 'widgets_init'));
         add_action('wp_footer', array(&$this, 'wp_footer'), 1000);
         add_action('after_setup_theme', array(&$this, 'after_setup_theme'));        
@@ -61,6 +68,19 @@ class Projection_Theme {
   //       add_filter('post_class', array(&$this, 'post_class'));
   //       add_filter('the_content_more_link', array(&$this, 'the_content_more_link'), 10, 2);        
   	}
+
+    /**
+     * Get class instance.
+     *
+     * @static
+     * @return Projection_Theme
+     */
+    public static function get_instance() {
+        if (is_null(self::$instance)) {
+          self::$instance = new Projection_Theme();
+        }
+        return self::$instance;
+    }    
 
     /**
      * Enqueue stylesheets and scripts
@@ -92,9 +112,8 @@ class Projection_Theme {
         // wp_register_script('contentCarousel', sprintf( "%s/media/js/jquery.contentCarousel.js", get_template_directory_uri() ), array('jquery-event-swipe', 'transit'), 0.1, true );
 
         wp_register_script('foundation', sprintf( "%s/media/js/foundation.min.js", $theme_dir ), array(), 0.1, true);
-        wp_register_script('foundation-reveal', sprintf( "%s/media/js/foundation.reveal.js", $theme_dir ), array('foundation'), 0.1, true);
-        wp_register_script('raphael', sprintf( "%s/media/js/raphael-min.js", $theme_dir ), array(), 0.1, true);
-        wp_register_script('main', sprintf( "%s/media/js/main.js", $theme_dir ), array('hoverIntent', 'raphael', 'foundation-reveal', 'jquery'), 0.1, true);        
+        wp_register_script('foundation-reveal', sprintf( "%s/media/js/foundation.reveal.js", $theme_dir ), array('foundation'), 0.1, true);        
+        wp_register_script('main', sprintf( "%s/media/js/main.js", $theme_dir ), array('hoverIntent', 'foundation-reveal', 'jquery'), 0.1, true);        
 	    wp_enqueue_script('main');
 
         // If Symple Shortcodes is installed, dequeue its stylesheet
@@ -109,7 +128,7 @@ class Projection_Theme {
      * @return void
      */
     public function wp_head () {
-        echo apply_filters( 'projection_font_link', "<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700|PT+Serif:400,400italic,700,700italic' rel='stylesheet' type='text/css'>" );
+        echo apply_filters( 'projection_font_link', "<link href='http://fonts.googleapis.com/css?family=Merriweather:400,400italic,700italic,700,300italic,300|Oswald:400,300' rel='stylesheet' type='text/css'>" );
     }
 
     /**
@@ -148,7 +167,7 @@ class Projection_Theme {
      */
     public function wp_footer() {
         if ( $this->crowdfunding_enabled ) {
-            $campaign = projection_get_campaign();
+            $campaign = sofa_crowdfunding_get_campaign();
             ?>            
             <div id="campaign-form" class="reveal-modal">
                 <a class="close-reveal-modal"><i class="icon-remove"></i></a>
@@ -310,7 +329,13 @@ class Projection_Theme {
     }
 }
 
-$GLOBALS[''] = new Projection_Theme();
+// Get the theme instance
+function get_projection_theme() {
+    return Projection_Theme::get_instance();
+}
+
+// Start 'er up
+get_projection_theme();
 
 // Set the content_width global
 $content_width = 1077;

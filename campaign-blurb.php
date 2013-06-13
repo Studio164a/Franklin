@@ -1,4 +1,6 @@
-<?php $campaign = projection_get_campaign() ?>	
+<?php if ( sofa_using_crowdfunding() === false ) return ?>
+
+<?php $campaign = sofa_crowdfunding_get_campaign() ?>	
 <!-- Active campaign -->
 <section class="active-campaign cf">
 
@@ -29,8 +31,16 @@
 <!-- 			<li class="campaign-end">
 				<span><?php _e( 'End date', 'projection' ) ?></span>
 				<?php echo mysql2date( 'j F, Y', $campaign->__get( 'campaign_end_date' ) ) ?>
-			</li> -->
+			</li> -->			
 		</ul>
+
+		<div class="campaign-countdown">
+			<span class="countdown" data-enddate='<?php echo sofa_crowdfunding_get_enddate($campaign, true) ?>'></span>
+			<span><?php _e( 'Time left to donate', 'projection' ) ?></span>
+		</div>
+
+		<?php //echo projection_get_enddate_json($campaign, true) ?>
+		
 
 		<p class="campaign-support"><a class="button" data-reveal-id="campaign-form" href="#"><?php _e( 'Support', 'projection' ) ?></a></p>	
 
