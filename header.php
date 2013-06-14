@@ -50,7 +50,7 @@
 
 		<?php if ( !is_front_page() ) : ?>
 
-			<?php get_template_part('campaign', 'flyout') ?>
+			<?php //get_template_part('campaign', 'flyout') ?>
 
 		<?php endif ?>	
 

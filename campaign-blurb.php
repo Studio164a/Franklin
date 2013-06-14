@@ -4,7 +4,7 @@
 <!-- Active campaign -->
 <section class="active-campaign cf">
 
-	<div class="campaign-excerpt"><?php echo apply_filters( 'the_content', $campaign->data->post_excerpt ) ?></div>	
+	<div class="campaign-excerpt"><?php the_excerpt() ?></div>	
 
 	<?php if ( has_post_thumbnail( $campaign->ID ) ) : ?>
 		<?php echo get_the_post_thumbnail( $campaign->ID ) ?>
@@ -12,7 +12,7 @@
 
 	<div class="campaign-summary cf">		
 
-		<p class="campaign-support"><a class="button" data-reveal-id="campaign-form" href="#"><?php _e( 'Support', 'projection' ) ?></a></p>
+		<p class="campaign-support"><a class="button button-large" data-reveal-id="campaign-form" href="#"><?php _e( 'Support', 'projection' ) ?></a></p>
 
 		<div class="barometer">
 			<span><?php printf( _x( "%s Funded", 'x percent funded', 'projection' ), '<span>'.$campaign->percent_completed(true).'</span>' ) ?></span>

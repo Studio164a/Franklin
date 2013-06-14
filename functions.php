@@ -167,16 +167,6 @@ class Projection_Theme {
      * @return void
      */
     public function wp_footer() {
-        if ( $this->crowdfunding_enabled ) {
-            $campaign = sofa_crowdfunding_get_campaign();
-            ?>            
-            <div id="campaign-form" class="reveal-modal">
-                <a class="close-reveal-modal"><i class="icon-remove"></i></a>
-                <?php echo edd_get_purchase_link( array( 'download_id' => $campaign->ID ) ); ?>
-            </div>
-            <?php
-        }     
-
         ?>
         <!-- <div class="loading-overlay"></div> -->
 

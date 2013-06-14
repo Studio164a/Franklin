@@ -17,8 +17,8 @@
 /* 2.0 - Active campaign 
 ================================================== */
 .active-campaign {		
-	width: 92%;
-	padding: 0 4% 45px 4%; padding-bottom: 4.5rem;
+	width: 100%;
+	padding: 0 0 45px; padding-bottom: 4.5rem;
 
 	/* Transition */
 	-ms-transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
@@ -29,13 +29,15 @@
 }
 
 .active-campaign .wp-post-image {
-	width: 100%;	
+	width: 92%;
+	margin: 0 4%;
 }
 
 .active-campaign .campaign-summary {
-	padding: 30px 0; padding-top: 3rem; padding-bottom: 3rem;
+	padding: 30px 4% 0; padding-top: 3rem;
 	margin: 0 auto;
 	width: 380px; width: 38rem;	
+	max-width: 92%;
 }
 
 .active-campaign.is-active .campaign-button {
@@ -46,7 +48,8 @@
 
 .campaign-excerpt {
 	float: left;
-	padding: 30px 0; padding-top: 3rem; padding-bottom: 3rem;
+	width: 92%;
+	padding: 30px 4%; padding-top: 3rem; padding-bottom: 3rem;
 	text-align: center;
 	font-size: 22px; font-size: 2.2rem;
 	line-height: 32px; line-height: 3.2rem;
@@ -123,7 +126,7 @@
 
 .campaign-countdown .countdown {
 	float: left; 
-	width: 65%;
+	width: 68%;
 	font-style: normal;
 }
 
@@ -132,7 +135,7 @@
 	float: right;
 	text-align: right;
 	font-style: italic;
-	width: 35%;
+	width: 30%;
 }
 
 .campaign-support {
@@ -140,14 +143,6 @@
 	width: 100%;
 	padding: 0 0 30px; padding-bottom: 3rem;
 	text-align: center;
-}
-
-.edd_download_purchase_form {
-	border-top: 3px double #fff; border-color: rgba(255, 255, 255, 0.3);
-	float: left;
-	width: 100%;
-	margin-top: 30px; 
-	padding-top: 30px;
 }
 
 /* 2.1 --- Countdown */
@@ -202,25 +197,141 @@
 	width: 100%;
 }
 
-/* 6.0 -- Media Queries
+/* 3.0 Pledge form
+================================================== */
+.edd_download_purchase_form {
+	border-top: 3px double #fff; border-color: rgba(255, 255, 255, 0.3);
+	float: left;
+	width: 100%;
+	text-align: center;
+}
+
+.campaign-price-input {
+	position: absolute;
+	bottom: 24px; bottom: 2.4rem;
+	width: 92%;
+}
+
+.campaign-price-input input[type=text] {
+	width: 98%;
+	padding-left: 1%;
+	padding-right: 1%;
+	margin-bottom: 12px; margin-bottom: 1.2rem;
+}
+
+.edd_purchase_submit_wrapper .edd-add-to-cart {
+	padding: 0;
+	width: 100%;
+}
+
+.campaign-pledge-levels {
+	padding: 12px 0 36px; padding-top: 1.2rem; padding-bottom: 3.6rem;
+	list-style: none;
+	text-align: left;	
+}
+
+.pledge-level {
+	margin-bottom: 12px;
+}
+
+.pledge-level input {
+	position: relative;
+	bottom: 4px;
+}
+
+.pledge-title {
+	display: inline;
+	text-transform: uppercase;
+	font-weight: 300;
+}
+
+.pledge-title strong {
+	font-weight: 400;
+}
+
+.pledge-description {
+	/*display: inline;*/
+}
+
+.pledge-limit {
+	float: right;
+	margin-top: 14px; margin-top: 1.4rem;
+	text-align: right;
+	font-style: italic;	
+	color: #9d9da1;
+}
+
+/* 4.0 - Campaign video 
+================================================== */
+.campaign-video {
+	margin: 60px 0;
+	background-color: #f1f1f2;
+}
+
+
+
+/* 6.0 - Media Queries
 ================================================== */
 
-/* 6.1 --- Greater than 880px ***/
+/* 6.1 --- Greater than 600px ***/
+@media all and (min-width: 37.5em) {
+
+	.edd_purchase_submit_wrapper {
+		padding-top: 6px; 
+	}
+
+	.campaign-pledge-levels {
+		padding-top: 36px; padding-top: 3.6rem;
+		padding-bottom: 0;
+	}
+
+	.campaign-price-input {
+		position: static;
+		width: 100%;
+	}
+
+	.campaign-price-input input[type=text] {
+		margin-bottom: 0;
+		width: 60%;
+	}
+
+	.edd_purchase_submit_wrapper .edd-add-to-cart {
+		float: right;
+		width: 34%;		
+	}
+}
+
+/* 6.2 --- Greater than 880px ***/
 @media all and (min-width: 55em) {
 
 	/* Campaign */
 	.active-campaign .wp-post-image {
-		width: 52%;
-		width: -moz-calc(100% - 400px);
-		width: -webkit-calc(100% - 400px);
-		width: calc(100% - 400px);
+		width: 50%;
+		width: -moz-calc(92% - 400px);
+		width: -webkit-calc(92% - 400px);
+		width: calc(92% - 400px);
 		float: left;
+		margin-right: 0;
 	}
 
 	.active-campaign .campaign-summary {
 		float: left;
+		padding-left: 0;
 		padding-top: 4px; padding-top: 0.4rem;
 		margin-left: 20px; margin-left: 2rem;
+		margin-right: 0;
 	}
 
+}
+
+/* 6.3 --- Greater than 1190px ***/
+
+@media all and (min-width: 74.375em) {
+
+	.active-campaign {
+		width: 100%;
+		padding: 0 9px; padding-right: .9rem; padding-left: .9rem;
+		position: relative;
+		left: -9px; left: -.9rem;
+	}
 }

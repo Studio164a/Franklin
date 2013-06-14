@@ -16,12 +16,22 @@ class Sofa_Crowdfunding_Helper {
     private static $instance = null;
 
     /**
+     * @var ATCF_Campaign|false
+     */
+    private $active_campaign;
+
+    /**
      * Private constructor. Singleton pattern.
      */
     private function __construct() {
     	add_action('after_setup_theme', array(&$this, 'after_setup_theme'));
+        add_action('wp_footer', array(&$this, 'wp_footer'));
+
         if ( !is_admin() ) 
-            add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'));
+            add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'), 11);
+
+        add_filter('edd_purchase_link_defaults', array(&$this, 'edd_purchase_link_defaults_filter'));
+        add_filter('edd_templates_dir', array(&$this, 'edd_templates_dir_filter'));
     }
 
     /**
@@ -69,6 +79,61 @@ class Sofa_Crowdfunding_Helper {
 
         wp_register_style('projection-crowdfunding', sprintf( "%s/media/css/projection-crowdfunding.css", $theme_dir ));
         wp_enqueue_style('projection-crowdfunding');
+    }
+
+    /**
+     * Add pledge modal on wp_footer hook
+     * 
+     * @return void
+     * @since Projection 1.0
+     */
+    public function wp_footer() {
+        ?>             
+        <div id="campaign-form" class="reveal-modal content-block block">
+            <a class="close-reveal-modal"><i class="icon-remove"></i></a>
+            <?php echo edd_get_purchase_link( array( 'download_id' => $this->get_active_campaign()->ID ) ); ?>
+        </div>
+        <?php
+    }
+
+    /**
+     * Filter the default arguments for the purchase link.
+     * 
+     * @param array $args
+     * @return array
+     * @since Projection 1.0
+     */
+    public function edd_purchase_link_defaults_filter($args) {
+        global $edd_options;
+        $args['color'] = 'accent';
+        return $args;
+    }
+
+    /**
+     * Filter the default template directory. 
+     * 
+     * @param string $default
+     * @return string
+     * @since Projection 1.0
+     */
+    function edd_templates_dir_filter($default) {   
+        return 'templates/edd';
+    }
+
+    /** 
+     * Get the active campaign. 
+     * 
+     * @return ATCF_Campaign|false
+     * @since Projection 1.0 
+     */
+    public function get_active_campaign() {
+        // If we haven't already set the active campaign, set it now
+        if (!isset( $this->active_campaign ) ) {
+            $campaign_id = get_theme_mod('campaign', false);
+            $this->active_campaign = false === $campaign_id ? false : new ATCF_Campaign($campaign_id);
+        }
+
+        return $this->active_campaign;
     }
 }
 

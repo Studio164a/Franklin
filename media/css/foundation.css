@@ -12,14 +12,13 @@
 .reveal-modal {
   visibility: hidden;
   display: none;
-  position: absolute;
-  left: 50%;
+  position: absolute;  
   z-index: 99;
   height: auto;
-  margin-left: -40%;
-  width: 80%;
+  margin-left: 1%;
+  width: 90%;
   background-color: white;
-  padding: 1.25em;
+  padding: 0 4%;
   border: solid 1px #666666;
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);

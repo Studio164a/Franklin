@@ -7,8 +7,26 @@ get_header(); ?>
 
 	<?php get_template_part('campaign', 'blurb') ?>
 
-	<?php dynamic_sidebar( 'homepage-1' ) ?>
+	<?php get_template_part('campaign', 'video') ?>
 
-	<?php dynamic_sidebar( 'homepage-2' ) ?>
+	<div class="content">
+		
+		<?php get_template_part('campaign', 'content') ?>
+
+		<?php get_template_part('campaign', 'backers') ?>
+
+		<?php comments_template('', true) ?>
+
+	</div>
+
+	<aside class="sidebar">
+
+		<?php get_template_part('campaign', 'updates') ?>
+
+		<?php get_template_part('campaign', 'pledge') ?>
+
+		<?php get_template_part('widget', 'blog') ?>
+
+	</aside>
 
 <?php get_footer() ?> 
