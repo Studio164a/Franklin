@@ -111,6 +111,7 @@ class Projection_Theme {
         // wp_register_script('jquery-event-swipe', sprintf( "%s/media/js/jquery.event.swipe.js", $theme_dir ), array( 'jquery', 'jquery-event-move' ), 0.1, true );
         // wp_register_script('contentCarousel', sprintf( "%s/media/js/jquery.contentCarousel.js", get_template_directory_uri() ), array('jquery-event-swipe', 'transit'), 0.1, true );
 
+        // wp_register_script('sharrre', sprintf( "%s/media/js/jquery.sharrre-1.3.4.js", $theme_dir ), array('jquery'), 0.1, true);
         wp_register_script('foundation', sprintf( "%s/media/js/foundation.min.js", $theme_dir ), array(), 0.1, true);
         wp_register_script('foundation-reveal', sprintf( "%s/media/js/foundation.reveal.js", $theme_dir ), array('foundation'), 0.1, true);        
         wp_register_script('main', sprintf( "%s/media/js/main.js", $theme_dir ), array('hoverIntent', 'foundation-reveal', 'jquery'), 0.1, true);        
@@ -178,6 +179,20 @@ class Projection_Theme {
 
         ?>
         <!-- <div class="loading-overlay"></div> -->
+
+        <!-- Load scripts -->
+        <script type="text/javascript">
+        
+            /* Twitter share button */
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+            /* Google Plus share button */
+            (function() {
+                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                po.src = 'https://apis.google.com/js/plusone.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+            })();
+        </script>
         <?php   
     }
 

@@ -14,35 +14,46 @@
 </head>
 <body <?php body_class() ?>>
 
-	<!-- Header -->
-	<header id="header" class="cf wrapper">
+	<!-- Sharing -->
+	<?php //get_template_part('sharing') ?>	
+	<!-- End sharing -->
 
-		<!-- Site title -->
-		<?php sofa_site_title() ?>	
-		<!-- End site title -->		
+	<!-- Login/register -->
+	<?php get_template_part('account-links') ?>	
+	<!-- End login/register -->
 
-		<!-- Wrapper for the navigation -->
-		<div id="site-navigation" class="wrapper">		
-			
-			<nav role="navigation">
-	            <a class="menu-button toggle-button"><i class="icon-th-list"></i></a>
-	            <?php wp_nav_menu( array(   
-	                'theme_location' => 'primary_navigation',
-	                'container' => false,
-	                'menu_class' => 'menu responsive_menu' ) ) ?>
-	        </nav>
-	    </div>
-	    <!-- End navigation -->
+	<!-- Body wrapper -->
+	<div class="body-wrapper">
+	
+		<!-- Header -->
+		<header id="header" class="cf wrapper">			
 
-	</header>
-	<!-- End header -->
+			<!-- Site title -->
+			<?php sofa_site_title() ?>	
+			<!-- End site title -->		
 
-	<?php if ( !is_front_page() ) : ?>
+			<!-- Wrapper for the navigation -->
+			<div id="site-navigation" class="wrapper">		
+				
+				<nav role="navigation">
+		            <a class="menu-button toggle-button"><i class="icon-th-list"></i></a>
+		            <?php wp_nav_menu( array(   
+		                'theme_location' => 'primary_navigation',
+		                'container' => false,
+		                'menu_class' => 'menu responsive_menu' ) ) ?>
+		        </nav>
+		    </div>
+		    <!-- End navigation -->
 
-		<?php get_template_part('campaign', 'flyout') ?>
+		</header>
+		<!-- End header -->
 
-	<?php endif ?>	
+		<?php if ( !is_front_page() ) : ?>
 
-	<!-- Main content section. Everything between the header and the footer -->
-	<div id="main" class="cf" role="main"> 	
+			<?php get_template_part('campaign', 'flyout') ?>
+
+		<?php endif ?>	
+
+		<!-- Main content section. Everything between the header and the footer -->
+		<div id="main" class="cf" role="main"> 	
 

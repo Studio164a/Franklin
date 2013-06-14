@@ -44,3 +44,15 @@ function sofa_crowdfunding_get_enddate( $campaign, $json_format = false ) {
 
 	return $json_format ? json_encode($end_date_array) : $end_date_array;
 }
+
+/**
+ * Get the login page URL. 
+ * 
+ * @param string $page
+ * @return string|false
+ * @since Projection 0.1
+ */
+function sofa_crowdfunding_get_page_url($page) {
+	global $edd_options;
+	return isset( $edd_options[$page] ) ? $edd_options[$page] : false;
+}

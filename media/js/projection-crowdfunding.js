@@ -9,10 +9,10 @@
 
 	// Set up Raphael on window load event
 	$(window).load(function() {
-		var r = Raphael( $('.barometer')[0], 200, 200), 
-			circle = r.circle(100, 100, 90);
+		var r = Raphael( $('.barometer')[0], 146, 146), 
+			circle = r.circle(73, 73, 63);
 
-		circle.attr({ stroke: '#fff', 'stroke-width' : 14 });
+		circle.attr({ stroke: '#fff', 'stroke-width' : 12 });
 	});
 
 	$(document).ready( function() {

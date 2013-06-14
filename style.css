@@ -94,9 +94,15 @@ button,
 .site-title,
 input, 
 textarea, 
-legend {
+legend, 
+.account-links, 
+.barometer span span {
 	font-family: 'Oswald', 'Helvetica Neue', Helvetica, sans-serif;
 }
+
+/*.barometer span span {
+	font-family: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
+}*/
 
 h1 {
     font-size: 42px; font-size: 4.2rem;
@@ -188,6 +194,8 @@ ol ol ol { list-style: lower-roman; }
 dt { font-weight: 600; }
 dd { margin-bottom: 15px; margin-bottom: 1.5rem; }
 
+.horizontal li { display: inline-block; list-style: none; }
+
 /* 1.5 -- Forms ***/
 
 input[type=text],
@@ -214,12 +222,16 @@ input[type=submit],
 input[type=reset], 
 button,
 .button {		
+	background-color: #58595b;
 	padding: 12px 28px; padding: 1.2rem 2.8rem;
-	border: 3px solid transparent; border-width: 0.3rem;
-	font-size: 16px; font-size: 1.6rem;
+	border: 1px solid #828384; border-width: 0.1rem;
+	border-radius: 4px;
+	box-shadow: 0 0 0 4px #58595b;
+	color: #fff;
+	font-size: 25px; font-size: 2.5rem;
 	text-transform: uppercase;
 	letter-spacing: 1px;
-	box-shadow: none;
+	/*box-shadow: none;*/
 	cursor: pointer;
 
 	/* Transition */
@@ -303,11 +315,19 @@ img {
 body {		
 	max-width: 100%;
 	overflow-x: hidden;
+	background-color: #a6a8ab;
 }
 
-.partial {
+.body-wrapper {
+	float: left;
+	clear: both;
+	width: 100%;
+	background-color: #f1f1f2;
+}	
+
+/*.partial {
 	padding: 90px 2%; padding-top: 9rem; padding-bottom: 9rem;
-}
+}*/
 
 .active-campaign .campaign-button,
 #site-navigation .menu-button {
@@ -364,11 +384,33 @@ body {
 ================================================== */
 
 #header {
-	position: relative;
+	position: relative;	
+	padding-top: 15px; padding-top: 1.5rem;
 	border-bottom: 3px double #dbdbdb; 	
+	width: 92%;
+	padding: 0 4%;
 }
 
-/* 3.1 -- Navigation ***/
+/* 3.1 -- Sharing ***/
+
+.sharing {
+	float: left;
+	height: 20px;
+	padding-top: 15px;
+}
+
+.sharing li {
+	margin-bottom: 0;
+	margin-right: 10px; margin-right: 1rem;
+}
+
+.twitter-share-button {
+	width: 76px !important;
+}
+
+/* 3.2 -- User account links ***/
+
+/* 3.3 -- Navigation ***/
 
 #site-navigation {				
 	float: left;
@@ -415,8 +457,8 @@ body {
 	width: 100%;
 	padding: 15px 0;
 	text-decoration: none;
-	font-weight: 300;
-	color: #666;
+	font-weight: 400;
+	color: #58595a;
 }
 
 #site-navigation .menu-button {
@@ -427,16 +469,14 @@ body {
 	font-size: 20px; font-size: 2rem;
 }
 
-/* 3.2 -- Title & Tagline ***/
+/* 3.4 -- Title & Tagline ***/
 
 .site-title {
 	float: left;
-	margin: 15px 0 15px; margin-top: 1.5rem; margin-bottom: 1.5rem;
-	padding: 0 2%;
-	font-size: 28px; font-size: 2.8rem;
+	margin: 15px 20px 15px 0; margin-top: 1.5rem; margin-right: 2rem; margin-bottom: 1.5rem;
+	font-size: 34px; font-size: 3.4rem;
 	line-height: 38px; line-height: 3.8rem;
 	text-transform: uppercase;
-	letter-spacing: 0.1em;
 }
 
 /* 4.0 -- Campaign
@@ -508,8 +548,6 @@ body {
 	/* Navigation */
 	#site-navigation {	
 		position: static;
-		width: 98%;
-		padding-right: 2%;
 		text-align: right;			
 		box-shadow: none;
 		height: auto;
@@ -525,22 +563,25 @@ body {
 		display: none;
 	}
 
-	#site-navigation ul {
+	#site-navigation ul {		
 		height: auto;
 		width: auto;
-		margin: 15px 0 0 0; margin-top: 1.5rem;
+		margin: 26px 0 0 0; margin-top: 2.6rem;
+	}
+
+	body #site-navigation ul {
+		background: transparent;
 	}
 
 	#site-navigation li {
 		display: inline-block;
-		margin-bottom: 5px; margin-bottom: 0.5rem;
+		margin: 0 0 5px 20px; margin-bottom: 0.5rem; margin-left: 2rem;
 		border: none;
 	}
 
 	#site-navigation a {
 		display: inline-block;
-		padding: 6px 0; padding: 0.6rem 0;
-		margin: 0 12px; margin: 0 1.2rem;
+		padding: 6px 0; padding: 0.6rem 0;		
 		font-size: 16px; font-size: 1.6rem;
 		line-height: 26px; line-height: 2.6rem;
 	}
@@ -556,36 +597,26 @@ body {
 
 @media all and (min-width: 55em) {
 
-	/* Campaign */
-	.active-campaign .wp-post-image {
-		width: 52%;
-		width: -moz-calc(96% - 410px);
-		width: -webkit-calc(96% - 410px);
-		width: calc(96% - 410px);
-		float: left;
-	}
+}
 
-	.active-campaign .campaign-summary {
-		float: left;
-		padding-left: 4%;
-		padding-right: 0;
-	}
+/* 8.4 --- Greater than 1000px ***/
 
+@media all and (min-width: 62.5em) {
+	/* Site structure */
+	body {		
+		margin: 0 5%;
+		width: 90%;
+	}
 }
 
 /* 8.3 --- Greater than 1217px ***/
 
 @media all and (min-width: 76.0625em) {
 
-	/* Site structure */
-	html {
-		background-color: #e1e1e1;
-	}
-
 	body {		
 		margin: 0 auto;
-		width: 1170px;
-		background-color: #fff;
+		width: 1170px;		
+		padding: 0 20px;
 	}
 
 	/* Admin bar adjustments */

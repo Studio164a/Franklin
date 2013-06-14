@@ -12,8 +12,12 @@
 
 	<div class="campaign-summary cf">		
 
+		<p class="campaign-support"><a class="button" data-reveal-id="campaign-form" href="#"><?php _e( 'Support', 'projection' ) ?></a></p>
+
 		<div class="barometer">
-			<span><?php printf( _x( "%s Funded", 'x percent funded', 'projection' ), '<span>'.$campaign->percent_completed(true).'</span>' ) ?></span></div>
+			<span><?php printf( _x( "%s Funded", 'x percent funded', 'projection' ), '<span>'.$campaign->percent_completed(true).'</span>' ) ?></span>
+		</div>		
+
 		<ul>
 			<li class="campaign-raised">
 				<span><?php echo $campaign->current_amount() ?></span>
@@ -39,10 +43,7 @@
 			<span><?php _e( 'Time left to donate', 'projection' ) ?></span>
 		</div>
 
-		<?php //echo projection_get_enddate_json($campaign, true) ?>
-		
-
-		<p class="campaign-support"><a class="button" data-reveal-id="campaign-form" href="#"><?php _e( 'Support', 'projection' ) ?></a></p>	
+		<?php //echo projection_get_enddate_json($campaign, true) ?>		
 
 	</div>	
 

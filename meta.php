@@ -4,8 +4,6 @@
 
 			<?php wp_link_pages(array( 'before' => '<p class="entry_pages">' . __('Pages: ', 'osfa') ) ) ?>
 
-			<?php get_template_part('sharing') ?>
-
 			<?php 
 			// Hide post meta if that setting is ticked
 			if (get_post_meta(get_the_ID(), '_osfa_hide_post_meta', true) == true) return; ?>
