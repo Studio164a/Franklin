@@ -248,6 +248,7 @@ button,
 	line-height: 25px; line-height: 2.5rem;
 	border: 1px solid #828384; border-width: 0.1rem;
 	border-radius: 4px;
+	background-image: none;
 	background-color: #58595b;
 	box-shadow: 0 0 0 4px #58595b;
 	color: #fff;
