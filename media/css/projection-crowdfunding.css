@@ -222,6 +222,7 @@
 .edd_purchase_submit_wrapper .edd-add-to-cart {
 	padding: 0;
 	width: 100%;
+	background-image: none;
 }
 
 .campaign-pledge-levels {
