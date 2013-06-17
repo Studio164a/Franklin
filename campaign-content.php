@@ -1,14 +1,17 @@
 <?php 
-
 if ( sofa_using_crowdfunding() === false ) return;
 
-global $post;
 $campaign = sofa_crowdfunding_get_campaign();
-$post = $campaign;
 ?>
 
 <div class="block content-block">
 		
-	<?php the_content() ?>
+	<div class="title-wrapper">	
+		<h2 class="block-title"><?php the_title() ?></h2>
+	</div>
+
+	<div class="entry">
+		<?php the_content() ?>
+	</div>
 
 </div>

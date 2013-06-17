@@ -1,26 +1,32 @@
 <?php 
 /**
- * The page template
+ * Default page template.
  */
 
-get_header() ?>
+get_header(); ?>
 
-	<div class="partial">	
+	<div class="content-wrapper">
 
-		<?php if ( have_posts() ) : ?>			
+		<div class="content">
 
-			<?php while ( have_posts() ) : ?>
+			<?php if ( have_posts() ) : ?>
 
-				<?php the_post() ?>
-				
-				<?php get_template_part( 'content', 'page' ) ?>
+				<?php while ( have_posts() ) : ?>
+			
+					<?php the_post() ?>
+							
+					<?php get_template_part( 'content', 'page' ) ?>
 
-				<?php comments_template('', true) ?>
+					<?php comments_template('', true) ?>
 
-			<?php endwhile ?>
+				<?php endwhile ?>
 
-		<?php endif ?>
+			<?php endif ?>
+
+		</div>
+
+	<?php get_sidebar() ?>
 
 	</div>
 
-<?php get_footer () ?>
+<?php get_footer() ?>

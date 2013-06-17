@@ -32,6 +32,8 @@ class Sofa_Crowdfunding_Helper {
 
         add_filter('edd_purchase_link_defaults', array(&$this, 'edd_purchase_link_defaults_filter'));
         add_filter('edd_templates_dir', array(&$this, 'edd_templates_dir_filter'));
+        add_filter('edd_add_to_cart_item', array(&$this, 'edd_add_to_cart_item_filter'));
+        add_filter('edd_cart_item_price', array(&$this, 'edd_cart_item_price_filter'), 10, 3);
     }
 
     /**
@@ -116,8 +118,46 @@ class Sofa_Crowdfunding_Helper {
      * @return string
      * @since Projection 1.0
      */
-    function edd_templates_dir_filter($default) {   
+    public function edd_templates_dir_filter($default) {   
         return 'templates/edd';
+    }
+
+    /**
+     * Filter the item array that is stored in the user session.
+     *
+     * @param array $item
+     * @return array
+     * @since Projection 1.0
+     */
+    public function edd_add_to_cart_item_filter($item) {
+        // If post_data is not set, return. Not sure this would ever happen, but saves any notices occuring.
+        if ( !isset($_POST['post_data']))
+            return $item;
+
+        // Parse the post_data array 
+        parse_str( urldecode( $_POST['post_data'] ), $query_args );
+
+        if ( isset( $query_args['projection_custom_price'] ) ) {
+            $item['options']['custom_price'] = $query_args['projection_custom_price'];
+        }
+        
+        return $item;
+    }
+
+    /**
+     * Filter the item's price based on the custom price set in the options array
+     * 
+     * @param 
+     * @param
+     * @param
+     * @return 
+     * @since Projection 1.0
+     */
+    public function edd_cart_item_price_filter($price, $item_id, $options) {
+        if ( isset( $options['custom_price']) && $options['custom_price'] != $price )
+            return $options['custom_price'];
+
+        return $price;        
     }
 
     /** 

@@ -100,9 +100,9 @@ legend,
 	font-family: 'Oswald', 'Helvetica Neue', Helvetica, sans-serif;
 }
 
-/*.barometer span span {
+.page-title {
 	font-family: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
-}*/
+}
 
 h1 {
     font-size: 42px; font-size: 4.2rem;
@@ -138,26 +138,21 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 24px 0 12px; margin-top: 2.4rem; margin-bottom: 1.2rem;
 }
 
-.widget-title,
-.page-title, 
-.block-title {
-	display: inline-block;
-	text-align: center;
-	padding: 0 10px;
-	border-bottom: 1px solid #eaebec;
-	text-transform: uppercase;
-}
-/*
-.widget-title:after,
-.page-title:after, 
-.block-title:after {
-	content: "";
+.title-wrapper {
 	display: block;
-	width: 100%;
-	height: 1px;
-	background-color: #eaebec;
+	text-align: center;
+	text-transform: uppercase;
+	overflow: hidden;
 }
-*/
+
+.title-wrapper h1, 
+.title-wrapper h2, 
+.title-wrapper h3, 
+.title-wrapper h4 {
+	display: inline-block;
+	padding: 0 10px; padding-right: 1rem; padding-left: 1rem;	
+}
+
 p {
 	padding-bottom: 12px; padding-bottom: 1.2rem;
 }
@@ -435,23 +430,15 @@ body {
 	border-radius: 4px 4px 0 0;
 }
 
+.content-wrapper.content,
 .content-wrapper {
 	width: 92%;
 	padding: 0 4%;
 }
 
-.block {
-	border: 1px solid #d6d8d8;
-	border-radius: 4px;
-}
-
-.content-block {
-	width: 100%;	
-	background-color: #fff;
-}
-
-.sidebar-block {
-	background-color: #e7e7e7;
+.content, 
+.sidebar {
+	margin-bottom: 48px; margin-bottom: 4.8rem;
 }
 
 .active-campaign .campaign-button,
@@ -616,12 +603,25 @@ body {
 	background-color: #f1f1f2;
 }
 
-.partial {	
-	border-bottom: 3px double #ececec;
+.content-block {
+	width: 100%;	
+	background-color: #fff;	
+}
+
+.entry {
+	padding: 0 30px 24px; padding-right: 3rem; padding-bottom: 2.4rem; padding-left: 3rem;
 }
 
 /* 5.1 --- Entry Header ***/
+.page-title, 
+.block-title {	
+	border-bottom: 1px solid #eaebec;
+	margin-bottom: 36px;
+}
 
+.page-title {
+	
+}
 
 /* 5.2 --- Entry Meta ***/
 
@@ -663,6 +663,30 @@ body {
 /* 6.0 -- Sidebar
 ================================================== */
 
+.widget,
+.block {
+	border: 1px solid #d6d8d8;
+	border-radius: 4px;
+}
+
+.widget,
+.sidebar-block {
+	padding: 0 12px; padding-right: 2rem; padding-bottom: 1.2rem; padding-left: 2rem;
+	background-color: #e7e7e7;
+}
+
+.widget-open {
+	background-color: transparent;
+	padding: 0;	
+	border: none;
+}
+
+.widget-title {
+	margin-top: 12px; margin-top: 1.2rem;
+	border-bottom: 1px solid #d6d8d8;
+}
+
+
 /* 7.0 -- Footer
 ================================================== */
 
@@ -675,10 +699,8 @@ body {
 
 
 	/* Site structure */
-	.content-block, 
-	.content-block.reveal-modal {
-		max-width: 522px;
-		padding: 0 5.76%;
+	.content-block.reveal-modal {		
+		max-width: 522px; max-width: 52.2rem;
 		left: 44.24%;
 		margin-left: -261px; margin-left: -26.1rem;
 	}
@@ -729,7 +751,16 @@ body {
 /* 8.2 --- Greater than 800px ***/
 
 @media all and (min-width: 50em) {
+	.content {
+		float: left;
+		width: 65.78%;	
+	}
 
+	.sidebar {
+		float: right;
+		width: 31.22%;
+		margin-top: 36px;
+	}
 }
 
 /* 8.3 --- Greater than 880px ***/
@@ -764,8 +795,9 @@ body {
 
 	.content-block, 
 	.content-block.reveal-modal {
-		width: 522px;
-		padding: 0 34px; padding: 0 3.4rem;
+		width: 522px;		
+		padding-right: 34px; padding-right: 3.4rem;
+		padding-left: 34px; padding-left: 3.4rem;
 	}
 
 }

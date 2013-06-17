@@ -231,7 +231,7 @@ class OSFA_Customizer {
 
 <style media="all" type="text/css">   
 /* Accent colour */
-a, #site-navigation .menu-button, #site-navigation a:hover, .block-title, .pledge-level.not-available .pledge-limit { color: <?php echo $accent ?>; }
+a, #site-navigation .menu-button, #site-navigation a:hover, .block-title, .widget-title, .pledge-level.not-available .pledge-limit { color: <?php echo $accent ?>; }
 .campaign-button, .active-campaign { background-color: <?php echo $accent ?>; color: <?php echo $accent_text ?>; }
 #site-navigation ul { background-color: <?php echo $accent_text ?>; border-color: <?php echo $accent ?>; }
 

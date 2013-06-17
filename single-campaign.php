@@ -3,30 +3,44 @@
  * Front page template. This is where it's at.
  */
 
-get_header(); ?>
+get_header() ?>
 
-	<?php get_template_part('campaign', 'blurb') ?>
+	<?php if ( have_posts() ) : ?>
 
-	<?php get_template_part('campaign', 'video') ?>
+		<?php while( have_posts() ) : ?>
 
-	<div class="content">
-		
-		<?php get_template_part('campaign', 'content') ?>
+			<?php the_post() ?>
 
-		<?php get_template_part('campaign', 'backers') ?>
+			<?php get_template_part('campaign', 'blurb') ?>
 
-		<?php comments_template('', true) ?>
+			<?php get_template_part('campaign', 'video') ?>
 
-	</div>
+			<div class="content-wrapper">
 
-	<aside class="sidebar">
+				<div class="content">
+					
+					<?php get_template_part('campaign', 'content') ?>
 
-		<?php get_template_part('campaign', 'updates') ?>
+					<?php get_template_part('campaign', 'backers') ?>
 
-		<?php get_template_part('campaign', 'pledge') ?>
+					<?php comments_template('', true) ?>
 
-		<?php get_template_part('widget', 'blog') ?>
+				</div>
 
-	</aside>
+				<aside class="sidebar sidebar-campaign">
+
+					<?php get_template_part('campaign', 'updates') ?>
+
+					<?php get_template_part('campaign', 'pledge') ?>
+
+					<?php get_template_part('widget', 'blog') ?>
+
+				</aside>
+
+			</div>
+
+		<?php endwhile ?>
+
+	<?php endif ?>
 
 <?php get_footer() ?>

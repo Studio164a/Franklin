@@ -1,17 +1,11 @@
-/* 1.0 - User account links 
+/* 1.0 - Campaign page (general)
 ================================================== */
-.account-links {
-	float: right;
-	margin-right: 4%;
-	text-transform: uppercase;
-	font-size: 15px; font-size: 1.5rem;
-	line-height: 44px; line-height: 4.4rem;
+.sidebar.sidebar-campaign {
+	margin-top: 0;
 }
 
-.account-links a {
-	text-decoration: none;
-	color: #58595a;
-	margin-left: 20px;
+.sidebar-campaign .widget:first-child .widget-title {
+	margin-top: 0;
 }
 
 /* 2.0 - Active campaign 
@@ -279,6 +273,13 @@
 	margin-left: 0;
 }
 
+.edd-cart-ajax-alert {
+	float: left;
+	width: 100%;
+	padding-top: 24px; padding-top: 2.4rem;
+	font-style: italic;
+}
+
 /* 4.0 - Campaign video 
 ================================================== */
 .campaign-video {
@@ -286,7 +287,21 @@
 	background-color: #f1f1f2;
 }
 
+/* 5.0 - User account links 
+================================================== */
+.account-links {
+	float: right;
+	margin-right: 4%;
+	text-transform: uppercase;
+	font-size: 15px; font-size: 1.5rem;
+	line-height: 44px; line-height: 4.4rem;
+}
 
+.account-links a {
+	text-decoration: none;
+	color: #58595a;
+	margin-left: 20px;
+}
 
 /* 6.0 - Media Queries
 ================================================== */

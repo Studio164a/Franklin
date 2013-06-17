@@ -1,4 +1,4 @@
-<aside id="sidebar" class="shop">
+<aside class="sidebar">
 
 	<?php dynamic_sidebar('default') ?>
 

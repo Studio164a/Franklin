@@ -53,6 +53,7 @@ class Projection_Theme {
             add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'), 11);
 
         add_filter('sofa_enabled_modules', array(&$this, 'sofa_enabled_modules_filter'));
+        add_filter('get_pages',  array(&$this, 'get_pages_filter'));    
 
   //       add_action('wp_head', array(&$this, 'wp_head'));
   //       add_action('after_setup_theme', array(&$this, 'after_setup_theme'));        
@@ -130,6 +131,15 @@ class Projection_Theme {
      */
     public function wp_head () {
         echo apply_filters( 'projection_font_link', "<link href='http://fonts.googleapis.com/css?family=Merriweather:400,400italic,700italic,700,300italic,300|Oswald:400,300' rel='stylesheet' type='text/css'>" );
+
+        ?>
+        <script>var PROJECTION = {
+            messages : {
+                need_minimum_pledge : "<?php _e( 'Your pledge must be at least the minimum pledge amount.', 'projection' ) ?>"
+            }
+        }
+        </script>
+        <?php
     }
 
     /**
@@ -197,8 +207,8 @@ class Projection_Theme {
             'description' => __( 'The default sidebar.', 'projection' ),
             'before_widget' => '<aside id="%1$s" class="widget cf %2$s">',
             'after_widget' => '</aside>',
-            'before_title' => '<h3 class="widget_title">',
-            'after_title' => '</h3>'
+            'before_title' => '<div class="title-wrapper"><h3 class="widget-title">',
+            'after_title' => '</h3></div>'
         ));  
 
         register_sidebar( array(
@@ -206,8 +216,8 @@ class Projection_Theme {
             'name' => __( 'Footer', 'projection' ),
             'before_widget' => '<aside id="%1$s" class="widget %2$s column column_25">',
             'after_widget' => '</aside>',
-            'before_title' => '<h4 class="widget_title">',
-            'after_title' => '</h4>'
+            'before_title' => '<div class="title-wrapper"><h4 class="widget-title">',
+            'after_title' => '</h4></div>'
         ));
 
         register_sidebar( array(
@@ -216,8 +226,8 @@ class Projection_Theme {
             'description' => __( 'First block of widgets on the homepage. Each widget is 33% width.', 'projection' ),
             'before_widget' => '<aside id="%1$s" class="widget cf %2$s">',
             'after_widget' => '</aside>',
-            'before_title' => '<h3 class="widget_title">',
-            'after_title' => '</h3>'
+            'before_title' => '<div class="title-wrapper"><h3 class="widget-title">',
+            'after_title' => '</h3></div>'
         ));  
 
         register_sidebar( array(
@@ -226,8 +236,8 @@ class Projection_Theme {
             'description' => __( 'Second block of widgets on the homepage. Each widget is 50% width.', 'projection' ),
             'before_widget' => '<aside id="%1$s" class="widget cf %2$s">',
             'after_widget' => '</aside>',
-            'before_title' => '<h3 class="widget_title">',
-            'after_title' => '</h3>'
+            'before_title' => '<div class="title-wrapper"><h3 class="widget-title">',
+            'after_title' => '</h3></div>'
         ));  
     }    
 
@@ -318,6 +328,20 @@ class Projection_Theme {
      */
     public function the_content_more_link($more_link, $more_link_text) {
         return str_replace( $more_link_text, __( 'Continue Reading', 'projection' ), $more_link );
+    }
+
+    /**
+     * Filters the pages to display when showing a list of pages
+     *
+     * @param array $pages
+     * @return array
+     * @since Projection 1.0
+     */
+    public function get_pages_filter($pages) {
+         $campaigns = new WP_Query( array( 'post_type' => 'download' ) );
+         if ( $campaigns->post_count > 0 )
+             $pages = array_merge( $pages, $campaigns->posts );
+         return $pages;
     }
 
     /**

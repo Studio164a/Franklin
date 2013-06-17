@@ -14,7 +14,7 @@ if ( !function_exists('projection_edd_before_price_options') ) {
 
 	function projection_edd_before_price_options($campaign_id) {
 		?>
-		<h2 class="block-title"><?php _e( 'Enter Pledge Amount', 'projection' ) ?></h2>
+		<div class="title-wrapper"><h2 class="block-title"><?php _e( 'Enter Pledge Amount', 'projection' ) ?></h2></div>
 
 		<?php
 		$prices = edd_get_variable_prices( $campaign_id );		
@@ -72,3 +72,8 @@ if ( !function_exists('projection_atcf_campaign_contribute_options') ) {
 }
 
 add_action('edd_purchase_link_end', 'projection_edd_purchase_link_end', 10, 2);
+
+
+
+
+remove_action( 'edd_after_download_content', 'edd_append_purchase_link' );
