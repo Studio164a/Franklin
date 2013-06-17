@@ -203,25 +203,38 @@
 	border-top: 3px double #fff; border-color: rgba(255, 255, 255, 0.3);
 	float: left;
 	width: 100%;
-	text-align: center;
+	padding-bottom: 36px; padding-bottom: 3.6rem;
+	text-align: center;	
 }
 
-.campaign-price-input {
-	position: absolute;
-	bottom: 24px; bottom: 2.4rem;
-	width: 92%;
+.campaign-price-input .price-wrapper {		
+	margin-bottom: 12px; margin-bottom: 1.2rem;
+	width: 100%;
+	border-radius: 2px 0 0 2px;
 }
 
-.campaign-price-input input[type=text] {
-	width: 98%;
+.price-wrapper .currency {
+	width: 10%;
+	float: left;
+	padding: 11px 0 7px; padding-top: 1.1rem; padding-bottom: 0.7rem;
+	background-color: #eaeaec;
+}
+
+.campaign-price-input .price-wrapper input {	
+	width: 88%;
 	padding-left: 1%;
 	padding-right: 1%;
-	margin-bottom: 12px; margin-bottom: 1.2rem;
+	border-radius-top-left: 0;
+	border-radius-bottom-left: 0;
 }
 
 .edd_purchase_submit_wrapper .edd-add-to-cart {
 	padding: 0;
-	width: 100%;
+	margin-left: 5px; margin-left: 0.5rem;
+	width: 93.75%;
+	width: -moz-calc( 100% - 10px );
+	width: -webkit-calc( 100% - 10px );
+	width: calc( 100% - 10px );
 	background-image: none;
 }
 
@@ -251,7 +264,7 @@
 }
 
 .pledge-description {
-	/*display: inline;*/
+	margin-left: 22px; margin-left: 2.2rem;
 }
 
 .pledge-limit {
@@ -260,6 +273,10 @@
 	text-align: right;
 	font-style: italic;	
 	color: #9d9da1;
+}
+
+.pledge-level.not-available .pledge-description {
+	margin-left: 0;
 }
 
 /* 4.0 - Campaign video 
@@ -282,18 +299,19 @@
 	}
 
 	.campaign-pledge-levels {
-		padding-top: 36px; padding-top: 3.6rem;
 		padding-bottom: 0;
 	}
 
 	.campaign-price-input {
-		position: static;
 		width: 100%;
 	}
 
-	.campaign-price-input input[type=text] {
+	.campaign-price-input .price-wrapper {
 		margin-bottom: 0;
-		width: 60%;
+		width: 61%;
+		width: -moz-calc(66% - 30px);
+		width: -webkit-calc(66% - 30px);
+		width: calc(66% - 30px);
 	}
 
 	.edd_purchase_submit_wrapper .edd-add-to-cart {

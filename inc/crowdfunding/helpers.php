@@ -51,3 +51,28 @@ function sofa_crowdfunding_get_page_url($page) {
 	global $edd_options;
 	return isset( $edd_options[$page] ) ? $edd_options[$page] : false;
 }
+
+/**
+ * Get currency symbol. 
+ * 
+ * @return string
+ * @since Projection 0.1
+ */
+function sofa_crowdfunding_edd_get_currency_symbol() {
+	global $edd_options;
+
+	$currency = edd_get_currency();
+
+	switch ( $currency ) {
+		case "GBP" : return '&pound;'; break;
+		case "BRL" : return 'R&#36;'; break;
+		case "USD" :
+		case "AUD" :
+		case "CAD" :
+		case "HKD" :
+		case "MXN" :
+		case "SGD" : return '&#36;'; break;
+		case "JPY" : return '&yen;'; break;
+		default : return $currency;
+	}	
+}

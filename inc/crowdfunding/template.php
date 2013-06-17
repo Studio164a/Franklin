@@ -12,39 +12,14 @@
 
 if ( !function_exists('projection_edd_before_price_options') ) {
 
-	function projection_edd_before_price_options() {
+	function projection_edd_before_price_options($campaign_id) {
 		?>
 		<h2 class="block-title"><?php _e( 'Enter Pledge Amount', 'projection' ) ?></h2>
 
-		<!-- Text field with pledge button -->
-		<div class="campaign-price-input">
-			<input type="text" name="projection_custom_price" id="projection_custom_price" value="" class="left" />		
 		<?php
-	}
-}
-
-add_action('edd_before_price_options', 'projection_edd_before_price_options');
-
-
-/**
- * Display the list of pledge options. 
- * 
- * @see edd_purchase_link_end
- * @param int $campaign_id
- * @return void
- * @since Projection 1.0
- */
-if ( !function_exists('projection_atcf_campaign_contribute_options') ) {
-
-	function projection_edd_purchase_link_end($campaign_id) {
 		$prices = edd_get_variable_prices( $campaign_id );		
 
-		// First, we need to close the .campaign-price-input div, which wraps around the text field & pledge button 
-		?>
-		</div>
-		<!-- End text field with pledge button -->
-
-		<?php if ( count( $prices )) : ?>
+		if ( count( $prices )) : ?>
 
 		<ul class="campaign-pledge-levels">			
 
@@ -63,9 +38,36 @@ if ( !function_exists('projection_atcf_campaign_contribute_options') ) {
 
 			<?php endforeach ?>
 
-		<ul class="campaign-pledge-levels">
+		</ul>
 
-		<?php endif;
+		<?php endif ?>
+
+		<!-- Text field with pledge button -->
+		<div class="campaign-price-input">
+			<span class="price-wrapper left"><span class="currency"><?php echo sofa_crowdfunding_edd_get_currency_symbol() ?></span><input type="text" name="projection_custom_price" id="projection_custom_price" value="" /></span>
+		<?php
+	}
+}
+
+add_action('edd_before_price_options', 'projection_edd_before_price_options');
+
+
+/**
+ * Display the list of pledge options. 
+ * 
+ * @see edd_purchase_link_end
+ * @param int $campaign_id
+ * @return void
+ * @since Projection 1.0
+ */
+if ( !function_exists('projection_atcf_campaign_contribute_options') ) {
+
+	function projection_edd_purchase_link_end() {		
+		// Close the .campaign-price-input div, which wraps around the text field & pledge button 
+		?>
+		</div>
+		<!-- End text field with pledge button -->		
+		<?Php
 	}
 }
 
