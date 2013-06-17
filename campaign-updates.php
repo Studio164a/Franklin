@@ -2,6 +2,8 @@
 
 <?php $campaign = sofa_crowdfunding_get_campaign() ?>
 
+<?php if ( $campaign === false ) return ?>
+
 <?php if ( $campaign->updates() ) : ?>
 
 	<!-- Campaign updates -->
@@ -9,7 +11,7 @@
 		<div class="title-wrapper">
 			<h3 class="widget-title"><?php _e( 'Campaign Updates', 'projection' ) ?></h3>
 		</div>
-		<?php echo apply_filters( 'the_content', $campaign->updates() ) ?>
+		<?php echo apply_filters( 'the_excerpt', $campaign->updates() ) ?>
 	</aside>
 	<!-- End campaign updates -->
 

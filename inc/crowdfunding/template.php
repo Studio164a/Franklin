@@ -73,7 +73,21 @@ if ( !function_exists('projection_atcf_campaign_contribute_options') ) {
 
 add_action('edd_purchase_link_end', 'projection_edd_purchase_link_end', 10, 2);
 
+/**
+ * Displays a pledge button at the bottom of the campaign content. 
+ * 
+ * @see edd_after_download_content
+ * @return void
+ * @since Projection 1.0
+ */
+if ( !function_exists('projection_edd_append_purchase_link') ) {
 
+	function projection_edd_append_purchase_link() {
+		?>
+		<p class="campaign-support campaign-support-small"><a class="button accent" data-reveal-id="campaign-form" href="#"><?php _e( 'Support', 'projection' ) ?></a></p>
+		<?php 
+	}
+}
 
-
-remove_action( 'edd_after_download_content', 'edd_append_purchase_link' );
+remove_action('edd_after_download_content', 'edd_append_purchase_link');
+add_action('edd_after_download_content', 'projection_edd_append_purchase_link');

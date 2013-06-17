@@ -10,7 +10,7 @@
  * Get the currently active campaign. 
  * 
  * @return false|ATCF_Campaign
- * @since Projection 0.1
+ * @since Projection 1.0
  */
 function sofa_crowdfunding_get_campaign() {
 	return get_sofa_crowdfunding()->get_active_campaign();	
@@ -21,7 +21,7 @@ function sofa_crowdfunding_get_campaign() {
  * 
  * @param ATCF_Campaign $campaign
  * @param bool $json_format 	
- * @since Projection 0.1
+ * @since Projection 1.0
  */
 function sofa_crowdfunding_get_enddate( $campaign, $json_format = false ) {
 	if ( false === ( $campaign instanceof ATCF_Campaign ) )
@@ -45,7 +45,7 @@ function sofa_crowdfunding_get_enddate( $campaign, $json_format = false ) {
  * 
  * @param string $page
  * @return string|false
- * @since Projection 0.1
+ * @since Projection 1.0
  */
 function sofa_crowdfunding_get_page_url($page) {
 	global $edd_options;
@@ -56,7 +56,7 @@ function sofa_crowdfunding_get_page_url($page) {
  * Get currency symbol. 
  * 
  * @return string
- * @since Projection 0.1
+ * @since Projection 1.0
  */
 function sofa_crowdfunding_edd_get_currency_symbol() {
 	global $edd_options;
@@ -75,4 +75,55 @@ function sofa_crowdfunding_edd_get_currency_symbol() {
 		case "JPY" : return '&yen;'; break;
 		default : return $currency;
 	}	
+}
+
+/**
+ * Get the payment ID for the log object.
+ * 
+ * @param WP_Post $log
+ * @return int 
+ * @since Projection 1.0
+ */
+function sofa_crowdfunding_get_payment($log) {
+	return get_post( get_post_meta( $log->ID, '_edd_log_payment_id', true ) ); 
+}
+
+/**
+ * Get the avatar for the backer. 
+ * 
+ * @param WP_Post $backer
+ * @param int $size
+ * @return string
+ * @since Projection 1.0
+ */
+function sofa_crowdfunding_get_backer_avatar($backer, $size = 115) {
+	return get_avatar( edd_get_payment_user_email($backer->ID), $size, '', $backer->post_title );
+}
+
+/**
+ * Get the backer's location. 
+ * 
+ * @param WP_Post $backer
+ * @return string|void
+ * @since Projection 1.0
+ */
+function sofa_crowdfunding_get_backer_location($backer) {
+	$meta = get_post_meta( $backer->ID, '_edd_payment_meta', true );
+	return apply_filters('sofa_backer_location', sprintf( "%s, %s", $meta['shipping']['shipping_city'], $meta['shipping']['shipping_country'] ), $meta, $backer );
+}
+
+/**
+ * Get the backer's pledge amount. 
+ * 
+ * @param WP_Post $backer
+ * @param bool $formatted
+ * @return string
+ * @since Projection 1.0
+ */
+function sofa_crowdfunding_get_backer_pledge($backer, $formatted = true) {
+	if ( $formatted ) {
+		return edd_currency_filter( edd_format_amount( edd_get_payment_amount($backer->ID) ) );
+	}
+
+	return edd_get_payment_amount($backer->ID);	
 }
