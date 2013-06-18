@@ -109,6 +109,9 @@ function sofa_crowdfunding_get_backer_avatar($backer, $size = 115) {
  */
 function sofa_crowdfunding_get_backer_location($backer) {
 	$meta = get_post_meta( $backer->ID, '_edd_payment_meta', true );
+	if ( !isset( $meta['shipping'] ) ) 
+		return;
+	
 	return apply_filters('sofa_backer_location', sprintf( "%s, %s", $meta['shipping']['shipping_city'], $meta['shipping']['shipping_country'] ), $meta, $backer );
 }
 
