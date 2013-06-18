@@ -10,7 +10,7 @@
 	<section class="campaign-backers block content-block cf">
 			
 		<div class="title-wrapper">	
-			<h2 class="block-title"><?php _e('Backers', 'projection') ?></h2>
+			<h2 class="block-title with-icon"><i class="icon-group"></i><?php _e('Backers', 'projection') ?></h2>
 		</div>
 
 		<ul>

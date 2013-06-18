@@ -95,6 +95,16 @@ class Sofa_Crowdfunding_Helper {
             <a class="close-reveal-modal"><i class="icon-remove"></i></a>
             <?php echo edd_get_purchase_link( array( 'download_id' => $this->get_active_campaign()->ID ) ); ?>
         </div>
+
+        <div id="login-form" class="reveal-modal content-block block">
+            <a class="close-reveal-modal"><i class="icon-remove"></i></a>
+            <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Login', 'projection') ?></h3></div> 
+            <?php echo atcf_shortcode_login() ?>
+            <hr>
+
+            <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Register', 'projection') ?></h3></div> 
+            <?php echo atcf_shortcode_register() ?>
+        </div>
         <?php
     }
 

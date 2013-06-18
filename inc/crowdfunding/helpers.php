@@ -49,7 +49,11 @@ function sofa_crowdfunding_get_enddate( $campaign, $json_format = false ) {
  */
 function sofa_crowdfunding_get_page_url($page) {
 	global $edd_options;
-	return isset( $edd_options[$page] ) ? $edd_options[$page] : false;
+	
+	if ( !isset( $edd_options[$page] ) )
+		return false;
+
+	return get_permalink( $edd_options[$page] );
 }
 
 /**
@@ -111,7 +115,7 @@ function sofa_crowdfunding_get_backer_location($backer) {
 	$meta = get_post_meta( $backer->ID, '_edd_payment_meta', true );
 	if ( !isset( $meta['shipping'] ) ) 
 		return;
-	
+
 	return apply_filters('sofa_backer_location', sprintf( "%s, %s", $meta['shipping']['shipping_city'], $meta['shipping']['shipping_country'] ), $meta, $backer );
 }
 

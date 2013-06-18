@@ -246,6 +246,12 @@ textarea:focus {
 	background-color: #eaeaec;
 }
 
+label {
+	display: inline-block;
+	line-height: 22px; line-height: 2.2rem;
+	padding: 8px 0 0; padding-top: 0.8rem;
+}
+
 legend {
 	text-transform: uppercase;
 	letter-spacing: 1px;
@@ -256,6 +262,7 @@ input[type=submit],
 input[type=reset], 
 button,
 .button {			
+	margin: 3px 0 0 3px; margin-top: 0.3rem; margin-left: 0.3rem;
 	padding: 0 20px; padding-right: 2rem; padding-left: 2rem;
 	font-size: 14px; font-size: 1.4rem;
 	height: 25px; height: 2.5rem;	
@@ -264,11 +271,10 @@ button,
 	border-radius: 4px;
 	background-image: none;
 	background-color: #58595b;
-	box-shadow: 0 0 0 4px #58595b;
+	box-shadow: 0 0 0 3px #58595b;
 	color: #fff;
 	text-transform: uppercase;
-	letter-spacing: 1px;
-	/*box-shadow: none;*/
+	letter-spacing: 1px;	
 	cursor: pointer;
 
 	/* Transition */
@@ -292,10 +298,31 @@ button:hover,
 	background-color: #828384;	
 }
 
+.button-small {
+	font-size: 12px; font-size: 1.2rem;
+	padding-left: 10px; padding-left: 1rem;
+	padding-right: 10px; padding-right: 1rem;
+}
+
 .button-large {
 	font-size: 25px; font-size: 2.5rem;
 	height: 50px; height: 5rem;
 	line-height: 50px; line-height: 5rem;
+}
+
+.button-alt {
+	margin: 0;
+	border: 2px solid #828384; border-width: 0.2rem;
+	background: transparent;
+	box-shadow: none;		
+}
+
+.reveal-modal input[type=text],
+.reveal-modal input[type=password], 
+.reveal-modal input[type=number], 
+.reveal-modal input[type=email],
+.reveal-modal textarea {
+	float: right;
 }
 
 /* 1.6 -- Images & other media ***/
@@ -333,7 +360,9 @@ img {
 
 hr { 
 	width: 100%;
-	height: 1px;
+	height: 2px; height: 0.2rem;
+	background-color: #efefef;
+	border: none;
 }
 
 address {
@@ -415,6 +444,12 @@ pre {
 /* Responsively hide elements */
 .if-tiny-hide {
 	display: none;
+}
+
+/* Icons */
+.with-icon i {
+	font-size: 120%;
+	margin-right: 6px; margin-right: 0.6rem;
 }
 
 /* 2.0 -- Site Structure
@@ -621,8 +656,12 @@ body {
 /* 5.1 --- Entry Header ***/
 .page-title, 
 .block-title {	
-	border-bottom: 1px solid #eaebec;
+	border-bottom: 2px solid #eaebec;
 	margin-bottom: 36px;
+}
+
+.block-title.with-icon i {
+	color: #666;
 }
 
 .page-title {
