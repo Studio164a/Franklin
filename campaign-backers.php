@@ -23,8 +23,11 @@
 				<?php echo sofa_crowdfunding_get_backer_avatar( $backer ) ?>
 				<div class="if-tiny-hide">
 					<h6><?php echo $backer->post_title ?></h6>
-					<p><?php echo sofa_crowdfunding_get_backer_location( $backer ) ?><br />
-					<?php echo sofa_crowdfunding_get_backer_pledge( $backer ) ?>
+					<p>
+						<?php if ( $campaign->needs_shipping() ) : ?>
+							<?php echo sofa_crowdfunding_get_backer_location( $backer ) ?><br />
+						<?php endif ?>
+						<?php echo sofa_crowdfunding_get_backer_pledge( $backer ) ?>
 					</p>
 				</div>
 			</li>
