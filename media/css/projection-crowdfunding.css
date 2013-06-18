@@ -11,7 +11,7 @@
 .campaign-support.campaign-support-small {
 	float: none;
 	max-width: 300px; max-width: 30rem;
-	margin: 0 auto;
+	margin: 24px auto 0; margin-top: 2.4rem;
 }
 
 .edd_has_purchased {

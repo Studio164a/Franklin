@@ -158,7 +158,8 @@ p {
 }
 
 .entry, 
-.comment {
+.comment, 
+.widget {
 	overflow: hidden;
 	text-overflow: ellipsis;
 
@@ -609,12 +610,12 @@ body {
 }
 
 .content-block {
+	padding: 0 30px 24px; padding-right: 3rem; padding-bottom: 2.4rem; padding-left: 3rem;
 	background-color: #fff;	
 }
 
-.entry, 
-.content-block {
-	padding: 0 30px 24px; padding-right: 3rem; padding-bottom: 2.4rem; padding-left: 3rem;
+.entry {
+	
 }
 
 /* 5.1 --- Entry Header ***/
@@ -701,6 +702,13 @@ body {
 	border-bottom: 1px solid #d6d8d8;
 }
 
+.widget ul {
+	padding-left: 0;
+}
+
+.widget li {
+	list-style-type: none;
+}
 
 /* 7.0 -- Footer
 ================================================== */
