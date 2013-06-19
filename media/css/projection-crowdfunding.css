@@ -379,8 +379,8 @@
 	clear: both;
 }
 
-.campaign-comments .comment-form-block {
-	border-bottom: 1px solid #eaebec;
+.campaign-comments .comments-block {
+	border-top: 1px solid #eaebec;
 }
 
 /* 6.0 - Media Queries

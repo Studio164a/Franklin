@@ -31,8 +31,9 @@ if ( ! comments_open() ) return; ?>
 			) ) ?>
 		</div>
 
-		<div class="comments-block content-block cf">
-			<?php if ( have_comments() ) : ?>
+		<?php if ( have_comments() ) : ?>
+			
+			<div class="comments-block content-block cf">			
 				<div class="title-wrapper">
 					<h2 class="block-title with-icon"><i class="icon-comments"></i>
 						<?php
@@ -77,17 +78,10 @@ if ( ! comments_open() ) return; ?>
 						<?php if ( strlen( $next_link ) ) : ?><li class="nav-next"><?php echo $next_link ?></li><?php endif ?>
 					</ul>
 				</nav>
-				<?php endif; // check for comment navigation ?>
+				<?php endif; // check for comment navigation ?>			
 
-			<?php
-				/* If there are no comments and comments are closed, let's leave a little note, shall we?
-				 * But we don't want the note on pages or post types that do not support comments.
-				 */
-				elseif ( ! comments_open() && ! is_page() && post_type_supports( get_post_type(), 'comments' ) ) :
-			?>
-				<p class="nocomments"><?php _e( 'Comments are closed.', 'projection' ); ?></p>
-			<?php endif; ?>
+			</div>
 
-		</div>
+		<?php endif ?>
 
 	</div><!-- #comments -->
