@@ -361,7 +361,7 @@
 	float: right;
 }
 
-.campaign-comments input, 
+.campaign-comments input[type=text], 
 .campaign-comments textarea {
 	max-width: 100%;
 }
