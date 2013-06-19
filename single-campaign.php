@@ -23,7 +23,7 @@ get_header() ?>
 
 					<?php get_template_part('campaign', 'backers') ?>
 
-					<?php comments_template('', true) ?>
+					<?php comments_template('/comments-campaign.php', true) ?>
 
 				</div>
 

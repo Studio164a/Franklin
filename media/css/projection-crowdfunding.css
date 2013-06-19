@@ -350,6 +350,39 @@
 	margin: 0 auto;
 }
 
+/* 8.0 - Campaign comments
+================================================== */
+.campaign-comments #reply-title {
+	font-size: 14px; font-size: 1.4rem;
+	text-transform: uppercase
+}
+
+.campaign-comments #reply-title small {
+	float: right;
+}
+
+.campaign-comments .comment-text-input {
+	float: left;
+	width: 49%;
+	margin-right: 2%;
+}
+
+.campaign-comments .comment-text-input:nth-child(odd) {
+	margin-right: 0;
+}
+
+.campaign-comments #comment {
+	max-width: 100%;
+}
+
+.campaign-comments .comment-notes {
+	clear: both;
+}
+
+.campaign-comments .comment-form-block {
+	border-bottom: 1px solid #eaebec;
+}
+
 /* 6.0 - Media Queries
 ================================================== */
 

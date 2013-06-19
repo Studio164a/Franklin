@@ -236,7 +236,7 @@ a, #site-navigation .menu-button, #site-navigation a:hover, .block-title, .widge
 #site-navigation ul { background-color: <?php echo $accent_text ?>; border-color: <?php echo $accent ?>; }
 
 .barometer .filled { border-color: <?php echo $accent_hover ?>; }
-.button.accent { background-color: <?php echo $accent ?>; color: <?php echo $accent_text ?>; border-color: <?php echo $accent_hover ?>; box-shadow: 0 0 0 4px <?php echo $accent ?>;}
+.button.accent { background-color: <?php echo $accent ?>; color: <?php echo $accent_text ?>; border-color: <?php echo $accent_hover ?>; box-shadow: 0 0 0 3px <?php echo $accent ?>;}
 .button.accent:hover { background-color: <?php echo $accent_hover ?>; } 
 
 input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, input[type=email]:focus, textarea:focus { border-color: <?php echo $accent ?>; }

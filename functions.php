@@ -28,7 +28,7 @@ class Projection_Theme {
 
 
         // Include other files
-  //       require_once('inc/comments.php');
+        require_once('inc/comments.php');
   //       require_once('inc/shortcodes.php');
         include_once('inc/helpers.php');
   //       require_once('inc/template-tags.php');    

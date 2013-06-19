@@ -1,6 +1,6 @@
 <?php
 ?>
-	<div id="comments" class="comments_section">
+	<div id="comments" class="comments-section">
 	<?php if ( post_password_required() ) : ?>
 		<p class="nopassword"><?php _e( 'This post is password protected. Enter the password to view any comments.', 'projection' ); ?></p>
 	</div><!-- #comments -->

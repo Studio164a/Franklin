@@ -91,3 +91,78 @@ if ( !function_exists('projection_edd_append_purchase_link') ) {
 
 remove_action('edd_after_download_content', 'edd_append_purchase_link');
 add_action('edd_after_download_content', 'projection_edd_append_purchase_link');
+
+
+/**
+ * Customize comment output. 
+ *
+ * @param stdClass $comment
+ * @param array $args
+ * @param int $depth
+ * @return string
+ * @since Projection 1.0
+ */
+if ( !function_exists( 'projection_campaign_comment' ) ) {
+
+	function projection_campaign_comment( $comment, $args, $depth ) {
+
+		$GLOBALS['comment'] = $comment;
+		switch ( $comment->comment_type ) :
+			case 'pingback' :
+			case 'trackback' :
+		?>
+
+		<li class="pingback">
+			<p><?php _e( 'Pingback:', 'projection' ); ?> <?php comment_author_link() ?></p>
+			<?php edit_comment_link( __( 'Edit', 'projection' ), '<p class="comment_meta">', '</p>' ); ?>
+		</li>
+		
+		<?php	
+				break;
+			default :
+		?>
+
+		<li <?php comment_class( get_option('show_avatars') ? 'avatars' : 'no-avatars' ) ?> id="li-comment-<?php comment_ID(); ?>">
+
+			<?php echo get_avatar( $comment, 50 ) ?>
+
+			<div class="comment-details">
+				<h6 class="comment-author vcard"><?php comment_author_link() ?></h6>				
+				<div class="comment-text"><?php comment_text() ?></div>
+				<p class="comment-meta">
+					<span class="comment-date"><?php printf( __( '%s ago', 'projection' ), human_time_diff( get_comment_time('U', true) ) ) ?></span>
+					<span class="comment-reply"><?php comment_reply_link( array_merge( $args, array( 'reply_text' => _x( 'Reply', 'reply to comment' , 'projection' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ) ?></span>
+				</p>
+			</div>		
+
+		</li>
+
+		<?php
+				break;
+		endswitch;	
+	}
+}
+
+/**
+ * Displays the comment field if the user is logged in and this is a campaign.
+ * 
+ * @uses comment_form_field_comment
+ * @param string $default
+ * @return string
+ * @since Projection 1.0
+ */
+if ( !function_exists( 'projection_campaign_comment_field' )) {
+
+	function projection_comment_form_field_comment($default) {
+		global $post;
+
+		if ( is_user_logged_in() && get_post_type() == 'download' )
+			return sofa_comment_form_field_comment();
+	}
+}
+
+add_filter( 'comment_form_field_comment', 'projection_comment_form_field_comment' );
+
+
+
+
