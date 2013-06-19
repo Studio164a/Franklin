@@ -361,6 +361,11 @@
 	float: right;
 }
 
+.campaign-comments input, 
+.campaign-comments textarea {
+	max-width: 100%;
+}
+
 .campaign-comments .comment-text-input {
 	float: left;
 	width: 49%;
