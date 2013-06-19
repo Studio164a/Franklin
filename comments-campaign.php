@@ -2,7 +2,7 @@
 // If comments are closed, leave this out completely
 if ( ! comments_open() ) return; ?>
 
-	<div id="comments" class="campaign-comments block comments-section">
+	<div id="comments" class="campaign-comments block multi-block comments-section">
 
 		<div class="comment-form-block content-block">
 			<?php if ( post_password_required() ) : ?>

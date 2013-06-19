@@ -12,13 +12,13 @@ if ( !function_exists( 'sofa_comment_form_default_fields') ) {
 	function sofa_comment_form_default_fields( $fields ) {
 		$fields = '
 		<p class="comment-text-input required" tabindex="1">
-			<input type="text" name="author" id="commenter_name" placeholder="'.__( 'Name', 'projection' ).'" required />			
-		</p>
-		<p class="comment-text-input required" tabindex="2">
-			<input type="email" name="email" id="commenter_email" placeholder="'.__( 'Email', 'projection' ).'" required />			
-		</p>
-		<p class="comment-text-input" tabindex="3">
+			<input type="text" name="author" id="commenter_name" placeholder="'.__( 'Name', 'projection' ).' *" required />			
+		</p>		
+		<p class="comment-text-input" tabindex="2">
 			<input type="text" name="url" id="commenter_url" placeholder="'.__( 'Website', 'projection' ).'" />
+		</p>
+		<p class="comment-text-input fullwidth required" tabindex="3">
+			<input type="email" name="email" id="commenter_email" placeholder="'.__( 'Email', 'projection' ).' *" required />			
 		</p>
 		';
 		return $fields;
@@ -37,9 +37,25 @@ add_filter( 'comment_form_default_fields', 'sofa_comment_form_default_fields', 1
 if ( !function_exists( 'sofa_comment_form_field_comment') ) {
 
 	function sofa_comment_form_field_comment() {
-		return '<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" placeholder="'.__( 'Leave your comment', 'projection' ).'"></textarea></p>';
+		return '<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" placeholder="'.__( 'Leave your comment', 'projection' ).' *"></textarea></p>';
 	}
 }
+
+/** 
+ * Filters the comment reply close link.
+ * 
+ * @param string $html
+ * @return string
+ * @since Projection 1.0
+ */
+if ( !function_exists( 'sofa_cancel_comment_reply_link') ) {
+
+	function sofa_cancel_comment_reply_link( $html ) {
+		return substr_replace( $html, 'class="icon" ', 3, 0 );
+	}
+}
+
+add_filter( 'cancel_comment_reply_link', 'sofa_cancel_comment_reply_link' );
 
 /**
  * Customize comment output. 
@@ -70,11 +86,14 @@ if ( !function_exists( 'sofa_comment' ) ) {
 			default :
 		?>
 
+		<?php if ( sofa_comment_is_by_author($comment) ) : ?><i class="icon-star"></i> <small><?php _e('Post author', 'projection') ?></small><?php endif ?>
+
 		<li <?php comment_class( get_option('show_avatars') ? 'avatars' : 'no-avatars' ) ?> id="li-comment-<?php comment_ID(); ?>">
 
 			<?php echo get_avatar( $comment, 50 ) ?>
 
 			<div class="comment-details">
+				<?php if ( sofa_comment_is_by_author($comment) ) : ?><small class="post-author with-icon alignright"><i class="icon-star"></i><?php _e('Author', 'projection') ?></small><?php endif ?>
 				<h6 class="comment-author vcard"><?php comment_author_link() ?></h6>				
 				<div class="comment-text"><?php comment_text() ?></div>
 				<p class="comment-meta">
@@ -90,3 +109,17 @@ if ( !function_exists( 'sofa_comment' ) ) {
 		endswitch;	
 	}
 }
+
+/** 
+ * Return whether the comment was created by the post author. 
+ * 
+ * @param stdClass $comment
+ * @return bool
+ * @since Projection 1.0
+ */
+function sofa_comment_is_by_author($comment) {
+	global $post;
+
+	return isset( $comment->user_id ) && $comment->user_id == $post->post_author ? true : false;
+}
+

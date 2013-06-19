@@ -152,6 +152,10 @@
 	text-align: center;
 }
 
+.campaign-support .button:hover {
+	color: #fff;
+}
+
 /* 2.1 --- Countdown */
 .hasCountdown {	
 }
@@ -346,8 +350,33 @@
 ================================================== */
 .atcf-login form, 
 .atcf-register form {
-	max-width: 400px; max-width: 40rem;
+	max-width: 100%;
 	margin: 0 auto;
+}
+
+.login-username, 
+.login-password, 
+.atcf-register-name, 
+.atcf-register-email, 
+.atcf-register-username, 
+.atcf-register-password {
+	float: left;
+	width: 49%;
+}
+
+.login-username, 
+.atcf-register-name,
+.atcf-register-username {
+	margin-right: 2%;
+}
+
+.atcf-login label, 
+.atcf-register label {
+	padding-top: 0;
+}
+
+#login-form .register-block {
+	border-radius: 0;
 }
 
 /* 8.0 - Campaign comments
@@ -373,6 +402,11 @@
 	margin-right: 2%;
 }
 
+.campaign-comments .comment-text-input.fullwidth {
+	width: 100%; 
+	margin: 0;
+}
+
 .campaign-comments .comment-text-input:nth-child(odd) {
 	margin-right: 0;
 }
@@ -383,10 +417,6 @@
 
 .campaign-comments .comment-notes {
 	clear: both;
-}
-
-.campaign-comments .comments-block {
-	border-top: 1px solid #eaebec;
 }
 
 /* 6.0 - Media Queries
@@ -446,6 +476,22 @@
 	.campaign-backer:nth-child(5n+5) {
 		margin-right: 0;
 	}	
+
+	/* Login & Registration forms */
+	#login-form .login-block, 
+	#login-form .register-block {
+		width: 43%;
+		padding-left: 2%;
+		padding-right: 2%;
+		margin-right: 2%;
+		float: left;
+	}
+
+	#login-form .register-block {
+		float: right;
+		background-color: #e7e7e7;
+		border-radius: 4px; border-radius: 0.4rem;
+	}
 
 }
 

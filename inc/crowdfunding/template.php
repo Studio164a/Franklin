@@ -127,7 +127,10 @@ if ( !function_exists( 'projection_campaign_comment' ) ) {
 			<?php echo get_avatar( $comment, 50 ) ?>
 
 			<div class="comment-details">
-				<h6 class="comment-author vcard"><?php comment_author_link() ?></h6>				
+				<?php if ( sofa_comment_is_by_author($comment) ) : ?><small class="post-author with-icon alignright"><i class="icon-star"></i><?php _e('Author', 'projection') ?></small><?php endif ?>
+				<h6 class="comment-author vcard">
+					<?php comment_author_link() ?>
+				</h6>				
 				<div class="comment-text"><?php comment_text() ?></div>
 				<p class="comment-meta">
 					<span class="comment-date"><?php printf( __( '%s ago', 'projection' ), human_time_diff( get_comment_time('U', true) ) ) ?></span>

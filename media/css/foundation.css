@@ -31,12 +31,11 @@
   .reveal-modal > :last-child {
     margin-bottom: 0; }
   .reveal-modal .close-reveal-modal {
-    font-size: 1.375em;
+    font-size: 14px; font-size: 1.4rem;
     line-height: 1;
     position: absolute;
-    top: 0.5em;
-    right: 0.6875em;
-    color: #aaaaaa;
+    top: 6px; top: 0.6rem;
+    right: 6px; right: 0.6rem;
     font-weight: bold;
     cursor: pointer; }
 

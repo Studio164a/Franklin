@@ -92,18 +92,20 @@ class Sofa_Crowdfunding_Helper {
     public function wp_footer() {
         ?>             
         <div id="campaign-form" class="reveal-modal content-block block">
-            <a class="close-reveal-modal"><i class="icon-remove"></i></a>
+            <a class="close-reveal-modal icon"><i class="icon-remove-sign"></i></a>
             <?php echo edd_get_purchase_link( array( 'download_id' => $this->get_active_campaign()->ID ) ); ?>
         </div>
 
-        <div id="login-form" class="reveal-modal content-block block">
-            <a class="close-reveal-modal"><i class="icon-remove"></i></a>
-            <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Login', 'projection') ?></h3></div> 
-            <?php echo atcf_shortcode_login() ?>
-            <hr>
-
-            <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Register', 'projection') ?></h3></div> 
-            <?php echo atcf_shortcode_register() ?>
+        <div id="login-form" class="reveal-modal block multi-block">            
+            <a class="close-reveal-modal icon"><i class="icon-remove-sign"></i></a>
+            <div class="content-block login-block">
+                <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Login', 'projection') ?></h3></div> 
+                <?php echo atcf_shortcode_login() ?>
+            </div>
+            <div class="register-block sidebar-block  block last">
+                <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Register', 'projection') ?></h3></div> 
+                <?php echo atcf_shortcode_register() ?>
+            </div>
         </div>
         <?php
     }
