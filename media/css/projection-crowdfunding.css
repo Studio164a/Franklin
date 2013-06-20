@@ -38,6 +38,7 @@
 .active-campaign .wp-post-image {
 	width: 92%;
 	margin: 0 4%;
+	box-shadow: 0 0 3px 0 rgba(68, 60, 54, 0.6);	
 }
 
 .active-campaign .campaign-summary {
@@ -154,6 +155,7 @@
 
 .campaign-support .button:hover {
 	color: #fff;
+	box-shadow: 0 0 0 3px #fff;
 }
 
 /* 2.1 --- Countdown */
@@ -337,7 +339,7 @@
 }
 
 .account-links a {
-	color: #636465;
+	color: #61554c;
 	text-decoration: none;
 	margin: 10px 0 10px 8px; margin-top: 1rem; margin-bottom: 1rem; margin-left: 0.8rem;
 }
@@ -507,6 +509,33 @@
 		padding-right: 9px; padding-left: 9px; padding-right: .9rem; padding-left: .9rem;
 		position: relative;
 		left: -9px; left: -.9rem;
+
+		background-image: url(../images/textured_paper.png);
+		background-repeat: repeat;
+	}
+
+	.shadow-wrapper:before,
+	.shadow-wrapper:after {
+		content: "";
+		position: absolute;
+		bottom: -0.9rem;
+		width: 0;
+		height: 0;
+	}
+
+	.shadow-wrapper:before {
+		left: -0.9rem;
+		border-left: 0.9rem solid transparent;
+		border-bottom: 0.9rem solid transparent;
+		border-right: 0.9rem solid #636466;
+	}
+
+	.shadow-wrapper:after {
+		right: -0.9rem;
+		border-right: 0.9rem solid transparent;
+		border-bottom: 0.9rem solid transparent;
+		border-left: 0.9rem solid #636466;
+
 	}
 
 	.campaign-backer {

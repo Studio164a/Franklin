@@ -82,7 +82,7 @@ html {
 
 body {
 	font: 12px/18px 'Merriweather', Georgia, 'Times New Roman', Times, serif; font-size: 1.2rem;
-	color: #666;
+	color: #61554C;
 }
 
 h1, h2, h3, h4, h5, h6, 
@@ -281,11 +281,11 @@ button,
 	padding: 0 20px; padding-right: 2rem; padding-left: 2rem;
 	font-size: 14px; font-size: 1.4rem;
 	line-height: 29px; line-height: 2.9rem;
-	border: 1px solid #828384; border-width: 0.1rem;
+	border: 1px solid #907E72; border-width: 0.1rem;
 	border-radius: 4px;
 	background-image: none;
-	background-color: #58595b;
-	box-shadow: 0 0 0 3px #58595b;
+	background-color: #61554C;
+	box-shadow: 0 0 0 3px #61554C;
 	color: #fff;
 	text-transform: uppercase;
 	letter-spacing: 1px;	
@@ -326,7 +326,7 @@ button:hover,
 .button.accent:hover {
 	background-color: transparent;
 	border-color: transparent;	
-	color: #58595b;
+	color: #61554C;
 }
 
 .button-small {
@@ -343,14 +343,14 @@ button:hover,
 
 .button-alt {
 	margin: 0;
-	border: 2px solid #828384; border-width: 0.2rem;
-	color: #666;
+	border: 2px solid #907E72; border-width: 0.2rem;
+	color: #61554C;
 	background: transparent;
 	box-shadow: none;			
 }
 
 .button-alt:hover {
-	background-color: #58595b;
+	background-color: #61554C;
 	color: #fff;
 }
 
@@ -635,13 +635,13 @@ pre {
 }
 
 .with-icon:before {
-	color: #666;
+	color: #61554C;
 	font-size: 120%;
 	margin-right: 6px; margin-right: 0.6rem;
 }
 
 .icon {
-	color: #666;
+	color: #61554C;
 }
 
 .icon:hover {
@@ -663,7 +663,7 @@ body {
 	position: relative;
 	max-width: 100%;
 	overflow-x: hidden;
-	background-color: #a6a8ab;
+	background: #a6a8ab url(media/images/textured_paper.png);
 }
 
 .body-wrapper {
@@ -815,7 +815,7 @@ body {
 	padding: 12px 0; padding: 1.2rem 0;	
 	text-decoration: none;
 	font-weight: 400;
-	color: #58595a;
+	color: #61554C;
 }
 
 #site-navigation .menu-button {
@@ -903,7 +903,7 @@ body {
 }
 
 .block-title.with-icon i {
-	color: #666;
+	color: #61554C;
 }
 
 /* 5.2 --- Entry Meta ***/
@@ -936,7 +936,7 @@ body {
 }
 
 .meta a {
-	color: #58595b;
+	color: #61554C;
 }
 
 .meta .author, 
@@ -949,7 +949,7 @@ body {
 
 /* 5.3 --- Entry Content ***/
 .sticky {
-	background-color: #e7e7e7;
+	background-color: #f1efee;
 }
 
 .more-link {
@@ -1116,14 +1116,14 @@ body {
 .block {
 	/*padding: 1px 0; padding-top: 0.1rem; padding-bottom: 0.1rem;*/ /* Without this, the border ends up losing a pixel right at the very corner */
 	margin-bottom: 24px; margin-bottom: 2.4rem;
-	border: 1px solid #d6d8d8;
+	border: 1px solid #c4bbb5;
 	border-radius: 4px;
 }
 
 .widget,
 .sidebar-block {
 	padding: 0 12px; padding-right: 2rem; padding-bottom: 1.2rem; padding-left: 2rem;
-	background-color: #e7e7e7;	
+	background-color: #f1efee;	
 }
 
 .widget-open {
@@ -1141,7 +1141,7 @@ body {
 .sidebar-block .title-wrapper h3, 
 .sidebar-block .title-wrapper h4, 
 .sticky .post-title {
-	border-bottom: 2px solid #d6d8d8;
+	border-bottom: 2px solid #c4bbb5;
 }
 
 .widget ul {
@@ -1314,10 +1314,7 @@ body {
 
 @media all and (min-width: 62.5em) {
 	/* Site structure */
-	body {		
-		margin: 0 5%;
-		width: 90%;
-	}	
+
 }
 
 /* 8.3 --- Greater than 1190px ***/
