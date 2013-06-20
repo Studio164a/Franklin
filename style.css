@@ -258,7 +258,7 @@ input:focus,
 textarea:focus, 
 select:focus {
 	outline: none;
-	background-color: #e2dedb;
+	background-color: #eae6e4;
 }
 
 label {
@@ -471,6 +471,7 @@ th,
 td {
 	padding: 6px 10px; padding: 0.6rem 1rem;
 	vertical-align: top;
+	white-space: nowrap;
 }
 
 th {		
@@ -487,7 +488,7 @@ td {
 }
 
 .even td {
-	background-color: #f1efee;
+	background-color: #f9f8f7;
 }
 
 th p:last-child, 
@@ -554,7 +555,7 @@ pre, code, kbd, tt { font-family: Monaco, Consolas, "Lucida Console", monospace;
 pre { 	
 	padding: 12px 6px; padding: 1.2rem 0.6rem; 
 	margin-bottom: 12px; margin-bottom: 1.2rem; 
-	background-color: #f1efee;
+	background-color: #f9f8f7;
 	color: #929497;
 }
 
@@ -598,7 +599,7 @@ pre {
 
 /* Assistive text */
 .assistive-text,
-.site .screen-reader-text {
+.screen-reader-text {
 	position: absolute !important;
 	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
 	clip: rect(1px, 1px, 1px, 1px);	
@@ -743,7 +744,7 @@ body {
 	border-bottom: 3px double #dbdbdb; 	
 	width: 92%;
 	padding: 24px 4% 0; padding-top: 2.4rem;
-	background-color: #f1efee;
+	background-color: #f9f8f7;
 }
 
 /* 3.1 -- Sharing ***/
@@ -779,11 +780,14 @@ body {
 }
 
 #site-navigation ul {		
-	position: relative;
+	position: relative;	
 	left: -4.3478%;	
+	z-index: 50;
 	width: 108.6956%; /* 100/92 = 1.086956 */
 	height: 0;
 	padding: 0;
+	border-top: 3px double #dbd5d1;	
+	background-color: #f9f8f7;
 	overflow: hidden;
 
 	/* Transition */
@@ -843,7 +847,7 @@ body {
 /* 5.0 -- Content
 ================================================== */
 #main {
-	background-color: #f1efee;
+	background-color: #f9f8f7;
 }
 
 .entry-block {
@@ -923,7 +927,7 @@ body {
 	line-height: 38px; line-height: 3.8rem;
 	text-transform: uppercase;
 	background-color: #f1efee;
-	color: #929497;
+	color: #bdb2ab;
 }
 
 .meta-above {
@@ -956,8 +960,10 @@ body {
 }
 
 /* 5.3 --- Entry Content ***/
-.sticky {
-	background-color: #f1efee;
+.sticky.block {
+	background-color: #4e443d;	
+	border: 1px solid #fff;	
+	color: #fff;
 }
 
 .more-link {
@@ -969,12 +975,38 @@ body {
 
 /* 5.5 --- Post Formats ***/
 
+/* Video */
+
+.fit-video {
+	margin-bottom: 12px; margin-bottom: 1.2rem;
+}
 
 /* 5.6 --- Attachments ***/
 
 
 /* 5.7 --- Post/Paging Navigation ***/
 
+.pagination {
+	padding-bottom: 24px; padding-bottom: 2.4rem;
+}
+
+.pagination ul {		
+	width: 100%;
+	padding-left: 0;
+	list-style-type: none;
+}
+
+.pagination li {
+	display: inline;
+}
+
+.nav-next {
+	float: left;
+}
+
+.nav-previous {
+	float: right;
+}
 
 /* 5.8 --- Author Bio ***/
 
@@ -1120,18 +1152,22 @@ body {
 /* 6.0 -- Sidebar
 ================================================== */
 
-.widget,
-.block {
+.block,
+.widget {
 	/*padding: 1px 0; padding-top: 0.1rem; padding-bottom: 0.1rem;*/ /* Without this, the border ends up losing a pixel right at the very corner */
-	margin-bottom: 24px; margin-bottom: 2.4rem;
-	border: 1px solid #e2dedb;
+	margin-bottom: 24px; margin-bottom: 2.4rem;	
 	border-radius: 0.4rem;
+}
+
+.block {
+	border: 1px solid #e2dedb;
 }
 
 .widget,
 .sidebar-block {
-	padding: 0 12px; padding-right: 2rem; padding-bottom: 1.2rem; padding-left: 2rem;
+	padding: 0 4% 12px; padding-bottom: 1.2rem;
 	background-color: #f1efee;	
+	border: 1px solid #e2dedb;
 }
 
 .widget-open {
@@ -1182,6 +1218,58 @@ body {
 	background-color: #fff;
 }
 
+.widget th, 
+.widget tfoot td {
+	background-color: #fff;	
+}
+
+.widget td {
+	background-color: #f9f8f7;
+	border: 1px solid #eae6e4;
+}
+
+.widget_calendar th,
+.widget_calendar td {
+	text-align: center;
+}
+
+.widget_search.widget {
+	padding: 0;
+	border: 0;
+	background: transparent;
+}
+
+.widget_search .searchform > div {
+	position: relative;
+}
+
+.widget_search .widget-title {
+	margin-top: 0;
+}
+
+.widget_search #s {
+	margin: 0;
+	padding-right: 15%;
+	width: 75%;
+	max-width: 75%;
+	border: 1px solid #e2dedb;
+	background-color: #fff;
+}
+
+.widget_search #searchsubmit {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding-left: 6px; padding-right: 6px; padding-left: 0.6rem; padding-right: 0.6rem;
+	height: 37px; height: 3.7rem;
+	font-size: 11px; font-size: 1.1rem;
+	border: none;
+	border-radius: 0 0.2rem 0.2rem 0;
+	color: #fff;
+	background-color: #7d6e63;
+	box-shadow: none;	
+}
 
 /* 7.0 -- Footer
 ================================================== */
@@ -1231,7 +1319,7 @@ body {
 		padding-left: 2%;
 		padding-right: 2%;
 	}
-	
+
 	/* Navigation */
 	#site-navigation {	
 		position: static;
@@ -1256,6 +1344,7 @@ body {
 		margin: 2rem 0 0 0;
 		padding-right: 1.6rem;
 		left: 0;
+		border-top: 0;
 	}
 
 	body #site-navigation ul {
@@ -1284,9 +1373,8 @@ body {
 	}
 }
 
-/* 8.2 --- Greater than 800px ***/
-
-@media all and (min-width: 50em) {
+/* 8.2 --- Greater than 720px ***/
+@media all and (min-width: 45em) {	
 	.content {
 		float: left;
 		width: 65.78%;	
@@ -1296,7 +1384,30 @@ body {
 		float: right;
 		width: 31.22%;
 	}
+		
+	.widget, 
+	.sidebar-block {
+		padding-right: 2rem; padding-left: 2rem;
 
+	}
+	
+	.widget_calendar {
+		padding-bottom: 0;
+	}
+
+	.widget_calendar table {
+		position: relative;
+		left: -2.1rem;
+		top: 0.1rem;
+		width: -webkit-calc( 100% + 4.2rem );
+		width: -moz-calc( 100% + 4.2rem );
+		width: calc( 100% + 4.2rem );
+	}
+}
+
+/* 8.2 --- Greater than 800px ***/
+
+@media all and (min-width: 50em) {	
 	/* Comments */
 	.comments-section .children {		
 		/* Why the use of calc for margin-left? 
@@ -1309,7 +1420,7 @@ body {
 		width: calc(100% - 7rem);
 		width: -moz-calc(100% - 7rem);
 		width: -webkit-calc(100% - 7rem);
-	}
+	}	
 }
 
 /* 8.3 --- Greater than 880px ***/

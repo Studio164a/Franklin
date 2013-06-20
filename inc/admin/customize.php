@@ -235,12 +235,11 @@ class OSFA_Customizer {
 /* Accent colour */
 a, #site-navigation .menu-button, #site-navigation a:hover, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, .button.accent:hover { color: <?php echo $accent ?>; }
 .campaign-button, .active-campaign { background-color: <?php echo $accent ?>; color: <?php echo $accent_text ?>; }
-#site-navigation ul { background-color: <?php echo $accent_text ?>; border-color: <?php echo $accent ?>; }
 
 .barometer .filled { border-color: <?php echo $accent_hover ?>; }
 #site-navigation .hovering > a { border-color: <?php echo $accent ?>; border-color: <?php echo $this->rgb($accent_rgb, 0.7) ?>; }
-.button.accent { background-color: <?php echo $accent ?>; color: <?php echo $accent_text ?>; border-color: <?php echo $accent_hover ?>; box-shadow: 0 0 0 3px <?php echo $accent ?>;}
-
+.button.accent { background-color: <?php echo $accent ?>; color: <?php echo $accent_text ?>; border-color: <?php echo $accent_hover ?>; }
+.button.accent, .button.accent:hover { box-shadow: 0 0 0 0.3rem <?php echo $accent ?>; }
 input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, input[type=email]:focus, textarea:focus { border-color: <?php echo $accent ?>; }
 
 .hovering .on-hover {  background-color: <?php echo $accent ?>; background-color: <?php echo $this->rgb($accent_rgb, 0.5) ?>; }

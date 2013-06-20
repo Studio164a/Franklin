@@ -465,16 +465,43 @@
 @media all and (min-width: 37.5em) and (max-width: 55em) {
 
 	.active-campaign .campaign-summary {
-		width: 92%;		
+		position: relative;
+		width: 92%;			
+		padding-bottom: 7.6rem;	
+	}
+
+	.campaign-summary .campaign-support {
+		float: right; 
+		width: 70%;
 	}
 
 	.campaign-summary ul {
+		width: 70%;
 		max-width: 88rem;
+		text-align: center;
 	}
 
 	.campaign-summary li {
 		display: inline-block;
 		padding-right: 2rem; padding-left: 2rem;
+		border-right: 1px solid rgba(255, 255, 255, 0.3);
+		border-bottom: 0;
+	}
+
+	.campaign-countdown {
+		position: absolute;
+		bottom: 0;
+		left: 0;		
+		width: 68%;		
+		margin: 0 4%;
+		padding: 1rem 13% 0 13%;
+		border-bottom: 0;
+		border-top: 1px solid rgba(255, 255, 255, 0.3);		
+		text-align: center;
+	}
+
+	.campaign-summary .campaign-backers {
+		border: none;
 	}
 }
 

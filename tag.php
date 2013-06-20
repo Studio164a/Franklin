@@ -23,7 +23,7 @@ get_header() ?>
 
 				<?php endwhile ?>
 
-				<?php osfa_content_nav( 'nav_below' ) ?>
+				<?php sofa_content_nav( 'nav_below' ) ?>
 
 			<?php endif ?>
 
