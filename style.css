@@ -387,11 +387,11 @@ img {
 }
 
 .featured-image {
-	/*margin: 0 auto;*/
-	/*margin-top: -1px; margin-top: -0.1rem;*/
 	max-width: 100%;
 	line-height: 0;	
+	border-radius: 4px 4px 0 0; border-radius: 0.4rem 0.4rem 0 0;
 	text-align: center;
+	background-color: #e0e1e2;
 }
 
 .wp-caption {	
