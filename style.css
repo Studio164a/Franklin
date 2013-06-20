@@ -876,7 +876,7 @@ body {
 	padding: 0 4% 12px; padding-bottom: 1.2rem;	
 }
 
-.entry *:first-child {
+.entry > *:first-child {
 	margin-top: 0;
 }
 
