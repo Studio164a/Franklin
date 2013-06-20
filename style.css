@@ -101,7 +101,9 @@ legend,
 .barometer span span, 
 .bypostauthor .post-author,
 .meta,
-blockquote cite {
+blockquote cite,
+th, 
+.edd_cart_amount {
 	font-family: 'Oswald', 'Helvetica Neue', Helvetica, sans-serif;
 }
 
@@ -264,14 +266,16 @@ select:focus {
 }
 
 label {
-	display: inline-block;
+	display: block;
 	line-height: 22px; line-height: 2.2rem;
 	padding: 8px 0 0; padding-top: 0.8rem;
 }
 
-legend {
+legend {	
+	padding-bottom: 6px; padding-bottom: 0.6rem; 
+	border-bottom: 1px solid #e2dedb;
+	font-size: 18px; font-size: 1.8rem;
 	text-transform: uppercase;
-	letter-spacing: 1px;
 }
 
 /* Buttons */
@@ -339,6 +343,8 @@ button:hover,
 	padding-right: 10px; padding-right: 1rem;
 }
 
+input[type=submit].button-large, 
+input[type=reset].button-large,
 .button-large {
 	font-size: 25px; font-size: 2.5rem;
 	height: 50px; height: 5rem;
@@ -463,6 +469,7 @@ table {
 	width: 100%;	
 	border-left: 1px solid #d9d9da;	
 	border-bottom: 1px solid #d9d9da;	
+	word-break: normal;
 }
 
 table caption {
@@ -483,7 +490,8 @@ th {
 	border-bottom: 1px solid #c1c1c2;
 	background-color: #e1e1e2;
 	text-align: left;
-	font-weight: 600;	
+	text-transform: uppercase;
+	font-weight: 400;	
 	white-space: nowrap;
 }
 

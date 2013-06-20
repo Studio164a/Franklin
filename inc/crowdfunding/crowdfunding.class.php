@@ -26,6 +26,7 @@ class Sofa_Crowdfunding_Helper {
     private function __construct() {
     	add_action('after_setup_theme', array(&$this, 'after_setup_theme'));
         add_action('wp_footer', array(&$this, 'wp_footer'));
+        remove_action('atcf_shortcode_profile', 'atcf_shortcode_profile_campaigns', 20, 1 );
 
         if ( !is_admin() ) 
             add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'), 11);
@@ -34,6 +35,8 @@ class Sofa_Crowdfunding_Helper {
         add_filter('edd_templates_dir', array(&$this, 'edd_templates_dir_filter'));
         add_filter('edd_add_to_cart_item', array(&$this, 'edd_add_to_cart_item_filter'));
         add_filter('edd_cart_item_price', array(&$this, 'edd_cart_item_price_filter'), 10, 3);
+        add_filter('edd_checkout_image_size', array(&$this, 'edd_checkout_image_size_filter'));
+        add_filter('edd_checkout_button_purchase', array(&$this, 'edd_checkout_button_purchase_filter'));
     }
 
     /**
@@ -170,6 +173,28 @@ class Sofa_Crowdfunding_Helper {
             return $options['custom_price'];
 
         return $price;        
+    }
+
+    /**
+     * Filter the cart item picture's size. 
+     * 
+     * @param array $default
+     * @return array
+     * @since Projection 1.0
+     */
+    public function edd_checkout_image_size_filter($default) {
+        return array(80, 80);
+    }
+
+    /**
+     * Filter the checkout purchase button. 
+     * 
+     * @param string $button
+     * @return string
+     * @since Projection 1.0
+     */
+    public function edd_checkout_button_purchase_filter($button) {
+        return str_replace( 'edd-submit', 'edd-submit accent button-large', $button);
     }
 
     /** 

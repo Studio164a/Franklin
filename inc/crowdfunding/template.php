@@ -44,7 +44,7 @@ if ( !function_exists('projection_edd_before_price_options') ) {
 
 		<!-- Text field with pledge button -->
 		<div class="campaign-price-input">
-			<span class="price-wrapper left"><span class="currency"><?php echo sofa_crowdfunding_edd_get_currency_symbol() ?></span><input type="text" name="projection_custom_price" id="projection_custom_price" value="" /></span>
+			<span class="price-wrapper alignleft"><span class="currency"><?php echo sofa_crowdfunding_edd_get_currency_symbol() ?></span><input type="text" name="projection_custom_price" id="projection_custom_price" value="" /></span>
 		<?php
 	}
 }
