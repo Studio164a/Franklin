@@ -457,7 +457,8 @@ img {
 
 table {
 	width: 100%;	
-	border: 1px solid #d9d9da;	
+	border-left: 1px solid #d9d9da;	
+	border-bottom: 1px solid #d9d9da;	
 }
 
 table caption {
@@ -473,6 +474,7 @@ td {
 }
 
 th {		
+	border-top: 1px solid #c1c1c2;
 	border-right: 1px solid #d3d3d4;
 	border-bottom: 1px solid #c1c1c2;
 	background-color: #e1e1e2;
