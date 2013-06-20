@@ -387,9 +387,11 @@ img {
 }
 
 .featured-image {
-	margin: 0 auto;
+	/*margin: 0 auto;*/
+	/*margin-top: -1px; margin-top: -0.1rem;*/
 	max-width: 100%;
 	line-height: 0;	
+	text-align: center;
 }
 
 .wp-caption {	
@@ -846,6 +848,7 @@ body {
 	position: relative;
 	padding: 0;
 	background-color: #fff;
+	box-shadow: 0 0 1px #fff;
 }
 
 .content-block,
@@ -914,11 +917,12 @@ body {
 }
 
 .meta-above {
-	border-bottom: 2px solid #e0e1e2;	
+	border-bottom: 1px solid #e0e1e2;	
 }
 
 .meta-below {
-	border-top: 2px solid #e0e1e2;	
+	border-top: 1px solid #e0e1e2;	
+	border-radius: 0 0 4px 4px; border-radius: 0.4rem 0.4rem;
 }
 
 .meta p {
@@ -936,9 +940,9 @@ body {
 .meta .author, 
 .meta .comment-count, 
 .meta .tags {
-	border-left: 2px solid #e0e1e2;
-	margin-left: 4px; margin-left: 0.4rem;
-	padding-left: 4px; padding-left: 0.4rem;
+	border-left: 1px solid #e0e1e2;
+	margin-left: 6px; margin-left: 0.6rem;
+	padding-left: 6px; padding-left: 0.6rem;
 }
 
 /* 5.3 --- Entry Content ***/
@@ -1108,6 +1112,7 @@ body {
 
 .widget,
 .block {
+	/*padding: 1px 0; padding-top: 0.1rem; padding-bottom: 0.1rem;*/ /* Without this, the border ends up losing a pixel right at the very corner */
 	margin-bottom: 24px; margin-bottom: 2.4rem;
 	border: 1px solid #d6d8d8;
 	border-radius: 4px;

@@ -342,7 +342,8 @@
 	margin: 10px 0 10px 8px; margin-top: 1rem; margin-bottom: 1rem; margin-left: 0.8rem;
 }
 
-.account-links a:hover {
+.account-links a:hover,
+.account-links a:hover::before {
 	color: #fff;
 }
 

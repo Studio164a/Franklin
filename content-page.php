@@ -7,6 +7,6 @@
 				<?php the_content() ?>
 			</div>						
 
-			<?php get_template_part('meta') ?>
+			<?php get_template_part('meta', 'below') ?>
 
 		</article>
