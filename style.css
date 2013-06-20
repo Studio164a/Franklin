@@ -108,7 +108,8 @@ th,
 }
 
 input, 
-textarea {
+textarea,
+.format-status .post-title {
 	font-family: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
 }
 
@@ -1000,10 +1001,85 @@ body {
 
 /* 5.5 --- Post Formats ***/
 
-/* Video */
+/* Aside */
+.format-aside .post-title {
+	font-size: 20px; font-size: 2rem;
+	margin-bottom: 0;
+	text-align: left;
+}
 
+.format-aside .entry {
+	font-size: 16px; font-size: 1.6rem;
+	line-height: 22px; line-height: 2.2rem;
+}
+
+/* Chat format */
+.format-chat .entry p:nth-child(odd) {
+	font-weight: 300;
+}
+
+/* Link format */
+.format-link .post-title {
+	border: 0;
+}
+
+/* Quote format */
+.format-quote .entry blockquote {
+	margin: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+	background: #fff;
+	font-style: italic;
+	font-size: 30px; font-size: 3rem;
+	line-height: 40px; line-height: 4rem;	
+}
+
+.format-quote .entry blockquote cite {
+	font-style: normal;
+}
+
+/* Status format */
+.format-status .post-title {
+	border: none;
+	font-size: 20px; font-size: 2rem;
+	text-align: left;
+	text-transform: capitalize;	
+	color: #7d6e63;
+}
+
+.format-status .meta {
+	background-color: #fff;
+}
+
+.format-status .meta p {
+	text-align: left;
+	padding-left: 4%;
+}
+
+/* Video format */
 .fit-video {
 	margin-bottom: 12px; margin-bottom: 1.2rem;
+}
+
+/* Audio format */
+.audiojs {
+	width: 100%;
+	background-image: none;
+	background-color: #574c45;
+	box-shadow: none;
+}
+
+.audiojs .scrubber {
+	background-color: #7d6e63;
+}
+
+.audiojs .progress {
+	background-color: #fff;
+	background-image: none;
+}
+
+.audiojs .loaded {	
+	background-image: none;
 }
 
 /* 5.6 --- Attachments ***/
@@ -1356,6 +1432,10 @@ body {
 	.post-title {
 		margin-left: 3rem; margin-right: 3rem;
 		width: auto;
+	}
+
+	.format-status .meta p {
+		padding-left: 3rem;
 	}
 
 	.entry blockquote {
