@@ -82,7 +82,7 @@ html {
 
 body {
 	font: 12px/18px 'Merriweather', Georgia, 'Times New Roman', Times, serif; font-size: 1.2rem;
-	color: #61554C;
+	color: #7d6e63;
 }
 
 h1, h2, h3, h4, h5, h6, 
@@ -240,11 +240,11 @@ textarea {
 	padding: 11px 2%; padding-top: 1.1rem; padding-bottom: 1.1rem;
 	margin-top: 0;
 	border: none;
-	border-radius: 2px;	border-radius: 0.2rem;		
+	border-radius: 0.2rem;		
 	font-size: 11px; font-size: 1.1rem;
 	box-shadow: none;		
-	background-color: #f3f3f4;	
-	color: #222;
+	background-color: #f1efee;	
+	/*color: #222;*/
 
 	/* Transition */
 	-ms-transition: background-color 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750);
@@ -258,7 +258,7 @@ input:focus,
 textarea:focus, 
 select:focus {
 	outline: none;
-	background-color: #eaeaec;
+	background-color: #e2dedb;
 }
 
 label {
@@ -282,10 +282,10 @@ button,
 	font-size: 14px; font-size: 1.4rem;
 	line-height: 29px; line-height: 2.9rem;
 	border: 1px solid #907E72; border-width: 0.1rem;
-	border-radius: 4px;
+	border-radius: 0.4rem;
 	background-image: none;
-	background-color: #61554C;
-	box-shadow: 0 0 0 3px #61554C;
+	background-color: #7d6e63;
+	box-shadow: 0 0 0 3px #7d6e63;
 	color: #fff;
 	text-transform: uppercase;
 	letter-spacing: 1px;	
@@ -326,7 +326,7 @@ button:hover,
 .button.accent:hover {
 	background-color: transparent;
 	border-color: transparent;	
-	color: #61554C;
+	color: #7d6e63;
 }
 
 .button-small {
@@ -344,13 +344,13 @@ button:hover,
 .button-alt {
 	margin: 0;
 	border: 2px solid #907E72; border-width: 0.2rem;
-	color: #61554C;
+	color: #7d6e63;
 	background: transparent;
 	box-shadow: none;			
 }
 
 .button-alt:hover {
-	background-color: #61554C;
+	background-color: #7d6e63;
 	color: #fff;
 }
 
@@ -389,7 +389,7 @@ img {
 .featured-image {
 	max-width: 100%;
 	line-height: 0;	
-	border-radius: 4px 4px 0 0; border-radius: 0.4rem 0.4rem 0 0;
+	border-radius: 0.4rem 0.4rem 0 0;
 	text-align: center;
 	background-color: #e0e1e2;
 }
@@ -635,13 +635,13 @@ pre {
 }
 
 .with-icon:before {
-	color: #61554C;
+	color: #7d6e63;
 	font-size: 120%;
 	margin-right: 6px; margin-right: 0.6rem;
 }
 
 .icon {
-	color: #61554C;
+	color: #7d6e63;
 }
 
 .icon:hover {
@@ -670,7 +670,7 @@ body {
 	float: left;
 	clear: both;
 	width: 100%;	
-	border-radius: 4px 4px 0 0;
+	border-radius: 0.4rem 0.4rem 0 0;
 }
 
 .content-wrapper.content,
@@ -815,7 +815,7 @@ body {
 	padding: 12px 0; padding: 1.2rem 0;	
 	text-decoration: none;
 	font-weight: 400;
-	color: #61554C;
+	color: #7d6e63;
 }
 
 #site-navigation .menu-button {
@@ -871,7 +871,15 @@ body {
 }
 
 .multi-block .content-block:nth-of-type(1n+2) {
-	border-top: 1px solid #eaebec;	
+	border-top: 1px solid #e2dedb;	
+}
+
+.multi-block .content-block:first-of-type {
+	border-radius: 0.4rem 0.4rem 0 0;
+}
+
+.multi-block .content-block:last-of-type {
+	border-radius: 0 0 0.4rem 0.4rem;
 }
 
 .entry {
@@ -887,7 +895,7 @@ body {
 .page-title, 
 .block-title, 
 .post-title {	
-	border-bottom: 2px solid #eaebec;
+	border-bottom: 2px solid #e2dedb;
 	margin-bottom: 36px; margin-bottom: 3.6rem;
 	padding-bottom: 4px; padding-bottom: 0.4rem;
 	line-height: 30px; line-height: 3rem;
@@ -903,7 +911,7 @@ body {
 }
 
 .block-title.with-icon i {
-	color: #61554C;
+	color: #7d6e63;
 }
 
 /* 5.2 --- Entry Meta ***/
@@ -924,7 +932,7 @@ body {
 
 .meta-below {
 	border-top: 1px solid #e0e1e2;	
-	border-radius: 0 0 4px 4px; border-radius: 0 0 0.4rem 0.4rem;
+	border-radius: 0 0 0.4rem 0.4rem;
 }
 
 .meta p {
@@ -936,7 +944,7 @@ body {
 }
 
 .meta a {
-	color: #61554C;
+	color: #7d6e63;
 }
 
 .meta .author, 
@@ -999,11 +1007,11 @@ body {
 	clear: both;
 	margin-bottom: 24px; margin-bottom: 2.4rem;
 	width: 100%;
-	border-bottom: 1px solid #eaebec;
+	border-bottom: 1px solid #e2dedb;
 }
 
 .avatar {
-	border-radius: 4px; border-radius: 0.4rem;
+	border-radius: 0.4rem;
 }
 
 .comments-section .avatar {
@@ -1116,8 +1124,8 @@ body {
 .block {
 	/*padding: 1px 0; padding-top: 0.1rem; padding-bottom: 0.1rem;*/ /* Without this, the border ends up losing a pixel right at the very corner */
 	margin-bottom: 24px; margin-bottom: 2.4rem;
-	border: 1px solid #c4bbb5;
-	border-radius: 4px;
+	border: 1px solid #e2dedb;
+	border-radius: 0.4rem;
 }
 
 .widget,
