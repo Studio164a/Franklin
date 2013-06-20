@@ -86,8 +86,6 @@ if ( !function_exists( 'sofa_comment' ) ) {
 			default :
 		?>
 
-		<?php if ( sofa_comment_is_by_author($comment) ) : ?><i class="icon-star"></i> <small><?php _e('Post author', 'projection') ?></small><?php endif ?>
-
 		<li <?php comment_class( get_option('show_avatars') ? 'avatars' : 'no-avatars' ) ?> id="li-comment-<?php comment_ID(); ?>">
 
 			<?php echo get_avatar( $comment, 50 ) ?>

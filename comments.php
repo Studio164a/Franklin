@@ -51,11 +51,11 @@ if ( ! comments_open() ) return; ?>
 
 				<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 				<?php 
-				$next_link = get_next_comments_link( '<i class="icon-angle-right"></i>' );
-				$previous_link = get_previous_comments_link( '<i class="icon-angle-left"></i>' );
+				$next_link = get_next_comments_link();
+				$previous_link = get_previous_comments_link();
 				?>
 
-				<nav id="comment-nav-above" class="comment_nav pagination">
+				<nav id="comment-nav-above" class="comment-nav pagination">
 					<h1 class="assistive-text"><?php _e( 'Comment navigation', 'projection' ); ?></h1>
 					<ul>		
 						<?php if ( strlen( $previous_link ) ) : ?><li class="nav-previous"><?php echo $previous_link ?></li><?php endif ?>
@@ -72,12 +72,12 @@ if ( ! comments_open() ) return; ?>
 						 * define textural_comment() and that will be used instead.
 						 * See textural_comment() in projection/functions.php for more.
 						 */
-						wp_list_comments( array( 'callback' => 'projection_campaign_comment' ) );
+						wp_list_comments( array( 'callback' => 'sofa_comment' ) );
 					?>
 				</ol>
 
 				<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
-				<nav id="comment-nav-below" class="comment_nav pagination">
+				<nav id="comment-nav-below" class="comment-nav pagination">
 					<h1 class="assistive-text"><?php _e( 'Comment navigation', 'projection' ); ?></h1>
 					<ul>
 						<?php if ( strlen( $previous_link ) ) : ?><li class="nav-previous"><?php echo $previous_link ?></li><?php endif ?>

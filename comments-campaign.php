@@ -49,7 +49,7 @@ if ( ! comments_open() ) return; ?>
 				$previous_link = get_previous_comments_link( '<i class="icon-angle-left"></i>' );
 				?>
 
-				<nav id="comment-nav-above" class="comment_nav pagination">
+				<nav id="comment-nav-above" class="comment-nav pagination">
 					<h1 class="assistive-text"><?php _e( 'Comment navigation', 'projection' ); ?></h1>
 					<ul>		
 						<?php if ( strlen( $previous_link ) ) : ?><li class="nav-previous"><?php echo $previous_link ?></li><?php endif ?>

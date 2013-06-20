@@ -899,7 +899,7 @@ body {
 }
 
 .entry {
-	padding: 0 4% 12px; padding-bottom: 1.2rem;	
+	padding: 24px 4% 12px; padding-top: 2.4rem; padding-bottom: 1.2rem;	
 }
 
 .entry > *:first-child {
@@ -912,7 +912,7 @@ body {
 .block-title, 
 .post-title {	
 	border-bottom: 2px solid #e2dedb;
-	margin-bottom: 36px; margin-bottom: 3.6rem;
+	margin-bottom: 12px; margin-bottom: 1.2rem;
 	padding-bottom: 4px; padding-bottom: 0.4rem;
 	line-height: 30px; line-height: 3rem;
 }
@@ -922,8 +922,10 @@ body {
 	margin-left: 4%;
 	margin-right: 4%;	
 	width: 92%;
+	max-width: 92%;
 	text-align: center;
 	text-transform: uppercase;
+	word-break: break-word;
 }
 
 .block-title.with-icon i {
@@ -982,6 +984,17 @@ body {
 	display: inline-block;
 }
 
+.post-password-required label input {
+	max-width: 100%;
+	width: 100%;
+	display: block;
+}
+
+.post-password-required label {
+	margin-bottom: 6px; margin-bottom: 0.6rem;
+}
+
+
 /* 5.4 --- Galleries ***/
 
 
@@ -998,7 +1011,7 @@ body {
 
 /* 5.7 --- Post/Paging Navigation ***/
 
-.pagination {
+.pagination {	
 	padding-bottom: 24px; padding-bottom: 2.4rem;
 }
 
@@ -1012,11 +1025,11 @@ body {
 	display: inline;
 }
 
-.nav-next {
+.nav-previous {
 	float: left;
 }
 
-.nav-previous {
+.nav-next {
 	float: right;
 }
 
@@ -1159,6 +1172,10 @@ body {
 
 #cancel-comment-reply-link {
 	float: right;
+}
+
+.comment-nav {
+	margin-bottom: 24px; margin-bottom: 2.4rem;
 }
 
 /* 6.0 -- Sidebar
@@ -1333,6 +1350,12 @@ body {
 	.content-block, 
 	.entry blockquote {
 		padding-right: 3rem; padding-left: 3rem;
+	}
+
+	.page-title, 
+	.post-title {
+		margin-left: 3rem; margin-right: 3rem;
+		width: auto;
 	}
 
 	.entry blockquote {
