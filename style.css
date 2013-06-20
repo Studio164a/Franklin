@@ -487,7 +487,7 @@ td {
 }
 
 .even td {
-	background-color: #f1f1f2;
+	background-color: #f1efee;
 }
 
 th p:last-child, 
@@ -554,7 +554,7 @@ pre, code, kbd, tt { font-family: Monaco, Consolas, "Lucida Console", monospace;
 pre { 	
 	padding: 12px 6px; padding: 1.2rem 0.6rem; 
 	margin-bottom: 12px; margin-bottom: 1.2rem; 
-	background-color: #f1f1f2;
+	background-color: #f1efee;
 	color: #929497;
 }
 
@@ -663,7 +663,7 @@ body {
 	position: relative;
 	max-width: 100%;
 	overflow-x: hidden;
-	background: #a6a8ab url(media/images/textured_paper.png);
+	background: #aea198 url(media/images/textured_paper.png);
 }
 
 .body-wrapper {
@@ -743,7 +743,7 @@ body {
 	border-bottom: 3px double #dbdbdb; 	
 	width: 92%;
 	padding: 24px 4% 0; padding-top: 2.4rem;
-	background-color: #f1f1f2;
+	background-color: #f1efee;
 }
 
 /* 3.1 -- Sharing ***/
@@ -843,7 +843,7 @@ body {
 /* 5.0 -- Content
 ================================================== */
 #main {
-	background-color: #f1f1f2;
+	background-color: #f1efee;
 }
 
 .entry-block {
@@ -914,7 +914,7 @@ body {
 	font-size: 10px; font-size: 1rem;
 	line-height: 38px; line-height: 3.8rem;
 	text-transform: uppercase;
-	background-color: #f1f1f2;
+	background-color: #f1efee;
 	color: #929497;
 }
 
