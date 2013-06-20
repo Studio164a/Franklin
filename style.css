@@ -395,7 +395,7 @@ img {
 	line-height: 0;	
 	border-radius: 0.4rem 0.4rem 0 0;
 	text-align: center;
-	background-color: #e0e1e2;
+	background-color: #f1efee;
 }
 
 .wp-caption {	
@@ -475,7 +475,6 @@ th,
 td {
 	padding: 6px 10px; padding: 0.6rem 1rem;
 	vertical-align: top;
-	white-space: nowrap;
 }
 
 th {		
@@ -485,6 +484,7 @@ th {
 	background-color: #e1e1e2;
 	text-align: left;
 	font-weight: 600;	
+	white-space: nowrap;
 }
 
 td {
@@ -516,7 +516,7 @@ td dl:last-child {
 	width: 100%;
 	font-size: 14px; font-size: 1.4rem;
 	line-height: 21px; line-height: 2.1rem;
-	background-color: #e1e1e2;
+	background-color: #f1efee;
 }
 
 .entry blockquote p:last-child {
@@ -1232,14 +1232,34 @@ body {
 	border: 1px solid #eae6e4;
 }
 
+.widget_calendar {
+	padding-bottom: 0;
+}
+
+.widget_calendar table {
+	position: relative;
+	left: -2.1rem;
+	top: 0.1rem;
+	width: -webkit-calc( 100% + 4.2rem );
+	width: -moz-calc( 100% + 4.2rem );
+	width: calc( 100% + 4.2rem );
+}
+
 .widget_calendar th,
 .widget_calendar td {
 	text-align: center;
+	padding-left: 6px; padding-left: 0.6rem;
+	padding-right: 6px; padding-right: 0.6rem;
+}
+
+.widget_calendar td {
+	white-space: nowrap;
 }
 
 .widget_search.widget {
 	padding: 0;
 	border: 0;
+	border-radius: 0;
 	background: transparent;
 }
 
@@ -1393,20 +1413,7 @@ body {
 	.sidebar-block {
 		padding-right: 2rem; padding-left: 2rem;
 
-	}
-	
-	.widget_calendar {
-		padding-bottom: 0;
-	}
-
-	.widget_calendar table {
-		position: relative;
-		left: -2.1rem;
-		top: 0.1rem;
-		width: -webkit-calc( 100% + 4.2rem );
-		width: -moz-calc( 100% + 4.2rem );
-		width: calc( 100% + 4.2rem );
-	}
+	}	
 }
 
 /* 8.2 --- Greater than 800px ***/
