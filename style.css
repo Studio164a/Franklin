@@ -1239,7 +1239,7 @@ body {
 	background: transparent;
 }
 
-.widget_search .searchform > div {
+.widget_search #searchform {
 	position: relative;
 }
 
