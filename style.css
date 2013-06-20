@@ -924,7 +924,7 @@ body {
 
 .meta-below {
 	border-top: 1px solid #e0e1e2;	
-	border-radius: 0 0 4px 4px; border-radius: 0.4rem 0.4rem;
+	border-radius: 0 0 4px 4px; border-radius: 0 0 0.4rem 0.4rem;
 }
 
 .meta p {
