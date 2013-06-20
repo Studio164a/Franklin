@@ -252,6 +252,8 @@ textarea {
 	-o-transition: background-color 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750);
 	-webkit-transition: background-color 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750);
 	transition: background-color 0.2s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+
+	-webkit-appearance:none;
 }
 
 input:focus,
@@ -303,6 +305,8 @@ button,
 	-o-transition: color 0.3s cubic-bezier(0.250, 0.250, 0.750, 0.750);
 	-webkit-transition: color 0.3s cubic-bezier(0.250, 0.250, 0.750, 0.750);
 	transition: color 0.3s cubic-bezier(0.250, 0.250, 0.750, 0.750);	
+
+	-webkit-appearance:none;
 }
 
 /* Assuming this is just used on an anchor element */
