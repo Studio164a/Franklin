@@ -5,14 +5,12 @@
 
 get_header() ?>
 
-	<div id="main_wrap" class="inner_wrap cf">	
+	<div class="content-wrapper">
 
-		<?php get_template_part('breadcrumbs') ?>
-
-		<div id="content">	
+		<div class="content">	
 
 			<h1 class="archive_title">		
-				<?php printf( __( 'Category: %s', 'osfa' ), '<span>' . single_cat_title( '', false ) . '</span>' ); ?>
+				<?php printf( __( 'Category: %s', 'projection' ), '<span>' . single_cat_title( '', false ) . '</span>' ); ?>
 			</h1>
 
 			<?php if ( have_posts() ) : ?>

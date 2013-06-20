@@ -5,9 +5,9 @@
 
 get_header() ?>
 
-	<div id="main_wrap" class="inner_wrap cf">	
+	<div class="content-wrapper">
 
-		<div id="content">	
+		<div class="content">
 
 			<?php if ( have_posts() ) : ?>
 

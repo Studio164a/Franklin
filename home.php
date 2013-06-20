@@ -1,17 +1,13 @@
 <?php 
 /**
- * Tag archive template
+ * The default blog posts template
  */
 
 get_header() ?>
 
 	<div class="content-wrapper">
 
-		<div class="content">	
-
-			<h1 class="archive_title">		
-				<?php printf( __( 'Tag archives: %s', 'osfa' ), '<span>' . single_tag_title( '', false ) . '</span>' ); ?>
-			</h1>
+		<div class="content">
 
 			<?php if ( have_posts() ) : ?>
 
@@ -23,13 +19,12 @@ get_header() ?>
 
 				<?php endwhile ?>
 
-				<?php osfa_content_nav( 'nav_below' ) ?>
-
 			<?php endif ?>
+
 
 		</div>
 
-		<?php get_sidebar() ?>
+	<?php get_sidebar() ?>
 
 	</div>
 

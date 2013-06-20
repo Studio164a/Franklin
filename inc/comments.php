@@ -14,7 +14,7 @@ if ( !function_exists( 'sofa_comment_form_default_fields') ) {
 		<p class="comment-text-input required" tabindex="1">
 			<input type="text" name="author" id="commenter_name" placeholder="'.__( 'Name', 'projection' ).' *" required />			
 		</p>		
-		<p class="comment-text-input" tabindex="2">
+		<p class="comment-text-input last" tabindex="2">
 			<input type="text" name="url" id="commenter_url" placeholder="'.__( 'Website', 'projection' ).'" />
 		</p>
 		<p class="comment-text-input fullwidth required" tabindex="3">
@@ -51,7 +51,7 @@ if ( !function_exists( 'sofa_comment_form_field_comment') ) {
 if ( !function_exists( 'sofa_cancel_comment_reply_link') ) {
 
 	function sofa_cancel_comment_reply_link( $html ) {
-		return substr_replace( $html, 'class="icon" ', 3, 0 );
+		return substr_replace( $html, 'class="icon icon-remove-sign" ', 3, 0 );
 	}
 }
 
@@ -117,9 +117,32 @@ if ( !function_exists( 'sofa_comment' ) ) {
  * @return bool
  * @since Projection 1.0
  */
-function sofa_comment_is_by_author($comment) {
-	global $post;
+if ( !function_exists( 'sofa_comment_is_by_author') ) {
 
-	return isset( $comment->user_id ) && $comment->user_id == $post->post_author ? true : false;
+	function sofa_comment_is_by_author($comment) {
+		global $post;
+
+		return isset( $comment->user_id ) && $comment->user_id == $post->post_author ? true : false;
+	}
+
 }
 
+/**
+ * Displays the comment field if the user is logged in and this is a campaign.
+ * 
+ * @uses comment_form_field_comment
+ * @param string $default
+ * @return string
+ * @since Projection 1.0
+ */
+if ( !function_exists( 'sofa_comment_form_field_comment_filter' )) {
+
+	function sofa_comment_form_field_comment_filter($default) {
+		global $post;
+
+		if ( is_user_logged_in() )
+			return sofa_comment_form_field_comment();
+	}
+}
+
+add_filter( 'comment_form_field_comment', 'sofa_comment_form_field_comment_Filter' );

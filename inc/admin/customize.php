@@ -227,18 +227,23 @@ class OSFA_Customizer {
         $accent = get_theme_mod('accent_colour', '#d95b43');
         $accent_hover = get_theme_mod('accent_hover', '#df745f');
         $accent_text = get_theme_mod('accent_text', '#ffffff');
+
+        $accent_rgb = $this->get_rgb_from_hex($accent);        
         ?>
 
 <style media="all" type="text/css">   
 /* Accent colour */
-a, #site-navigation .menu-button, #site-navigation a:hover, .block-title, .widget-title, .pledge-level.not-available .pledge-limit, .post-author i, .button.accent:hover { color: <?php echo $accent ?>; }
+a, #site-navigation .menu-button, #site-navigation a:hover, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, .button.accent:hover { color: <?php echo $accent ?>; }
 .campaign-button, .active-campaign { background-color: <?php echo $accent ?>; color: <?php echo $accent_text ?>; }
 #site-navigation ul { background-color: <?php echo $accent_text ?>; border-color: <?php echo $accent ?>; }
 
 .barometer .filled { border-color: <?php echo $accent_hover ?>; }
+#site-navigation .hovering > a { border-color: <?php echo $accent ?>; border-color: <?php echo $this->rgb($accent_rgb, 0.7) ?>; }
 .button.accent { background-color: <?php echo $accent ?>; color: <?php echo $accent_text ?>; border-color: <?php echo $accent_hover ?>; box-shadow: 0 0 0 3px <?php echo $accent ?>;}
 
 input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, input[type=email]:focus, textarea:focus { border-color: <?php echo $accent ?>; }
+
+.hovering .on-hover {  background-color: <?php echo $accent ?>; background-color: <?php echo $this->rgb($accent_rgb, 0.5) ?>; }
 
 /* Text selection */
 *::selection { background-color:<?php echo $accent ?>; color: <?php echo $accent_text ?>; } 
@@ -272,11 +277,24 @@ input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, in
     }
 
     /**
+     * Returns an RGB CSS string.
+     * 
+     * @param array $rgb
+     * @param int $alpha
+     * @return string
+     * @since Projection 1.0
+     */
+    function rgb($rgb, $alpha = '') {
+        return empty( $alpha ) ? sprintf( 'rgb(%s)', implode( ', ', $rgb ) ) : sprintf( 'rgba(%s, %s)', implode( ', ', $rgb ), $alpha);
+    }
+
+    /**
      * Return a HEX colour's RGB value as an array.
      * 
      * @credit http://bavotasan.com/2011/convert-hex-color-to-rgb-using-php/
      * @param string $hex
      * @return array
+     * @since Projection 1.0
      */
     function get_rgb_from_hex($hex) {
         $hex = str_replace("#", "", $hex);

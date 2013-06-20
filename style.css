@@ -94,16 +94,19 @@ input[type=reset],
 .campaign-summary li span, 
 .countdown_section,
 .site-title,
+.post-title,
+.page-title,
 legend, 
 .account-links, 
 .barometer span span, 
-.bypostauthor .post-author {
+.bypostauthor .post-author,
+.meta,
+blockquote cite {
 	font-family: 'Oswald', 'Helvetica Neue', Helvetica, sans-serif;
 }
 
 input, 
-textarea,
-.page-title {
+textarea {
 	font-family: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
 }
 
@@ -114,17 +117,17 @@ h1 {
 
 h2 {
 	font-size: 25px; font-size: 2.5rem;
-	line-height: 46px; line-height: 4.6rem;
+	line-height: 34px; line-height: 3.4rem;
 }
 
 h3 {
     font-size: 20px; font-size: 2rem;
-    line-height: 33px; line-height: 3.3rem;
+    line-height: 30px; line-height: 3rem;
 }
 
 h4 {
-	font-size: 16px; font-size: 2.1rem;
-	line-height: 31px; line-height: 3.1rem;
+	font-size: 16px; font-size: 1.6rem;
+	line-height: 28px; line-height: 2.8rem;
 }
 
 h5 {
@@ -153,7 +156,8 @@ h1, h2, h3, h4, h5, h6 {
 .title-wrapper h3, 
 .title-wrapper h4 {
 	display: inline-block;
-	padding: 0 10px; padding-right: 1rem; padding-left: 1rem;	
+	padding-right: 10px; padding-right: 1rem; 
+	padding-left: 10px; padding-left: 1rem;	
 }
 
 p {
@@ -194,7 +198,7 @@ a:focus {
 }
 
 .site-title a:hover,
-.post-header a:hover, 
+.post-title a:hover, 
 .button:hover {
 	text-decoration: none;
 }
@@ -340,12 +344,14 @@ button:hover,
 .button-alt {
 	margin: 0;
 	border: 2px solid #828384; border-width: 0.2rem;
+	color: #666;
 	background: transparent;
-	box-shadow: none;		
+	box-shadow: none;			
 }
 
 .button-alt:hover {
 	background-color: #58595b;
+	color: #fff;
 }
 
 .login-submit {
@@ -380,6 +386,20 @@ img {
 	-ms-interpolation-mode: bicubic; 
 }
 
+.featured-image {
+	margin: 0 auto;
+	max-width: 100%;
+	line-height: 0;	
+}
+
+.wp-caption {	
+	max-width: 100%;
+}
+
+.size-full {	
+	position: relative;
+}
+
 #map_canvas img,
 #map_canvas embed,
 #map_canvas object,
@@ -389,9 +409,118 @@ img {
 	max-width: none !important; 
 }
 
+/* Captions */
+.gallery-caption,
+.wp-caption-text {
+	display: inline-block;
+	padding: 0 10px; padding-right: 1rem; padding-left: 1rem;	
+	font-size: 11px; font-size: 1.1rem;
+	font-style: italic;
+	line-height: 11px; line-height: 1.1rem;		
+	margin-bottom: 12px; margin-bottom: 1.2rem;
+}
+
+/* Hover effects */
+.hover-parent {	
+	position: relative;
+	display: block;
+}
+
+.on-hover {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+
+	/* Transition */
+	-ms-transition: background-color 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-moz-transition: background-color 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-o-transition: background-color 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-webkit-transition: background-color 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	transition: background-color 200ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+}
+
+.on-hover i {
+	display: none;
+}
+
+.hovering .on-hover i {
+	display: block;
+	color: #fff;
+	text-align: center;
+}
+
 /* 1.7 -- Tables ***/
 
+table {
+	width: 100%;	
+	border: 1px solid #d9d9da;	
+}
+
+table caption {
+	font-weight: 400;
+	font-size: 12px; font-size: 1.2rem;
+	padding: 4px 0; padding: 0.4rem 0;
+}
+
+th,
+td {
+	padding: 6px 10px; padding: 0.6rem 1rem;
+	vertical-align: top;
+}
+
+th {		
+	border-right: 1px solid #d3d3d4;
+	border-bottom: 1px solid #c1c1c2;
+	background-color: #e1e1e2;
+	text-align: left;
+	font-weight: 600;	
+}
+
+td {
+	border-right: 1px solid #d9d9da;
+}
+
+.even td {
+	background-color: #f1f1f2;
+}
+
+th p:last-child, 
+th ul:last-child,
+th ol:last-child,
+th dl:last-child,
+td p:last-child, 
+td ul:last-child,
+td ol:last-child,
+td dl:last-child {
+	margin-bottom: 0;
+}
+
 /* 1.8 -- Blockquotes ***/
+
+.entry blockquote {
+	position: relative;
+	left: -4.348%;
+	padding: 24px 4.348%; padding-top: 2.4rem; padding-bottom: 2.4rem;
+	margin-bottom: 12px; margin-bottom: 1.2rem;
+	width: 100%;
+	font-size: 14px; font-size: 1.4rem;
+	line-height: 21px; line-height: 2.1rem;
+	background-color: #e1e1e2;
+}
+
+.entry blockquote p:last-child {
+	padding-bottom: 0;
+}
+
+.entry blockquote cite {
+	display: block;
+	margin: 24px 0 0; margin-top: 2.4rem;
+	font-size: 12px; font-size: 1.2rem;	
+	text-transform: uppercase;
+	text-align: right;
+}
 
 /* 1.9 -- Miscellaneous elements ***/ 
 
@@ -418,38 +547,43 @@ em { font-style: italic; }
 abbr,
 acronym { border-bottom: 1px dotted; }
 pre, code, kbd, tt { font-family: Monaco, Consolas, "Lucida Console", monospace; }
-pre { 
-	padding: 14px 7px; padding: 1.4rem 0.7rem; 
-	margin-bottom: 14px; margin-bottom: 1.4rem; 
+pre { 	
+	padding: 12px 6px; padding: 1.2rem 0.6rem; 
+	margin-bottom: 12px; margin-bottom: 1.2rem; 
+	background-color: #f1f1f2;
+	color: #929497;
 }
 
 /* 1.10 -- Reusable classes **/
 
 /* Floats & Alignment */
 .left {
-	float: left;
-	margin-right: 20px; margin-right: 2rem;
+	text-align: left;	
 }
 
 .right {
-	float: right;
-	margin-left: 20px; margin-left: 2rem;
+	text-align: right;
+}
+
+.center {
+	text-align: center;
 }
 
 .alignleft { 
 	float: left;
-	margin: 0 20px 12px 0; margin: 0 2rem 1.2rem 0; 
+	margin: 0 10px 12px 0; margin: 0 1rem 1.2rem 0; 
 }
 
 .alignright { 
 	float: right;
-	margin: 0 0 12px 20px; margin: 0 0 1.2rem 2rem; 
+	margin: 0 0 12px 10px; margin: 0 0 1.2rem 1rem; 
 }
 
 .aligncenter { 
 	margin: 12px auto; margin-top: 1.2rem; margin-bottom: 1.2rem; 
 	clear: both;
 	display: block;
+	text-align: center;
 }
 
 /* Clearfix */
@@ -485,7 +619,19 @@ pre {
 }
 
 /* Icons */
-.with-icon i {
+[data-icon]:before {
+	font-family: 'fontawesome';
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+.with-icon:before {
+	color: #666;
 	font-size: 120%;
 	margin-right: 6px; margin-right: 0.6rem;
 }
@@ -526,7 +672,7 @@ body {
 .content-wrapper.content,
 .content-wrapper {
 	width: 92%;
-	padding: 0 4%;
+	padding: 36px 4%; padding-top: 3.6rem; padding-bottom: 3.6rem;
 }
 
 .content, 
@@ -647,7 +793,7 @@ body {
 #site-navigation.is-active ul {
 	height: auto;
 	max-height: 10000px; /* Required for animation */
-	box-shadow: inset 0 -1px 2px #999;
+	box-shadow: inset 0 -1px 2px #929497;
 }
 
 #site-navigation li {
@@ -660,9 +806,9 @@ body {
 }
 
 #site-navigation a {	
-	display: block;	
+	display: block;		
 	width: 100%;
-	padding: 12px 0; padding: 1.2rem 0;
+	padding: 12px 0; padding: 1.2rem 0;	
 	text-decoration: none;
 	font-weight: 400;
 	color: #58595a;
@@ -696,6 +842,12 @@ body {
 	background-color: #f1f1f2;
 }
 
+.entry-block {
+	position: relative;
+	padding: 0;
+	background-color: #fff;
+}
+
 .content-block,
 .reveal-modal.multi-block .content-block {
 	padding: 0 4% 24px; padding-bottom: 2.4rem;	
@@ -718,29 +870,85 @@ body {
 }
 
 .entry {
-	
+	padding: 0 4% 12px; padding-bottom: 1.2rem;	
+}
+
+.entry *:first-child {
+	margin-top: 0;
 }
 
 /* 5.1 --- Entry Header ***/
+
 .page-title, 
-.block-title {	
+.block-title, 
+.post-title {	
 	border-bottom: 2px solid #eaebec;
-	margin-bottom: 36px;
+	margin-bottom: 36px; margin-bottom: 3.6rem;
+	padding-bottom: 4px; padding-bottom: 0.4rem;
+	line-height: 30px; line-height: 3rem;
+}
+
+.page-title,
+.post-title {
+	margin-left: 4%;
+	margin-right: 4%;	
+	width: 92%;
+	text-align: center;
+	text-transform: uppercase;
 }
 
 .block-title.with-icon i {
 	color: #666;
 }
 
-.page-title {
-	
-}
-
 /* 5.2 --- Entry Meta ***/
 
+.meta {	
+	padding: 0;	
+	margin: 0;	
+	font-size: 10px; font-size: 1rem;
+	line-height: 38px; line-height: 3.8rem;
+	text-transform: uppercase;
+	background-color: #f1f1f2;
+	color: #929497;
+}
+
+.meta-above {
+	border-bottom: 2px solid #e0e1e2;	
+}
+
+.meta-below {
+	border-top: 2px solid #e0e1e2;	
+}
+
+.meta p {
+	padding: 0;
+}
+
+.meta span {
+	padding: 12px 0; padding-top: 1.2rem; padding-bottom: 1.2rem;
+}
+
+.meta a {
+	color: #58595b;
+}
+
+.meta .author, 
+.meta .comment-count, 
+.meta .tags {
+	border-left: 2px solid #e0e1e2;
+	margin-left: 4px; margin-left: 0.4rem;
+	padding-left: 4px; padding-left: 0.4rem;
+}
 
 /* 5.3 --- Entry Content ***/
+.sticky {
+	background-color: #e7e7e7;
+}
 
+.more-link {
+	display: inline-block;
+}
 
 /* 5.4 --- Galleries ***/
 
@@ -768,12 +976,15 @@ body {
 
 /* 5.12 --- Comments ***/
 
+.comment-form-block {
+	padding-top: 24px; padding-top: 2.4rem;
+}
+
 .comments-section { 
 	float: left;
 	clear: both;
 	width: 100%;
 	background-color: #fff;
-	/*padding: 0;*/
 }
 
 .comment,
@@ -814,7 +1025,7 @@ body {
 .comment-meta {
 	padding-bottom: 0;
 	font-size: 10px; font-size: 1rem;
-	color: #9d9da1;
+	color: #929497;
 }
 
 .comment-meta a {
@@ -842,13 +1053,6 @@ body {
 .bypostauthor .post-author i {
 	margin-right: 2px; 
 }
-/*
-.bypostauthor .comment-author:after {
-	content: "\F005";
-	margin-left: 4px; margin-left: 0.4rem;
-	font-family: "FontAwesome";
-	font-size: 120%;
-} */
 
 .logged-in-as,
 .comment-notes, 
@@ -858,6 +1062,45 @@ body {
 
 .form-allowed-tags {
 	color: #9d9da1;
+}
+
+.comments-section input[type=email],
+.comments-section input[type=text], 
+.comments-section textarea {
+	max-width: 100%;
+}
+
+.comments-section .comment-text-input {
+	float: left;
+	width: 49%;
+	margin-right: 2%;
+}
+
+.comments-section .comment-text-input.fullwidth {
+	width: 100%; 
+	margin: 0;
+}
+
+.comments-section .comment-text-input.last {
+	margin-right: 0;
+}
+
+.comments-section #comment {
+	max-width: 100%;
+}
+
+.comments-section .comment-notes {
+	clear: both;
+}
+
+#reply-title {
+	margin-top: 0;
+	font-size: 14px; font-size: 1.4rem;
+	text-transform: uppercase
+}
+
+#cancel-comment-reply-link {
+	float: right;
 }
 
 /* 6.0 -- Sidebar
@@ -889,7 +1132,8 @@ body {
 .widget-title, 
 .sidebar-block .title-wrapper h2,
 .sidebar-block .title-wrapper h3, 
-.sidebar-block .title-wrapper h4 {
+.sidebar-block .title-wrapper h4, 
+.sticky .post-title {
 	border-bottom: 2px solid #d6d8d8;
 }
 
@@ -950,8 +1194,14 @@ body {
 	}
 
 	/* Site structure */
-	.content-block {
+	.entry,
+	.content-block, 
+	.entry blockquote {
 		padding-right: 3rem; padding-left: 3rem;
+	}
+
+	.entry blockquote {
+		left: -3rem;
 	}
 
 	.content-block.reveal-modal {		
@@ -989,6 +1239,7 @@ body {
 		height: auto;
 		width: auto;
 		margin: 2rem 0 0 0;
+		padding-right: 1.6rem;
 		left: 0;
 	}
 
@@ -998,15 +1249,22 @@ body {
 
 	#site-navigation li {
 		display: inline-block;
-		margin: 0 0 0.5rem 2rem;
+		margin: 0 0 0.5rem 1rem;
 		border: none;
 	}
 
 	#site-navigation a {
 		display: inline-block;
-		padding: 0.6rem 0;		
+		padding: 0.6rem;
+		border: 0.2rem solid transparent; border-width: 0.2rem;
+		border-radius: 0.4rem;		
 		font-size: 1.6rem;
-		line-height: 2.6rem;
+		line-height: 1.6rem;
+	}
+
+	/* Content */
+	.meta {
+		font-size: 1rem;
 	}
 }
 
@@ -1021,7 +1279,6 @@ body {
 	.sidebar {
 		float: right;
 		width: 31.22%;
-		margin-top: 3.6rem;	
 	}
 
 	/* Comments */

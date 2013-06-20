@@ -1,1 +1,0 @@
-<?php if (is_sticky() && !is_singular()): ?><span class="sticky-notice"><i class="icon-star"></i></span><?php endif ?>

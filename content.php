@@ -1,14 +1,29 @@
 		<article id="post-<?php the_ID() ?>" <?php post_class() ?>>			
 
-			<?php get_template_part('sticky') ?>
+			<?php if ( is_single() ) : ?>
+
+				<?php get_template_part('meta', 'above') ?>
+
+			<?php endif ?>
+
+			<?php get_template_part( 'featured_image' ) ?>
 
 			<?php sofa_post_header() ?>			
 
-			<div class="entry cf">
-				<?php get_template_part( 'featured_image' ) ?>
-				<?php the_content() ?>
+			<div class="entry cf">				
+				<?php the_content() ?>				
+
+				<?php wp_link_pages(array( 'before' => '<p class="entry_pages">' . __('Pages: ', 'projection') ) ) ?>
 			</div>						
 
-			<?php get_template_part('meta') ?>
+			<?php if ( is_single() ) : ?>
+					
+				<?php get_template_part( 'meta', 'taxonomy' ) ?>				
+
+			<?php else : ?>				
+
+				<?php get_template_part('meta', 'below') ?>
+
+			<?php endif ?>			
 
 		</article>

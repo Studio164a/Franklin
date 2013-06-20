@@ -146,26 +146,6 @@ if ( !function_exists( 'projection_campaign_comment' ) ) {
 	}
 }
 
-/**
- * Displays the comment field if the user is logged in and this is a campaign.
- * 
- * @uses comment_form_field_comment
- * @param string $default
- * @return string
- * @since Projection 1.0
- */
-if ( !function_exists( 'projection_campaign_comment_field' )) {
-
-	function projection_comment_form_field_comment($default) {
-		global $post;
-
-		if ( is_user_logged_in() && get_post_type() == 'download' )
-			return sofa_comment_form_field_comment();
-	}
-}
-
-add_filter( 'comment_form_field_comment', 'projection_comment_form_field_comment' );
-
 
 
 

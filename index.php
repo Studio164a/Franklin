@@ -5,9 +5,9 @@
 
 get_header() ?>
 
-	<div id="main_wrap" class="inner_wrap cf">	
+	<div class="content-wrapper">
 
-		<div id="content">	
+		<div class="content">
 
 			<?php if ( have_posts() ) : ?>
 
@@ -21,9 +21,10 @@ get_header() ?>
 
 			<?php endif ?>
 
+
 		</div>
 
-		<?php get_sidebar() ?>
+	<?php get_sidebar() ?>
 
 	</div>
 

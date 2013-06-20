@@ -26,7 +26,7 @@ if ( ! comments_open() ) return; ?>
 				'comment_field'			=> '', 
 				'fields'				=> sofa_comment_form_field_comment() . sofa_comment_form_default_fields(''),
 				'title_reply'			=> '', 
-				'cancel_reply_link'		=> '<i class="icon-remove-sign"></i>',
+				'cancel_reply_link'		=> ' ',
 				'label_submit'			=> _x( 'Submit', 'post comment', 'projection' )
 			) ) ?>
 		</div>
@@ -35,7 +35,7 @@ if ( ! comments_open() ) return; ?>
 			
 			<div class="comments-block content-block cf">			
 				<div class="title-wrapper">
-					<h2 class="block-title with-icon"><i class="icon-comments"></i>
+					<h2 class="block-title with-icon" data-icon="&#xf086;">
 						<?php
 							printf( _n( 'One comment', '%1$s comments', get_comments_number(), 'projection' ),
 								number_format_i18n( get_comments_number() ) );

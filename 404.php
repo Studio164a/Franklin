@@ -5,18 +5,12 @@
 
 get_header() ?>
 
-	<div id="main_wrap" class="inner_wrap cf fullwidth">	
+	<div class="content-wrapper">
 
-		<?php get_template_part('breadcrumbs') ?>
+		<div class="content">	
 
-		<div class="page_wrap">
-			
-			<div id="content">	
-
-				<h1><?php _e( 'Sorry, but you\'ve hit a dead end.', 'osfa' ) ?></h1>
-				<?php get_search_form() ?>
-
-			</div>
+			<h1><?php _e( 'Sorry, but you\'ve hit a dead end.', 'projection' ) ?></h1>
+			<?php get_search_form() ?>
 
 		</div>
 

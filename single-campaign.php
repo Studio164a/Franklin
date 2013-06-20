@@ -11,12 +11,12 @@ get_header() ?>
 
 			<?php the_post() ?>
 
-			<?php get_template_part('campaign', 'blurb') ?>
-
-			<?php get_template_part('campaign', 'video') ?>
+			<?php get_template_part('campaign', 'blurb') ?>			
 
 			<div class="content-wrapper">
 
+				<?php get_template_part('campaign', 'video') ?>
+				
 				<div class="content">
 					
 					<?php get_template_part('campaign', 'content') ?>

@@ -9,7 +9,7 @@
 	<?php global $wp_embed ?>
 
 	<!-- Campaign video -->
-	<section class="campaign-video content-wrapper">
+	<section class="campaign-video">
 		<?php echo $wp_embed->run_shortcode('[embed]'.$campaign->video().'[/embed]' ) ?>
 	</section>
 	<!-- End campaign video -->

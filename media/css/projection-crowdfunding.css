@@ -300,7 +300,7 @@
 /* 4.0 - Campaign video 
 ================================================== */
 .campaign-video {
-	margin: 60px 0;
+	margin-bottom: 36px; margin-bottom: 3.6rem;
 	background-color: #f1f1f2;
 }
 
@@ -379,45 +379,6 @@
 	border-radius: 0;
 }
 
-/* 8.0 - Campaign comments
-================================================== */
-.campaign-comments #reply-title {
-	font-size: 14px; font-size: 1.4rem;
-	text-transform: uppercase
-}
-
-.campaign-comments #reply-title small {
-	float: right;
-}
-
-.campaign-comments input[type=email],
-.campaign-comments input[type=text], 
-.campaign-comments textarea {
-	max-width: 100%;
-}
-
-.campaign-comments .comment-text-input {
-	float: left;
-	width: 49%;
-	margin-right: 2%;
-}
-
-.campaign-comments .comment-text-input.fullwidth {
-	width: 100%; 
-	margin: 0;
-}
-
-.campaign-comments .comment-text-input:nth-child(odd) {
-	margin-right: 0;
-}
-
-.campaign-comments #comment {
-	max-width: 100%;
-}
-
-.campaign-comments .comment-notes {
-	clear: both;
-}
 
 /* 6.0 - Media Queries
 ================================================== */

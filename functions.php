@@ -54,6 +54,8 @@ class Projection_Theme {
 
         add_filter('sofa_enabled_modules', array(&$this, 'sofa_enabled_modules_filter'));
         add_filter('get_pages',  array(&$this, 'get_pages_filter'));    
+        add_filter('post_class', array(&$this, 'post_class_filter'));
+        add_filter('the_content_more_link', array(&$this, 'the_content_more_link_filter'), 10, 2);
 
   //       add_action('wp_head', array(&$this, 'wp_head'));
   //       add_action('after_setup_theme', array(&$this, 'after_setup_theme'));        
@@ -311,42 +313,49 @@ class Projection_Theme {
     }
 
     /**
-     * Filters the post_class output. Add class to incdicate if there is a featured image.
-     * 
-     * @param array $classes
-     * @return array
-     */
-    public function post_class($classes) {
-        if (has_post_thumbnail())
-            $classes[] = 'has_featured_image';
-
-        return $classes;
-    }    
-
-    /**
-     * Filters the "more" link on post archives
+     * Filters the "more" link on post archives.
+     *
      * @return string
+     * @since Projection 1.0
      */
-    public function the_content_more_link($more_link, $more_link_text) {
-        return str_replace( $more_link_text, __( 'Continue Reading', 'projection' ), $more_link );
+    public function the_content_more_link_filter($more_link, $more_link_text = null) {
+        $post = get_post();
+        $text = $more_link_text == '(more&hellip;)' ? __( 'Continue Reading', 'projection' ) : $more_link_text;
+        return '<span class="aligncenter"><a href="'.get_permalink().'" class="more-link button button-alt" title="'.sprintf( __('Keep reading &#8220;%s&#8221;', 'projection'), get_the_title() ).'">'.$text.'</a></span>';
     }
 
     /**
-     * Filters the pages to display when showing a list of pages
+     * Filters the pages to display when showing a list of pages.
      *
      * @param array $pages
      * @return array
      * @since Projection 1.0
      */
     public function get_pages_filter($pages) {
-         $campaigns = new WP_Query( array( 'post_type' => 'download' ) );
-         if ( $campaigns->post_count > 0 )
-             $pages = array_merge( $pages, $campaigns->posts );
-         return $pages;
+        $campaigns = new WP_Query( array( 'post_type' => 'download' ) );
+        
+        if ( $campaigns->post_count > 0 )
+            $pages = array_merge($campaigns->posts, $pages);
+
+        return $pages;
     }
 
     /**
-     * Set enabled modules for this theme
+     * Filters the post class.
+     * 
+     * @param array $classes
+     * @return array
+     * @since Projection 1.0
+     */
+    public function post_class_filter($classes) {
+        if (has_post_thumbnail())
+            $classes[] = 'has-featured-image';
+
+        return array_merge( $classes, array('block', 'entry-block') );
+    }
+
+    /**
+     * Set enabled modules for this theme.
      * 
      * @param array $modules
      * @return array
