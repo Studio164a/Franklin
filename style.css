@@ -976,10 +976,17 @@ body {
 }
 
 /* 5.3 --- Entry Content ***/
-.sticky.block {
-	background-color: #4e443d;	
+.sticky.block {	
 	border: 1px solid #fff;	
 	color: #fff;
+}
+
+.sticky.block a {
+	color: #fff;
+}
+
+.sticky.block .entry a {
+	text-decoration: underline;
 }
 
 .more-link {

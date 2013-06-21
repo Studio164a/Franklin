@@ -234,7 +234,9 @@ class OSFA_Customizer {
 <style media="all" type="text/css">   
 /* Accent colour */
 a, #site-navigation .menu-button, #site-navigation a:hover, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, .button.accent:hover { color: <?php echo $accent ?>; }
-.campaign-button, .active-campaign { background-color: <?php echo $accent ?>; color: <?php echo $accent_text ?>; }
+.campaign-button, .active-campaign, .sticky { background-color: <?php echo $accent ?>; color: <?php echo $accent_text ?>; }
+a:hover { color: <?php echo $accent_hover ?>;}
+.sticky .post-title { border-color: <?php echo $accent_hover ?>; }
 
 .barometer .filled { border-color: <?php echo $accent_hover ?>; }
 #site-navigation .hovering > a { border-color: <?php echo $accent ?>; border-color: <?php echo $this->rgb($accent_rgb, 0.7) ?>; }
