@@ -322,6 +322,12 @@
 	text-align: left;
 }
 
+.accordion .pledge-button {
+	display: block;
+	margin: 3px auto; margin-top: 0.3rem; margin-bottom: 0.3rem;
+	text-align: center;
+}
+
 /* 5.0 - Campaign video 
 ================================================== */
 .campaign-video {

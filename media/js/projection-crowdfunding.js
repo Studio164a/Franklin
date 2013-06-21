@@ -96,6 +96,12 @@
 			$(this).parent().toggleClass('is-active');
 		});
 
+		$('.pledge-button').on( 'click', function() {
+			var price = $(this).data('price');
+			
+			$('.edd_download_purchase_form').find('[data-price='+$(this).data('price')+'] input').prop('checked', true).trigger('change');
+		});
+
 		$('.edd_download_purchase_form').on('change', '.pledge-level', function() {
 			$('input[name=projection_custom_price]').val( $(this).data().price );
 		})

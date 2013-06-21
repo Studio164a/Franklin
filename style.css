@@ -342,6 +342,7 @@ button:hover,
 	font-size: 12px; font-size: 1.2rem;
 	padding-left: 10px; padding-left: 1rem;
 	padding-right: 10px; padding-right: 1rem;
+	max-width: 100px; max-width: 10rem;
 }
 
 input[type=submit].button-large, 
