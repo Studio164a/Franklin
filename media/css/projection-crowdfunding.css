@@ -498,23 +498,6 @@
 	.campaign-backer:nth-child(5n+5) {
 		margin-right: 0;
 	}	
-
-	/* Login & Registration forms */
-	#login-form .login-block, 
-	#login-form .register-block {
-		width: 43%;
-		padding-left: 2%;
-		padding-right: 2%;
-		margin-right: 2%;
-		float: left;
-	}
-
-	#login-form .register-block {
-		float: right;
-		background-color: #e7e7e7;
-		border-radius: 4px; border-radius: 0.4rem;
-	}
-
 }
 
 /* 6.3 --- Between 800px and 880px ***/
@@ -573,6 +556,22 @@
 
 	.campaign-backer:nth-child(5n+5) {
 		margin-right: 2%;
+	}
+
+	/* Login & Registration forms */
+	#login-form .login-block, 
+	#login-form .register-block {
+		width: 43%;
+		padding-left: 2%;
+		padding-right: 2%;
+		margin-right: 2%;
+		float: left;
+	}
+
+	#login-form .register-block {
+		float: right;
+		background-color: #e7e7e7;
+		border-radius: 4px; border-radius: 0.4rem;
 	}
 }
 

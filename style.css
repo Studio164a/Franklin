@@ -1306,7 +1306,7 @@ body {
 .sidebar-block input[type=password], 
 .sidebar-block input[type=email], 
 .sidebar-block input[type=number] {
-	background-color: #f9f9f9;
+	background-color: #f9f8f7;
 }
 
 .widget input[type=text]:focus,
@@ -1399,6 +1399,8 @@ body {
 
 /* 7.0 -- Footer
 ================================================== */
+
+
 
 /* 8.0 -- Media Queries
 ================================================== */
