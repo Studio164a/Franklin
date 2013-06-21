@@ -124,7 +124,7 @@ class Projection_Theme {
         wp_register_script('audio-js', sprintf( "%s/media/js/audiojs/audio.min.js", $theme_dir ), array(), 0.1, true);
         wp_register_script('foundation', sprintf( "%s/media/js/foundation.min.js", $theme_dir ), array(), 0.1, true);
         wp_register_script('foundation-reveal', sprintf( "%s/media/js/foundation.reveal.js", $theme_dir ), array('foundation'), 0.1, true);        
-        wp_register_script('main', sprintf( "%s/media/js/main.js", $theme_dir ), array( 'audio-js', 'hoverIntent', 'foundation-reveal', 'jquery-ui-accordion', 'jquery'), 0.1, true);
+        wp_register_script('main', sprintf( "%s/media/js/main.js", $theme_dir ), array( 'jquery-ui-accordion', 'audio-js', 'hoverIntent', 'foundation-reveal', 'jquery-ui-accordion', 'jquery'), 0.1, true);
 	    wp_enqueue_script('main');
 
         // If Symple Shortcodes is installed, dequeue its stylesheet

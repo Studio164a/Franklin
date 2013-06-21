@@ -286,10 +286,10 @@
 
 .pledge-limit {
 	float: right;
-	margin-top: 14px; margin-top: 1.4rem;
+	margin-top: 12px; margin-top: 1.2rem;
 	text-align: right;
 	font-style: italic;	
-	color: #9d9da1;
+	color: #b5aaa2;
 }
 
 .pledge-level.not-available .pledge-description {
@@ -303,14 +303,33 @@
 	font-style: italic;
 }
 
-/* 4.0 - Campaign video 
+/* 4.0 - Pledges accordion 
+================================================== */
+.accordion .pledge-level {	
+	padding: 12px 4%; padding-top: 1.2rem; padding-bottom: 1.2rem;
+	background-color: #fff;
+	border-radius: 0 0 0.4rem 0.4rem;
+}
+
+.accordion .pledge-description {
+	margin-left: 0;
+}
+
+.accordion .pledge-limit {
+	display: block;
+	float: none;	
+	margin-bottom: 12px; margin-bottom: 1.2rem;	
+	text-align: left;
+}
+
+/* 5.0 - Campaign video 
 ================================================== */
 .campaign-video {
 	margin-bottom: 36px; margin-bottom: 3.6rem;
 	background-color: #f1f1f2;
 }
 
-/* 5.0 - Backers
+/* 6.0 - Backers
 ================================================== */
 .campaign-backers ul {
 	padding-left: 0;
@@ -331,7 +350,7 @@
 	margin: 6px 0; margin-top: 0.6rem; margin-bottom: 0.6rem;
 }
 
-/* 6.0 - User account links 
+/* 7.0 - User account links 
 ================================================== */
 .account-links {
 	float: right;
@@ -353,7 +372,7 @@
 	color: #fff;
 }
 
-/* 7.0 - Login & registration forms 
+/* 8.0 - Login & registration forms 
 ================================================== */
 .atcf-login form, 
 .atcf-register form {
@@ -386,7 +405,7 @@
 	border-radius: 0;
 }
 
-/* Checkout page
+/* 9.0 - Checkout page
 ================================================== */
 #edd_checkout_cart th {
 	font-weight: 400;
@@ -440,10 +459,10 @@
 	width: 100%;
 }
 
-/* 6.0 - Media Queries
+/* 10.0 - Media Queries
 ================================================== */
 
-/* 6.1 --- Greater than 400px ***/
+/* 10.1 --- Greater than 400px ***/
 @media all and (min-width: 25em) {
 	.campaign-backer {
 		width: 23.5%;		
@@ -458,7 +477,7 @@
 	}
 }
 
-/* 6.2 --- Greater than 600px ***/
+/* 10.2 --- Greater than 600px ***/
 @media all and (min-width: 37.5em) {
 
 	.edd_purchase_submit_wrapper {
@@ -500,7 +519,7 @@
 	}	
 }
 
-/* 6.3 --- Between 800px and 880px ***/
+/* 10.3 --- Between 800px and 880px ***/
 @media all and (min-width: 37.5em) and (max-width: 55em) {
 
 	.active-campaign .campaign-summary {
@@ -544,7 +563,7 @@
 	}
 }
 
-/* 6.4 -- Greater than 800px ***/
+/* 10.4 -- Greater than 800px ***/
 @media all and (min-width: 50em) {
 	.campaign-backer {
 		width: 23.5%;
@@ -575,7 +594,7 @@
 	}
 }
 
-/* 6.5 --- Greater than 880px ***/
+/* 10.5 --- Greater than 880px ***/
 @media all and (min-width: 55em) {
 
 	/* Campaign */
@@ -601,7 +620,7 @@
 	}	
 }
 
-/* 6.6 --- Greater than 1190px ***/
+/* 10.6 --- Greater than 1190px ***/
 
 @media all and (min-width: 74.375em) {
 

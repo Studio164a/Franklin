@@ -1277,9 +1277,9 @@ body {
 	border: 1px solid #e2dedb;
 }
 
-.widget-open {
-	background-color: transparent;
+.widget.widget-open {
 	padding: 0;	
+	background-color: transparent;	
 	border: none;
 }
 
@@ -1454,6 +1454,37 @@ body {
 .footer-right .footer-widget:last-of-type {
 	width: 100%;
 }
+
+/* jQuery effects
+================================================== */
+.accordion h3 {	
+	position: relative;
+	display: block;
+	margin-top: 12px; margin-top: 1.2rem;
+	margin-bottom: 0;
+	padding: 24px 4%; padding-top: 2.4rem; padding-bottom: 2.4rem;
+	width: 92%;
+	line-height: 1em;
+	background-color: #f1efee;
+	border-radius: 0.4rem;
+	outline: 0;	
+	cursor: pointer;
+}
+
+.accordion h3:before {
+	float: right;
+	margin-right: 4%;
+}
+
+.accordion h3:active {
+	outline: 0;
+}
+
+.accordion .ui-accordion-header-active {
+	background-color: ;
+}
+
+
 
 
 /* 8.0 -- Media Queries

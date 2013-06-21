@@ -98,6 +98,8 @@
 			$(this).children().toggleClass('icon-th-list').toggleClass('icon-remove');
 			$('#site-navigation').toggleClass('is-active');			
 		});
+
+		$('.accordion').accordion();
 	});
 
 	audiojs.events.ready(function() {
