@@ -82,6 +82,9 @@ class Sofa_Crowdfunding_Helper {
         wp_register_script('projection-crowdfunding', sprintf( "%s/media/js/projection-crowdfunding.js", $theme_dir ), array('raphael', 'countdown'), 0.1, true);
         wp_enqueue_script('projection-crowdfunding');
 
+        wp_localize_script('projection-crowdfunding', 'SofaCrowdfunding', array(
+            'button_colour' => get_theme_mod('button_colour', '#7D6E63')));
+
         wp_register_style('projection-crowdfunding', sprintf( "%s/media/css/projection-crowdfunding.css", $theme_dir ));
         wp_enqueue_style('projection-crowdfunding');
     }

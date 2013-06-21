@@ -8,10 +8,59 @@
 
 	// Set up Raphael on window load event
 	$(window).load(function() {
-		var r = Raphael( $('.barometer')[0], 146, 146), 
-			circle = r.circle(73, 73, 63);
+		var $barometer = $('.barometer'), 
+			r = Raphael( $barometer[0], 146, 146), 
+			progress_val = $barometer.data('progress'),
+			progress,
+			circle;
 
-		circle.attr({ stroke: '#fff', 'stroke-width' : 12 });
+			console.log(progress_val);
+
+		// circle.attr({ stroke: '#fff', 'stroke-width' : 12 });
+
+		// var progress_path =
+
+		// @see http://stackoverflow.com/questions/5061318/drawing-centered-arcs-in-raphael-js
+		r.customAttributes.arc = function (xloc, yloc, value, total, R) {
+			var alpha = 360 / total * value,
+				a = (90 - alpha) * Math.PI / 180,
+				x = xloc + R * Math.cos(a),
+				y = yloc - R * Math.sin(a),
+				path;
+
+			if (total == value) {
+				path = [
+					["M", xloc, yloc - R],
+					["A", R, R, 0, 1, 1, xloc - 0.01, yloc - R]
+				];
+			} else {
+				path = [
+					["M", xloc, yloc - R],
+					["A", R, R, 0, +(alpha > 180), 1, x, y]
+				];
+			}
+			return {
+				path: path
+			};
+		};		
+
+		circle = r.path().attr({
+			stroke: '#fff', 
+			'stroke-width' : 11, 
+			arc: [74, 74, 100, 100, 66]
+		});
+
+		progress = r.path().attr({ 
+			stroke: SofaCrowdfunding.button_colour, 
+			'stroke-width' : 12, 
+			arc: [74, 74, 0, 100, 66]
+		});
+
+		progress.animate({
+			arc: [74, 74, progress_val, 100, 66]
+		}, 1500, "backOut", function() {
+			$barometer.find('span').animate( { opacity: 1}, 300, 'linear');
+		});
 	});
 
 	$(document).ready( function() {

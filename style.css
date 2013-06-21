@@ -288,7 +288,7 @@ button,
 	padding: 0 20px; padding-right: 2rem; padding-left: 2rem;
 	font-size: 14px; font-size: 1.4rem;
 	line-height: 29px; line-height: 2.9rem;
-	border: 1px solid #907E72; border-width: 0.1rem;
+	border: 1px solid rgba(255,255,255,0.3); border-width: 0.1rem;
 	border-radius: 0.4rem;
 	background-image: none;
 	background-color: #7d6e63;
@@ -1394,6 +1394,10 @@ body {
 	color: #fff;
 	background-color: #7d6e63;
 	box-shadow: none;	
+}
+
+.gecko .widget_search #searchsubmit {
+	height: 39px; height: 3.9rem;
 }
 
 /* 7.0 -- Footer
