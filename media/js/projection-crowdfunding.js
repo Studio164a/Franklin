@@ -1,8 +1,19 @@
-( function( $ ){
+( function( $ ){	 
 
 	// Start the countdown
 	var $countdown = $('.countdown'), 
-		enddate = $countdown.data().enddate;
+		enddate = $countdown.data().enddate, 
+
+		// Check whether the element is in view
+		isInView = function($el) {
+		    var docViewTop = $(window).scrollTop(), 
+		    	docViewBottom = docViewTop + $(window).height(), 
+				elemTop = $el.offset().top,
+				elemBottom = elemTop + $el.height();
+
+		    return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom)
+      			&& (elemBottom <= docViewBottom) &&  (elemTop >= docViewTop) );
+		};
 
 	$countdown.countdown({until: new Date( enddate.year, enddate.month-1, enddate.day ), format: 'dHMs'});
 
@@ -10,15 +21,10 @@
 	$(window).load(function() {
 		var $barometer = $('.barometer'), 
 			r = Raphael( $barometer[0], 146, 146), 
-			progress_val = $barometer.data('progress'),
-			progress,
+			drawn = false,
+			progress_val = $barometer.data('progress'),			
+			progress,			
 			circle;
-
-			console.log(progress_val);
-
-		// circle.attr({ stroke: '#fff', 'stroke-width' : 12 });
-
-		// var progress_path =
 
 		// @see http://stackoverflow.com/questions/5061318/drawing-centered-arcs-in-raphael-js
 		r.customAttributes.arc = function (xloc, yloc, value, total, R) {
@@ -44,23 +50,44 @@
 			};
 		};		
 
+		// Draw the main circle
 		circle = r.path().attr({
 			stroke: '#fff', 
 			'stroke-width' : 11, 
 			arc: [74, 74, 100, 100, 66]
 		});
 
-		progress = r.path().attr({ 
-			stroke: SofaCrowdfunding.button_colour, 
-			'stroke-width' : 12, 
-			arc: [74, 74, 0, 100, 66]
-		});
+		var drawBarometer = function() {			
 
-		progress.animate({
-			arc: [74, 74, progress_val, 100, 66]
-		}, 1500, "backOut", function() {
-			$barometer.find('span').animate( { opacity: 1}, 300, 'linear');
-		});
+			// Draw the percentage filled arc
+			progress = r.path().attr({ 
+				stroke: SofaCrowdfunding.button_colour, 
+				'stroke-width' : 12, 
+				arc: [74, 74, 0, 100, 66]
+			});
+
+			// Animate it
+			progress.animate({
+				arc: [74, 74, progress_val, 100, 66]
+			}, 1500, "backOut", function() {
+				$barometer.find('span').animate( { opacity: 1}, 300, 'linear');
+			});
+
+			drawn = true;
+		}
+
+		
+
+		if (isInView($barometer) ) {
+			drawBarometer();
+		}
+		else {
+			$(window).scroll( function() {
+				if ( drawn === false && isInView($barometer) ) {
+					drawBarometer();
+				}
+			});
+		}
 	});
 
 	$(document).ready( function() {
