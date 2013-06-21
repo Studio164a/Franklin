@@ -43,7 +43,7 @@ if ( !function_exists( 'sofa_site_title' ) ) {
 		// Set up HTML 
 		$html = is_front_page() ? '<h1 ' : '<div ';
 		$html .= 'class="'.$classes.'">';
-		$html .= '<a href="'.site_url().'" title="'.__( 'Go to homepage', 'sofa' ).'">';
+		$html .= '<a href="'.site_url().'" title="'.__( 'Go to homepage', 'projection' ).'">';
 		$html .= get_bloginfo('title');
 		$html .= '</a>';
 		$html .= is_front_page() ? '</h1>' : '</div>';
@@ -77,12 +77,12 @@ if ( ! function_exists( 'sofa_content_nav' ) ) {
 
 		if ( $wp_query->max_num_pages > 1 ) :
 
-			$next_posts_link = get_next_posts_link( __('&laquo; Older Posts', 'sofa') );
-			$previous_posts_link = get_previous_posts_link( __('Newer Posts &raquo;', 'sofa') );
+			$next_posts_link = get_next_posts_link( __('Older Posts', 'projection') );
+			$previous_posts_link = get_previous_posts_link( __('Newer Posts', 'projection') );
 			?>
 
 			<nav id="<?php echo $html_id; ?>" class="pagination nav-after" role="navigation">
-				<h3 class="assistive-text"><?php _e( 'Post navigation', 'sofa' ) ?></h3>
+				<h3 class="assistive-text"><?php _e( 'Post navigation', 'projection' ) ?></h3>
 				<ul>				
 					<li class="nav-previous"><?php if ( strlen( $next_posts_link ) ) : echo $next_posts_link; endif ?></li>
 					<li class="nav-next"><?php if ( strlen( $previous_posts_link ) ) : echo $previous_posts_link; endif ?></li>
@@ -133,7 +133,7 @@ if ( !function_exists( 'sofa_post_header' ) ) {
 		else {
 			$title = sprintf( '<a href="%s" title="%s">%s</a>', 
 				get_permalink(),
-				sprintf( __('Link to %s', 'sofa'), $post_title ),
+				sprintf( __('Link to %s', 'projection'), $post_title ),
 				$post_title );	
 		}	
 
@@ -143,40 +143,6 @@ if ( !function_exists( 'sofa_post_header' ) ) {
 			return $output;
 
 		echo $output;
-	}
-}
-
-/**
- * Displays navigation to next/previous pages when applicable.
- *
- * @param string $html_id
- * @return void
- * @since Sofa 0.1
- */
-if ( ! function_exists( 'sofa_content_nav' ) ) {
-
-	function sofa_content_nav( $html_id ) {
-		global $wp_query;
-
-		$html_id = esc_attr( $html_id );
-
-		$current_page = get_query_var('paged');
-
-		if ( $wp_query->max_num_pages > 1 ) :
-
-			$next_posts_link = get_next_posts_link( '<i class="icon-angle-left"></i>' );
-			$previous_posts_link = get_previous_posts_link( '<i class="icon-angle-right"></i>' );
-			?>
-
-			<nav id="<?php echo $html_id; ?>" class="pagination nav-after" role="navigation">
-				<h3 class="assistive-text"><?php _e( 'Post navigation', 'textural' ) ?></h3>
-				<ul>				
-					<li class="nav-previous"><?php if ( strlen( $next_posts_link ) ) : echo $next_posts_link; endif ?></li>
-					<li class="nav-next"><?php if ( strlen( $previous_posts_link ) ) : echo $previous_posts_link; endif ?></li>
-				</ul>
-			</nav><!-- #<?php echo $html_id; ?> .navigation -->
-
-		<?php endif;
 	}
 }
 

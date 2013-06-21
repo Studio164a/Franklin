@@ -57,6 +57,10 @@ class Projection_Theme {
         add_filter('get_pages',  array(&$this, 'get_pages_filter'));    
         add_filter('post_class', array(&$this, 'post_class_filter'));
         add_filter('the_content_more_link', array(&$this, 'the_content_more_link_filter'), 10, 2);
+        add_filter('next_posts_link_attributes', array(&$this, 'posts_navigation_link_attributes'));
+        add_filter('previous_posts_link_attributes', array(&$this, 'posts_navigation_link_attributes'));
+        add_filter('next_comments_link_attributes', array(&$this, 'posts_navigation_link_attributes'));
+        add_filter('previous_comments_link_attributes', array(&$this, 'posts_navigation_link_attributes'));
 
   //       add_action('wp_head', array(&$this, 'wp_head'));
   //       add_action('after_setup_theme', array(&$this, 'after_setup_theme'));        
@@ -313,6 +317,16 @@ class Projection_Theme {
         $post = get_post();
         $text = $more_link_text == '(more&hellip;)' ? __( 'Continue Reading', 'projection' ) : $more_link_text;
         return '<span class="aligncenter"><a href="'.get_permalink().'" class="more-link button button-alt" title="'.sprintf( __('Keep reading &#8220;%s&#8221;', 'projection'), get_the_title() ).'">'.$text.'</a></span>';
+    }
+
+    /**
+     * Filters the next & previous posts links.
+     * 
+     * @return string
+     * @since Projection 1.0
+     */
+    public function posts_navigation_link_attributes() {
+        return 'class="button button-alt button-small"';
     }
 
     /**

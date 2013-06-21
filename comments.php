@@ -51,11 +51,11 @@ if ( ! comments_open() ) return; ?>
 
 				<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 				<?php 
-				$next_link = get_next_comments_link();
-				$previous_link = get_previous_comments_link();
+				$next_link = get_next_comments_link( __('Newer Comments', 'projection') );
+				$previous_link = get_previous_comments_link( __('Older Comments', 'projection') );
 				?>
 
-				<nav id="comment-nav-above" class="comment-nav pagination">
+				<nav id="comment-nav-above" class="comment-nav pagination cf">
 					<h1 class="assistive-text"><?php _e( 'Comment navigation', 'projection' ); ?></h1>
 					<ul>		
 						<?php if ( strlen( $previous_link ) ) : ?><li class="nav-previous"><?php echo $previous_link ?></li><?php endif ?>
@@ -77,7 +77,7 @@ if ( ! comments_open() ) return; ?>
 				</ol>
 
 				<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
-				<nav id="comment-nav-below" class="comment-nav pagination">
+				<nav id="comment-nav-below" class="comment-nav pagination cf">
 					<h1 class="assistive-text"><?php _e( 'Comment navigation', 'projection' ); ?></h1>
 					<ul>
 						<?php if ( strlen( $previous_link ) ) : ?><li class="nav-previous"><?php echo $previous_link ?></li><?php endif ?>

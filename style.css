@@ -1103,10 +1103,12 @@ body {
 	width: 100%;
 	padding-left: 0;
 	list-style-type: none;
+	overflow: auto;
 }
 
 .pagination li {
 	display: inline;
+	margin-bottom: 0;
 }
 
 .nav-previous {
@@ -1252,10 +1254,6 @@ body {
 
 #cancel-comment-reply-link {
 	float: right;
-}
-
-.comment-nav {
-	margin-bottom: 24px; margin-bottom: 2.4rem;
 }
 
 /* 6.0 -- Sidebar
