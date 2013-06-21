@@ -52,6 +52,7 @@ class Projection_Theme {
         if ( !is_admin() )
             add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'), 11);
 
+        add_filter('sofa_enabled_scripts', array(&$this, 'sofa_enabled_scripts_filter'));
         add_filter('sofa_enabled_modules', array(&$this, 'sofa_enabled_modules_filter'));
         add_filter('get_pages',  array(&$this, 'get_pages_filter'));    
         add_filter('post_class', array(&$this, 'post_class_filter'));
@@ -353,6 +354,18 @@ class Projection_Theme {
             $classes[] = 'has-featured-image';
 
         return array_merge( $classes, array('block', 'entry-block') );
+    }
+
+    /**
+     * Filters the scripts to be enqueued.
+     * 
+     * @param array $scripts
+     * @return array
+     * @since Projection 1.0
+     */
+    public function sofa_enabled_scripts_filter($scripts) {
+        unset($scripts['prettyPhoto']);
+        return $scripts;
     }
 
     /**
