@@ -1,11 +1,15 @@
 <?php  if ( sofa_using_crowdfunding() === false ) return ?>
 
-<div class="campaign-content block content-block cf">
+<div id="campaign-<?php echo get_the_ID() ?>" <?php post_class('campaign-content') ?>>
 		
 	<div class="title-wrapper">	
 		<h2 class="block-title"><?php the_title() ?></h2>
 	</div>
 
-	<?php the_content() ?>
+	<div class="entry">
+
+		<?php the_content() ?>
+
+	</div>
 
 </div>

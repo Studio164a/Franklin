@@ -81,7 +81,7 @@ html {
 }
 
 body {
-	font: 12px/18px 'Merriweather', Georgia, 'Times New Roman', Times, serif; font-size: 1.2rem;
+	font: 12px/20px 'Merriweather', Georgia, 'Times New Roman', Times, serif; font-size: 1.2rem;
 	color: #7d6e63;
 }
 
@@ -135,7 +135,7 @@ h4 {
 
 h5 {
 	font-size: 14px; font-size: 1.4rem;
-	line-height: 21px; line-height: 2.1rem;
+	line-height: 22px; line-height: 2.2rem;
 }
 
 h6 {
@@ -659,7 +659,7 @@ pre {
 }
 
 .icon:hover {
-	color: #444;
+	color: #4e443d;
 	text-decoration: none;
 }
 
@@ -937,7 +937,8 @@ body {
 
 .meta {	
 	padding: 0;	
-	margin: 0;	
+	margin: 0;
+	font-weight: 300;	
 	font-size: 10px; font-size: 1rem;
 	line-height: 38px; line-height: 3.8rem;
 	text-transform: uppercase;
@@ -1172,11 +1173,7 @@ body {
 .comment-meta {
 	padding-bottom: 0;
 	font-size: 10px; font-size: 1rem;
-	color: #929497;
-}
-
-.comment-meta a {
-	color: #484849;
+	color: #b5aaa2;
 }
 
 .comment-date {	
@@ -1260,7 +1257,7 @@ body {
 .block,
 .widget {
 	/*padding: 1px 0; padding-top: 0.1rem; padding-bottom: 0.1rem;*/ /* Without this, the border ends up losing a pixel right at the very corner */
-	margin-bottom: 24px; margin-bottom: 2.4rem;	
+	margin-bottom: 36px; margin-bottom: 3.6rem;
 	border-radius: 0.4rem;
 }
 
@@ -1373,12 +1370,20 @@ body {
 }
 
 .widget_search #s {
-	margin: 0;
+	margin: 0;	
 	padding-right: 15%;
-	width: 75%;
-	max-width: 75%;
-	border: 1px solid #e2dedb;
+	width: 85%;
+	max-width: 85%;
+	border-bottom: 1px solid #e2dedb;
+	background-color: transparent;
+}
+
+.widget_search #s:focus {
 	background-color: #fff;
+}
+
+.widget_search #searchsubmit:before {
+	color: #7d6e63;
 }
 
 .widget_search #searchsubmit {
@@ -1386,18 +1391,10 @@ body {
 	top: 0;
 	right: 0;
 	margin: 0;
-	padding-left: 6px; padding-right: 6px; padding-left: 0.6rem; padding-right: 0.6rem;
-	height: 37px; height: 3.7rem;
-	font-size: 11px; font-size: 1.1rem;
-	border: none;
-	border-radius: 0 0.2rem 0.2rem 0;
-	color: #fff;
-	background-color: #7d6e63;
+	font-size: 14px; font-size: 1.4rem;
+	border: none;	
+	background-color: transparent;
 	box-shadow: none;	
-}
-
-.gecko .widget_search #searchsubmit {
-	height: 39px; height: 3.9rem;
 }
 
 /* 7.0 -- Footer

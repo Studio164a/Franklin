@@ -586,9 +586,9 @@
 
 	.active-campaign .wp-post-image {
 		width: 50%;
-		width: -moz-calc(92% - 400px);
-		width: -webkit-calc(92% - 400px);
-		width: calc(92% - 400px);
+		width: -moz-calc(92% - 42rem);
+		width: -webkit-calc(92% - 42rem);
+		width: calc(92% - 42rem);
 		float: left;
 		margin-right: 0;
 	}
@@ -596,8 +596,8 @@
 	.active-campaign .campaign-summary {
 		float: left;
 		padding-left: 0;
-		padding-top: 4px; padding-top: 0.4rem;
-		margin-left: 20px; margin-left: 2rem;
+		padding-top: 0.3rem;
+		margin-left: 4rem;
 		margin-right: 0;
 	}	
 }
