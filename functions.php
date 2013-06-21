@@ -217,33 +217,22 @@ class Projection_Theme {
         ));  
 
         register_sidebar( array(
-            'id' => 'footer',            
-            'name' => __( 'Footer', 'projection' ),
-            'before_widget' => '<aside id="%1$s" class="widget %2$s column column_25">',
+            'id' => 'footer_left',            
+            'name' => __( 'Footer left', 'projection' ),
+            'before_widget' => '<aside id="%1$s" class="widget footer-widget %2$s">',
             'after_widget' => '</aside>',
-            'before_title' => '<div class="title-wrapper"><h4 class="widget-title">',
-            'after_title' => '</h4></div>'
+            'before_title' => '<div class="title-wrapper"><h3 class="widget-title">',
+            'after_title' => '</h3></div>'
         ));
 
         register_sidebar( array(
-            'id' => 'homepage-1',            
-            'name' => __( 'Homepage 1', 'projection' ),
-            'description' => __( 'First block of widgets on the homepage. Each widget is 33% width.', 'projection' ),
-            'before_widget' => '<aside id="%1$s" class="widget cf %2$s">',
+            'id' => 'footer_right',            
+            'name' => __( 'Footer right', 'projection' ),
+            'before_widget' => '<aside id="%1$s" class="widget footer-widget %2$s">',
             'after_widget' => '</aside>',
             'before_title' => '<div class="title-wrapper"><h3 class="widget-title">',
             'after_title' => '</h3></div>'
-        ));  
-
-        register_sidebar( array(
-            'id' => 'homepage-2',            
-            'name' => __( 'Homepage 2', 'projection' ),
-            'description' => __( 'Second block of widgets on the homepage. Each widget is 50% width.', 'projection' ),
-            'before_widget' => '<aside id="%1$s" class="widget cf %2$s">',
-            'after_widget' => '</aside>',
-            'before_title' => '<div class="title-wrapper"><h3 class="widget-title">',
-            'after_title' => '</h3></div>'
-        ));  
+        ));
     }    
 
     /**

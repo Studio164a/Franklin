@@ -4,9 +4,15 @@
 		<!-- Site footer -->
 		<footer id="site-footer" class="wrapper">
 
-			<div id="footer_widgets" class="inner_wrap widget_quatro cf">
+			<div class="footer-left">
 
-				<?php dynamic_sidebar( 'footer' ) ?>			
+				<?php dynamic_sidebar( 'footer_left' ) ?>
+
+			</div>
+
+			<div class="footer-right">
+
+				<?php dynamic_sidebar( 'footer_right' ) ?>
 
 			</div>
 

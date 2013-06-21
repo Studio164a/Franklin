@@ -1400,6 +1400,55 @@ body {
 /* 7.0 -- Footer
 ================================================== */
 
+#site-footer,
+#site-footer a {
+	color: #61554c;
+}
+
+#site-footer {
+	padding: 24px 0; padding-top: 2.4rem; padding-bottom: 2.4rem;
+}
+
+.footer-left, 
+.footer-right {
+	width: 92%;
+	padding-left: 4%;
+	padding-right: 4%;
+}
+
+.footer-widget {
+	float: left;
+	border: none;
+	background: transparent;
+	padding-left: 0;
+	padding-right: 0;	
+}
+
+.footer-widget .widget-title {
+	float: left;
+	border: none;
+	padding-left: 0;
+	padding-right: 0;
+	color: #fff;
+}
+
+.footer-left .footer-widget {
+	width: 100%;
+}
+
+.footer-right .footer-widget {
+	float: left;
+	width: 48%;
+	margin-right: 4%;
+}
+
+.footer-right .footer-widget:nth-of-type(2n+2) {
+	margin-right: 0;
+}
+
+.footer-right .footer-widget:last-of-type {
+	width: 100%;
+}
 
 
 /* 8.0 -- Media Queries
@@ -1526,8 +1575,39 @@ body {
 	.widget, 
 	.sidebar-block {
 		padding-right: 2rem; padding-left: 2rem;
-
 	}	
+
+	.footer-widget {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.footer-left {
+		float: left;
+		width: 34%;
+		margin-right: 4%;
+		padding-right: 0;
+	}	
+
+	.footer-right {
+		float: left;
+		width: 54%;
+		padding-left: 0;
+	}
+
+	.footer-right .footer-widget {
+		width: 28.4%;
+		margin-right: 7.4%;
+	}
+
+	.footer-right .footer-widget:nth-of-type(2n+2) {
+		margin-right: 7.4%;
+	}
+
+	.footer-right .footer-widget:nth-of-type(3n+3) {
+		width: 28.4%;
+		margin-right: 0;
+	}
 }
 
 /* 8.2 --- Greater than 800px ***/
