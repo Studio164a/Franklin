@@ -13,28 +13,7 @@
 			<h2 class="block-title with-icon" data-icon="&#xf0c0;"><?php _e('Backers', 'projection') ?></h2>
 		</div>
 
-		<ul>
-
-		<?php foreach ($campaign->backers() as $i => $log ) : ?>
-
-			<?php $backer = sofa_crowdfunding_get_payment($log) ?>
-
-			<li class="campaign-backer"> 
-				<?php echo sofa_crowdfunding_get_backer_avatar( $backer ) ?>
-				<div class="if-tiny-hide">
-					<h6><?php echo $backer->post_title ?></h6>
-					<p>
-						<?php if ( $campaign->needs_shipping() ) : ?>
-							<?php echo sofa_crowdfunding_get_backer_location( $backer ) ?><br />
-						<?php endif ?>
-						<?php echo sofa_crowdfunding_get_backer_pledge( $backer ) ?>
-					</p>
-				</div>
-			</li>
-			
-		<?php endforeach ?>
-
-		</ul>
+		<?php echo projection_campaign_backers( $campaign ) ?>
 
 	</section>
 	<!-- End campaign backers -->

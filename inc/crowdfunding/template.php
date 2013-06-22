@@ -1,10 +1,9 @@
 <?php 
 /**
- * Functions that are used to override the default Crowdfunding & Easy Digital Downloads
- * templates. Note that these functions are called by Crowdfunding & Easy Digital Downloads
- * using hooks. 
+ * Templating functions. Some override default Easy Digital Downloads 
+ * and/or Astoundify Crowdfunding templates. Some are unique to this theme.
  * 
- * Child themes can override these functions by simply providing 
+ * Child themes can override these functions by simply creating 
  * their own function with the same name. 
  * 
  * @package cheers
@@ -94,6 +93,123 @@ add_action('edd_after_download_content', 'projection_edd_append_purchase_link');
 
 
 /**
+ * Display the pledge levels. 
+ * 
+ * @param int $campaign_id
+ * @return string
+ * @since Projection 1.0
+ */
+if ( !function_exists('projection_pledge_levels') ) {
+
+	function projection_pledge_levels( $campaign_id ) {
+			
+		// Start the buffer
+		ob_start();
+
+		$prices = edd_get_variable_prices( $campaign_id );
+
+		$wrapper_atts = apply_filters( 'projection_pledge_levels_wrapper_atts', 'class="campaign-pledge-levels"', $campaign_id );
+
+		if ( is_array( $prices ) && count( $prices )) : ?>
+
+		<div id="campaign-pledge-levels-<?php echo $campaign_id ?>" <?php echo $wrapper_atts ?>>
+
+			<?php foreach ( $prices as $i => $price ) : ?>
+
+				<?php $remaining = $price['limit'] - count($price['bought']) + 1 ?>
+
+				<h3 class="pledge-title" data-icon="&#xf0d7;"><?php printf( _x( 'Pledge %s', 'pledge amount', 'projection' ), '<strong>'.edd_currency_filter( edd_format_amount( $price['amount'] ) ).'</strong>' ) ?></h3>
+				<div class="pledge-level cf<?php if ($remaining == 0) echo ' not-available' ?>">										
+					<span class="pledge-limit"><?php printf( __( '%d of %d remaining', 'projection' ), $remaining, $price['limit'] ) ?></span>
+					<p class="pledge-description"><?php echo $price['name'] ?></p>
+
+					<?php if ($remaining > 0) : ?>
+						<a class="pledge-button button button-alt button-small accent" data-reveal-id="campaign-form" data-price="<?php echo $price['amount'] ?>" href="#"><?php printf( _x( 'Pledge %s', 'pledge amount', 'projection' ), edd_currency_filter( edd_format_amount( $price['amount'] ) ) ) ?></a>
+					<?php endif ?>
+				</div>
+
+			<?php endforeach ?>
+
+		</div>
+
+		<?php endif;
+
+		return apply_filters( 'projection_pledge_levels', ob_get_clean(), $campaign_id );
+	}
+}
+
+/**
+ * Display a project's campaign backers. 
+ * 
+ * @param ATCF_Campaign $campaign
+ * @return string
+ * @since Projection 1.0
+ */
+if ( !function_exists('projection_campaign_backers') ) {
+
+	function projection_campaign_backers( $campaign, $args = array() ) {
+
+		$defaults = array(
+			'show_location'	=> true,
+			'show_pledge'	=> true, 
+			'show_name' 	=> true 
+		);
+
+		extract( wp_parse_args( $args, $defaults ), EXTR_SKIP );
+
+		// Start the buffer 
+		ob_start();
+		?>
+		<ul>
+
+		<?php foreach ($campaign->backers() as $i => $log ) : ?>
+
+			<?php $backer = sofa_crowdfunding_get_payment($log) ?>
+
+			<li class="campaign-backer"> 			
+
+				<?php echo sofa_crowdfunding_get_backer_avatar( $backer ) ?>
+
+				<div class="if-tiny-hide">
+					<?php if ( $show_name ) : ?>
+
+						<h6><?php echo $backer->post_title ?></h6>
+
+					<?php endif ?>
+
+					<?php if ( $show_location || $show_pledge ) : ?>
+
+						<p>
+							<?php if ( $show_location ) : ?>
+
+								<?php echo sofa_crowdfunding_get_backer_location( $backer ) ?><br />
+
+							<?php endif ?>
+
+							<?php if ( $show_pledge ) : ?>
+
+								<?php echo sofa_crowdfunding_get_backer_pledge( $backer ) ?>					
+
+							<?php endif ?>
+
+						</p>
+
+					<?php endif ?>
+				</div>
+
+			</li>
+			
+		<?php endforeach ?>
+
+		</ul>
+
+		<?php 
+
+		return apply_filters( 'projection_campaign_backers', ob_get_clean(), $campaign, $show_location );
+	}
+}
+
+/**
  * Customize comment output. 
  *
  * @param stdClass $comment
@@ -145,7 +261,3 @@ if ( !function_exists( 'projection_campaign_comment' ) ) {
 		endswitch;	
 	}
 }
-
-
-
-

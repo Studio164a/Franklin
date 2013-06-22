@@ -21,6 +21,8 @@ get_header() ?>
 					
 					<?php get_template_part('campaign', 'content') ?>
 
+					<?php get_template_part('campaign', 'pledge') ?>
+
 					<?php get_template_part('campaign', 'backers') ?>
 
 					<?php comments_template('/comments-campaign.php', true) ?>
@@ -31,7 +33,7 @@ get_header() ?>
 
 					<?php get_template_part('campaign', 'updates') ?>
 
-					<?php get_template_part('campaign', 'pledge') ?>
+					<?php //get_template_part('campaign', 'pledge') ?>
 
 					<?php get_template_part('widget', 'blog') ?>
 

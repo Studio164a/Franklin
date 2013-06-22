@@ -24,10 +24,13 @@ class Sofa_Crowdfunding_Helper {
      * Private constructor. Singleton pattern.
      */
     private function __construct() {
-
-        include_once('pledge-levels.php');
+        
         include_once('helpers.php');
         include_once('template.php');
+        include_once('widgets/campaign-pledge-levels.php');
+        include_once('widgets/campaign-updates.php');
+        include_once('widgets/campaign-backers.php');
+        include_once('widgets/campaign-video.php');
 
     	add_action('after_setup_theme', array(&$this, 'after_setup_theme'));
         add_action('wp_footer', array(&$this, 'wp_footer'));
@@ -43,9 +46,9 @@ class Sofa_Crowdfunding_Helper {
         add_filter('edd_cart_item_price', array(&$this, 'edd_cart_item_price_filter'), 10, 3);
         add_filter('edd_checkout_image_size', array(&$this, 'edd_checkout_image_size_filter'));
         add_filter('edd_checkout_button_purchase', array(&$this, 'edd_checkout_button_purchase_filter'));
-        add_filter('sofa_crowdfunding_pledge_levels_wrapper_atts', array(&$this, 'sofa_crowdfunding_pledge_levels_wrapper_atts_filter'));
+        add_filter('projection_pledge_levels_wrapper_atts', array(&$this, 'projection_pledge_levels_wrapper_atts_filter'));
 
-        add_shortcode('campaign_pledge_levels', 'sofa_crowdfunding_pledge_levels_shortcode');
+        add_shortcode('campaign_pledge_levels', array(&$this, 'campaign_pledge_levels_shortcode'));
     }
 
     /**
@@ -133,6 +136,7 @@ class Sofa_Crowdfunding_Helper {
      */
     public function widgets_init() {
         register_widget( 'Sofa_Crowdfunding_Pledge_Levels_Widget' );
+        register_widget( 'Sofa_Crowdfunding_Backers_Widget' );
     }
 
     /**
@@ -226,8 +230,37 @@ class Sofa_Crowdfunding_Helper {
      * @return string
      * @since Projection 1.0
      */
-    public function sofa_crowdfunding_pledge_levels_wrapper_atts_filter($atts) {
+    public function projection_pledge_levels_wrapper_atts_filter($atts) {
         return 'class="campaign-pledge-levels accordion"';
+    }
+
+    /** 
+     * Shortcode wrapper for projection_pledge_levels template function.
+     *
+     * @see projection_pledge_levels
+     * @param array $atts
+     * @return string|void
+     * @since Projection 1.0
+     */
+    public function campaign_pledge_levels_shortcode( $atts ) {
+        global $post;
+
+        if ( isset( $atts['campaign_id']) ) {
+            $campaign_id = $atts['campaign_id'];
+        }
+        elseif ( $post->post_type == 'download' ) {     
+            $campaign_id = $post->ID;
+        }
+        else {
+            $active_campaign = get_sofa_crowdfunding()->get_active_campaign();
+
+            if ( $active_campaign == false )
+                return;
+
+            $campaign_id = $active_campaign->ID;
+        }
+
+        return projection_pledge_levels($campaign_id);
     }
 
     /** 

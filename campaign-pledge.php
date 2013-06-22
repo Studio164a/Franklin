@@ -4,4 +4,4 @@
 
 <?php if ( $campaign === false ) return ?>
 
-<?php echo sofa_crowdfunding_pledge_levels( $campaign->ID ) ?>
+<?php echo projection_pledge_levels( $campaign->ID ) ?>

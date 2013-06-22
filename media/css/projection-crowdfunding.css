@@ -305,27 +305,45 @@
 
 /* 4.0 - Pledges accordion 
 ================================================== */
-.accordion .pledge-level {	
-	padding: 12px 4%; padding-top: 1.2rem; padding-bottom: 1.2rem;
-	background-color: #fff;
-	border-radius: 0 0 0.4rem 0.4rem;
+.campaign-pledge-levels.accordion {
+	margin-bottom: 36px; margin-bottom: 3.6rem;	
+	padding-top: 0;
 }
 
-.accordion .pledge-description {
+.campaign-pledge-levels.accordion h3 {
+	border-top: 1px solid #e2dedb;
+}
+
+.campaign-pledge-levels.accordion h3:first-of-type {
+	margin-top: 0;
+}
+
+.campaign-pledge-levels.accordion .pledge-level {	
+	padding: 12px 4%; padding-top: 1.2rem; padding-bottom: 1.2rem;
+	border-bottom: 1px solid #e2dedb;
+	border-radius: 0 0 0.4rem 0.4rem;
+	background-color: #fff;	
+}
+
+.campaign-pledge-levels.accordion .pledge-description {
 	margin-left: 0;
 }
 
-.accordion .pledge-limit {
+.campaign-pledge-levels.accordion .pledge-limit {
 	display: block;
 	float: none;	
 	margin-bottom: 12px; margin-bottom: 1.2rem;	
 	text-align: left;
 }
 
-.accordion .pledge-button {
+.campaign-pledge-levels.accordion .pledge-button {
 	display: block;
 	margin: 3px auto; margin-top: 0.3rem; margin-bottom: 0.3rem;
 	text-align: center;
+}
+
+.widget_pledge_levels_widget .campaign-pledge-levels {
+	margin-bottom: 0;
 }
 
 .widget_pledge_levels_widget.widget {
@@ -477,15 +495,15 @@
 
 /* 10.1 --- Greater than 400px ***/
 @media all and (min-width: 25em) {
-	.campaign-backer {
+	.block .campaign-backer {
 		width: 23.5%;		
 	}
 
-	.campaign-backer:nth-child(3n+3) {
+	.block .campaign-backer:nth-child(3n+3) {
 		margin-right: 2%;
 	}
 
-	.campaign-backer:nth-child(4n+4) {
+	.block .campaign-backer:nth-child(4n+4) {
 		margin-right: 0;
 	}
 }
@@ -519,15 +537,15 @@
 		margin-top: 0.1rem;
 	}
 
-	.campaign-backer {
+	.block .campaign-backer {
 		width: 18.4%;		
 	}
 
-	.campaign-backer:nth-child(4n+4) {
+	.block .campaign-backer:nth-child(4n+4) {
 		margin-right: 2%;
 	}
 
-	.campaign-backer:nth-child(5n+5) {
+	.block .campaign-backer:nth-child(5n+5) {
 		margin-right: 0;
 	}	
 }
@@ -578,15 +596,15 @@
 
 /* 10.4 -- Greater than 800px ***/
 @media all and (min-width: 50em) {
-	.campaign-backer {
+	.block .campaign-backer {
 		width: 23.5%;
 	}
 
-	.campaign-backer:nth-child(4n+4) {
+	.block .campaign-backer:nth-child(4n+4) {
 		margin-right: 0;
 	}
 
-	.campaign-backer:nth-child(5n+5) {
+	.block .campaign-backer:nth-child(5n+5) {
 		margin-right: 2%;
 	}
 
@@ -668,15 +686,15 @@
 
 	}
 
-	.campaign-backer {
+	.block .campaign-backer {
 		width: 18.4%;		
 	}
 	
-	.campaign-backer:nth-child(4n+4) {
+	.block .campaign-backer:nth-child(4n+4) {
 		margin-right: 2%;
 	}
 
-	.campaign-backer:nth-child(5n+5) {
+	.block .campaign-backer:nth-child(5n+5) {
 		margin-right: 0;
 	}
 }
