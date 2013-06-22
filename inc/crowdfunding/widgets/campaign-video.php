@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 
 /**
- * A widget to display your campaign's pledge levels.
+ * A widget to display your campaign's video.
  * 
  * @see WP_Widget
  * @author Studio164a
@@ -15,7 +15,7 @@ class Sofa_Crowdfunding_Video_Widget extends WP_Widget {
 		parent::__construct(
 			'campaign_video_widget', // Base ID
 			__( 'Campaign Video', 'projection'), // Name
-			array( 'description' => __( 'Display a campaign\'s video.', 'projection' ), ) // Args
+			array( 'description' => __( 'Display a campaign\'s video.', 'projection' ) ) // Args
 		);
 	}
 
@@ -34,7 +34,7 @@ class Sofa_Crowdfunding_Video_Widget extends WP_Widget {
 		if ( !empty($title) )
 			echo $before_title . $title . $after_title;
 
-		echo projection_pledge_levels( $instance['campaign_id'] );
+		echo projection_campaign_video( new ATCF_Campaign( $instance['campaign_id'] ) );
 
 		echo $after_widget;
 	}

@@ -24,8 +24,10 @@ class Sofa_Crowdfunding_Updates_Widget extends WP_Widget {
 		extract( $args );
 
 		// We have to have a campaign id
-		if ( !isset( $instance['campaign_id']) )
+		if ( !isset( $instance['campaign_id']) || $instance['campaign_id'] == "" )
 			return;
+
+		$campaign = new ATCF_Campaign( $instance['campaign_id'] );
 
 		$title = apply_filters( 'widget_title', $instance['title'] );
 
@@ -34,7 +36,7 @@ class Sofa_Crowdfunding_Updates_Widget extends WP_Widget {
 		if ( !empty($title) )
 			echo $before_title . $title . $after_title;
 
-		echo projection_campaign_updates( $instance['campaign_id'] );
+		echo apply_filters( 'the_excerpt', $campaign->updates() );
 
 		echo $after_widget;
 	}
@@ -56,7 +58,7 @@ class Sofa_Crowdfunding_Updates_Widget extends WP_Widget {
         <p>
             <label for="<?php echo $this->get_field_id('campaign_id'); ?>"><?php _e('Campaign:', 'projection') ?>        
             	<select name="<?php echo $this->get_field_name('campaign_id') ?>">
-            		<option><?php _e( 'Select', 'projection' ) ?></option>
+            		<option value=""><?php _e( 'Select', 'projection' ) ?></option>
             		<?php foreach ( $campaigns->posts as $campaign ) : ?>
             			<option value="<?php echo $campaign->ID ?>" <?php selected( $campaign->ID, $campaign_id ) ?>><?php echo $campaign->post_title ?></option>
             		<?php endforeach ?>

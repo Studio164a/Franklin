@@ -220,6 +220,36 @@ class Projection_Theme {
         ));  
 
         register_sidebar( array(
+            'id' => 'sidebar_campaign',            
+            'name' => __( 'Campaign sidebar', 'projection' ),
+            'description' => __( 'The campaign sidebar.', 'projection' ),
+            'before_widget' => '<aside id="%1$s" class="widget cf %2$s">',
+            'after_widget' => '</aside>',
+            'before_title' => '<div class="title-wrapper"><h3 class="widget-title">',
+            'after_title' => '</h3></div>'
+        ));  
+
+        register_sidebar( array(
+            'id' => 'campaign_after_content',            
+            'name' => __( 'Campaign below content', 'projection' ),
+            'description' => __( 'Displayed below the campaign\'s content, but above the comment section.', 'projection' ),
+            'before_widget' => '<aside id="%1$s" class="widget block content-block cf %2$s">',
+            'after_widget' => '</aside>',
+            'before_title' => '<div class="title-wrapper"><h2 class="block-title">',
+            'after_title' => '</h2></div>'
+        ));  
+
+        register_sidebar( array(
+            'id' => 'default',            
+            'name' => __( 'Default sidebar', 'projection' ),
+            'description' => __( 'The default sidebar.', 'projection' ),
+            'before_widget' => '<aside id="%1$s" class="widget cf %2$s">',
+            'after_widget' => '</aside>',
+            'before_title' => '<div class="title-wrapper"><h3 class="widget-title">',
+            'after_title' => '</h3></div>'
+        ));          
+
+        register_sidebar( array(
             'id' => 'footer_left',            
             'name' => __( 'Footer left', 'projection' ),
             'before_widget' => '<aside id="%1$s" class="widget footer-widget %2$s">',

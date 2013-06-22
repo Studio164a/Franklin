@@ -694,7 +694,12 @@ body {
 	padding: 36px 4%; padding-top: 3.6rem; padding-bottom: 3.6rem;
 }
 
-.content, 
+.content {
+	float: left;
+	width: 100%;
+}
+
+.content,
 .sidebar {
 	margin-bottom: 48px; margin-bottom: 4.8rem;
 }
@@ -1420,6 +1425,15 @@ body {
 	line-height: 11px; line-height: 1.1rem;	
 }
 
+.widget_categories li {
+	float: left; 
+	width: 49%;
+	margin-right: 2%;
+}
+
+.widget_categories li:nth-of-type(2n+2) {
+	margin-right: 0;
+}
 
 /* 7.0 -- Footer
 ================================================== */
@@ -1441,11 +1455,13 @@ body {
 }
 
 .footer-widget {
-	float: left;
+	float: left;	
+	width: 48%;
+	margin-right: 4%;
+	margin-bottom: 12px; margin-bottom: 1.2rem;
+	padding: 0;
 	border: none;
 	background: transparent;
-	padding-left: 0;
-	padding-right: 0;	
 }
 
 .footer-widget .widget-title {
@@ -1456,22 +1472,8 @@ body {
 	color: #fff;
 }
 
-.footer-left .footer-widget {
-	width: 100%;
-}
-
-.footer-right .footer-widget {
-	float: left;
-	width: 48%;
-	margin-right: 4%;
-}
-
-.footer-right .footer-widget:nth-of-type(2n+2) {
+.footer-right .footer-widget:nth-of-type(2n+1) {
 	margin-right: 0;
-}
-
-.footer-right .footer-widget:last-of-type {
-	width: 100%;
 }
 
 /* jQuery effects
@@ -1618,7 +1620,6 @@ body {
 /* 8.2 --- Greater than 720px ***/
 @media all and (min-width: 45em) {	
 	.content {
-		float: left;
 		width: 65.78%;	
 	}
 

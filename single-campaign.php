@@ -11,34 +11,30 @@ get_header() ?>
 
 			<?php the_post() ?>
 
+			<?php $campaign = new ATCF_Campaign( get_the_ID() ) ?>
+
 			<?php get_template_part('campaign', 'blurb') ?>			
 
 			<div class="content-wrapper">
 
-				<?php get_template_part('campaign', 'video') ?>
+				<?php echo projection_campaign_video( $campaign ) ?>
 				
 				<div class="content">
-					
-					<?php get_template_part('campaign', 'content') ?>
+	
+					<!-- Campaign content -->					
+					<?php get_template_part('content', 'campaign') ?>
+					<!-- End campaign content -->
 
-					<?php get_template_part('campaign', 'pledge') ?>
-
-					<?php get_template_part('campaign', 'backers') ?>
+					<!-- "Campaign Below Content" sidebar -->
+					<?php dynamic_sidebar('campaign_after_content') ?>
+					<!-- End "Campaign Below Content" sidebar -->
 
 					<?php comments_template('/comments-campaign.php', true) ?>
 
 				</div>
 
-				<aside class="sidebar sidebar-campaign">
-
-					<?php get_template_part('campaign', 'updates') ?>
-
-					<?php //get_template_part('campaign', 'pledge') ?>
-
-					<?php get_template_part('widget', 'blog') ?>
-
-				</aside>
-
+				<?php get_sidebar( 'campaign' ) ?>
+			
 			</div>
 
 		<?php endwhile ?>

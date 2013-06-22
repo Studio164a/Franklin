@@ -137,6 +137,8 @@ class Sofa_Crowdfunding_Helper {
     public function widgets_init() {
         register_widget( 'Sofa_Crowdfunding_Pledge_Levels_Widget' );
         register_widget( 'Sofa_Crowdfunding_Backers_Widget' );
+        register_widget( 'Sofa_Crowdfunding_Updates_Widget' );
+        register_widget( 'Sofa_Crowdfunding_Video_Widget' );
     }
 
     /**

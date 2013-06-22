@@ -210,6 +210,38 @@ if ( !function_exists('projection_campaign_backers') ) {
 }
 
 /**
+ * Show the campaign video
+ * 
+ * @
+ * @global $wp_embed
+ * @return string
+ * @since Projection 1.0
+ */
+if ( !function_exists( 'projection_campaign_video' ) ) {
+
+	function projection_campaign_video($campaign) {
+		global $wp_embed;
+
+		// If a campaign object was not passed, do nothing
+		if ( !$campaign instanceof ATCF_Campaign )
+			return;
+
+		// If there is no video, do nothing
+		if ( !$campaign->video() )
+			return;
+		?>
+
+		<!-- Campaign video -->
+		<section class="campaign-video">
+			<?php echo $wp_embed->run_shortcode('[embed]'.$campaign->video().'[/embed]' ) ?>
+		</section>
+		<!-- End campaign video -->
+
+		<?php
+	}
+}
+
+/**
  * Customize comment output. 
  *
  * @param stdClass $comment
