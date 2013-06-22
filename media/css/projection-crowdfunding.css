@@ -328,6 +328,13 @@
 	text-align: center;
 }
 
+.widget_pledge_levels_widget.widget {
+	padding-left: 0;
+	padding-right: 0;		
+	border: none;
+	background: transparent;
+}
+
 /* 5.0 - Campaign video 
 ================================================== */
 .campaign-video {

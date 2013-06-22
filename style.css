@@ -342,7 +342,7 @@ button:hover,
 	font-size: 12px; font-size: 1.2rem;
 	padding-left: 10px; padding-left: 1rem;
 	padding-right: 10px; padding-right: 1rem;
-	max-width: 100px; max-width: 10rem;
+	max-width: 120px; max-width: 12rem;
 }
 
 input[type=submit].button-large, 
@@ -1402,6 +1402,24 @@ body {
 	background-color: transparent;
 	box-shadow: none;	
 }
+
+.widget_sofa_posts_widget .entry-block {
+	margin: 12px 0 24px; margin-top: 1.2rem; margin-bottom: 2.4rem;
+	border-width: 0 0 1px 0; border-bottom-width: 0.1rem;
+	background-color: transparent;
+	box-shadow: none;	
+}
+
+.widget_sofa_posts_widget h5 {
+	text-transform: uppercase;
+}
+
+.widget_sofa_posts_widget .meta {
+	margin-bottom: 6px; margin-bottom: 0.6rem;
+	background: transparent;
+	line-height: 11px; line-height: 1.1rem;	
+}
+
 
 /* 7.0 -- Footer
 ================================================== */

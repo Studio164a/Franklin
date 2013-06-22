@@ -19,7 +19,7 @@
 
 			<p class="campaign-support"><a class="button button-large" data-reveal-id="campaign-form" href="#"><?php _e( 'Support', 'projection' ) ?></a></p>
 
-			<div class="barometer" data-progress="30">
+			<div class="barometer" data-progress="<?php echo $campaign->percent_completed(false) ?>">
 				<span><?php printf( _x( "%s Funded", 'x percent funded', 'projection' ), '<span>'.$campaign->percent_completed(true).'</span>' ) ?></span>
 			</div>		
 

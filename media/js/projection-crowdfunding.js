@@ -1,92 +1,112 @@
 ( function( $ ){	 
 
-	// Start the countdown
-	var $countdown = $('.countdown'), 
-		enddate = $countdown.data().enddate, 
+	// Check whether the element is in view
+	var isInView = function($el) {
+	    var docViewTop = $(window).scrollTop(), 
+	    	docViewBottom = docViewTop + $(window).height(), 
+			elemTop = $el.offset().top,
+			elemBottom = elemTop + $el.height();
 
-		// Check whether the element is in view
-		isInView = function($el) {
-		    var docViewTop = $(window).scrollTop(), 
-		    	docViewBottom = docViewTop + $(window).height(), 
-				elemTop = $el.offset().top,
-				elemBottom = elemTop + $el.height();
+	    return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom)
+  			&& (elemBottom <= docViewBottom) &&  (elemTop >= docViewTop) );
+	};
 
-		    return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom)
-      			&& (elemBottom <= docViewBottom) &&  (elemTop >= docViewTop) );
-		};
+	// Countdown 
+	var $countdown = (function() {
+		var $countdown = $('.countdown'), 
+			enddate;
 
-	$countdown.countdown({until: new Date( enddate.year, enddate.month-1, enddate.day ), format: 'dHMs'});
+		if ($countdown.length) {
+			enddate = $countdown.data().enddate;
+
+			$countdown.countdown({until: new Date( enddate.year, enddate.month-1, enddate.day ), format: 'dHMs'});
+		}		
+
+		return $countdown;
+	})();	
+
 
 	// Set up Raphael on window load event
 	$(window).load(function() {
-		var $barometer = $('.barometer'), 
-			r = Raphael( $barometer[0], 146, 146), 
-			drawn = false,
-			progress_val = $barometer.data('progress'),			
-			progress,			
-			circle;
+		var $barometer = $('.barometer');
 
-		// @see http://stackoverflow.com/questions/5061318/drawing-centered-arcs-in-raphael-js
-		r.customAttributes.arc = function (xloc, yloc, value, total, R) {
-			var alpha = 360 / total * value,
-				a = (90 - alpha) * Math.PI / 180,
-				x = xloc + R * Math.cos(a),
-				y = yloc - R * Math.sin(a),
-				path;
+		if ( $barometer.length ) { 
+			
+			var r = Raphael( $barometer[0], 146, 146), 
+				drawn = false,
+				progress_val = $barometer.data('progress'),			
+				progress,			
+				circle;
 
-			if (total == value) {
-				path = [
-					["M", xloc, yloc - R],
-					["A", R, R, 0, 1, 1, xloc - 0.01, yloc - R]
-				];
-			} else {
-				path = [
-					["M", xloc, yloc - R],
-					["A", R, R, 0, +(alpha > 180), 1, x, y]
-				];
-			}
-			return {
-				path: path
-			};
-		};		
+			// @see http://stackoverflow.com/questions/5061318/drawing-centered-arcs-in-raphael-js
+			r.customAttributes.arc = function (xloc, yloc, value, total, R) {
+				var alpha = 360 / total * value,
+					a = (90 - alpha) * Math.PI / 180,
+					x = xloc + R * Math.cos(a),
+					y = yloc - R * Math.sin(a),
+					path;
 
-		// Draw the main circle
-		circle = r.path().attr({
-			stroke: '#fff', 
-			'stroke-width' : 11, 
-			arc: [74, 74, 100, 100, 66]
-		});
+				if (total == value) {
+					path = [
+						["M", xloc, yloc - R],
+						["A", R, R, 0, 1, 1, xloc - 0.01, yloc - R]
+					];
+				} else {
+					path = [
+						["M", xloc, yloc - R],
+						["A", R, R, 0, +(alpha > 180), 1, x, y]
+					];
+				}
+				return {
+					path: path
+				};
+			};		
 
-		var drawBarometer = function() {			
-
-			// Draw the percentage filled arc
-			progress = r.path().attr({ 
-				stroke: SofaCrowdfunding.button_colour, 
-				'stroke-width' : 12, 
+			// Draw the main circle
+			circle = r.path().attr({
+				stroke: '#fff', 
+				'stroke-width' : 11, 
 				arc: [74, 74, 0, 100, 66]
 			});
 
-			// Animate it
-			progress.animate({
-				arc: [74, 74, progress_val, 100, 66]
-			}, 1500, "backOut", function() {
-				$barometer.find('span').animate( { opacity: 1}, 300, 'linear');
-			});
-
-			drawn = true;
-		}
-
-		
-
-		if (isInView($barometer) ) {
-			drawBarometer();
-		}
-		else {
-			$(window).scroll( function() {
-				if ( drawn === false && isInView($barometer) ) {
-					drawBarometer();
+			// Fill the main circle
+			circle.animate({ arc: [74, 74, 100, 100, 66] }, 1000, function() {
+				if ( progress_val === 0 ) {
+					$barometer.find('span').animate( { opacity: 1}, 500, 'linear' );
 				}
 			});
+
+			var drawBarometer = function() {			
+
+				// Draw the percentage filled arc
+				progress = r.path().attr({ 
+					stroke: SofaCrowdfunding.button_colour, 
+					'stroke-width' : 12, 
+					arc: [74, 74, 0, 100, 66]
+				});
+
+				// Animate it
+				progress.animate({
+					arc: [74, 74, progress_val, 100, 66]
+				}, 1500, "easeInOut", function() {
+					$barometer.find('span').animate( { opacity: 1}, 300, 'linear');
+				});
+
+				drawn = true;
+			}
+
+			
+
+			if (isInView($barometer) ) {
+				drawBarometer();
+			}
+			else {
+				$(window).scroll( function() {
+					if ( drawn === false && isInView($barometer) ) {
+						drawBarometer();
+					}
+				});
+			}
 		}
 	});
 

@@ -24,8 +24,14 @@ class Sofa_Crowdfunding_Helper {
      * Private constructor. Singleton pattern.
      */
     private function __construct() {
+
+        include_once('pledge-levels.php');
+        include_once('helpers.php');
+        include_once('template.php');
+
     	add_action('after_setup_theme', array(&$this, 'after_setup_theme'));
         add_action('wp_footer', array(&$this, 'wp_footer'));
+        add_action('widgets_init', array(&$this, 'widgets_init'));
         remove_action('atcf_shortcode_profile', 'atcf_shortcode_profile_campaigns', 20, 1 );
 
         if ( !is_admin() ) 
@@ -37,6 +43,9 @@ class Sofa_Crowdfunding_Helper {
         add_filter('edd_cart_item_price', array(&$this, 'edd_cart_item_price_filter'), 10, 3);
         add_filter('edd_checkout_image_size', array(&$this, 'edd_checkout_image_size_filter'));
         add_filter('edd_checkout_button_purchase', array(&$this, 'edd_checkout_button_purchase_filter'));
+        add_filter('sofa_crowdfunding_pledge_levels_wrapper_atts', array(&$this, 'sofa_crowdfunding_pledge_levels_wrapper_atts_filter'));
+
+        add_shortcode('campaign_pledge_levels', 'sofa_crowdfunding_pledge_levels_shortcode');
     }
 
     /**
@@ -114,6 +123,16 @@ class Sofa_Crowdfunding_Helper {
             </div>
         </div>
         <?php
+    }
+
+    /**
+     * Register widgets. 
+     * 
+     * @return void
+     * @since Projection 1.0
+     */
+    public function widgets_init() {
+        register_widget( 'Sofa_Crowdfunding_Pledge_Levels_Widget' );
     }
 
     /**
@@ -201,6 +220,17 @@ class Sofa_Crowdfunding_Helper {
     }
 
     /** 
+     * Filter the wrapper attributes for the pledge levels
+     * 
+     * @param string $atts
+     * @return string
+     * @since Projection 1.0
+     */
+    public function sofa_crowdfunding_pledge_levels_wrapper_atts_filter($atts) {
+        return 'class="campaign-pledge-levels accordion"';
+    }
+
+    /** 
      * Get the active campaign. 
      * 
      * @return ATCF_Campaign|false
@@ -209,8 +239,8 @@ class Sofa_Crowdfunding_Helper {
     public function get_active_campaign() {
         // If we haven't already set the active campaign, set it now
         if (!isset( $this->active_campaign ) ) {
-            $campaign_id = get_theme_mod('campaign', false);
-            $this->active_campaign = false === $campaign_id ? false : new ATCF_Campaign($campaign_id);
+            $campaign_id = get_theme_mod('campaign', false);            
+            $this->active_campaign = false == $campaign_id ? false : new ATCF_Campaign($campaign_id);
         }
 
         return $this->active_campaign;

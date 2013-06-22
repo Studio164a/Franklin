@@ -114,20 +114,24 @@ class OSFA_Customizer {
         /** 
          * Campaign
          */    
-        $wp_customize->add_section( 'campaign', array( 
-            'priority' => 98, 
-            'title' => __( "Campaign", 'projection' ), 
-            'description' => __( 'description' )
-        ) );
+        if ( get_projection_theme()->crowdfunding_enabled ) {
 
-        $wp_customize->add_setting( 'campaign', array( 'transport' => 'postMessage' ) );
-        $wp_customize->add_control( 'campaign', array(
-            'settings' => 'campaign',
-            'label' => __( 'Select the currently active campaign', 'projection' ), 
-            'section' => 'campaign', 
-            'type' => 'select', 
-            'choices' => $this->get_campaign_options()
-        ) );
+            $wp_customize->add_section( 'campaign', array( 
+                'priority' => 98, 
+                'title' => __( "Campaign", 'projection' ), 
+                'description' => __( 'description' )
+            ) );
+
+            $wp_customize->add_setting( 'campaign', array( 'transport' => 'postMessage' ) );
+            $wp_customize->add_control( 'campaign', array(
+                'settings' => 'campaign',
+                'label' => __( 'Select the currently active campaign', 'projection' ), 
+                'section' => 'campaign', 
+                'type' => 'select', 
+                'choices' => $this->get_campaign_options()
+            ) );
+            
+        }
 
         /**
          * Social

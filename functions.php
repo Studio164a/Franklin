@@ -30,24 +30,24 @@ class Projection_Theme {
         // Include other files
         require_once('inc/comments.php');
   //       require_once('inc/shortcodes.php');
-        include_once('inc/helpers.php');
+        require_once('inc/helpers.php');
         require_once('inc/template-tags.php');    
+        require_once('inc/widgets/sofa-posts.php');
 
         // Admin classes
-        include_once('inc/admin/customize.php');
+        require_once('inc/admin/customize.php');
 
         if ( class_exists('Easy_Digital_Downloads') && class_exists('ATCF_CrowdFunding')) {
 
             $this->crowdfunding_enabled = true;
-            include_once('inc/crowdfunding/crowdfunding.class.php');
-            include_once('inc/crowdfunding/helpers.php');
-            include_once('inc/crowdfunding/template.php');
+            include_once('inc/crowdfunding/crowdfunding.class.php');            
         }
 
         add_action('wp_head', array(&$this, 'wp_head'));
         add_action('widgets_init', array(&$this, 'widgets_init'));
         add_action('wp_footer', array(&$this, 'wp_footer'), 1000);
         add_action('after_setup_theme', array(&$this, 'after_setup_theme'));        
+        add_action('edd_after_install', array(&$this, 'edd_after_install'));
 
         if ( !is_admin() )
             add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'), 11);
@@ -170,9 +170,8 @@ class Projection_Theme {
 
         // Enable post thumbnail support 
         add_theme_support('post-thumbnails');
-        // add_post_type_support('download', 'thumbnail');
         set_post_thumbnail_size(699, 0, true);
-        add_image_size('carousel-thumbnail', 252, 9999, false);
+        add_image_size('widget-thumbnail', 292, 9999, false);
 
         // Register menu
         register_nav_menus( array(
@@ -237,6 +236,8 @@ class Projection_Theme {
             'before_title' => '<div class="title-wrapper"><h3 class="widget-title">',
             'after_title' => '</h3></div>'
         ));
+
+        register_widget( 'Sofa_Posts_Widget' );
     }    
 
     /**
@@ -250,6 +251,7 @@ class Projection_Theme {
         require_once('inc/projection/admin/editor-styles.php');
         $editor = OSFEditorStyles::get_instance();
     }
+
     /**
      * Executes on the add_meta_boxes hook. 
      * 
@@ -304,6 +306,20 @@ class Projection_Theme {
 
             // Save custom fields found in our $settings variable
             update_post_meta( $post_id, '_projection_hide_post_meta', ( $_POST['_projection_hide_post_meta'] == 'on' ? 1 : 0 ) );
+        }
+    }
+
+    /**
+     * Runs after Easy Digital Downloads installation. 
+     * 
+     * @see edd_after_install
+     * @param array $activation_pages       Pages created by EDD upon activation.
+     * @return void
+     * @since Projection 1.0
+     */
+    public function edd_after_install( $activation_pages ) {
+        foreach ( $activation_pages as $page ) {
+            update_post_meta( $page, '_wp_page_template', 'page-fullwidth.php' );
         }
     }
 
