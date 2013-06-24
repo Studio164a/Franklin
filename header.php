@@ -15,7 +15,7 @@
 <body <?php body_class() ?>>
 
 	<!-- Sharing -->
-	<?php //get_template_part('sharing') ?>	
+	<?php sofa_social_links() ?>	
 	<!-- End sharing -->
 
 	<!-- Login/register -->

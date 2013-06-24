@@ -156,29 +156,43 @@ class Sofa_Framework {
 
 		// Social sites
 		$this->social_sites = apply_filters( 'sofa_social_sites', 
-			array(
-				'facebook' 		=> __( 'Facebook', 'sofa' ), 
-			    'google-plus' 	=> __( 'Google+', 'sofa' ),                     
+			array(				
+				'bitbucket'		=> __( 'Bitbucket', 'sofa' ), 			    			    			    
+			    'dribbble'		=> __( 'Dribbble', 'sofa' ), 
+			    'facebook' 		=> __( 'Facebook', 'sofa' ), 			    
+			    'flickr'		=> __( 'Flickr', 'sofa' ), 
+			    'foursquare'	=> __( 'Foursquare', 'sofa' ), 
+			    'github'		=> __( 'Github', 'sofa' ), 
+			    'google-plus' 	=> __( 'Google+', 'sofa' ),                     			    
+			    'gittip'		=> __( 'Gittip', 'sofa' ),
+			    'instagram'		=> __( 'Instagram', 'sofa' ),
 			    'linkedin' 		=> __( 'Linkedin', 'sofa'),
 			    'pinterest' 	=> __( 'Pinterest', 'sofa' ), 
-			    'rss' 			=> __( 'RSS', 'sofa' ),
-			    'twitter' 		=> __( 'Twitter', 'sofa' ) 
+			    'renren'		=> __( 'Renren', 'sofa' ), 
+			    'skype'			=> __( 'Skype', 'sofa' ), 
+			    'stackexchange' => __( 'Stackexchange', 'sofa' ), 
+			    'trello' 		=> __( 'Trello', 'sofa' ), 
+			    'tumblr'		=> __( 'Tumblr', 'sofa' ), 
+			    'twitter' 		=> __( 'Twitter', 'sofa' ), 
+			    'vk'			=> __( 'VK', 'sofa' ), 
+			    'weibo'			=> __( 'Weibo', 'sofa' ), 
+			    'windows' 		=> __( 'Windows', 'sofa' ), 
+			    'xing'			=> __( 'Xing', 'sofa' ), 
+			    'youtube'		=> __( 'YouTube', 'sofa' )
 			) 
 		);
 
 		// Store the plugin directory
-		$this->plugin_dir_url = WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) );
-
-		$this->plugin_dir = WP_PLUGIN_DIR . '/' . dirname( plugin_basename( __FILE__ ) );
+		$this->plugin_dir_url = apply_filters( 'sofa_directory_url', get_template_directory_uri() . '/inc/sofa' );
+		$this->plugin_dir = apply_filters( 'sofa_directory', get_template_directory() . '/inc/sofa' );
 
 		// Supported modules. Filter this using sofa_modules
 		$module_dir = $this->plugin_dir . '/modules/';
 		
 		$this->modules = apply_filters( 'sofa_modules', array( 
-			'fitvids' => $module_dir . 'fitvids/fitvids.php',
-			'fontawesome' => $module_dir . 'fontawesome/fontawesome.php',
-			'partials' => $module_dir . 'partials/partials.php'
-		) );		
+			'fitvids' 		=> $module_dir . 'fitvids/fitvids.php',
+			'fontawesome' 	=> $module_dir . 'fontawesome/fontawesome.php'
+		) );
 
 		// Enabled modules
 		$this->enabled_modules = apply_filters( 'sofa_enabled_modules', array( 'fitvids', 'fontawesome' ) );
@@ -187,6 +201,7 @@ class Sofa_Framework {
 
 		// Include files
 		include_once('sofa-template-tags.php');
+		include_once('sofa-helpers.php');
 
 		do_action('sofa_init');
 	}
@@ -215,7 +230,7 @@ class Sofa_Framework {
 		}	
 
 		// CSS default arguments
-		$css_defaults = array( 'dependencies' => array(), 'version' => $this->version, 'media' => true );
+		$css_defaults = array( 'dependencies' => array(), 'version' => $this->version, 'media' => 'all' );
 
 		foreach ( $this->enabled_stylesheets as $name => $args ) {
 
@@ -239,13 +254,13 @@ class Sofa_Framework {
 	 */
 	public function wp_head() {
 		$lt_ie9 = apply_filters('sofa_load_lt_ie9', 
-            '<script src="'. $this->plugin_dir_url .'/js/html5shiv.js" type="text/javascript"></script>
-            <script src="'. $this->plugin_dir_url .'/js/selectivizr-min.js" type="text/javascript"></script>
-            <script src="'. $this->plugin_dir_url .'/js/PIE.js" type="text/javascript"></script>');
+'<script src="'. $this->plugin_dir_url .'/js/html5shiv.js" type="text/javascript"></script>
+<script src="'. $this->plugin_dir_url .'/js/selectivizr-min.js" type="text/javascript"></script>
+<script src="'. $this->plugin_dir_url .'/js/PIE.js" type="text/javascript"></script>');
 		?>
-		<!--[if lt IE 9]>
-			<?php echo $lt_ie9 ?>
-        <![endif]-->
+<!--[if lt IE 9]>
+<?php echo $lt_ie9 ?>
+<![endif]-->
 		<?php
 	}
 

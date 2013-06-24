@@ -140,6 +140,7 @@ h5 {
 h6 {
 	font-size: 12px; font-size: 1.2rem;
 	text-transform: uppercase;
+	letter-spacing: 2px; letter-spacing: 0.2rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -150,6 +151,7 @@ h1, h2, h3, h4, h5, h6 {
 	display: block;
 	text-align: center;
 	text-transform: uppercase;
+	letter-spacing: 2px; letter-spacing: 0.2rem;
 	overflow: hidden;
 }
 
@@ -273,6 +275,7 @@ legend {
 	border-bottom: 1px solid #e2dedb;
 	font-size: 18px; font-size: 1.8rem;
 	text-transform: uppercase;
+	letter-spacing: 2px; letter-spacing: 0.2rem;
 }
 
 /* Buttons */
@@ -288,7 +291,7 @@ button,
 	border-radius: 0.4rem;
 	background-image: none;		
 	text-transform: uppercase;
-	letter-spacing: 1px;	
+	letter-spacing: 2px; letter-spacing: 0.2rem;
 	cursor: pointer;
 
 	/* Transition */
@@ -467,6 +470,7 @@ th {
 	border-width: 1px 1px 0 1px; 	
 	text-align: left;
 	text-transform: uppercase;
+	letter-spacing: 2px; letter-spacing: 0.2rem;
 	font-weight: 400;	
 	white-space: nowrap;
 }
@@ -507,6 +511,7 @@ td dl:last-child {
 	margin: 24px 0 0; margin-top: 2.4rem;
 	font-size: 12px; font-size: 1.2rem;	
 	text-transform: uppercase;
+	letter-spacing: 2px; letter-spacing: 0.2rem;
 	text-align: right;
 }
 
@@ -647,6 +652,10 @@ body {
 	border-radius: 0.4rem 0.4rem 0 0;
 }
 
+#main {
+	border-radius: 0 0 0.4rem 0.4rem;
+}
+
 .content-wrapper.content,
 .content-wrapper {
 	width: 92%;
@@ -707,15 +716,34 @@ body {
 ================================================== */
 
 #header {
-	position: relative;	
-	border-bottom: 2px solid; 	
+	position: relative;		
 	width: 92%;
 	padding: 24px 4% 0; padding-top: 2.4rem;	
+	border-bottom: 2px solid; 	
+	border-radius: 0.4rem 0.4rem 0 0;
 }
 
-/* 3.1 -- Sharing ***/
+/* 3.1 -- Social ***/
 
-.sharing {
+.social {
+	float: left;
+	margin: 0 0 0 4%;
+	padding-left: 0;	
+}
+
+.social li {
+	display: inline-block;
+	margin-right: 14px; margin-right: 1.4rem;
+	margin-bottom: 0;
+	font-size: 18px; font-size: 1.8rem;
+	line-height: 53px; line-height: 5.3rem;
+}
+
+.social a:hover {
+	text-decoration: none;
+}
+
+/*.sharing {
 	float: left;
 	height: 20px;
 	padding-top: 15px;
@@ -728,7 +756,7 @@ body {
 
 .twitter-share-button {
 	width: 76px !important;
-}
+}*/
 
 /* 3.2 -- User account links ***/
 
@@ -767,6 +795,7 @@ body {
 #site-navigation li {
 	list-style: none;
 	text-transform: uppercase;
+	letter-spacing: 1px; letter-spacing: 0.1rem;
 	line-height: 1em; 	
 	border-bottom: 1px solid;
 	text-align: center;
@@ -797,6 +826,7 @@ body {
 	font-size: 34px; font-size: 3.4rem;
 	line-height: 38px; line-height: 3.8rem;
 	text-transform: uppercase;
+	letter-spacing: 2px; letter-spacing: 0.2rem;
 }
 
 /* 4.0 -- Campaign
@@ -865,6 +895,7 @@ body {
 	max-width: 92%;
 	text-align: center;
 	text-transform: uppercase;
+	letter-spacing: 2px; letter-spacing: 0.2rem;
 	word-break: break-word;
 }
 
@@ -877,6 +908,7 @@ body {
 	font-size: 10px; font-size: 1rem;
 	line-height: 38px; line-height: 3.8rem;
 	text-transform: uppercase;
+	letter-spacing: 1px; letter-spacing: 0.1rem;
 }
 
 .meta-above {
@@ -1188,6 +1220,8 @@ body {
 
 .widget-title {
 	margin-top: 12px; margin-top: 1.2rem;	
+	margin-bottom: 24px; margin-bottom: 2.4rem;
+	padding-bottom: 4px; padding-bottom: 0.4rem;
 }
 
 .widget-title, 
@@ -1276,14 +1310,20 @@ body {
 	box-shadow: none;	
 }
 
+.widget_sofa_posts_widget .entry-block:last-of-type {
+	border: 0;
+}
+
 .widget_sofa_posts_widget h5 {
 	text-transform: uppercase;
+	text-align: center;
 }
 
 .widget_sofa_posts_widget .meta {
 	margin-bottom: 6px; margin-bottom: 0.6rem;
 	background: transparent;
 	line-height: 11px; line-height: 1.1rem;	
+	text-align: center;
 }
 
 .widget_categories li {
@@ -1481,6 +1521,10 @@ body {
 		padding-right: 2rem; padding-left: 2rem;
 	}	
 
+	.social {
+		margin-left: 2rem;
+	}
+
 	.accordion h3::before {
 		margin-right: 2rem;
 	}
@@ -1561,6 +1605,10 @@ body {
 	body {		
 		margin: 0 auto;
 		width: 119rem;
+	}
+
+	.social {
+		padding-left: 0.9rem;
 	}
 
 	.body-wrapper { 

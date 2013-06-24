@@ -320,7 +320,7 @@ body { background: url(<?php echo $body_texture ?>); }
 <?php endif ?>
 
 /* Accent colour */
-a, #site-navigation .menu-button, #site-navigation a:hover, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, body .button.accent:hover, .button.accent.button-alt { color: <?php echo $accent_colour ?>; }
+a, #site-navigation .menu-button, #site-navigation a:hover, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, body .button.accent:hover, .button.accent.button-alt, .social a:hover, #site-navigation .current-menu-item a { color: <?php echo $accent_colour ?>; }
 .campaign-button, .active-campaign, .sticky, .button.accent, .button.accent.button-alt:hover { background-color: <?php echo $accent_colour ?>; color: <?php echo $accent_text ?>; }
 .button.accent, .campaign-support .button.accent:hover { box-shadow: 0 0 0 0.3rem <?php echo $accent_colour ?>; }
 #site-navigation .hovering > a { border-color: <?php echo $accent_colour ?>; border-color: <?php echo $this->rgb($accent_rgb, 0.7) ?>; }
@@ -370,7 +370,7 @@ th { border-right-color: <?php echo $secondary_border ?>; }
 .sticky.block { border-color: <?php echo $posts_background ?>; }
 
 /* Footer text */
-#site-footer, #site-footer a { color: <?php echo $footer_text ?>; }    
+#site-footer, #site-footer a, .social a { color: <?php echo $footer_text ?>; }    
 
 /* Footer widget titles */
 .footer-widget .widget-title { color: <?php echo $footer_titles ?>; }

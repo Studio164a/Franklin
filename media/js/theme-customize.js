@@ -81,6 +81,23 @@
 
 	updateCampaignTexture = function(value) {
 		$('.active-campaign').css('background-image', 'url(' + value + ')');
+	}, 
+
+	updateSocial = function(value, network) {
+		var $el = $('.social .'+network);
+
+		// If this button isn't in there yet, create it now
+		if ($el.length === 0 && value.length > 0) {
+			$('.social').append('<li><a class="'+network+'" href="'+value+'"><i class="icon-'+network+'"></i></a></li>');
+		}
+		// Update the link
+		else if ($el.length > 0 && value.length > 0) {
+			$el.find('a').attr('href', value);
+		} 
+		// Remove the link
+		else {
+			$el.remove();
+		}
 	};
 
 	// Update the site title in real time...
@@ -223,5 +240,120 @@
 			updateCampaignTexture( newval );
 		});
 	} );
+
+	//
+	// Social networks
+	//
+
+	wp.customize( 'bitbucket', function( value ) {
+		value.bind( function( newval ) {
+			updateSocial( newval, 'bitbucket' );
+		});
+	});
+	wp.customize( 'dribbble', function( value ) {
+		value.bind( function( newval ) {
+			updateSocial( newval, 'dribbble' );
+		});
+	});
+	wp.customize( 'facebook', function( value ) {
+		value.bind( function( newval ) {
+			updateSocial( newval, 'facebook' );
+		});
+	});
+	wp.customize( 'flickr', function( value ) {
+		value.bind( function( newval ) {
+			updateSocial( newval, 'flickr' );
+		});
+	});
+	wp.customize( 'foursquare', function( value ) {
+		value.bind( function( newval ) {
+			updateSocial( newval, 'foursquare' );
+		});
+	});
+	wp.customize( 'github', function( value ) {
+		value.bind( function( newval ) {
+			updateSocial( newval, 'github' );
+		});
+	});
+	wp.customize( 'google-plus', function( value ) {
+		value.bind( function( newval ) {
+			updateSocial( newval, 'google-plus' );
+		});
+	});
+	wp.customize( 'gittip', function( value ) {
+		value.bind( function( newval ) {
+			updateSocial( newval, 'gittip' );
+		});
+	});
+	wp.customize( 'instagram', function( value ) {
+		value.bind( function( newval ) {
+			updateSocial( newval, 'instagram' );
+		});
+	});
+	wp.customize( 'linkedin', function( value ) {
+		value.bind( function( newval ) {
+			updateSocial( newval, 'linked' );
+		});
+	});
+	wp.customize( 'pinterest', function( value ) {
+		value.bind( function( newval ) {
+			updateSocial( newval, 'pinterest' );
+		});
+	});
+	wp.customize( 'renren', function( value ) {
+		value.bind( function( newval ) {
+			updateSocial( newval, 'renren' );
+		});
+	});
+	wp.customize( 'skype', function( value ) {
+		value.bind( function( newval ) {
+			updateSocial( newval, 'skype' );
+		});
+	});
+	wp.customize( 'stackexchange', function( value ) {
+		value.bind( function( newval ) {
+			updateSocial( newval, 'stackexchange' );
+		});
+	});
+	wp.customize( 'trello', function( value ) {
+		value.bind( function( newval ) {
+			updateSocial( newval, 'trello' );
+		});
+	});
+	wp.customize( 'tumblr', function( value ) {
+		value.bind( function( newval ) {
+			updateSocial( newval, 'tumblr' );
+		});
+	});
+	wp.customize( 'twitter', function( value ) {
+		value.bind( function( newval ) {
+			updateSocial( newval, 'twitter' );
+		});
+	});
+	wp.customize( 'vk', function( value ) {
+		value.bind( function( newval ) {
+			updateSocial( newval, 'vk' );
+		});
+	});
+	wp.customize( 'weibo', function( value ) {
+		value.bind( function( newval ) {
+			updateSocial( newval, 'weibo' );
+		});
+	});
+	wp.customize( 'windows', function( value ) {
+		value.bind( function( newval ) {
+			updateSocial( newval, 'windows' );
+		});
+	});
+	wp.customize( 'xing', function( value ) {
+		value.bind( function( newval ) {
+			updateSocial( newval, 'xing' );
+		});
+	});
+	wp.customize( 'youtube', function( value ) {
+		value.bind( function( newval ) {
+			updateSocial( newval, 'youtube' );
+		});
+	});
 
 } )( jQuery ); 

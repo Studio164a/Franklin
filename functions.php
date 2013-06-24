@@ -24,8 +24,10 @@ class Projection_Theme {
      * Private constructor. Singleton pattern.
      */
 	private function __construct() {         
-        $this->sofa = get_sofa_framework();
 
+        // Include Sofa and get its instance
+        require_once('inc/sofa/sofa.php');
+        $this->sofa = get_sofa_framework();
 
         // Include other files
         require_once('inc/comments.php');
@@ -55,7 +57,7 @@ class Projection_Theme {
             add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'), 11);
 
         add_filter('sofa_enabled_scripts', array(&$this, 'sofa_enabled_scripts_filter'));
-        add_filter('sofa_enabled_modules', array(&$this, 'sofa_enabled_modules_filter'));
+        add_filter('sofa_load_lt_ie9', array(&$this, 'sofa_load_lt_ie9'));
         add_filter('get_pages',  array(&$this, 'get_pages_filter'));    
         add_filter('post_class', array(&$this, 'post_class_filter'));
         add_filter('the_content_more_link', array(&$this, 'the_content_more_link_filter'), 10, 2);
@@ -427,16 +429,14 @@ class Projection_Theme {
     }
 
     /**
-     * Set enabled modules for this theme.
+     * Filters the conditional scripts output for IE8 and lower.
      * 
-     * @param array $modules
-     * @return array
-     * @since projection 1.0
+     * @param string $default
+     * @return string
+     * @since Projection 1.0
      */
-    public function sofa_enabled_modules_filter($modules) {
-        if ( !in_array('partials', $modules))
-            $modules[] = 'partials';
-        return $modules;
+    public function sofa_load_lt_ie9($default) {
+        return '<script src="'. $this->sofa->plugin_dir_url .'/js/respond.min.js" type="text/javascript"></script>' . PHP_EOL . $default;
     }
 }
 
