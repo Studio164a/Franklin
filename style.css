@@ -1303,7 +1303,13 @@ body {
 	box-shadow: none;	
 }
 
+.widget.widget_sofa_posts_widget {
+	padding-left: 0;
+	padding-right: 0;
+}
+
 .widget_sofa_posts_widget .entry-block {
+	padding: 0 4%;
 	margin: 12px 0 24px; margin-top: 1.2rem; margin-bottom: 2.4rem;
 	border-width: 0 0 1px 0; border-bottom-width: 0.1rem;
 	background-color: transparent;
@@ -1517,7 +1523,8 @@ body {
 		
 	.widget, 
 	.sidebar-block, 
-	.accordion h3 {
+	.accordion h3, 
+	.widget_sofa_posts_widget .entry-block {
 		padding-right: 2rem; padding-left: 2rem;
 	}	
 
