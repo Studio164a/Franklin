@@ -91,6 +91,46 @@ if ( !function_exists('projection_edd_append_purchase_link') ) {
 remove_action('edd_after_download_content', 'edd_append_purchase_link');
 add_action('edd_after_download_content', 'projection_edd_append_purchase_link');
 
+/**
+ * Register form
+ *
+ * @global $edd_options
+ * @since Projection 1.0
+ * @return $form
+ */
+function projection_atcf_shortcode_register_form() {
+	global $edd_options;
+?>
+	<p class="atcf-register-name">
+		<label for="user_nicename"><?php _e( 'Your Name', 'atcf' ); ?></label>
+		<input type="text" name="displayname" id="atcf-register-displayname" class="input" value="" />
+	</p>
+
+	<p class="atcf-register-email">
+		<label for="user_login"><?php _e( 'Email Address', 'atcf' ); ?></label>
+		<input type="text" name="user_email" id="atcf-register-user_email" class="input" value="" />
+	</p>
+
+	<p class="atcf-register-username">
+		<label for="user_login"><?php _e( 'Username', 'atcf' ); ?></label>
+		<input type="text" name="user_login" id="atcf-register-user_login" class="input" value="" />
+	</p>
+
+	<p class="atcf-register-password">
+		<label for="user_pass"><?php _e( 'Password', 'atcf' ); ?></label>
+		<input type="password" name="user_pass" id="atcf-register-user_pass" class="input" value="" />
+	</p>
+	
+	<p class="atcf-register-submit">
+		<input type="submit" name="submit" id="submit" class="<?php echo apply_filters( 'atcf_shortcode_register_button_class', 'button-primary' ); ?>" value="<?php _e( 'Register', 'atcf' ); ?>" />
+		<input type="hidden" name="action" value="atcf-register-submit" />
+		<?php wp_nonce_field( 'atcf-register-submit' ); ?>
+	</p>
+<?php
+}
+remove_action( 'atcf_shortcode_register', 'atcf_shortcode_register_form' );
+add_action( 'atcf_shortcode_register', 'projection_atcf_shortcode_register_form' );
+
 
 /**
  * Display the pledge levels. 
