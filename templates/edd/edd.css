@@ -1,4 +1,4 @@
-/**
+#edd_checkout_cart td/**
  * Easy Digital Downloads Styles
  *
  * @package     EDD
@@ -28,37 +28,34 @@
 .edd_clearfix:after { display: block; visibility: hidden; float: none; clear: both; text-indent: -9999px; content: "."; }
 
 /* Cart Contents */
-#edd_checkout_cart { text-align: left; width: 100%; border-top: 1px solid #f0f0f0; border-bottom: none; margin: 0 0 60px; margin-bottom: 6rem; }
+#edd_checkout_cart { text-align: left; width: 100%; border-top-width: 1px; border-style: solid; border-bottom: none; margin: 0 0 36px; margin-bottom: 3.6rem; }
 #edd_checkout_cart th,
-#edd_checkout_cart td { text-align: left; padding: 3px 5px; border-bottom: 1px solid #f0f0f0; border-top: none; color: #666; }
-#edd_checkout_cart .edd_cart_tax_row th,
-#edd_checkout_cart .edd_cart_discount_row th { background: #f9f9f9; }
-#edd_checkout_cart th { font-weight: bold; background: #f5f5f5; }
-#edd_checkout_cart td { line-height: 25px; vertical-align: middle; }
+#edd_checkout_cart td { text-align: left; padding: 12px 10px; padding: 1.2rem 1rem; border-bottom-width: 1px; border-style: solid; border-top: none; }
+#edd_checkout_cart td { line-height: 18px; line-height: 1.8rem; vertical-align: top; }
 #edd_checkout_cart th.edd_cart_actions,
 #edd_checkout_cart td.edd_cart_actions,
 #edd_checkout_cart th:last-child,
 #edd_checkout_cart td:last-child,
 #edd_checkout_cart th.edd_cart_total { text-align: right; }
-#edd_checkout_cart td img { float: left; margin: 0 8px 0 0; background: none; padding: none; border: none; }
+#edd_checkout_cart td img { float: left; margin: 0 10px 0 0; margin-right: 1rem; background: none; padding: none; border: none; }
 #edd_checkout_cart .edd_discount_remove { display: inline-block; width: 10px; height: 11px; background: url( ../assets/images/xit.gif ) 0 0 no-repeat; position: relative; top: 3px; }
 #edd_checkout_cart .edd_discount_remove:hover { background-position: -10px 0; }
 
 /* Checkout Fields */
-#edd_checkout_form_wrap legend { display:block; font-size: 120%; font-weight: bold; border-bottom: 1px solid #ccc; width: 100%; }
-#edd_checkout_form_wrap label { font-weight: bold; display:block; position: relative; line-height: 100%; font-size: 95%; margin: 0 0 5px; }
+#edd_checkout_form_wrap legend { display:block; font-size: 18px; font-size: 1.8rem; font-weight: 400; border-bottom: 1px solid; width: 100%; }
+#edd_checkout_form_wrap label { font-weight: 400; display:block; position: relative; line-height: 100%; font-size: 12px; font-size: 1.2rem; margin: 0 0 6px; margin-bottom: 0.6rem; }
 #edd_checkout_form_wrap label:after { display: block; visibility: hidden; float: none; clear: both; height: 0; text-indent: -9999px; content: "."; }
-#edd_checkout_form_wrap span.edd-description { color: #666; font-size: 80%; display: block; margin: 0 0 5px; }
+#edd_checkout_form_wrap span.edd-description { font-size: 11px; font-size: 1.1rem; font-style: italic; display: block; margin: 0 0 6px; margin-bottom: 0.6rem; }
 #edd_checkout_form_wrap input.edd-input { display:block; width: 80%; }
 #edd_checkout_form_wrap select.edd-select { display:block; width: 60%; }
 #edd_checkout_form_wrap select.edd-select.edd-select-small { display:inline; width: auto; }
 #edd_checkout_form_wrap input.edd-input.error { border-color: #c4554e; }
 #edd_checkout_form_wrap #edd_terms_agreement label,
 #edd_checkout_form_wrap #edd_tax_opt_in_fields label { display: inline-block;  width: auto; }
-#edd_checkout_form_wrap p { margin: 0 0 30px; }
-#edd_checkout_form_wrap input[type="text"], #edd_checkout_form_wrap input[type="email"], #edd_checkout_form_wrap input[type="password"] { padding: 4px 6px; }
-#edd_checkout_form_wrap input[type="radio"] { border: none; margin-right: 5px; }
-#edd_checkout_form_wrap input[type="checkbox"] { float: left; margin: 0 8px 0 0; }
+#edd_checkout_form_wrap p { margin: 0; }
+#edd_checkout_form_wrap input[type="text"], #edd_checkout_form_wrap input[type="email"], #edd_checkout_form_wrap input[type="password"] { padding: 11px 2%; padding-top: 1.1rem; padding-bottom: 1.1rem; }
+#edd_checkout_form_wrap input[type="radio"] { border: none; margin-right: 4px; margin-right: 0.4rem; }
+#edd_checkout_form_wrap input[type="checkbox"] { float: left; margin-right: 4px; margin-right: 0.4rem; margin-top: -2px !important; margin-top: -0.2rem !important; width: auto; }
 #edd_checkout_form_wrap .edd-payment-icons { height: 32px; }
 #edd_checkout_form_wrap .edd-payment-icons img.payment-icon{ margin: 0 3px 0 0; float: left; background: none; padding: none; border: none; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none;}
 #edd_checkout_form_wrap #edd-payment-mode-wrap label { display: inline-block; margin: 0 20px 0 0; }
@@ -78,6 +75,9 @@
 #edd_checkout_form_wrap span.card-type.discover { background: url( ../assets/images/icons/discover.png ) no-repeat; }
 #edd_checkout_form_wrap span.card-type.americanexpress { background: url( ../assets/images/icons/americanexpress.png ) no-repeat; }
 #edd_checkout_form_wrap #edd-discount-loader, #edd_checkeout_form_wrap .edd-cart-ajax { -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; }
+
+#edd_purchase_final_total #edd_final_total_wrap { margin-bottom: 24px; margin-bottom: 2.4rem; font-size: 20px; font-size: 2rem; text-align: center; }
+#edd-purchase-button { width: 100%; }
 
 /* =Theme Specific styling
 -------------------------------------------------------------- */

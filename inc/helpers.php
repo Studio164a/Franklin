@@ -87,3 +87,16 @@ function sofa_do_first_embed() {
 function sofa_strip_embed_shortcode($content, $limit = '-1' ) {
 	return preg_replace('/\[embed(.*)](.*)\[\/embed]/', '', $content, $limit);	
 }
+
+/**
+ * This retrieves an image's post ID based on its URL.
+ * Credit: http://pippinsplugins.com/retrieve-attachment-id-from-image-url/
+ *
+ * @param string $image_url
+ * @since Cheers 1.0
+ */
+function sofa_get_image_id_from_url($image_url) {
+    global $wpdb;
+    $attachment = $wpdb->get_col( $wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid = %s;", $image_url ) ); 
+    return $attachment[0]; 
+}    

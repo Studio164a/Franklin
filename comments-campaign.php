@@ -66,7 +66,7 @@ if ( ! comments_open() ) return; ?>
 						 * define textural_comment() and that will be used instead.
 						 * See textural_comment() in projection/functions.php for more.
 						 */
-						wp_list_comments( array( 'callback' => 'projection_campaign_comment' ) );
+						wp_list_comments( array( 'callback' => 'projection_campaign_comment', 'style' => 'ol' ) );
 					?>
 				</ol>
 

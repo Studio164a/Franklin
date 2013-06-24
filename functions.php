@@ -48,6 +48,8 @@ class Projection_Theme {
         add_action('wp_footer', array(&$this, 'wp_footer'), 1000);
         add_action('after_setup_theme', array(&$this, 'after_setup_theme'));        
         add_action('edd_after_install', array(&$this, 'edd_after_install'));
+        
+        add_action('pre_get_posts', array(&$this, 'pre_get_posts'));
 
         if ( !is_admin() )
             add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'), 11);
@@ -102,25 +104,18 @@ class Projection_Theme {
         wp_register_style('main', get_bloginfo('stylesheet_url'));
         wp_enqueue_style('main');
 
+        // wp_register_style('colours', $theme_dir . '/colors.css' );
+        // wp_enqueue_style('colours');
+
         wp_register_style( 'foundation', sprintf( "%s/media/css/foundation.css", $theme_dir));
         wp_enqueue_style( 'foundation' );
-
-        // Skin (light or dark)
-        // wp_register_style('skin', sprintf( "%s/media/css/%s.css", $theme_dir, get_theme_mod('skin', 'skin-dark') ) ); 
-        // wp_enqueue_style('skin');
 
         // Load prettyPhoto stylesheet
         // wp_register_style('prettyPhoto', sprintf( "%s/media/css/prettyPhoto.css", get_template_directory_uri() ));
         // wp_enqueue_style('prettyPhoto');
         
         // Scripts    
-        // wp_register_script('transit', sprintf( "%s/media/js/jquery.transit.min.js", $theme_dir ), array('jquery'), 0.1, true );       
-        // wp_register_script('jquery-event-move', sprintf( "%s/media/js/jquery.event.move.js", $theme_dir ), array( 'jquery' ), 0.1, true );
-        // wp_register_script('jquery-event-swipe', sprintf( "%s/media/js/jquery.event.swipe.js", $theme_dir ), array( 'jquery', 'jquery-event-move' ), 0.1, true );
-        // wp_register_script('contentCarousel', sprintf( "%s/media/js/jquery.contentCarousel.js", get_template_directory_uri() ), array('jquery-event-swipe', 'transit'), 0.1, true );
-
         // wp_register_script('sharrre', sprintf( "%s/media/js/jquery.sharrre-1.3.4.js", $theme_dir ), array('jquery'), 0.1, true);
-
         wp_register_script('audio-js', sprintf( "%s/media/js/audiojs/audio.min.js", $theme_dir ), array(), 0.1, true);
         wp_register_script('foundation', sprintf( "%s/media/js/foundation.min.js", $theme_dir ), array(), 0.1, true);
         wp_register_script('foundation-reveal', sprintf( "%s/media/js/foundation.reveal.js", $theme_dir ), array('foundation'), 0.1, true);        
@@ -337,6 +332,20 @@ class Projection_Theme {
             // Save custom fields found in our $settings variable
             update_post_meta( $post_id, '_projection_hide_post_meta', ( $_POST['_projection_hide_post_meta'] == 'on' ? 1 : 0 ) );
         }
+    }
+
+    /**
+     * Filter the query to allow us to use a download (i.e. campaign) as the front page.
+     * 
+     * @param WP_Query $query           Passed by reference. Any changes made here are made to the global query.
+     * @return void
+     * @since Projection 1.0
+     */
+    function pre_get_posts($query) {
+        if ( $query->is_main_query() ) {
+            if( !isset( $query->query_vars['post_type'] ) || '' == $query->query_vars['post_type'] && 0 != $query->query_vars['page_id'] )
+                $query->query_vars['post_type'] = array( 'page', 'download' );
+        }        
     }
 
     /**

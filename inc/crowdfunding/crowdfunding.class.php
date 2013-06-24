@@ -120,7 +120,7 @@ class Sofa_Crowdfunding_Helper {
                 <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Login', 'projection') ?></h3></div> 
                 <?php echo atcf_shortcode_login() ?>
             </div>
-            <div class="register-block sidebar-block  block last">
+            <div class="register-block  block last">
                 <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Register', 'projection') ?></h3></div> 
                 <?php echo atcf_shortcode_register() ?>
             </div>

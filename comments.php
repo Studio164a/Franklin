@@ -28,7 +28,8 @@ if ( ! comments_open() ) return; ?>
 											. ( $req ? __( ' Required fields are marked *', 'projection' ) : '' ) 
 											. '<br />'
 											. __( 'Your email address will not be published.', 'projection' )
-											. '</p>',
+											. '</p>'
+											. '<p class="form-allowed-tags">' . sprintf( __( 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: %s' ), ' <code>' . allowed_tags() . '</code>' ) . '</p>',
 				'comment_field'			=> '', 
 				'fields'				=> sofa_comment_form_field_comment() . sofa_comment_form_default_fields(''),
 				'title_reply'			=> '', 
@@ -72,7 +73,7 @@ if ( ! comments_open() ) return; ?>
 						 * define textural_comment() and that will be used instead.
 						 * See textural_comment() in projection/functions.php for more.
 						 */
-						wp_list_comments( array( 'callback' => 'sofa_comment' ) );
+						wp_list_comments( array( 'callback' => 'sofa_comment', 'style' => 'ol' ) );
 					?>
 				</ol>
 
