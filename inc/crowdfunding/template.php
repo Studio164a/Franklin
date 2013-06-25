@@ -9,11 +9,11 @@
  * @package cheers
  */
 
-if ( !function_exists('projection_edd_before_price_options') ) {
+if ( !function_exists('franklin_edd_before_price_options') ) {
 
-	function projection_edd_before_price_options($campaign_id) {
+	function franklin_edd_before_price_options($campaign_id) {
 		?>
-		<div class="title-wrapper"><h2 class="block-title"><?php _e( 'Enter Pledge Amount', 'projection' ) ?></h2></div>
+		<div class="title-wrapper"><h2 class="block-title"><?php _e( 'Enter Pledge Amount', 'franklin' ) ?></h2></div>
 
 		<?php
 		$prices = edd_get_variable_prices( $campaign_id );		
@@ -30,8 +30,8 @@ if ( !function_exists('projection_edd_before_price_options') ) {
 					<?php if ( $remaining > 0 ) : ?>
 						<input type="radio" name="edd_options[price_id][]" id="edd_price_option_<?php echo $campaign_id ?>_<?php echo $i ?>" class="edd_price_option_<?php echo $campaign_id ?> edd_price_options_input" value="<?php echo $i ?>" />
 					<?php endif ?>
-					<h3 class="pledge-title"><?php printf( _x( 'Pledge %s', 'pledge amount', 'projection' ), '<strong>'.edd_currency_filter( edd_format_amount( $price['amount'] ) ).'</strong>' ) ?></h3>
-					<span class="pledge-limit"><?php printf( __( '%d of %d remaining', 'projection' ), $remaining, $price['limit'] ) ?></span>
+					<h3 class="pledge-title"><?php printf( _x( 'Pledge %s', 'pledge amount', 'franklin' ), '<strong>'.edd_currency_filter( edd_format_amount( $price['amount'] ) ).'</strong>' ) ?></h3>
+					<span class="pledge-limit"><?php printf( __( '%d of %d remaining', 'franklin' ), $remaining, $price['limit'] ) ?></span>
 					<p class="pledge-description"><?php echo $price['name'] ?></p>
 				</li>
 
@@ -43,12 +43,12 @@ if ( !function_exists('projection_edd_before_price_options') ) {
 
 		<!-- Text field with pledge button -->
 		<div class="campaign-price-input">
-			<span class="price-wrapper alignleft"><span class="currency"><?php echo sofa_crowdfunding_edd_get_currency_symbol() ?></span><input type="text" name="projection_custom_price" id="projection_custom_price" value="" /></span>
+			<span class="price-wrapper alignleft"><span class="currency"><?php echo sofa_crowdfunding_edd_get_currency_symbol() ?></span><input type="text" name="franklin_custom_price" id="franklin_custom_price" value="" /></span>
 		<?php
 	}
 }
 
-add_action('edd_before_price_options', 'projection_edd_before_price_options');
+add_action('edd_before_price_options', 'franklin_edd_before_price_options');
 
 
 /**
@@ -57,11 +57,11 @@ add_action('edd_before_price_options', 'projection_edd_before_price_options');
  * @see edd_purchase_link_end
  * @param int $campaign_id
  * @return void
- * @since Projection 1.0
+ * @since Franklin 1.0
  */
-if ( !function_exists('projection_atcf_campaign_contribute_options') ) {
+if ( !function_exists('franklin_atcf_campaign_contribute_options') ) {
 
-	function projection_edd_purchase_link_end() {		
+	function franklin_edd_purchase_link_end() {		
 		// Close the .campaign-price-input div, which wraps around the text field & pledge button 
 		?>
 		</div>
@@ -70,35 +70,35 @@ if ( !function_exists('projection_atcf_campaign_contribute_options') ) {
 	}
 }
 
-add_action('edd_purchase_link_end', 'projection_edd_purchase_link_end', 10, 2);
+add_action('edd_purchase_link_end', 'franklin_edd_purchase_link_end', 10, 2);
 
 /**
  * Displays a pledge button at the bottom of the campaign content. 
  * 
  * @see edd_after_download_content
  * @return void
- * @since Projection 1.0
+ * @since Franklin 1.0
  */
-if ( !function_exists('projection_edd_append_purchase_link') ) {
+if ( !function_exists('franklin_edd_append_purchase_link') ) {
 
-	function projection_edd_append_purchase_link() {
+	function franklin_edd_append_purchase_link() {
 		?>
-		<p class="campaign-support campaign-support-small"><a class="button accent" data-reveal-id="campaign-form" href="#"><?php _e( 'Support', 'projection' ) ?></a></p>
+		<p class="campaign-support campaign-support-small"><a class="button accent" data-reveal-id="campaign-form" href="#"><?php _e( 'Support', 'franklin' ) ?></a></p>
 		<?php 
 	}
 }
 
 remove_action('edd_after_download_content', 'edd_append_purchase_link');
-add_action('edd_after_download_content', 'projection_edd_append_purchase_link');
+add_action('edd_after_download_content', 'franklin_edd_append_purchase_link');
 
 /**
  * Register form
  *
  * @global $edd_options
- * @since Projection 1.0
+ * @since Franklin 1.0
  * @return $form
  */
-function projection_atcf_shortcode_register_form() {
+function franklin_atcf_shortcode_register_form() {
 	global $edd_options;
 ?>
 	<p class="atcf-register-name">
@@ -129,7 +129,7 @@ function projection_atcf_shortcode_register_form() {
 <?php
 }
 remove_action( 'atcf_shortcode_register', 'atcf_shortcode_register_form' );
-add_action( 'atcf_shortcode_register', 'projection_atcf_shortcode_register_form' );
+add_action( 'atcf_shortcode_register', 'franklin_atcf_shortcode_register_form' );
 
 
 /**
@@ -137,18 +137,18 @@ add_action( 'atcf_shortcode_register', 'projection_atcf_shortcode_register_form'
  * 
  * @param int $campaign_id
  * @return string
- * @since Projection 1.0
+ * @since Franklin 1.0
  */
-if ( !function_exists('projection_pledge_levels') ) {
+if ( !function_exists('franklin_pledge_levels') ) {
 
-	function projection_pledge_levels( $campaign_id ) {
+	function franklin_pledge_levels( $campaign_id ) {
 			
 		// Start the buffer
 		ob_start();
 
 		$prices = edd_get_variable_prices( $campaign_id );
 
-		$wrapper_atts = apply_filters( 'projection_pledge_levels_wrapper_atts', 'class="campaign-pledge-levels"', $campaign_id );
+		$wrapper_atts = apply_filters( 'franklin_pledge_levels_wrapper_atts', 'class="campaign-pledge-levels"', $campaign_id );
 
 		if ( is_array( $prices ) && count( $prices )) : ?>
 
@@ -158,13 +158,13 @@ if ( !function_exists('projection_pledge_levels') ) {
 
 				<?php $remaining = $price['limit'] - count($price['bought']) + 1 ?>
 
-				<h3 class="pledge-title" data-icon="&#xf0d7;"><?php printf( _x( 'Pledge %s', 'pledge amount', 'projection' ), '<strong>'.edd_currency_filter( edd_format_amount( $price['amount'] ) ).'</strong>' ) ?></h3>
+				<h3 class="pledge-title" data-icon="&#xf0d7;"><?php printf( _x( 'Pledge %s', 'pledge amount', 'franklin' ), '<strong>'.edd_currency_filter( edd_format_amount( $price['amount'] ) ).'</strong>' ) ?></h3>
 				<div class="pledge-level cf<?php if ($remaining == 0) echo ' not-available' ?>">										
-					<span class="pledge-limit"><?php printf( __( '%d of %d remaining', 'projection' ), $remaining, $price['limit'] ) ?></span>
+					<span class="pledge-limit"><?php printf( __( '%d of %d remaining', 'franklin' ), $remaining, $price['limit'] ) ?></span>
 					<p class="pledge-description"><?php echo $price['name'] ?></p>
 
 					<?php if ($remaining > 0) : ?>
-						<a class="pledge-button button button-alt button-small accent" data-reveal-id="campaign-form" data-price="<?php echo $price['amount'] ?>" href="#"><?php printf( _x( 'Pledge %s', 'pledge amount', 'projection' ), edd_currency_filter( edd_format_amount( $price['amount'] ) ) ) ?></a>
+						<a class="pledge-button button button-alt button-small accent" data-reveal-id="campaign-form" data-price="<?php echo $price['amount'] ?>" href="#"><?php printf( _x( 'Pledge %s', 'pledge amount', 'franklin' ), edd_currency_filter( edd_format_amount( $price['amount'] ) ) ) ?></a>
 					<?php endif ?>
 				</div>
 
@@ -174,7 +174,7 @@ if ( !function_exists('projection_pledge_levels') ) {
 
 		<?php endif;
 
-		return apply_filters( 'projection_pledge_levels', ob_get_clean(), $campaign_id );
+		return apply_filters( 'franklin_pledge_levels', ob_get_clean(), $campaign_id );
 	}
 }
 
@@ -183,11 +183,11 @@ if ( !function_exists('projection_pledge_levels') ) {
  * 
  * @param ATCF_Campaign $campaign
  * @return string
- * @since Projection 1.0
+ * @since Franklin 1.0
  */
-if ( !function_exists('projection_campaign_backers') ) {
+if ( !function_exists('franklin_campaign_backers') ) {
 
-	function projection_campaign_backers( $campaign, $args = array() ) {
+	function franklin_campaign_backers( $campaign, $args = array() ) {
 
 		$defaults = array(
 			'show_location'	=> true,
@@ -245,7 +245,7 @@ if ( !function_exists('projection_campaign_backers') ) {
 
 		<?php 
 
-		return apply_filters( 'projection_campaign_backers', ob_get_clean(), $campaign, $show_location );
+		return apply_filters( 'franklin_campaign_backers', ob_get_clean(), $campaign, $show_location );
 	}
 }
 
@@ -255,11 +255,11 @@ if ( !function_exists('projection_campaign_backers') ) {
  * @
  * @global $wp_embed
  * @return string
- * @since Projection 1.0
+ * @since Franklin 1.0
  */
-if ( !function_exists( 'projection_campaign_video' ) ) {
+if ( !function_exists( 'franklin_campaign_video' ) ) {
 
-	function projection_campaign_video($campaign) {
+	function franklin_campaign_video($campaign) {
 		global $wp_embed;
 
 		// If a campaign object was not passed, do nothing
@@ -288,11 +288,11 @@ if ( !function_exists( 'projection_campaign_video' ) ) {
  * @param array $args
  * @param int $depth
  * @return string
- * @since Projection 1.0
+ * @since Franklin 1.0
  */
-if ( !function_exists( 'projection_campaign_comment' ) ) {
+if ( !function_exists( 'franklin_campaign_comment' ) ) {
 
-	function projection_campaign_comment( $comment, $args, $depth ) {
+	function franklin_campaign_comment( $comment, $args, $depth ) {
 
 		$GLOBALS['comment'] = $comment;
 		switch ( $comment->comment_type ) :
@@ -301,8 +301,8 @@ if ( !function_exists( 'projection_campaign_comment' ) ) {
 		?>
 
 		<li class="pingback">
-			<p><?php _e( 'Pingback:', 'projection' ); ?> <?php comment_author_link() ?></p>
-			<?php edit_comment_link( __( 'Edit', 'projection' ), '<p class="comment_meta">', '</p>' ); ?>
+			<p><?php _e( 'Pingback:', 'franklin' ); ?> <?php comment_author_link() ?></p>
+			<?php edit_comment_link( __( 'Edit', 'franklin' ), '<p class="comment_meta">', '</p>' ); ?>
 		</li>
 		
 		<?php	
@@ -315,14 +315,14 @@ if ( !function_exists( 'projection_campaign_comment' ) ) {
 			<?php echo get_avatar( $comment, 50 ) ?>
 
 			<div class="comment-details">
-				<?php if ( sofa_comment_is_by_author($comment) ) : ?><small class="post-author with-icon alignright"><i class="icon-star"></i><?php _e('Author', 'projection') ?></small><?php endif ?>
+				<?php if ( sofa_comment_is_by_author($comment) ) : ?><small class="post-author with-icon alignright"><i class="icon-star"></i><?php _e('Author', 'franklin') ?></small><?php endif ?>
 				<h6 class="comment-author vcard">
 					<?php comment_author_link() ?>
 				</h6>				
 				<div class="comment-text"><?php comment_text() ?></div>
 				<p class="comment-meta">
-					<span class="comment-date"><?php printf( __( '%s ago', 'projection' ), human_time_diff( get_comment_time('U', true) ) ) ?></span>
-					<span class="comment-reply"><?php comment_reply_link( array_merge( $args, array( 'reply_text' => _x( 'Reply', 'reply to comment' , 'projection' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ) ?></span>
+					<span class="comment-date"><?php printf( __( '%s ago', 'franklin' ), human_time_diff( get_comment_time('U', true) ) ) ?></span>
+					<span class="comment-reply"><?php comment_reply_link( array_merge( $args, array( 'reply_text' => _x( 'Reply', 'reply to comment' , 'franklin' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ) ?></span>
 				</p>
 			</div>		
 

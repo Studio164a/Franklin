@@ -14,8 +14,8 @@ class Sofa_Crowdfunding_Video_Widget extends WP_Widget {
 	public function __construct() {
 		parent::__construct(
 			'campaign_video_widget', // Base ID
-			__( 'Campaign Video', 'projection'), // Name
-			array( 'description' => __( 'Display a campaign\'s video.', 'projection' ) ) // Args
+			__( 'Campaign Video', 'franklin'), // Name
+			array( 'description' => __( 'Display a campaign\'s video.', 'franklin' ) ) // Args
 		);
 	}
 
@@ -34,7 +34,7 @@ class Sofa_Crowdfunding_Video_Widget extends WP_Widget {
 		if ( !empty($title) )
 			echo $before_title . $title . $after_title;
 
-		echo projection_campaign_video( new ATCF_Campaign( $instance['campaign_id'] ) );
+		echo franklin_campaign_video( new ATCF_Campaign( $instance['campaign_id'] ) );
 
 		echo $after_widget;
 	}
@@ -49,14 +49,14 @@ class Sofa_Crowdfunding_Video_Widget extends WP_Widget {
         ?>
 
         <p>
-            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'projection') ?>
+            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'franklin') ?>
                 <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" />
             </label>
         </p> 
         <p>
-            <label for="<?php echo $this->get_field_id('campaign_id'); ?>"><?php _e('Campaign:', 'projection') ?>        
+            <label for="<?php echo $this->get_field_id('campaign_id'); ?>"><?php _e('Campaign:', 'franklin') ?>        
             	<select name="<?php echo $this->get_field_name('campaign_id') ?>">
-            		<option value=""><?php _e( 'Select', 'projection' ) ?></option>
+            		<option value=""><?php _e( 'Select', 'franklin' ) ?></option>
             		<?php foreach ( $campaigns->posts as $campaign ) : ?>
             			<option value="<?php echo $campaign->ID ?>" <?php selected( $campaign->ID, $campaign_id ) ?>><?php echo $campaign->post_title ?></option>
             		<?php endforeach ?>

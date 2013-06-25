@@ -13,7 +13,7 @@
 			<div class="entry cf">				
 				<?php the_content() ?>				
 
-				<?php wp_link_pages(array( 'before' => '<p class="entry_pages">' . __('Pages: ', 'projection') ) ) ?>
+				<?php wp_link_pages(array( 'before' => '<p class="entry_pages">' . __('Pages: ', 'franklin') ) ) ?>
 			</div>						
 
 			<?php if ( is_single() ) : ?>

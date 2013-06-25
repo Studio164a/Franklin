@@ -14,8 +14,8 @@ class Sofa_Posts_Widget extends WP_Widget {
 	public function Sofa_Posts_Widget() {
 		parent::__construct(
 			'sofa_posts_widget',
-			__( 'Sofa Posts Widget', 'projection'), 
-			array( 'description' => __( 'A widget to display posts with their featured thumbnails.', 'projection' ) )
+			__( 'Sofa Posts Widget', 'franklin'), 
+			array( 'description' => __( 'A widget to display posts with their featured thumbnails.', 'franklin' ) )
 		);
 	}
 
@@ -37,19 +37,19 @@ class Sofa_Posts_Widget extends WP_Widget {
 		$show_meta = isset( $instance['show_meta'] ) ? $instance['show_meta'] : false;
 		?>
 		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( 'Title:', 'projection' ); ?></label>
+			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( 'Title:', 'franklin' ); ?></label>
 			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id('title') ); ?>" name="<?php echo esc_attr( $this->get_field_name('title') ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id('number'); ?>"><?php _e( 'Number of posts to show:', 'projection' ); ?></label>
+			<label for="<?php echo $this->get_field_id('number'); ?>"><?php _e( 'Number of posts to show:', 'franklin' ); ?></label>
 			<input id="<?php echo esc_attr( $this->get_field_id('number') ); ?>" name="<?php echo esc_attr( $this->get_field_name('number') ); ?>" type="text" value="<?php echo esc_attr( $number ); ?>" size="3" />
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id('category') ?>"><?php _e( 'Limit by category:', 'projection' ) ?></label>
+			<label for="<?php echo $this->get_field_id('category') ?>"><?php _e( 'Limit by category:', 'franklin' ) ?></label>
 			<select name="<?php echo $this->get_field_name('category') ?>">
-				<option value=""><?php _e('Show all', 'projection') ?></option>
+				<option value=""><?php _e('Show all', 'franklin') ?></option>
 				<?php foreach ( get_terms('category') as $cat ) : ?>
 					<option value="<?php echo $cat->term_id ?>" <?php selected($cat->term_id, $category) ?>><?php echo $cat->name ?></option>
 				<?php endforeach ?>
@@ -57,22 +57,22 @@ class Sofa_Posts_Widget extends WP_Widget {
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id('has_featured_thumbnail') ?>"><?php _e( 'Only show posts with a featured thumbnail:', 'projection' ) ?></label>
+			<label for="<?php echo $this->get_field_id('has_featured_thumbnail') ?>"><?php _e( 'Only show posts with a featured thumbnail:', 'franklin' ) ?></label>
 			<input id="<?php echo esc_attr( $this->get_field_id('has_featured_thumbnail') ) ?>" type="checkbox" name="<?php echo esc_attr( $this->get_field_name('has_featured_thumbnail') ); ?>" <?php checked( $has_featured_thumbnail ) ?>>
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id('show_thumbnail') ?>"><?php _e( 'Show post thumbnail:', 'projection' ) ?></label>
+			<label for="<?php echo $this->get_field_id('show_thumbnail') ?>"><?php _e( 'Show post thumbnail:', 'franklin' ) ?></label>
 			<input id="<?php echo esc_attr( $this->get_field_id('show_thumbnail') ) ?>" type="checkbox" name="<?php echo esc_attr( $this->get_field_name('show_thumbnail') ); ?>" <?php checked( $show_thumbnail ) ?>>
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id('show_excerpt') ?>"><?php _e( 'Show post excerpt:', 'projection' ) ?></label>
+			<label for="<?php echo $this->get_field_id('show_excerpt') ?>"><?php _e( 'Show post excerpt:', 'franklin' ) ?></label>
 			<input id="<?php echo esc_attr( $this->get_field_id('show_excerpt') ) ?>" type="checkbox" name="<?php echo esc_attr( $this->get_field_name('show_excerpt') ); ?>" <?php checked( $show_excerpt ) ?>>
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id('show_meta') ?>"><?php _e( 'Show post meta:', 'projection' ) ?></label>
+			<label for="<?php echo $this->get_field_id('show_meta') ?>"><?php _e( 'Show post meta:', 'franklin' ) ?></label>
 			<input id="<?php echo esc_attr( $this->get_field_id('show_meta') ) ?>" type="checkbox" name="<?php echo esc_attr( $this->get_field_name('show_meta') ); ?>" <?php checked( $show_meta ) ?>>
 		</p>
 		<?php
@@ -133,7 +133,7 @@ class Sofa_Posts_Widget extends WP_Widget {
 		extract($args);
 
 		// Title, with default 
-		$title = apply_filters('widget_title', empty($instance['title']) ? __('Posts', 'projection' ) : $instance['title'], $instance, $this->id_base);
+		$title = apply_filters('widget_title', empty($instance['title']) ? __('Posts', 'franklin' ) : $instance['title'], $instance, $this->id_base);
 
 		// Start our query_args array
 		$query_args = array(
@@ -234,7 +234,7 @@ if ( !function_exists('sofa_posts_widget_after_title') ) {
 		?>		
 
 			<p class="meta"><?php printf( 
-				_n( 'By %s with %s%d comment%s', 'By %s with %s%d comments%s', get_comments_number(), 'projection' ), 
+				_n( 'By %s with %s%d comment%s', 'By %s with %s%d comments%s', get_comments_number(), 'franklin' ), 
 				'<a href="' . get_author_posts_url( get_the_author_meta('ID') ) . '">' . get_the_author() . '</a>', 
 				'<a href="' . get_comments_link() . '">', 
 				get_comments_number(),

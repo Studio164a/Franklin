@@ -54,7 +54,14 @@
 		// Image hover effects
 		imageHovers = function() {
 			$('.on-hover').each( function() {
-				$(this).parent()
+				var $parent = $(this).parent(), 
+					$image = $parent.find('img');
+
+				// Set the width and offset of the hover to match the image
+				$(this).css({ width : $image.width(), left : $image.position().left });
+				
+				// Set up the parent, along with its event handlers
+				$parent
 				.addClass('hover-parent')
 				.on( 'mouseover', function() {
 					$(this).addClass('hovering');
@@ -83,8 +90,6 @@
 		})();	
 	});
 
-	// console.log( Sofa );
-
 	$(document)
 	// Initiate foundation
 	.foundation()
@@ -102,6 +107,10 @@
 		$('.accordion').accordion({
 			heightStyle: "content"
 		});
+
+		// Load up lightbox
+		$(".entry a").not(".attachment,.tiled-gallery-item a").has('img').attr('data-rel', 'lightbox[]');
+		$("[data-rel^='lightbox']").prettyPhoto({ theme: 'pp_sofa', hook: 'data-rel' });
 	});
 
 	audiojs.events.ready(function() {

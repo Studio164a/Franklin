@@ -123,9 +123,9 @@
 		});
 
 		$('.edd_download_purchase_form').on('change', '.pledge-level', function() {
-			$('input[name=projection_custom_price]').val( $(this).data().price );
+			$('input[name=franklin_custom_price]').val( $(this).data().price );
 		})
-		.on('change', 'input[name=projection_custom_price]', function() {
+		.on('change', 'input[name=franklin_custom_price]', function() {
 			var pledge = $(this).val(), 
 				$minpledge = $('.pledge-level').first(),				
 				$maxpledge;

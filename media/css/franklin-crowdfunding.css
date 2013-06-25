@@ -43,31 +43,6 @@
 	line-height: 0;
 }
 
-.active-campaign .campaign-image::before, 
-.active-campaign .campaign-image::after {
-	content: "";
-	position: absolute;
-	width: 30px;
-	height: 58px;
-	bottom: 0;
-}
-
-.active-campaign .campaign-image::before {
-	background: url(../images/img-shadow-left.png);	
-	/*border-left: 5.8rem solid transparent !important;
-	border-bottom: 3rem solid transparent !important;
-	border-right: 5.8rem solid;*/
-	left: -30px;
-}
-
-.active-campaign .campaign-image::after {
-	background: url(../images/img-shadow-right.png);
-	/*border-right: 5.8rem solid transparent !important;
-	border-bottom: 3rem solid transparent !important;
-	border-left: 5.8rem solid;*/
-	right: -30px;
-}
-
 .active-campaign .wp-post-image {
 	width: 100%;
 }
@@ -601,11 +576,13 @@
 
 	.active-campaign .campaign-image {
 		width: 50%;
-		width: -moz-calc(92% - 42rem);
-		width: -webkit-calc(92% - 42rem);
-		width: calc(92% - 42rem);
+		width: -moz-calc(92% - 43rem);
+		width: -webkit-calc(92% - 43rem);
+		width: calc(92% - 43rem);
 		float: left;
 		margin-right: 0;
+		border: 0.5rem solid;
+		border-radius: 0.4rem;
 	}
 
 	.active-campaign .campaign-summary {

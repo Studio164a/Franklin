@@ -11,7 +11,7 @@ get_header() ?>
 
 		<div class="content">	
 
-			<h1 class="archive-title"><?php printf( __( 'Showing results for %s', 'projection' ), '&#8220;<span>' . get_search_query() . '</span>&#8221;' ) ?></h1>
+			<h1 class="archive-title"><?php printf( __( 'Showing results for %s', 'franklin' ), '&#8220;<span>' . get_search_query() . '</span>&#8221;' ) ?></h1>
 
 			<?php if ( have_posts() ) : ?>
 

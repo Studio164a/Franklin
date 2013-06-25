@@ -12,7 +12,7 @@
 		<div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
 	</li>
 	<li class="twitter">
-		<a href="https://twitter.com/share" class="twitter-share-button" data-via="Studio164a"><?php _e( 'Tweet', 'projection' ) ?></a>		
+		<a href="https://twitter.com/share" class="twitter-share-button" data-via="Studio164a"><?php _e( 'Tweet', 'franklin' ) ?></a>		
 	</li>
 	<li class="googleplus">
 		<div class="g-plusone" data-size="medium"></div>

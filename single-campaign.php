@@ -17,7 +17,7 @@ get_header() ?>
 
 			<div class="content-wrapper">
 
-				<?php echo projection_campaign_video( $campaign ) ?>
+				<?php echo franklin_campaign_video( $campaign ) ?>
 				
 				<div class="content">
 	

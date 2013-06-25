@@ -9,7 +9,7 @@
 	<!-- Campaign updates -->
 	<aside class="campaign-updates widget widget-open">
 		<div class="title-wrapper">
-			<h3 class="widget-title"><?php _e( 'Campaign Updates', 'projection' ) ?></h3>
+			<h3 class="widget-title"><?php _e( 'Campaign Updates', 'franklin' ) ?></h3>
 		</div>
 		<?php echo apply_filters( 'the_excerpt', $campaign->updates() ) ?>
 	</aside>

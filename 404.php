@@ -11,9 +11,9 @@ get_header() ?>
 
 		<div class="content">	
 
-			<h2><?php _e( 'Sorry, but you\'ve hit a dead end.', 'projection' ) ?></h2>
+			<h2><?php _e( 'Sorry, but you\'ve hit a dead end.', 'franklin' ) ?></h2>
 			
-			<p><a href="<?php echo site_url() ?>"><?php _e( 'Go home', 'projection' ) ?></a></p>
+			<p><a href="<?php echo site_url() ?>"><?php _e( 'Go home', 'franklin' ) ?></a></p>
 
 		</div>
 

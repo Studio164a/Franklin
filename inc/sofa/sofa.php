@@ -137,13 +137,13 @@ class Sofa_Framework {
 
 		add_filter('body_class', array(&$this, 'body_class_filter'));
 		add_filter('wp_title', array(&$this, 'wp_title_filter'), 10, 2);
+		add_filter('use_default_gallery_style', array(&$this, 'use_default_gallery_style_filter'));
 
 		// The scripts that will be loaded by default. Themes can modify this
 		// by using the sofa_enabled_scripts filter.
 		$this->enabled_scripts = apply_filters( 'sofa_enabled_scripts',
 			array( 
-				'flexnav' => array( 'file' => 'jquery.flexnav.js', 'dependencies' => array('jquery'), 'load_in_footer' => true ),
-				'prettyPhoto' => array( 'file' => 'jquery.prettyPhoto.js', 'dependencies' => array('jquery'), 'load_in_footer' => true )
+				'flexnav' => array( 'file' => 'jquery.flexnav.js', 'dependencies' => array('jquery'), 'load_in_footer' => true )
 			)
 		);		
 
@@ -191,7 +191,8 @@ class Sofa_Framework {
 		
 		$this->modules = apply_filters( 'sofa_modules', array( 
 			'fitvids' 		=> $module_dir . 'fitvids/fitvids.php',
-			'fontawesome' 	=> $module_dir . 'fontawesome/fontawesome.php'
+			'fontawesome' 	=> $module_dir . 'fontawesome/fontawesome.php', 
+			'prettyPhoto'	=> $module_dir . 'prettyPhoto/prettyPhoto.php'
 		) );
 
 		// Enabled modules
@@ -306,7 +307,7 @@ class Sofa_Framework {
      * @return string
      * @since Sofa 0.1
      */
-    function wp_title_filter( $title, $sep ) {
+    public function wp_title_filter( $title, $sep ) {
         global $paged, $page;
 
         if ( is_feed() )
@@ -326,6 +327,16 @@ class Sofa_Framework {
 
         return $title;
     }    
+
+    /**
+     * Don't use Wordpress' default gallery shortcode styling. 
+     *
+     * @return false
+     * @since Sofa 0.1
+     */ 
+    public function use_default_gallery_style_filter() {
+    	return false;
+    }
 
 	/** 
 	 * Load modules. 
@@ -460,7 +471,7 @@ class Sofa_Framework {
 /**
  * Init Sofa_Framework class
  */
-function get_sofa_framework() {
+function get_sofa_framework() {	
 	return Sofa_Framework::get_instance();
 }
 

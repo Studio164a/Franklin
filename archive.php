@@ -13,13 +13,13 @@ get_header() ?>
 
 			<h1 class="archive-title">		
 				<?php if ( is_day() ) : ?>
-					<?php printf( __( 'Daily Archives: %s', 'projection' ), '<span>' . get_the_date() . '</span>' ); ?>
+					<?php printf( __( 'Daily Archives: %s', 'franklin' ), '<span>' . get_the_date() . '</span>' ); ?>
 				<?php elseif ( is_month() ) : ?>
-					<?php printf( __( 'Monthly Archives: %s', 'projection' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'projection' ) ) . '</span>' ); ?>
+					<?php printf( __( 'Monthly Archives: %s', 'franklin' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'franklin' ) ) . '</span>' ); ?>
 				<?php elseif ( is_year() ) : ?>
-					<?php printf( __( 'Yearly Archives: %s', 'projection' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'projection' ) ) . '</span>' ); ?>
+					<?php printf( __( 'Yearly Archives: %s', 'franklin' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'franklin' ) ) . '</span>' ); ?>
 				<?php else : ?>
-					<?php _e( 'Archives', 'projection' ); ?>
+					<?php _e( 'Archives', 'franklin' ); ?>
 				<?php endif; ?>
 			</h1>
 

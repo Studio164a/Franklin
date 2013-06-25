@@ -10,7 +10,7 @@ get_header() ?>
 		<div class="content">	
 
 			<h1 class="archive-title">		
-				<?php printf( __( 'Category: %s', 'projection' ), '<span>' . single_cat_title( '', false ) . '</span>' ); ?>
+				<?php printf( __( 'Category: %s', 'franklin' ), '<span>' . single_cat_title( '', false ) . '</span>' ); ?>
 			</h1>
 
 			<?php if ( have_posts() ) : ?>

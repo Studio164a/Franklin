@@ -46,7 +46,7 @@ class Sofa_Crowdfunding_Helper {
         add_filter('edd_cart_item_price', array(&$this, 'edd_cart_item_price_filter'), 10, 3);
         add_filter('edd_checkout_image_size', array(&$this, 'edd_checkout_image_size_filter'));
         add_filter('edd_checkout_button_purchase', array(&$this, 'edd_checkout_button_purchase_filter'));
-        add_filter('projection_pledge_levels_wrapper_atts', array(&$this, 'projection_pledge_levels_wrapper_atts_filter'));
+        add_filter('franklin_pledge_levels_wrapper_atts', array(&$this, 'franklin_pledge_levels_wrapper_atts_filter'));
 
         add_shortcode('campaign_pledge_levels', array(&$this, 'campaign_pledge_levels_shortcode'));
     }
@@ -68,10 +68,10 @@ class Sofa_Crowdfunding_Helper {
      * Run on after_setup_theme hook
      * 
      * @return void
-     * @since Projection 1.0
+     * @since Franklin 1.0
      */
     public function after_setup_theme() {
-    	add_theme_support('appthemer-crowdfunding', apply_filters( 'projection_crowdfunding_supports', array(
+    	add_theme_support('appthemer-crowdfunding', apply_filters( 'franklin_crowdfunding_supports', array(
     		'campaign-widget' => true, 
     		'campaign-featured-image' => true, 
     		'campaign-video' => true, 
@@ -83,7 +83,7 @@ class Sofa_Crowdfunding_Helper {
      * Enqueue scripts 
      *
      * @return void
-     * @since Projection 1.0
+     * @since Franklin 1.0
      */
     public function wp_enqueue_scripts() {
         // Theme directory
@@ -91,21 +91,21 @@ class Sofa_Crowdfunding_Helper {
         
         wp_register_script('raphael', sprintf( "%s/media/js/raphael-min.js", $theme_dir ), array('jquery'), 0.1, true);
         wp_register_script('countdown', sprintf( "%s/media/js/jquery.countdown.min.js", $theme_dir ), array('jquery'), 0.1, true);
-        wp_register_script('projection-crowdfunding', sprintf( "%s/media/js/projection-crowdfunding.js", $theme_dir ), array('raphael', 'countdown'), 0.1, true);
-        wp_enqueue_script('projection-crowdfunding');
+        wp_register_script('franklin-crowdfunding', sprintf( "%s/media/js/franklin-crowdfunding.js", $theme_dir ), array('raphael', 'countdown'), 0.1, true);
+        wp_enqueue_script('franklin-crowdfunding');
 
-        wp_localize_script('projection-crowdfunding', 'SofaCrowdfunding', array(
+        wp_localize_script('franklin-crowdfunding', 'SofaCrowdfunding', array(
             'button_colour' => get_theme_mod('button_colour', '#7D6E63')));
 
-        wp_register_style('projection-crowdfunding', sprintf( "%s/media/css/projection-crowdfunding.css", $theme_dir ));
-        wp_enqueue_style('projection-crowdfunding');
+        wp_register_style('franklin-crowdfunding', sprintf( "%s/media/css/franklin-crowdfunding.css", $theme_dir ));
+        wp_enqueue_style('franklin-crowdfunding');
     }
 
     /**
      * Add pledge modal on wp_footer hook
      * 
      * @return void
-     * @since Projection 1.0
+     * @since Franklin 1.0
      */
     public function wp_footer() {
         ?>             
@@ -117,11 +117,11 @@ class Sofa_Crowdfunding_Helper {
         <div id="login-form" class="reveal-modal block multi-block">            
             <a class="close-reveal-modal icon"><i class="icon-remove-sign"></i></a>
             <div class="content-block login-block">
-                <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Login', 'projection') ?></h3></div> 
+                <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Login', 'franklin') ?></h3></div> 
                 <?php echo atcf_shortcode_login() ?>
             </div>
             <div class="register-block  block last">
-                <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Register', 'projection') ?></h3></div> 
+                <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Register', 'franklin') ?></h3></div> 
                 <?php echo atcf_shortcode_register() ?>
             </div>
         </div>
@@ -132,7 +132,7 @@ class Sofa_Crowdfunding_Helper {
      * Register widgets. 
      * 
      * @return void
-     * @since Projection 1.0
+     * @since Franklin 1.0
      */
     public function widgets_init() {
         register_widget( 'Sofa_Crowdfunding_Pledge_Levels_Widget' );
@@ -146,7 +146,7 @@ class Sofa_Crowdfunding_Helper {
      * 
      * @param array $args
      * @return array
-     * @since Projection 1.0
+     * @since Franklin 1.0
      */
     public function edd_purchase_link_defaults_filter($args) {
         global $edd_options;
@@ -159,7 +159,7 @@ class Sofa_Crowdfunding_Helper {
      * 
      * @param string $default
      * @return string
-     * @since Projection 1.0
+     * @since Franklin 1.0
      */
     public function edd_templates_dir_filter($default) {   
         return 'templates/edd';
@@ -170,7 +170,7 @@ class Sofa_Crowdfunding_Helper {
      *
      * @param array $item
      * @return array
-     * @since Projection 1.0
+     * @since Franklin 1.0
      */
     public function edd_add_to_cart_item_filter($item) {
         // If post_data is not set, return. Not sure this would ever happen, but saves any notices occuring.
@@ -180,8 +180,8 @@ class Sofa_Crowdfunding_Helper {
         // Parse the post_data array 
         parse_str( urldecode( $_POST['post_data'] ), $query_args );
 
-        if ( isset( $query_args['projection_custom_price'] ) ) {
-            $item['options']['custom_price'] = $query_args['projection_custom_price'];
+        if ( isset( $query_args['franklin_custom_price'] ) ) {
+            $item['options']['custom_price'] = $query_args['franklin_custom_price'];
         }
         
         return $item;
@@ -194,7 +194,7 @@ class Sofa_Crowdfunding_Helper {
      * @param
      * @param
      * @return 
-     * @since Projection 1.0
+     * @since Franklin 1.0
      */
     public function edd_cart_item_price_filter($price, $item_id, $options) {
         if ( isset( $options['custom_price']) && $options['custom_price'] != $price )
@@ -208,7 +208,7 @@ class Sofa_Crowdfunding_Helper {
      * 
      * @param array $default
      * @return array
-     * @since Projection 1.0
+     * @since Franklin 1.0
      */
     public function edd_checkout_image_size_filter($default) {
         return array(80, 80);
@@ -219,7 +219,7 @@ class Sofa_Crowdfunding_Helper {
      * 
      * @param string $button
      * @return string
-     * @since Projection 1.0
+     * @since Franklin 1.0
      */
     public function edd_checkout_button_purchase_filter($button) {
         return str_replace( 'edd-submit', 'edd-submit accent button-large', $button);
@@ -230,19 +230,19 @@ class Sofa_Crowdfunding_Helper {
      * 
      * @param string $atts
      * @return string
-     * @since Projection 1.0
+     * @since Franklin 1.0
      */
-    public function projection_pledge_levels_wrapper_atts_filter($atts) {
+    public function franklin_pledge_levels_wrapper_atts_filter($atts) {
         return 'class="campaign-pledge-levels accordion"';
     }
 
     /** 
-     * Shortcode wrapper for projection_pledge_levels template function.
+     * Shortcode wrapper for franklin_pledge_levels template function.
      *
-     * @see projection_pledge_levels
+     * @see franklin_pledge_levels
      * @param array $atts
      * @return string|void
-     * @since Projection 1.0
+     * @since Franklin 1.0
      */
     public function campaign_pledge_levels_shortcode( $atts ) {
         global $post;
@@ -262,14 +262,14 @@ class Sofa_Crowdfunding_Helper {
             $campaign_id = $active_campaign->ID;
         }
 
-        return projection_pledge_levels($campaign_id);
+        return franklin_pledge_levels($campaign_id);
     }
 
     /** 
      * Get the active campaign. 
      * 
      * @return ATCF_Campaign|false
-     * @since Projection 1.0 
+     * @since Franklin 1.0 
      */
     public function get_active_campaign() {
         // If we haven't already set the active campaign, set it now

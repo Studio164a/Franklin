@@ -32,32 +32,32 @@ class OSFA_Customizer {
         $this->sofa = get_sofa_framework();
 
         $this->colours =  array(
-            'accent_colour'         => array( 'title' => __( 'Accent colour', 'projection' ), 'default' => '#d95b43' ), 
-            'accent_hover'          => array( 'title' => __( 'Accent hover', 'projection' ), 'default' => '#df745f' ), 
-            'accent_text'           => array( 'title' => __( 'Text on accent', 'projection' ), 'default' => '#fff' ),
-            'body_background'       => array( 'title' => __( 'Body background colour', 'projection' ), 'default' => '#aea198' ),
-            'body_text'             => array( 'title' => __( 'Body copy', 'projection' ), 'default' => '#7d6e63' ),
-            'button_text'           => array( 'title' => __( 'Button text colour', 'projection' ), 'default' => '#fff' ),
-            'wrapper_background'    => array( 'title' => __( 'Wrapper background colour', 'projection' ), 'default' => '#f9f8f7' ),
-            'posts_background'      => array( 'title' => __( 'Posts background colour', 'projection' ), 'default' => '#fff' ),
-            'widget_background'     => array( 'title' => __( 'Widget background colour', 'projection' ), 'default' => '#f1efee' ),
-            'primary_border'        => array( 'title' => __( 'Primary border ', 'projection' ), 'default' => '#e2dedb' ),
-            'secondary_border'      => array( 'title' => __( 'Secondary border', 'projection' ), 'default' => '#dbd5d1' ),
-            'meta_colour'           => array( 'title' => __( 'Meta text', 'projection' ), 'default' => '#bdb2ab' ),
-            'footer_text'           => array( 'title' => __( 'Footer text', 'projection' ), 'default' => '#fff' ),
-            'footer_titles'         => array( 'title' => __( 'Footer titles', 'projection' ), 'default' => '#fff' )
+            'accent_colour'         => array( 'title' => __( 'Accent colour', 'franklin' ), 'default' => '#d95b43' ), 
+            'accent_hover'          => array( 'title' => __( 'Accent hover', 'franklin' ), 'default' => '#df745f' ), 
+            'accent_text'           => array( 'title' => __( 'Text on accent', 'franklin' ), 'default' => '#fff' ),
+            'body_background'       => array( 'title' => __( 'Body background colour', 'franklin' ), 'default' => '#aea198' ),
+            'body_text'             => array( 'title' => __( 'Body copy', 'franklin' ), 'default' => '#7d6e63' ),
+            'button_text'           => array( 'title' => __( 'Button text colour', 'franklin' ), 'default' => '#fff' ),
+            'wrapper_background'    => array( 'title' => __( 'Wrapper background colour', 'franklin' ), 'default' => '#f9f8f7' ),
+            'posts_background'      => array( 'title' => __( 'Posts background colour', 'franklin' ), 'default' => '#fff' ),
+            'widget_background'     => array( 'title' => __( 'Widget background colour', 'franklin' ), 'default' => '#f1efee' ),
+            'primary_border'        => array( 'title' => __( 'Primary border ', 'franklin' ), 'default' => '#e2dedb' ),
+            'secondary_border'      => array( 'title' => __( 'Secondary border', 'franklin' ), 'default' => '#dbd5d1' ),
+            'meta_colour'           => array( 'title' => __( 'Meta text', 'franklin' ), 'default' => '#bdb2ab' ),
+            'footer_text'           => array( 'title' => __( 'Footer text', 'franklin' ), 'default' => '#fff' ),
+            'footer_titles'         => array( 'title' => __( 'Footer titles', 'franklin' ), 'default' => '#fff' )
         );
 
         $this->textures = array(
-            ''                                                                   => __( '— Select —', 'projection' ),
-            get_template_directory_uri() . '/media/images/diagonal-grain.png'    => __( 'Diagonal grain', 'projection' ), 
-            get_template_directory_uri() . '/media/images/fabric.png'            => __( 'Fabric', 'projection' ), 
-            get_template_directory_uri() . '/media/images/grain.png'             => __( 'Grain', 'projection' ), 
-            get_template_directory_uri() . '/media/images/grid.png'              => __( 'Grid', 'projection' ), 
-            get_template_directory_uri() . '/media/images/grunge.png'            => __( 'Grunge', 'projection' ), 
-            get_template_directory_uri() . '/media/images/lined-paper.png'       => __( 'Lined paper', 'projection' ),
-            get_template_directory_uri() . '/media/images/textured-paper.png'    => __( 'Textured paper', 'projection' ), 
-            get_template_directory_uri() . '/media/images/tweed.png'             => __( 'Tweed', 'projection' )
+            ''                                                                   => __( '— Select —', 'franklin' ),
+            get_template_directory_uri() . '/media/images/diagonal-grain.png'    => __( 'Diagonal grain', 'franklin' ), 
+            get_template_directory_uri() . '/media/images/fabric.png'            => __( 'Fabric', 'franklin' ), 
+            get_template_directory_uri() . '/media/images/grain.png'             => __( 'Grain', 'franklin' ), 
+            get_template_directory_uri() . '/media/images/grid.png'              => __( 'Grid', 'franklin' ), 
+            get_template_directory_uri() . '/media/images/grunge.png'            => __( 'Grunge', 'franklin' ), 
+            get_template_directory_uri() . '/media/images/lined-paper.png'       => __( 'Lined paper', 'franklin' ),
+            get_template_directory_uri() . '/media/images/textured-paper.png'    => __( 'Textured paper', 'franklin' ), 
+            get_template_directory_uri() . '/media/images/tweed.png'             => __( 'Tweed', 'franklin' )
         );
 
 		add_action('customize_register', array(&$this, 'customize_register'));        
@@ -95,25 +95,25 @@ class OSFA_Customizer {
             array(
                 'settings' => 'logo_url',
                 'section'  => 'title_tagline',
-                'label'    => __( 'Logo', 'projection' )
+                'label'    => __( 'Logo', 'franklin' )
             ) )
         );
         $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'retina_logo_url',
             array(
                 'settings' => 'retina_logo_url',
                 'section'  => 'title_tagline',
-                'label'    => __( 'Retina version of logo (2x)', 'projection' )
+                'label'    => __( 'Retina version of logo (2x)', 'franklin' )
             ) )
         );        
         $wp_customize->add_control( 'hide_site_title', array(
             'settings' => 'hide_site_title', 
-            'label' => __( 'Hide the site title', 'projection' ),
+            'label' => __( 'Hide the site title', 'franklin' ),
             'section' => 'title_tagline', 
             'type' => 'checkbox'            
         ) );
         $wp_customize->add_control( 'hide_site_tagline', array(
             'settings' => 'hide_site_tagline', 
-            'label' => __( 'Hide the tagline', 'projection' ),
+            'label' => __( 'Hide the tagline', 'franklin' ),
             'section' => 'title_tagline', 
             'type' => 'checkbox'            
         ) );
@@ -140,8 +140,8 @@ class OSFA_Customizer {
          */
         $wp_customize->add_section( 'textures', array( 
             'priority' => $priority, 
-            'title' => __( 'Background Textures', 'projection' ), 
-            'description' => __( 'Choose background textures for the body and campaign section', 'projection' )
+            'title' => __( 'Background Textures', 'franklin' ), 
+            'description' => __( 'Choose background textures for the body and campaign section', 'franklin' )
         ) );
 
         $priority += 1;
@@ -155,7 +155,7 @@ class OSFA_Customizer {
 
         $wp_customize->add_control( 'body_texture', array(
             'settings'      => 'body_texture',
-            'label'         => __( 'Background texture for the body:', 'projection' ), 
+            'label'         => __( 'Background texture for the body:', 'franklin' ), 
             'section'       => 'textures', 
             'type'          => 'select', 
             'priority'      => $priority,
@@ -169,7 +169,7 @@ class OSFA_Customizer {
                 'settings' => 'body_texture_custom',
                 'section'  => 'textures',
                 'priority' => $priority,
-                'label'    => __( 'Upload your own background texture', 'projection' )
+                'label'    => __( 'Upload your own background texture', 'franklin' )
             ) )
         );
 
@@ -177,7 +177,7 @@ class OSFA_Customizer {
 
         $wp_customize->add_control( 'campaign_texture', array(
             'settings'      => 'campaign_texture',
-            'label'         => __( 'Background texture for the campaign section:', 'projection' ), 
+            'label'         => __( 'Background texture for the campaign section:', 'franklin' ), 
             'section'       => 'textures', 
             'type'          => 'select', 
             'priority'      => $priority,
@@ -191,7 +191,7 @@ class OSFA_Customizer {
                 'settings' => 'campaign_texture_custom',
                 'section'  => 'textures',
                 'priority' => $priority,
-                'label'    => __( 'Upload your own background texture', 'projection' )
+                'label'    => __( 'Upload your own background texture', 'franklin' )
             ) )
         );
         
@@ -199,7 +199,7 @@ class OSFA_Customizer {
 
         $wp_customize->add_control( 'blog_banner_texture', array(
             'settings'      => 'blog_banner_texture',
-            'label'         => __( 'Background texture for the blog & fullwidth page banner:', 'projection' ), 
+            'label'         => __( 'Background texture for the blog & fullwidth page banner:', 'franklin' ), 
             'section'       => 'textures', 
             'type'          => 'select', 
             'priority'      => $priority,
@@ -213,7 +213,7 @@ class OSFA_Customizer {
                 'settings' => 'blog_banner_texture_custom',
                 'section'  => 'textures',
                 'priority' => $priority,
-                'label'    => __( 'Upload your own background texture', 'projection' )
+                'label'    => __( 'Upload your own background texture', 'franklin' )
             ) )
         );
         
@@ -224,8 +224,8 @@ class OSFA_Customizer {
          */
         $wp_customize->add_section( 'blog', array(
             'priority'      => $priority, 
-            'title'         => __( 'Blog', 'projection' ), 
-            'description'   => __( 'Set your blog title', 'projection' )
+            'title'         => __( 'Blog', 'franklin' ), 
+            'description'   => __( 'Set your blog title', 'franklin' )
         ) );
 
         $priority += 1;
@@ -233,7 +233,7 @@ class OSFA_Customizer {
         $wp_customize->add_setting( 'blog_banner_title', array( 'transport' => 'postMessage' ) );
         $wp_customize->add_control( 'blog_banner_title', array(
             'setting'       => 'blog_banner_title', 
-            'label'         => __( 'Blog title', 'projection' ), 
+            'label'         => __( 'Blog title', 'franklin' ), 
             'section'       => 'blog', 
             'type'          => 'text', 
             'priority'      => $priority
@@ -246,8 +246,8 @@ class OSFA_Customizer {
          */
         $wp_customize->add_section( '404', array(
             'priority'      => $priority, 
-            'title'         => __( '404', 'projection' ), 
-            'description'   => __( 'Set your 404 page title', 'projection' )
+            'title'         => __( '404', 'franklin' ), 
+            'description'   => __( 'Set your 404 page title', 'franklin' )
         ) );
 
         $priority += 1;
@@ -255,7 +255,7 @@ class OSFA_Customizer {
         $wp_customize->add_setting( '404_banner_title', array( 'transport' => 'postMessage', 'default' => '404' ) );
         $wp_customize->add_control( '404_banner_title', array(
             'setting'       => '404_banner_title', 
-            'label'         => __( '404 title', 'projection' ), 
+            'label'         => __( '404 title', 'franklin' ), 
             'section'       => '404', 
             'type'          => 'text', 
             'priority'      => $priority
@@ -268,8 +268,8 @@ class OSFA_Customizer {
          */ 
         $wp_customize->add_section( 'social', array( 
             'priority' => 103, 
-            'title' => __( 'Social', 'projection' ),
-            'description' => __( 'Set up links to your online social presences', 'projection' )
+            'title' => __( 'Social', 'franklin' ),
+            'description' => __( 'Set up links to your online social presences', 'franklin' )
         ) );
 
         // Loop over all the social sites the theme supports, creating settings and controls for each one
@@ -296,7 +296,7 @@ class OSFA_Customizer {
         if ( empty( $campaigns->posts ) )
             return array();
 
-        $options[] = __( '&#8212; Select &#8212;', 'projection' );
+        $options[] = __( '&#8212; Select &#8212;', 'franklin' );
 
         foreach ( $campaigns->posts as $campaign ) {
             $options[$campaign->ID] = $campaign->post_title;
@@ -359,12 +359,32 @@ class OSFA_Customizer {
         $body_text_rgb = $this->get_rgb_from_hex($body_text);
 
         // Get the textures 
-        $body_texture = get_theme_mod( 'body_texture_custom', false ) ? get_theme_mod( 'body_texture_custom' ) : get_theme_mod( 'body_texture', false );
-        $campaign_texture = get_theme_mod( 'campaign_texture_custom', false ) ? get_theme_mod( 'campaign_texture_custom' ) : get_theme_mod( 'campaign_texture', false );
-        $blog_banner_texture = get_theme_mod( 'blog_banner_texture_custom', false ) ? get_theme_mod( 'blog_banner_texture_custom' ) : get_theme_mod( 'blog_banner_texture', false );
-        $body_texture_retina = $body_texture === false ? false : substr( $body_texture, 0, -4 ) . '@2x.png';
-        $campaign_texture_retina = $campaign_texture === false ? false : substr( $campaign_texture, 0, -4 ) . '@2x.png';
-        $blog_banner_texture_retina = $blog_banner_texture === false ? false : substr( $blog_banner_texture, 0, -4 ) . '@2x.png';
+        $body_texture = get_theme_mod( 'body_texture', false );
+        $body_texture_custom = get_theme_mod( 'body_texture_custom', false );        
+        $body_texture_use = $body_texture_custom ? $body_texture_custom : $body_texture;
+        if ( $body_texture_custom === false && $body_texture !== false ) {
+            list($width, $height) = getimagesize($body_texture);   
+            $body_texture_retina = substr( $body_texture, 0, -4 ) . '@2x.png';
+            $body_texture_retina_dimensions = $width/2 . 'px ' . $height/2 . 'px';
+        }
+
+        $campaign_texture = get_theme_mod( 'campaign_texture', false );
+        $campaign_texture_custom = get_theme_mod( 'campaign_texture_custom', false );
+        $campaign_texture_use = $campaign_texture_custom ? $campaign_texture_custom : $campaign_texture;
+        if ( $campaign_texture_custom === false && $campaign_texture !== false ) {
+            list($width, $height) = getimagesize($campaign_texture);   
+            $campaign_texture_retina = substr( $campaign_texture, 0, -4 ) . '@2x.png';
+            $campaign_texture_retina_dimensions = $width/2 . 'px ' . $height/2 . 'px';
+        }
+
+        $blog_banner_texture = get_theme_mod( 'blog_banner_texture', false );
+        $blog_banner_texture_custom = get_theme_mod( 'blog_banner_texture_custom', false );
+        $blog_banner_texture_use = $blog_banner_texture_custom ? $blog_banner_texture_custom : $blog_banner_texture;
+        if ( $blog_banner_texture_custom === false && $blog_banner_texture !== false ) {
+            list($width, $height) = getimagesize($blog_banner_texture);   
+            $blog_banner_texture_retina = substr( $blog_banner_texture, 0, -4 ) . '@2x.png';
+            $blog_banner_texture_retina_dimensions = $width/2 . 'px ' . $height/2 . 'px';
+        }
 
         // Logo 
         $logo = get_theme_mod('logo_url', false);   
@@ -380,32 +400,31 @@ class OSFA_Customizer {
 
 <style media="all" type="text/css">   
 
-<?php if ( $body_texture !== false ) : ?>
+<?php if ( $body_texture_use !== false ) : ?>
 /* Body background */
-body { background: url(<?php echo $body_texture ?>); }
+body { background-image: url(<?php echo $body_texture_use ?>); }
 <?php endif ?>
 
-<?php if ( $campaign_texture !== false ) : ?>
+<?php if ( $campaign_texture_use !== false ) : ?>
 /* Campaign background */
-.active-campaign { background: url(<?php echo $campaign_texture ?>); }
+.active-campaign { background-image: url(<?php echo $campaign_texture_use ?>); }
 <?php endif ?>
 
-<?php if ( $blog_banner_texture !== false ) : ?>
+<?php if ( $blog_banner_texture_use !== false ) : ?>
 /* Blog banner background */
-.banner { background: url(<?php echo $blog_banner_texture ?>); }
+.banner { background-image: url(<?php echo $blog_banner_texture_use ?>); }
 <?php endif ?>
 
 /* Accent colour */
 a, #site-navigation .menu-button, #site-navigation a:hover, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, body .button.accent:hover, .button.accent.button-alt, .social a:hover, #site-navigation .current-menu-item a { color: <?php echo $accent_colour ?>; }
-.campaign-button, .active-campaign, .sticky.block, .button.accent, .button.accent.button-alt:hover, .banner { background-color: <?php echo $accent_colour ?>; color: <?php echo $accent_text ?>; }
+.campaign-button, .active-campaign, .sticky.block, .button.accent, .button.accent.button-alt:hover, .banner, .gallery-icon, .featured-image a { background-color: <?php echo $accent_colour ?>; color: <?php echo $accent_text ?>; }
 .button.accent, .campaign-support .button.accent:hover { box-shadow: 0 0 0 0.3rem <?php echo $accent_colour ?>; }
 #site-navigation .hovering > a { border-color: <?php echo $accent_colour ?>; border-color: <?php echo $this->rgb($accent_rgb, 0.7) ?>; }
 input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, input[type=email]:focus, textarea:focus, .button.accent.button-alt, .button.accent.button-alt:hover { border-color: <?php echo $accent_colour ?>; }
-.hovering .on-hover {  background-color: <?php echo $accent_colour ?>; background-color: <?php echo $this->rgb($accent_rgb, 0.5) ?>; }
 
 /* Accent hover */
 a:hover { color: <?php echo $accent_hover ?>;}
-.sticky .post-title, .barometer .filled, .button.accent { border-color: <?php echo $accent_hover ?>; }
+.sticky .post-title, .barometer .filled, .button.accent, .active-campaign .campaign-image { border-color: <?php echo $accent_hover ?>; }
 
 /* Body background colour */
 body, .audiojs .loaded { background-color: <?php echo $body_background ?>; }
@@ -418,6 +437,7 @@ body, .with-icon:before, .icon, input[type=submit]:hover, input[type=reset]:hove
 .button.button-alt, .button.button-alt:hover, .account-links .button.button-alt:hover::before, .shadow-wrapper::before, .shadow-wrapper::after { border-color: <?php echo $body_text ?>; }
 input[type=submit], input[type=reset], button, .button, .button.button-alt:hover, .account-links .button.button-alt:hover::before, .audiojs, .campaign-pledge-levels.accordion h3 { background-color: <?php echo $body_text ?>; }
 input[type=submit], input[type=reset], button, .button { box-shadow: 0 0 0 3px <?php echo $body_text ?>; }
+.active-campaign .campaign-image { box-shadow: 0 0 0.1rem 0 <?php echo $body_text ?>;}
 
 /* Button text colour */
 input[type=submit], input[type=reset], button, .button, .active-campaign .campaign-button, .button.button-alt:hover, .account-links .button.button-alt:hover::before, .sticky.block, .sticky.block a, .campaign-support .button:hover, .campaign-pledge-levels.accordion h3 { color: <?php echo $button_text ?>; }
@@ -471,19 +491,19 @@ th { border-right-color: <?php echo $secondary_border ?>; }
 // Echoing this just to preserve proper colorization in sublime 
 echo "@media only screen and (-Webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5) {" ?>
 
-<?php if ( $body_texture !== false ) : ?>
+<?php if ( $body_texture_custom === false && $body_texture !== false ) : ?>
 /* Body background */
-body { background: url(<?php echo $body_texture_retina ?>); }
+body { background-image: url(<?php echo $body_texture_retina ?>); background-size: <?php echo $body_texture_retina_dimensions ?>;}
 <?php endif ?>
 
-<?php if ( $campaign_texture !== false ) : ?>
+<?php if ( $campaign_texture_custom === false && $campaign_texture !== false ) : ?>
 /* Campaign background */
-.active-campaign { background: url(<?php echo $campaign_texture_retina ?>); }
+.active-campaign { background-image: url(<?php echo $campaign_texture_retina ?>); background-size: <?php echo $campaign_texture_retina_dimensions ?>;}
 <?php endif ?>
 
-<?php if ( $blog_banner_texture !== false ) : ?>
+<?php if ( $blog_banner_texture_custom === false && $blog_banner_texture !== false ) : ?>
 /* Campaign background */
-.banner { background: url(<?php echo $blog_banner_texture_retina ?>); }
+.banner { background-image: url(<?php echo $blog_banner_texture_retina ?>); background-size: <?php echo $blog_banner_texture_retina_dimensions ?>;}
 <?php endif ?>
 
 <?php if ( $retina_logo !== false && ( strlen( $retina_logo ) > 0 ) ) : ?>
@@ -507,7 +527,7 @@ body { background: url(<?php echo $body_texture_retina ?>); }
      * @param array $rgb
      * @param int $alpha
      * @return string
-     * @since Projection 1.0
+     * @since Franklin 1.0
      */
     function rgb($rgb, $alpha = '') {
         return empty( $alpha ) ? sprintf( 'rgb(%s)', implode( ', ', $rgb ) ) : sprintf( 'rgba(%s, %s)', implode( ', ', $rgb ), $alpha);
@@ -519,7 +539,7 @@ body { background: url(<?php echo $body_texture_retina ?>); }
      * @credit http://bavotasan.com/2011/convert-hex-color-to-rgb-using-php/
      * @param string $hex
      * @return array
-     * @since Projection 1.0
+     * @since Franklin 1.0
      */
     function get_rgb_from_hex($hex) {
         $hex = str_replace("#", "", $hex);

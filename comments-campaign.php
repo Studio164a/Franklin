@@ -6,7 +6,7 @@ if ( ! comments_open() ) return; ?>
 
 		<div class="comment-form-block content-block">
 			<?php if ( post_password_required() ) : ?>
-				<p class="nopassword"><?php _e( 'This post is password protected. Enter the password to view any comments.', 'projection' ); ?></p>
+				<p class="nopassword"><?php _e( 'This post is password protected. Enter the password to view any comments.', 'franklin' ); ?></p>
 			</div><!-- #comments -->
 			<?php
 				/* Stop the rest of comments.php from being processed,
@@ -20,14 +20,14 @@ if ( ! comments_open() ) return; ?>
 			<?php $req = get_option( 'require_name_email' ) ?>
 			<?php comment_form( array( 
 				'comment_notes_after'	=> '<p class="comment-notes">' 
-											. __( 'Your email address will not be published.', 'projection' )
+											. __( 'Your email address will not be published.', 'franklin' )
 											. '</p>',
 				'comment_notes_before'	=> '',
 				'comment_field'			=> '', 
 				'fields'				=> sofa_comment_form_field_comment() . sofa_comment_form_default_fields(''),
 				'title_reply'			=> '', 
 				'cancel_reply_link'		=> ' ',
-				'label_submit'			=> _x( 'Submit', 'post comment', 'projection' )
+				'label_submit'			=> _x( 'Submit', 'post comment', 'franklin' )
 			) ) ?>
 		</div>
 
@@ -37,7 +37,7 @@ if ( ! comments_open() ) return; ?>
 				<div class="title-wrapper">
 					<h2 class="block-title with-icon" data-icon="&#xf086;">
 						<?php
-							printf( _n( 'One comment', '%1$s comments', get_comments_number(), 'projection' ),
+							printf( _n( 'One comment', '%1$s comments', get_comments_number(), 'franklin' ),
 								number_format_i18n( get_comments_number() ) );
 						?>
 					</h2>
@@ -50,7 +50,7 @@ if ( ! comments_open() ) return; ?>
 				?>
 
 				<nav id="comment-nav-above" class="comment-nav pagination">
-					<h1 class="assistive-text"><?php _e( 'Comment navigation', 'projection' ); ?></h1>
+					<h1 class="assistive-text"><?php _e( 'Comment navigation', 'franklin' ); ?></h1>
 					<ul>		
 						<?php if ( strlen( $previous_link ) ) : ?><li class="nav-previous"><?php echo $previous_link ?></li><?php endif ?>
 						<?php if ( strlen( $next_link ) ) : ?><li class="nav-next"><?php echo $next_link ?></li><?php endif ?>
@@ -64,15 +64,15 @@ if ( ! comments_open() ) return; ?>
 						 * to use textural_comment() to format the comments.
 						 * If you want to overload this in a child theme then you can
 						 * define textural_comment() and that will be used instead.
-						 * See textural_comment() in projection/functions.php for more.
+						 * See textural_comment() in franklin/functions.php for more.
 						 */
-						wp_list_comments( array( 'callback' => 'projection_campaign_comment' ) );
+						wp_list_comments( array( 'callback' => 'franklin_campaign_comment' ) );
 					?>
 				</ul>
 
 				<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 				<nav id="comment-nav-below" class="comment_nav pagination">
-					<h1 class="assistive-text"><?php _e( 'Comment navigation', 'projection' ); ?></h1>
+					<h1 class="assistive-text"><?php _e( 'Comment navigation', 'franklin' ); ?></h1>
 					<ul>
 						<?php if ( strlen( $previous_link ) ) : ?><li class="nav-previous"><?php echo $previous_link ?></li><?php endif ?>
 						<?php if ( strlen( $next_link ) ) : ?><li class="nav-next"><?php echo $next_link ?></li><?php endif ?>
