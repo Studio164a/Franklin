@@ -1077,6 +1077,16 @@ body {
 
 /* 5.8 --- Author Bio ***/
 
+.author-description .avatar {
+	margin: 12px 0 0 10px; margin-top: 1.2rem; margin-right: 1rem;
+	float: left;
+}
+
+.author-description p {
+	margin-top: 12px; margin-top: 1.2rem;
+	font-size: 14px; font-size: 1.4rem; 
+	line-height: 22px; line-height: 2.2rem;
+}
 
 /* 5.9 --- Archives ***/
 

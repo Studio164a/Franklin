@@ -89,10 +89,20 @@ function sofa_strip_embed_shortcode($content, $limit = '-1' ) {
  * Credit: http://pippinsplugins.com/retrieve-attachment-id-from-image-url/
  *
  * @param string $image_url
- * @since Cheers 1.0
+ * @since Projection 1.0
  */
 function sofa_get_image_id_from_url($image_url) {
     global $wpdb;
     $attachment = $wpdb->get_col( $wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid = %s;", $image_url ) ); 
     return $attachment[0]; 
 }    
+
+/**
+ * This returns the currently viewed author on an author archvie. 
+ * 
+ * @return string
+ * @since Projection 1.0
+ */
+function sofa_get_current_author() {
+	return (get_query_var('author_name')) ? get_user_by('slug', get_query_var('author_name')) : get_userdata(get_query_var('author'));
+}

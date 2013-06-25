@@ -404,7 +404,7 @@ input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, in
 
 /* Accent hover */
 a:hover { color: <?php echo $accent_hover ?>;}
-.sticky .post-title, .barometer .filled, .button.accent { border-color: <?php echo $accent_hover ?>; }
+.sticky .post-title, .barometer .filled, .button.accent, .active-campaign .campaign-image { border-color: <?php echo $accent_hover ?>; }
 
 /* Body background colour */
 body, .audiojs .loaded { background-color: <?php echo $body_background ?>; }
