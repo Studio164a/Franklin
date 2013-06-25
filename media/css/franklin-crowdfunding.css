@@ -38,8 +38,9 @@
 
 .active-campaign .campaign-image {
 	position: relative;
+	float: left;
 	width: 92%;
-	margin: 0 4%;
+	margin: 0 4% 24px; margin-bottom: 2.4rem;
 	line-height: 0;
 }
 
