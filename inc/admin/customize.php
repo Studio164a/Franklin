@@ -418,7 +418,7 @@ input[type=submit], input[type=reset], button, .button, .button.button-alt:hover
 input[type=submit], input[type=reset], button, .button { box-shadow: 0 0 0 3px <?php echo $body_text ?>; }
 
 /* Button text colour */
-input[type=submit], input[type=reset], button, .button, .active-campaign .campaign-button, .button.button-alt:hover, .account-links .button.button-alt:hover::before, .sticky.block, .sticky.block a, .campaign-support .button:hover, .campaign-pledge-levels.accordion { color: <?php echo $button_text ?>; }
+input[type=submit], input[type=reset], button, .button, .active-campaign .campaign-button, .button.button-alt:hover, .account-links .button.button-alt:hover::before, .sticky.block, .sticky.block a, .campaign-support .button:hover, .campaign-pledge-levels.accordion h3 { color: <?php echo $button_text ?>; }
 .campaign-support .button:hover { box-shadow: 0 0 0 3px <?php echo $button_text ?>; }
 
 /* Widget background colour */
