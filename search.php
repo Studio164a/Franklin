@@ -1,17 +1,17 @@
 <?php 
 /**
- * Category template
+ * Search results template
  */
 
 get_header() ?>
 
+	<?php get_template_part( 'banner', 'search' ) ?>	
+	
 	<div class="content-wrapper">
 
 		<div class="content">	
 
-			<h1 class="archive-title">		
-				<?php printf( __( 'Category: %s', 'projection' ), '<span>' . single_cat_title( '', false ) . '</span>' ); ?>
-			</h1>
+			<h1 class="archive-title"><?php printf( __( 'Showing results for %s', 'projection' ), '&#8220;<span>' . get_search_query() . '</span>&#8221;' ) ?></h1>
 
 			<?php if ( have_posts() ) : ?>
 

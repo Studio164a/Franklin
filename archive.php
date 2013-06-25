@@ -5,12 +5,13 @@
 
 get_header() ?>
 
+	<?php get_template_part( 'banner' ) ?>
 
 	<div class="content-wrapper">
 
 		<div class="content">	
 
-			<h1 class="archive_title">		
+			<h1 class="archive-title">		
 				<?php if ( is_day() ) : ?>
 					<?php printf( __( 'Daily Archives: %s', 'projection' ), '<span>' . get_the_date() . '</span>' ); ?>
 				<?php elseif ( is_month() ) : ?>

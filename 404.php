@@ -5,12 +5,15 @@
 
 get_header() ?>
 
+	<?php get_template_part( 'banner', '404' ) ?>
+
 	<div class="content-wrapper">
 
 		<div class="content">	
 
-			<h1><?php _e( 'Sorry, but you\'ve hit a dead end.', 'projection' ) ?></h1>
-			<?php get_search_form() ?>
+			<h2><?php _e( 'Sorry, but you\'ve hit a dead end.', 'projection' ) ?></h2>
+			
+			<p><a href="<?php echo site_url() ?>"><?php _e( 'Go home', 'projection' ) ?></a></p>
 
 		</div>
 

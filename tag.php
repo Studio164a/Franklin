@@ -9,7 +9,7 @@ get_header() ?>
 
 		<div class="content">	
 
-			<h1 class="archive_title">		
+			<h1 class="archive-title">		
 				<?php printf( __( 'Tag archives: %s', 'osfa' ), '<span>' . single_tag_title( '', false ) . '</span>' ); ?>
 			</h1>
 

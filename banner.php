@@ -1,9 +1,11 @@
-<?php $banner_title = get_theme_mod( '', false ) ?>
+<?php $banner_title = get_theme_mod( 'blog_banner_title', false ) ?>
 
 <?php if ( $banner_title ) : ?>
 
 	<div class="banner">
-		<h2><?php echo $banner_title ?></h2>
+		<div class="shadow-wrapper">
+			<h2 class="banner-title"><?php echo $banner_title ?></h2>
+		</div>
 	</div>
 
 <?php endif ?>

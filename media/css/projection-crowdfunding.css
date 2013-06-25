@@ -261,7 +261,8 @@
 .pledge-title {
 	display: inline;
 	text-transform: uppercase;
-	font-weight: 300;
+	letter-spacing: 1px; letter-spacing: 0.1rem;
+	font-weight: 300;	
 }
 
 .pledge-title strong {
@@ -594,30 +595,6 @@
 		padding-right: 9px; padding-left: 9px; padding-right: .9rem; padding-left: .9rem;
 		position: relative;
 		left: -9px; left: -.9rem;		
-	}
-
-	.shadow-wrapper::before,
-	.shadow-wrapper::after {
-		content: "";
-		position: absolute;
-		bottom: -0.9rem;
-		width: 0;
-		height: 0;
-	}
-
-	.shadow-wrapper::before {
-		left: -0.9rem;
-		border-left: 0.9rem solid transparent !important;
-		border-bottom: 0.9rem solid transparent !important;
-		border-right: 0.9rem solid;
-	}
-
-	.shadow-wrapper::after {
-		right: -0.9rem;
-		border-right: 0.9rem solid transparent !important;
-		border-bottom: 0.9rem solid transparent !important;
-		border-left: 0.9rem solid;
-
 	}
 
 	.block .campaign-backer {

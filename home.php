@@ -5,9 +5,9 @@
 
 get_header() ?>
 
-	<div class="content-wrapper">
+	<?php get_template_part( 'banner' ) ?>
 
-		<?php get_template_part( 'banner' ) ?>
+	<div class="content-wrapper">		
 
 		<div class="content">
 

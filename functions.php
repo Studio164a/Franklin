@@ -241,8 +241,8 @@ class Projection_Theme {
             'name' => __( 'Footer left', 'projection' ),
             'before_widget' => '<aside id="%1$s" class="widget footer-widget %2$s">',
             'after_widget' => '</aside>',
-            'before_title' => '<div class="title-wrapper"><h3 class="widget-title">',
-            'after_title' => '</h3></div>'
+            'before_title' => '<div class="title-wrapper"><h4 class="widget-title">',
+            'after_title' => '</h4></div>'
         ));
 
         register_sidebar( array(
@@ -250,8 +250,8 @@ class Projection_Theme {
             'name' => __( 'Footer right', 'projection' ),
             'before_widget' => '<aside id="%1$s" class="widget footer-widget %2$s">',
             'after_widget' => '</aside>',
-            'before_title' => '<div class="title-wrapper"><h3 class="widget-title">',
-            'after_title' => '</h3></div>'
+            'before_title' => '<div class="title-wrapper"><h4 class="widget-title">',
+            'after_title' => '</h4></div>'
         ));
 
         register_widget( 'Sofa_Posts_Widget' );

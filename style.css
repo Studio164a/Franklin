@@ -835,6 +835,19 @@ body {
 
 /* 5.0 -- Content
 ================================================== */
+.banner {
+	width: 100%;
+	height: 100px; height: 10rem;
+	text-align: center;
+}
+
+.banner-title {
+	margin: 0;
+	line-height: 100px; line-height: 10rem;	
+	text-transform: uppercase;
+	letter-spacing: 3px; letter-spacing: 0.3rem;
+}
+
 .entry-block {
 	position: relative;
 	padding: 0;	
@@ -1067,12 +1080,20 @@ body {
 
 /* 5.9 --- Archives ***/
 
+.archive-title {
+	text-align: center;
+	margin: 0 0 36px; margin-bottom: 3.6rem;
+}
 
 /* 5.10 --- Search Results/No posts ***/
 
 
 /* 5.11 --- 404 ***/
 
+.error404 .content {
+	width: 100%;
+	text-align: center;
+}
 
 /* 5.12 --- Comments ***/
 
@@ -1371,7 +1392,8 @@ body {
 	float: left;
 	border: none;
 	padding-left: 0;
-	padding-right: 0;	
+	padding-right: 0;
+	margin-bottom: 12px; margin-bottom: 1.2rem;	
 }
 
 .footer-right .footer-widget:nth-of-type(2n+1) {
@@ -1615,6 +1637,36 @@ body {
 		padding-left: 0.9rem;
 	}
 
+	.banner {
+		position: relative;
+		left: -0.9rem;
+		padding-left: 0.9rem;
+		padding-right: 0.9rem;		
+	}
+
+	.shadow-wrapper::before,
+	.shadow-wrapper::after {
+		content: "";
+		position: absolute;
+		bottom: -0.9rem;
+		width: 0;
+		height: 0;
+	}
+
+	.shadow-wrapper::before {
+		left: -0.9rem;
+		border-left: 0.9rem solid transparent !important;
+		border-bottom: 0.9rem solid transparent !important;
+		border-right: 0.9rem solid;
+	}
+
+	.shadow-wrapper::after {
+		right: -0.9rem;
+		border-right: 0.9rem solid transparent !important;
+		border-bottom: 0.9rem solid transparent !important;
+		border-left: 0.9rem solid;
+	}	
+
 	.body-wrapper { 
 		width: 98.3%; /* 1170px */
 		padding: 0 0.8403361%; /* 10px */
@@ -1625,5 +1677,4 @@ body {
 		padding-right: 3.4rem;
 		padding-left: 3.4rem;
 	}
-
 }

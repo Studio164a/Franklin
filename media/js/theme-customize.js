@@ -75,12 +75,15 @@
 	}, 
 
 	updateBodyTexture = function(value) {
-		console.log( value );
 		$('body').css('background-image', 'url(' + value + ')');
 	}, 
 
 	updateCampaignTexture = function(value) {
 		$('.active-campaign').css('background-image', 'url(' + value + ')');
+	}, 
+
+	updateBannerTexture = function(value) {
+		$('.banner').css('background-image', 'url(' + value + ')');
 	}, 
 
 	updateSocial = function(value, network) {
@@ -238,6 +241,16 @@
 	wp.customize( 'campaign_texture_custom', function( value ) {
 		value.bind( function( newval ) {
 			updateCampaignTexture( newval );
+		});
+	} );
+	wp.customize( 'blog_banner_texture', function( value ) {
+		value.bind( function( newval ) {
+			updateBannerTexture( newval );
+		});
+	} );
+	wp.customize( 'blog_banner_texture_custom', function( value ) {
+		value.bind( function( newval ) {
+			updateBannerTexture( newval );
 		});
 	} );
 
