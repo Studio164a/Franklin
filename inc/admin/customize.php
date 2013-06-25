@@ -414,11 +414,11 @@ body, .audiojs .loaded { background-color: <?php echo $body_background ?>; }
 body, .with-icon:before, .icon, input[type=submit]:hover, input[type=reset]:hover, button:hover, .button:hover, .button.accent:hover, .widget_search #searchsubmit::before, .button.button-alt, #site-navigation a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title { color: <?php echo $body_text ?>; }
 .footer-widget .widget-title, .campaign-excerpt { text-shadow: 0 1px 0 <?php echo $body_text ?>; }
 .button.button-alt, .button.button-alt:hover, .account-links .button.button-alt:hover::before, .shadow-wrapper::before, .shadow-wrapper::after { border-color: <?php echo $body_text ?>; }
-input[type=submit], input[type=reset], button, .button, .button.button-alt:hover, .account-links .button.button-alt:hover::before, .audiojs { background-color: <?php echo $body_text ?>; }
+input[type=submit], input[type=reset], button, .button, .button.button-alt:hover, .account-links .button.button-alt:hover::before, .audiojs, .campaign-pledge-levels.accordion h3 { background-color: <?php echo $body_text ?>; }
 input[type=submit], input[type=reset], button, .button { box-shadow: 0 0 0 3px <?php echo $body_text ?>; }
 
 /* Button text colour */
-input[type=submit], input[type=reset], button, .button, .active-campaign .campaign-button, .button.button-alt:hover, .account-links .button.button-alt:hover::before, .sticky.block, .sticky.block a, .campaign-support .button:hover { color: <?php echo $button_text ?>; }
+input[type=submit], input[type=reset], button, .button, .active-campaign .campaign-button, .button.button-alt:hover, .account-links .button.button-alt:hover::before, .sticky.block, .sticky.block a, .campaign-support .button:hover, .campaign-pledge-levels.accordion { color: <?php echo $button_text ?>; }
 .campaign-support .button:hover { box-shadow: 0 0 0 3px <?php echo $button_text ?>; }
 
 /* Widget background colour */
