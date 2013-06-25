@@ -396,11 +396,11 @@ body { background: url(<?php echo $body_texture ?>); }
 
 /* Accent colour */
 a, #site-navigation .menu-button, #site-navigation a:hover, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, body .button.accent:hover, .button.accent.button-alt, .social a:hover, #site-navigation .current-menu-item a { color: <?php echo $accent_colour ?>; }
-.campaign-button, .active-campaign, .sticky.block, .button.accent, .button.accent.button-alt:hover, .banner { background-color: <?php echo $accent_colour ?>; color: <?php echo $accent_text ?>; }
+.campaign-button, .active-campaign, .sticky.block, .button.accent, .button.accent.button-alt:hover, .banner, .gallery-icon, .featured-image a { background-color: <?php echo $accent_colour ?>; color: <?php echo $accent_text ?>; }
 .button.accent, .campaign-support .button.accent:hover { box-shadow: 0 0 0 0.3rem <?php echo $accent_colour ?>; }
 #site-navigation .hovering > a { border-color: <?php echo $accent_colour ?>; border-color: <?php echo $this->rgb($accent_rgb, 0.7) ?>; }
 input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, input[type=email]:focus, textarea:focus, .button.accent.button-alt, .button.accent.button-alt:hover { border-color: <?php echo $accent_colour ?>; }
-.hovering .on-hover {  background-color: <?php echo $accent_colour ?>; background-color: <?php echo $this->rgb($accent_rgb, 0.5) ?>; }
+/*.hovering .on-hover {  background-color: <?php echo $accent_colour ?>; background-color: <?php echo $this->rgb($accent_rgb, 0.5) ?>; }*/
 
 /* Accent hover */
 a:hover { color: <?php echo $accent_hover ?>;}

@@ -56,7 +56,7 @@ class Projection_Theme {
         if ( !is_admin() )
             add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'), 11);
 
-        add_filter('sofa_enabled_scripts', array(&$this, 'sofa_enabled_scripts_filter'));
+        add_filter('sofa_enabled_modules', array(&$this, 'sofa_enabled_modules'));
         add_filter('sofa_load_lt_ie9', array(&$this, 'sofa_load_lt_ie9'));
         add_filter('get_pages',  array(&$this, 'get_pages_filter'));    
         add_filter('post_class', array(&$this, 'post_class_filter'));
@@ -65,6 +65,10 @@ class Projection_Theme {
         add_filter('previous_posts_link_attributes', array(&$this, 'posts_navigation_link_attributes'));
         add_filter('next_comments_link_attributes', array(&$this, 'posts_navigation_link_attributes'));
         add_filter('previous_comments_link_attributes', array(&$this, 'posts_navigation_link_attributes'));
+        
+
+        // add_filter('wp_get_attachment_link', array(&$this, 'wp_get_attachment_link_filter'), 10, 2);
+        // add_filter('wp_get_attachment_image_attributes', array(&$this, 'wp_get_attachment_image_attributes_filter'), 10, 2);
 
   //       add_action('wp_head', array(&$this, 'wp_head'));
   //       add_action('after_setup_theme', array(&$this, 'after_setup_theme'));        
@@ -121,7 +125,7 @@ class Projection_Theme {
         wp_register_script('audio-js', sprintf( "%s/media/js/audiojs/audio.min.js", $theme_dir ), array(), 0.1, true);
         wp_register_script('foundation', sprintf( "%s/media/js/foundation.min.js", $theme_dir ), array(), 0.1, true);
         wp_register_script('foundation-reveal', sprintf( "%s/media/js/foundation.reveal.js", $theme_dir ), array('foundation'), 0.1, true);        
-        wp_register_script('main', sprintf( "%s/media/js/main.js", $theme_dir ), array( 'jquery-ui-accordion', 'audio-js', 'hoverIntent', 'foundation-reveal', 'jquery-ui-accordion', 'jquery'), 0.1, true);
+        wp_register_script('main', sprintf( "%s/media/js/main.js", $theme_dir ), array( 'prettyPhoto', 'jquery-ui-accordion', 'audio-js', 'hoverIntent', 'foundation-reveal', 'jquery-ui-accordion', 'jquery'), 0.1, true);
 	    wp_enqueue_script('main');
 
         // If Symple Shortcodes is installed, dequeue its stylesheet
@@ -407,15 +411,15 @@ class Projection_Theme {
     }
 
     /**
-     * Filters the scripts to be enqueued.
-     * 
-     * @param array $scripts
+     * Filters the enabled modules to be set up by Sofa. 
+     *
+     * @param array $modules
      * @return array
      * @since Projection 1.0
      */
-    public function sofa_enabled_scripts_filter($scripts) {
-        unset($scripts['prettyPhoto']);
-        return $scripts;
+    public function sofa_enabled_modules($modules) {
+        array_push( $modules, 'prettyPhoto' );
+        return $modules;
     }
 
     /**
