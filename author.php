@@ -21,6 +21,7 @@ get_header() ?>
 				<div class="widget author-description">
 					
 					<?php $avatar = get_avatar( $author->ID, 70 ) ?>
+					
 					<?php if (strlen( $avatar ) ) : ?>
 						<?php echo $avatar ?>
 					<?php endif ?>

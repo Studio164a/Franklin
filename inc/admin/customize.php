@@ -416,10 +416,11 @@ body, .with-icon:before, .icon, input[type=submit]:hover, input[type=reset]:hove
 .button.button-alt, .button.button-alt:hover, .account-links .button.button-alt:hover::before, .shadow-wrapper::before, .shadow-wrapper::after { border-color: <?php echo $body_text ?>; }
 input[type=submit], input[type=reset], button, .button, .button.button-alt:hover, .account-links .button.button-alt:hover::before, .audiojs { background-color: <?php echo $body_text ?>; }
 input[type=submit], input[type=reset], button, .button { box-shadow: 0 0 0 3px <?php echo $body_text ?>; }
+.active-campaign .campaign-image { box-shadow: 0 0 0.1rem 0 <?php echo $body_text ?>;}
 
 /* Button text colour */
 input[type=submit], input[type=reset], button, .button, .active-campaign .campaign-button, .button.button-alt:hover, .account-links .button.button-alt:hover::before, .sticky.block, .sticky.block a, .campaign-support .button:hover { color: <?php echo $button_text ?>; }
-.campaign-support .button:hover { box-shadow: 0 0 0 3px <?php echo $button_text ?>; }
+.campaign-support .button:hover { box-shadow: 0 0 0 0.3rem <?php echo $button_text ?>; }
 
 /* Widget background colour */
 input[type=text], input[type=password], input[type=number], input[type=email], textarea, .featured-image, th, .entry blockquote, hr, pre, .meta, .audiojs .scrubber, .widget, .sidebar-block, .accordion h3 { background-color: <?php echo $widget_background ?>; }
