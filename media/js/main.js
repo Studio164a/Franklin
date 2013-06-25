@@ -99,7 +99,9 @@
 			$('#site-navigation').toggleClass('is-active');			
 		});
 
-		$('.accordion').accordion();
+		$('.accordion').accordion({
+			heightStyle: "content"
+		});
 	});
 
 	audiojs.events.ready(function() {

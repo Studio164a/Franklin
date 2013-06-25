@@ -53,12 +53,18 @@
 }
 
 .active-campaign .campaign-image::before {
-	background: url(../images/img-shadow-left.png);
+	background: url(../images/img-shadow-left.png);	
+	/*border-left: 5.8rem solid transparent !important;
+	border-bottom: 3rem solid transparent !important;
+	border-right: 5.8rem solid;*/
 	left: -30px;
 }
 
 .active-campaign .campaign-image::after {
 	background: url(../images/img-shadow-right.png);
+	/*border-right: 5.8rem solid transparent !important;
+	border-bottom: 3rem solid transparent !important;
+	border-left: 5.8rem solid;*/
 	right: -30px;
 }
 
