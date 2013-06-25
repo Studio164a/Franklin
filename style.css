@@ -1221,7 +1221,8 @@ body {
 .widget-title {
 	margin-top: 12px; margin-top: 1.2rem;	
 	margin-bottom: 24px; margin-bottom: 2.4rem;
-	padding-bottom: 4px; padding-bottom: 0.4rem;
+	padding-bottom: 0;
+	letter-spacing: 1px; letter-spacing: 0.1rem;
 }
 
 .widget-title, 
@@ -1527,10 +1528,6 @@ body {
 	.widget_sofa_posts_widget .entry-block {
 		padding-right: 2rem; padding-left: 2rem;
 	}	
-
-	.social {
-		margin-left: 2rem;
-	}
 
 	.accordion h3::before {
 		margin-right: 2rem;

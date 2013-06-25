@@ -212,8 +212,8 @@ class Projection_Theme {
             'description' => __( 'The default sidebar.', 'projection' ),
             'before_widget' => '<aside id="%1$s" class="widget cf %2$s">',
             'after_widget' => '</aside>',
-            'before_title' => '<div class="title-wrapper"><h3 class="widget-title">',
-            'after_title' => '</h3></div>'
+            'before_title' => '<div class="title-wrapper"><h4 class="widget-title">',
+            'after_title' => '</h4></div>'
         ));  
 
         register_sidebar( array(
@@ -222,8 +222,8 @@ class Projection_Theme {
             'description' => __( 'The campaign sidebar.', 'projection' ),
             'before_widget' => '<aside id="%1$s" class="widget cf %2$s">',
             'after_widget' => '</aside>',
-            'before_title' => '<div class="title-wrapper"><h3 class="widget-title">',
-            'after_title' => '</h3></div>'
+            'before_title' => '<div class="title-wrapper"><h4 class="widget-title">',
+            'after_title' => '</h4></div>'
         ));  
 
         register_sidebar( array(
@@ -234,17 +234,7 @@ class Projection_Theme {
             'after_widget' => '</aside>',
             'before_title' => '<div class="title-wrapper"><h2 class="block-title">',
             'after_title' => '</h2></div>'
-        ));  
-
-        register_sidebar( array(
-            'id' => 'default',            
-            'name' => __( 'Default sidebar', 'projection' ),
-            'description' => __( 'The default sidebar.', 'projection' ),
-            'before_widget' => '<aside id="%1$s" class="widget cf %2$s">',
-            'after_widget' => '</aside>',
-            'before_title' => '<div class="title-wrapper"><h3 class="widget-title">',
-            'after_title' => '</h3></div>'
-        ));          
+        ));        
 
         register_sidebar( array(
             'id' => 'footer_left',            
@@ -344,10 +334,10 @@ class Projection_Theme {
      * @since Projection 1.0
      */
     function pre_get_posts($query) {
-        if ( $query->is_main_query() ) {
-            if( !isset( $query->query_vars['post_type'] ) || '' == $query->query_vars['post_type'] && 0 != $query->query_vars['page_id'] )
-                $query->query_vars['post_type'] = array( 'page', 'download' );
-        }        
+        // if ( $query->is_main_query() && !$query->is_home ) {
+        //     if( !isset( $query->query_vars['post_type'] ) || '' == $query->query_vars['post_type'] && 0 != $query->query_vars['page_id'] )
+        //         $query->query_vars['post_type'] = array( 'page', 'download' );
+        // }        
     }
 
     /**

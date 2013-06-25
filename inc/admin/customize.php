@@ -336,7 +336,7 @@ body, .audiojs .loaded { background-color: <?php echo $body_background ?>; }
 .audiojs .play-pause { border-right-color: <?php echo $body_background ?>; }
 
 /* Body copy */
-body, .with-icon:before, .icon, input[type=submit]:hover, input[type=reset]:hover, button:hover, .button:hover, .button.accent:hover, .widget_search #searchsubmit::before, .button.button-alt, #site-navigation a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span { color: <?php echo $body_text ?>; }
+body, .with-icon:before, .icon, input[type=submit]:hover, input[type=reset]:hover, button:hover, .button:hover, .button.accent:hover, .widget_search #searchsubmit::before, .button.button-alt, #site-navigation a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title { color: <?php echo $body_text ?>; }
 .footer-widget .widget-title { text-shadow: 0 1px 0 <?php echo $body_text ?>; }
 .button.button-alt, .button.button-alt:hover, .account-links .button.button-alt:hover::before, .shadow-wrapper::before, .shadow-wrapper::after { border-color: <?php echo $body_text ?>; }
 input[type=submit], input[type=reset], button, .button, .button.button-alt:hover, .account-links .button.button-alt:hover::before, .audiojs { background-color: <?php echo $body_text ?>; }

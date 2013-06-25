@@ -125,7 +125,7 @@ class Sofa_Posts_Widget extends WP_Widget {
 		if ( isset($cache[$args['widget_id']]) ) {
 			echo $cache[$args['widget_id']];
 			return;
-		}
+		}		
 
 		// No cache? Carry on then...
 		ob_start();

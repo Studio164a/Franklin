@@ -7,6 +7,8 @@ get_header() ?>
 
 	<div class="content-wrapper">
 
+		<?php get_template_part( 'banner' ) ?>
+
 		<div class="content">
 
 			<?php if ( have_posts() ) : ?>

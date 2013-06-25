@@ -65,7 +65,7 @@ if ( ! comments_open() ) return; ?>
 				</nav>
 				<?php endif; // check for comment navigation ?>
 
-				<ol class="comments-list">
+				<ul class="comments-list">
 					<?php
 						/* Loop through and list the comments. Tell wp_list_comments()
 						 * to use textural_comment() to format the comments.
@@ -73,9 +73,9 @@ if ( ! comments_open() ) return; ?>
 						 * define textural_comment() and that will be used instead.
 						 * See textural_comment() in projection/functions.php for more.
 						 */
-						wp_list_comments( array( 'callback' => 'sofa_comment', 'style' => 'ol' ) );
+						wp_list_comments( array( 'callback' => 'sofa_comment' ) );
 					?>
-				</ol>
+				</ul>
 
 				<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 				<nav id="comment-nav-below" class="comment-nav pagination cf">
