@@ -414,7 +414,7 @@ body, .audiojs .loaded { background-color: <?php echo $body_background ?>; }
 /* Body copy */
 body, .with-icon:before, .icon, input[type=submit]:hover, input[type=reset]:hover, button:hover, .button:hover, .button.accent:hover, .widget_search #searchsubmit::before, .button.button-alt, #site-navigation a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title { color: <?php echo $body_text ?>; }
 .footer-widget .widget-title { text-shadow: 0 1px 0 <?php echo $body_text ?>; }
-.campaign-excerpt { text-shadow: 0 1px 1px <?php echo $this->rgb($body_text_rgb, 0.7);}
+.campaign-excerpt { text-shadow: 0 1px 1px <?php echo $this->rgb($body_text_rgb, 0.7) ?>;}
 .button.button-alt, .button.button-alt:hover, .account-links .button.button-alt:hover::before, .shadow-wrapper::before, .shadow-wrapper::after { border-color: <?php echo $body_text ?>; }
 input[type=submit], input[type=reset], button, .button, .button.button-alt:hover, .account-links .button.button-alt:hover::before, .audiojs, .campaign-pledge-levels.accordion h3 { background-color: <?php echo $body_text ?>; }
 input[type=submit], input[type=reset], button, .button { box-shadow: 0 0 0 3px <?php echo $body_text ?>; }
