@@ -12,7 +12,9 @@
 		<div class="campaign-excerpt"><?php the_excerpt() ?></div>	
 
 		<?php if ( has_post_thumbnail( $campaign->ID ) ) : ?>
-			<?php echo get_the_post_thumbnail( $campaign->ID ) ?>
+			<div class="campaign-image">
+				<?php echo get_the_post_thumbnail( $campaign->ID ) ?>
+			</div>
 		<?php endif ?>
 
 		<div class="campaign-summary cf">		
