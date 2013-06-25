@@ -13,7 +13,7 @@ get_header(); ?>
 
 				<?php get_template_part( 'banner', 'page' ) ?>
 
-				<div class="content content-wrapper">		
+				<div class="content content-wrapper fullwidth">		
 						
 					<?php get_template_part( 'content', 'page' ) ?>
 

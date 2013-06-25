@@ -49,6 +49,7 @@ class Franklin_Theme {
         add_action('widgets_init', array(&$this, 'widgets_init'));
         add_action('wp_footer', array(&$this, 'wp_footer'), 1000);
         add_action('after_setup_theme', array(&$this, 'after_setup_theme'));        
+        add_action('admin_init', array(&$this, 'admin_init'));
         add_action('edd_after_install', array(&$this, 'edd_after_install'));
         
         add_action('pre_get_posts', array(&$this, 'pre_get_posts'));
@@ -164,6 +165,18 @@ class Franklin_Theme {
     }
 
     /**
+     * Runs on admin_init hook
+     *
+     * @return void
+     * @since Franklin 1.0
+     */
+    public function admin_init() {
+        // Load custom editor styles
+        require_once('inc/admin/editor-styles.php');
+        $editor = Sofa_Editor_Styles::get_instance();
+    }
+
+    /**
      * Executes on the wp_footer hook
      * 
      * @return void
@@ -243,19 +256,7 @@ class Franklin_Theme {
 
         register_widget( 'Sofa_Posts_Widget' );
     }    
-
-    /**
-     * Runs on admin_init hook
-     *
-     * @return void
-     * @since franklin 1.0
-     */
-    public function admin_init() {
-        // Load custom editor styles
-        require_once('inc/franklin/admin/editor-styles.php');
-        $editor = OSFEditorStyles::get_instance();
-    }
-
+    
     /**
      * Executes on the add_meta_boxes hook. 
      * 

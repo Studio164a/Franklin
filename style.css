@@ -172,6 +172,11 @@ p:focus {
 	outline: none;
 }
 
+.lead { 
+	font-size: 16px; font-size: 1.6rem;
+	line-height: 26px; line-height: 2.6rem;
+}
+
 .entry, 
 .comment, 
 .widget {
@@ -1173,8 +1178,16 @@ body {
 	margin: 0 0 36px; margin-bottom: 3.6rem;
 }
 
-/* 5.10 --- Search Results/No posts ***/
+/* 5.10 --- Fullwidth page ***/
 
+.content-wrapper.fullwidth {
+	padding-top: 0;		
+}
+
+.content-wrapper.fullwidth .entry-block {
+	border-top: none;
+	border-radius: 0 0 0.4rem 0.4rem;
+}
 
 /* 5.11 --- 404 ***/
 
