@@ -51,7 +51,6 @@ class Franklin_Theme {
         add_action('after_setup_theme', array(&$this, 'after_setup_theme'));        
         add_action('admin_init', array(&$this, 'admin_init'));
         add_action('edd_after_install', array(&$this, 'edd_after_install'));
-        
         add_action('pre_get_posts', array(&$this, 'pre_get_posts'));
 
         if ( !is_admin() )
@@ -322,10 +321,13 @@ class Franklin_Theme {
      * @since Franklin 1.0
      */
     function pre_get_posts($query) {
-        // if ( $query->is_main_query() && !$query->is_home ) {
-        //     if( !isset( $query->query_vars['post_type'] ) || '' == $query->query_vars['post_type'] && 0 != $query->query_vars['page_id'] )
-        //         $query->query_vars['post_type'] = array( 'page', 'download' );
-        // }        
+        if ( $query->is_main_query() ) {
+            if ( 'page' == get_option( 'show_on_front') && get_option( 'page_on_front' ) && $query->query_vars['page_id'] == get_option( 'page_on_front' ) ) {
+                if ( get_post_type( $query->query_vars['page_id'] ) == 'download' ) {
+                    $query->query_vars['post_type'] = array( 'download', 'page' );
+                }
+            }
+        }      
     }
 
     /**
@@ -417,6 +419,13 @@ class Franklin_Theme {
         return '<script src="'. $this->sofa->plugin_dir_url .'/js/respond.min.js" type="text/javascript"></script>' . PHP_EOL . $default;
     }
 
+    /**
+     * Filter the title of the link post format. 
+     * 
+     * @param string $title
+     * @return string
+     * @since Franklin 1.0
+     */
     public function sofa_link_format_title_filter($title) {
         return '<a class="with-icon" data-icon="&#xf0C1;"' . substr( $title, 2 );
     }

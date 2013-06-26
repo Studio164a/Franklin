@@ -1,6 +1,6 @@
 <?php if ( sofa_using_crowdfunding() === false ) return ?>
 
-<?php $campaign = sofa_crowdfunding_get_campaign() ?>	
+<?php global $campaign ?>
 
 <?php if ( $campaign === false ) return ?>
 
@@ -37,21 +37,14 @@
 				<li class="campaign-backers">
 					<span><?php echo $campaign->backers_count() ?></span>
 					<?php _e( 'Backers', 'franklin' ) ?>
-				</li>
-				
-	<!-- 			<li class="campaign-end">
-					<span><?php _e( 'End date', 'franklin' ) ?></span>
-					<?php echo mysql2date( 'j F, Y', $campaign->__get( 'campaign_end_date' ) ) ?>
-				</li> -->			
+				</li>				
 			</ul>
 
 			<div class="campaign-countdown">
 				<span class="countdown" data-enddate='<?php echo sofa_crowdfunding_get_enddate($campaign, true) ?>'></span>
 				<span><?php _e( 'Time left to donate', 'franklin' ) ?></span>
 			</div>
-
-			<?php //echo franklin_get_enddate_json($campaign, true) ?>		
-
+			
 		</div>
 
 	</div>	

@@ -263,6 +263,50 @@ class OSFA_Customizer {
 
         $priority += 1;        
 
+        /** 
+         * Campaign
+         */    
+        // if ( get_franklin_theme()->crowdfunding_enabled ) {
+
+        //     $wp_customize->add_section( 'campaign', array( 
+        //         'priority' => $priority, 
+        //         'title' => __( "Campaign", 'projection' ), 
+        //         'description' => __( 'description' )
+        //     ) );
+
+        //     $priority += 1; 
+
+        //     $wp_customize->add_setting( 'campaign', array( 'transport' => 'postMessage' ) );
+        //     $wp_customize->add_control( 'campaign', array(
+        //         'settings' => 'campaign',
+        //         'label' => __( 'Select the currently active campaign', 'projection' ), 
+        //         'section' => 'campaign', 
+        //         'type' => 'select', 
+        //         'priority' => $priority,
+        //         'choices' => $this->get_campaign_options()
+        //     ) );
+
+        //     $priority += 1;             
+        // }
+
+        /** 
+         * Footer
+         */
+        $wp_customize->add_section( 'footer', array( 'title' => __('Footer', 'projection'), 'priority' => $priority ) );
+
+        $priority += 1; 
+
+        $wp_customize->add_setting( 'footer_notice', array( 'transport' => 'postMessage' ) );
+        $wp_customize->add_control( 'footer_notice', array( 
+            'setting' => 'footer_notice', 
+            'label' => __( 'Text for footer notice', 'projection' ), 
+            'type' => 'text', 
+            'section' => 'footer', 
+            'priority' => $priority
+        ));
+
+        $priority += 1; 
+
         /**
          * Social
          */ 
@@ -451,7 +495,7 @@ input[type=text], input[type=password], input[type=number], input[type=email], t
 .meta, .comment-meta, .pledge-limit { color: <?php echo $meta_colour ?>; }
 
 /* Primary border colour */
-#header, .widget_search #s, #site-navigation li, .block, .page-title, .block-title, .post-title, .meta, .meta .author, .meta .comment-count, .meta .tags, .comment, .pingback, .widget, .campaign-pledge-levels.accordion h3, .campaign-pledge-levels.accordion .pledge-level, .multi-block .content-block:nth-of-type(1n+2), #edd_checkout_form_wrap legend, table, td, th { border-color: <?php echo $primary_border ?>; }
+#header, .widget_search #s, #site-navigation li, #site-navigation.is-active ul ul, #site-navigation ul ul, .block, .page-title, .block-title, .post-title, .meta, .meta .author, .meta .comment-count, .meta .tags, .comment, .pingback, .widget, .campaign-pledge-levels.accordion h3, .campaign-pledge-levels.accordion .pledge-level, .multi-block .content-block:nth-of-type(1n+2), #edd_checkout_form_wrap legend, table, td, th { border-color: <?php echo $primary_border ?>; }
 
 /* Secondary border colour */
 th { border-right-color: <?php echo $secondary_border ?>; }
@@ -459,7 +503,7 @@ th { border-right-color: <?php echo $secondary_border ?>; }
 .widget-title { border-color: <?php echo $secondary_border ?>;}
 
 /* Main content area background colour */
-#main, #header, #site-navigation ul, .even td, .widget td, .widget input[type=text], .widget input[type=password], .widget input[type=email], .widget input[type=number] { background-color: <?php echo $wrapper_background ?>; }
+#main, #header, #site-navigation ul, #site-navigation ul ul, .even td, .widget td, .widget input[type=text], .widget input[type=password], .widget input[type=email], .widget input[type=number] { background-color: <?php echo $wrapper_background ?>; }
 
 /* Posts background colour */
 .entry-block, .content-block, .reveal-modal.multi-block .content-block, .widget_search #s:focus, .widget input[type=text]:focus, .widget input[type=password]:focus, .widget input[type=email]:focus, .widget input[type=number]:focus, .widget th, .widget tfoot td, .format-status .meta, .format-quote .entry blockquote, .audiojs .progress, .comments-section, .campaign-pledge-levels.accordion .pledge-level { background-color: <?php echo $posts_background ?>; }

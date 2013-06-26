@@ -41,7 +41,7 @@
 	float: left;
 	width: 92%;
 	margin: 0 4% 24px; margin-bottom: 2.4rem;
-	line-height: 0;
+	line-height: 0;	
 }
 
 .active-campaign .wp-post-image {
@@ -229,7 +229,7 @@
 .price-wrapper .currency {
 	width: 10%;
 	float: left;
-	padding: 10px 0 7px; padding-top: 1rem; padding-bottom: 0.7rem;
+	padding: 9px 0 6px; padding-top: 0.9rem; padding-bottom: 0.6rem;
 }
 
 .campaign-price-input .price-wrapper input {	

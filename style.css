@@ -732,6 +732,7 @@ body {
 
 #header {
 	position: relative;		
+	z-index: 10;
 	width: 92%;
 	padding: 24px 4% 0; padding-top: 2.4rem;	
 	border-bottom: 2px solid; 	
@@ -807,13 +808,20 @@ body {
 	max-height: 10000px; /* Required for animation */
 }
 
+#site-navigation.is-active ul ul {
+	padding-left: 5%;
+	margin-top: 0;
+	border-top: 1px solid;
+}
+
 #site-navigation li {
 	list-style: none;
 	text-transform: uppercase;
 	letter-spacing: 1px; letter-spacing: 0.1rem;
 	line-height: 1em; 	
 	border-bottom: 1px solid;
-	text-align: center;
+	text-align: left;
+	text-indent: 10px; text-indent: 1rem;
 	margin: 0;
 }
 
@@ -1313,6 +1321,7 @@ body {
 
 #cancel-comment-reply-link {
 	float: right;
+	font-size: 20px; font-size: 2rem;
 }
 
 /* 6.0 -- Sidebar
@@ -1578,53 +1587,7 @@ body {
 		width: 45%;
 		padding-left: 2%;
 		padding-right: 2%;
-	}
-
-	/* Navigation */
-	#site-navigation {	
-		position: static;
-		text-align: right;			
-		box-shadow: none;
-		height: auto;
-		float: none;
-		clear: none;
-	}
-
-	body #site-navigation {
-		background: transparent;		
-	}
-
-	#site-navigation .menu-button {
-		display: none;
-	}
-
-	#site-navigation ul {		
-		height: auto;
-		width: auto;
-		margin: 2rem 0 0 0;
-		padding-right: 1.6rem;
-		left: 0;
-		border-top: 0;
-	}
-
-	body #site-navigation ul {
-		background: transparent;
-	}
-
-	#site-navigation li {
-		display: inline-block;
-		margin: 0 0 0.5rem 1rem;
-		border: none;
-	}
-
-	#site-navigation a {
-		display: inline-block;
-		padding: 0.6rem;
-		border: 0.2rem solid transparent; border-width: 0.2rem;
-		border-radius: 0.4rem;		
-		font-size: 1.6rem;
-		line-height: 1.6rem;
-	}
+	}	
 
 	/* Content */
 	.meta {
@@ -1695,6 +1658,109 @@ body {
 /* 8.2 --- Greater than 800px ***/
 
 @media all and (min-width: 50em) {	
+	/* Navigation */
+	#site-navigation {	
+		position: static;
+		text-align: right;			
+		box-shadow: none;
+		height: auto;
+		float: none;
+		clear: none;
+	}
+
+	body #site-navigation {
+		background: transparent;		
+	}
+
+	#site-navigation .menu-button {
+		display: none;
+	}
+
+	#site-navigation ul {		
+		height: auto;
+		width: auto;
+		margin: 2rem 0 0 0;
+		padding-right: 1.6rem;
+		left: 0;
+		border-top: 0;
+		overflow: visible;
+	}
+
+	body #site-navigation ul {
+		background: transparent;
+	}
+
+	#site-navigation li {
+		position: relative;
+		display: inline-block;
+		margin: 0 0 0 1rem;		
+		padding-bottom: 0.8rem;
+		border: none;
+		text-indent: 0;
+	}
+
+	#site-navigation a {
+		position: relative;
+		z-index: 50;
+		display: inline-block;
+		padding: 0.6rem;
+		border: 0.2rem solid transparent; border-width: 0.2rem;
+		border-radius: 0.4rem;		
+		font-size: 1.6rem;
+		line-height: 1.6rem;
+	}
+
+	#site-navigation .has-sub > a:after {
+		font-family: 'FontAwesome', sans-serif;
+		content: '\f107';
+		position: relative;	
+		top: 0;
+		left: 4px; left: 0.4rem;
+	}
+
+	#site-navigation ul ul .has-sub > a:after {
+		content: '\f105';
+		top: 0;
+	}
+
+	#site-navigation ul ul {
+		position: absolute;	
+		left: -999em;
+		width: 20rem;
+		margin-left: 0;
+		margin-top: 3.8rem;
+		z-index: 100;
+		border-width: 0 0.1rem 0.1rem 0.1rem;
+		border-style: solid;
+	}
+
+	#site-navigation li li {
+		padding-bottom: 0;
+	}
+
+	#site-navigation ul ul ul {
+		top: 0;
+		margin-top: 0;
+		margin-left: 20rem;
+	}
+
+	#site-navigation li:hover > ul,
+	#site-navigation li.hovering > ul {
+		left: auto;
+	}
+
+	#site-navigation li li {	
+		display: block;
+		width: 100%;
+		clear: left;
+		margin: 0;
+	}
+
+	#site-navigation ul ul a {
+		font-size: 1.2rem;
+		border: none;
+	}
+
 	/* Comments */
 	.comments-section .children {		
 		/* Why the use of calc for margin-left? 
