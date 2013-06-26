@@ -829,6 +829,8 @@ body {
 /* 3.4 -- Title & Tagline ***/
 
 .site-title {
+	position: relative;
+	z-index: 500;
 	float: left;
 	margin: 12px 20px 12px 0; margin-top: 1.2rem; margin-right: 2rem; margin-bottom: 1.2rem;
 	font-size: 34px; font-size: 3.4rem;

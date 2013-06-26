@@ -95,7 +95,7 @@ class Sofa_Crowdfunding_Helper {
         wp_enqueue_script('franklin-crowdfunding');
 
         wp_localize_script('franklin-crowdfunding', 'SofaCrowdfunding', array(
-            'button_colour' => get_theme_mod('button_colour', '#7D6E63')));
+            'button_colour' => get_theme_mod('body_text', '#7D6E63')));
 
         wp_register_style('franklin-crowdfunding', sprintf( "%s/media/css/franklin-crowdfunding.css", $theme_dir ));
         wp_enqueue_style('franklin-crowdfunding');
