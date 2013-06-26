@@ -1708,6 +1708,7 @@ body {
 		border-radius: 0.4rem;		
 		font-size: 1.6rem;
 		line-height: 1.6rem;
+		text-align: center;
 	}
 
 	#site-navigation .has-sub > a:after {

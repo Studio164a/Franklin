@@ -25,7 +25,7 @@ if ( !function_exists('franklin_edd_before_price_options') ) {
 			<?php foreach ( $prices as $i => $price ) : ?>
 
 				<?php $remaining = $price['limit'] - $price['bought'] ?>
-				
+
 				<li data-price="<?php echo $price['amount'] ?>" class="pledge-level<?php if ($remaining == 0) echo ' not-available' ?>">
 					<?php if ( $remaining > 0 ) : ?>
 						<input type="radio" name="edd_options[price_id][]" id="edd_price_option_<?php echo $campaign_id ?>_<?php echo $i ?>" class="edd_price_option_<?php echo $campaign_id ?> edd_price_options_input" value="<?php echo $i ?>" />
@@ -122,7 +122,7 @@ function franklin_atcf_shortcode_register_form() {
 	</p>
 	
 	<p class="atcf-register-submit">
-		<input type="submit" name="submit" id="submit" class="<?php echo apply_filters( 'atcf_shortcode_register_button_class', 'button-primary' ); ?>" value="<?php _e( 'Register', 'atcf' ); ?>" />
+		<input type="submit" name="submit" id="atcf-register-submit" class="<?php echo apply_filters( 'atcf_shortcode_register_button_class', 'button-primary' ); ?>" value="<?php _e( 'Register', 'atcf' ); ?>" />
 		<input type="hidden" name="action" value="atcf-register-submit" />
 		<?php wp_nonce_field( 'atcf-register-submit' ); ?>
 	</p>
