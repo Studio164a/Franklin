@@ -1,21 +1,38 @@
 /* Contact page layout */
-.contact-page .entry {
-	float: right;
-	width: 30%;
-	padding-left: 0;
-	padding-right: 0;
+.contact-page .ninja-forms-form-wrap {	
+	padding: 24px 4%; padding-top: 2.4rem; padding-bottom: 2.4rem;	
+	border-top: 1px solid;
 }
 
-.contact-page .ninja-forms-form-wrap {
-	float: left;
-	width: 60%;
-	padding: 24px 4%; padding-top: 2.4rem; padding-bottom: 2.4rem;
-	margin-bottom: 36px; margin-bottom: 3.6rem;
-	border-width: 0 1px 1px 1px;
-	border-style: solid;
-	border-radius: 0 0 0.4rem 0.4rem;
+/* Greater than 600px ***/
+
+@media all and (min-width: 37.5em) {
+	.contact-page .entry {
+		float: right;
+		width: 30%;
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.contact-page .ninja-forms-form-wrap {
+		float: left;		
+		width: -webkit-calc(68% - 6.2rem);
+		width: -moz-calc(68% - 6.2rem);
+		width: calc(68% - 6.2rem);
+		padding-left: -webkit-calc(3rem);
+		padding-left: -moz-calc(3rem);		
+		padding-left: calc(3rem);
+		padding-right: -webkit-calc(3rem);
+		padding-right: -moz-calc(3rem);
+		padding-right: calc(3rem);
+		margin-bottom: 36px; margin-bottom: 3.6rem;
+		border-width: 0 1px 1px 1px;
+		border-style: solid;
+		border-radius: 0 0 0.4rem 0.4rem;
+	}
 }
 
+/* General styling */
 .ninja-forms-form-wrap .ninja-forms-form .text-wrap.label-inside input, .ninja-forms-form-wrap .ninja-forms-form .textarea-wrap.label-inside textarea {
 	max-width: 95%;
 }
@@ -29,3 +46,9 @@
 	top: 11px; top: 1.1rem;
 	vertical-align: top;
 }
+
+.ninja-forms-field-error {
+	font-style: italic;
+	text-indent: 12px; text-indent: 1.2rem;
+}
+
