@@ -743,7 +743,7 @@ body {
 
 .social {
 	float: left;
-	margin: 0 0 0 4%;
+	margin: 13px 0 0 4%; margin-top: 1.3rem;
 	padding-left: 0;	
 }
 
@@ -752,7 +752,7 @@ body {
 	margin-right: 14px; margin-right: 1.4rem;
 	margin-bottom: 0;
 	font-size: 18px; font-size: 1.8rem;
-	line-height: 53px; line-height: 5.3rem;
+	line-height: 24px; line-height: 2.4rem;
 }
 
 .social a:hover {

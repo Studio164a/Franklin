@@ -52,7 +52,7 @@ class OSFA_Customizer {
             'footer_text'           => array( 'title' => __( 'Footer text', 'franklin' ), 'default' => '#fff' ),
             'footer_titles'         => array( 'title' => __( 'Footer titles', 'franklin' ), 'default' => '#fff' ), 
             'header_buttons'        => array( 'title' => __( 'Header buttons', 'franklin' ), 'default' => '#fff' ), 
-            'header_buttons_hover'  => array( 'title' => __( 'Header buttons hover', 'franklin' ), 'default' => '#fff' )  
+            'header_buttons_hover'  => array( 'title' => __( 'Header buttons hover', 'franklin' ), 'default' => '#d95b43' )  
         );
 
         $this->palettes = array(
@@ -60,37 +60,37 @@ class OSFA_Customizer {
                                         'body_background' => '#aea198', 'body_text' => '#7d6e63', 'button_text' => '#fff', 
                                         'wrapper_background' => '#f9f8f7', 'posts_background' => '#fff', 'widget_background' => '#f1efee', 
                                         'primary_border' => '#e2dedb', 'secondary_border' => '#dbd5d1', 'meta_colour' => '#bdb2ab', 
-                                        'footer_text' => '#fff', 'footer_titles' => '#fff', 'header_buttons' => '#fff', 'header_buttons_hover' => '#fff' ), 
+                                        'footer_text' => '#fff', 'footer_titles' => '#fff', 'header_buttons' => '#fff', 'header_buttons_hover' => '#d95b43' ), 
 
             'Teal & Blue/Gray'      => array( 'accent_colour' => '#26c9c4', 'accent_hover' => '#38d9d4', 'accent_text' => '#fff', 
                                         'body_background' => '#3c5c5e', 'body_text' => '#273d3e', 'button_text' => '#fff', 
                                         'wrapper_background' => '#f5f8f9', 'posts_background' => '#fff', 'widget_background' => '#ebf2f2', 
                                         'primary_border' => '#d6e4e5', 'secondary_border' => '#ccddde', 'meta_colour' => '#a2c2c4', 
-                                        'footer_text' => '#fff', 'footer_titles' => '#fff', 'header_buttons' => '#fff', 'header_buttons_hover' => '#fff' ),  
+                                        'footer_text' => '#fff', 'footer_titles' => '#fff', 'header_buttons' => '#fff', 'header_buttons_hover' => '#26c9c4' ),  
 
             'Orange & Teal'         => array( 'accent_colour' => '#f0b252', 'accent_hover' => '#f3c071', 'accent_text' => '#fff', 
                                         'body_background' => '#87c7c3', 'body_text' => '#767777', 'button_text' => '#fff', 
                                         'wrapper_background' => '#fbfdfd', 'posts_background' => '#fff', 'widget_background' => '#eff8f7', 
                                         'primary_border' => '#d8edec', 'secondary_border' => '#cce7e6', 'meta_colour' => '#9ed2cf', 
-                                        'footer_text' => '#767777', 'footer_titles' => '#fff', 'header_buttons' => '#fff', 'header_buttons_hover' => '#fff' ), 
+                                        'footer_text' => '#767777', 'footer_titles' => '#fff', 'header_buttons' => '#fff', 'header_buttons_hover' => '#f0b252' ), 
 
             'Burnt Red & Plum'      => array( 'accent_colour' => '#a73b2d', 'accent_hover' => '#c24434', 'accent_text' => '#fff', 
                                         'body_background' => '#383438', 'body_text' => '#524d52', 'button_text' => '#fff', 
                                         'wrapper_background' => '#faf9fa', 'posts_background' => '#fff', 'widget_background' => '#f1f0f1', 
                                         'primary_border' => '#e1dfe1', 'secondary_border' => '#d9d6d9', 'meta_colour' => '#b8b3b8', 
-                                        'footer_text' => '#fff', 'footer_titles' => '#fff', 'header_buttons' => '#fff', 'header_buttons_hover' => '#fff' ), 
+                                        'footer_text' => '#fff', 'footer_titles' => '#fff', 'header_buttons' => '#fff', 'header_buttons_hover' => '#a73b2d' ), 
 
             'Orange & Beige'        => array( 'accent_colour' => '#da9455', 'accent_hover' => '#e0a671', 'accent_text' => '#fff', 
                                         'body_background' => '#dad4cb', 'body_text' => '#848484', 'button_text' => '#fff', 
                                         'wrapper_background' => '#fdfdfd', 'posts_background' => '#fff', 'widget_background' => '#f6f5f3', 
                                         'primary_border' => '#e8e4df', 'secondary_border' => '#e1dcd5', 'meta_colour' => '#959595', 
-                                        'footer_text' => '#848484', 'footer_titles' => '#848484', 'header_buttons' => '#fff', 'header_buttons_hover' => '#fff' ), 
+                                        'footer_text' => '#848484', 'footer_titles' => '#848484', 'header_buttons' => '#fff', 'header_buttons_hover' => '#da9455' ), 
 
             'Mint & Steel'          => array( 'accent_colour' => '#71ca7a', 'accent_hover' => '#8ad391', 'accent_text' => '#fff', 
                                         'body_background' => '#435a62', 'body_text' => '#354044', 'button_text' => '#fff', 
                                         'wrapper_background' => '#fbfbfb', 'posts_background' => '#fff', 'widget_background' => '#f2f5f6', 
                                         'primary_border' => '#dee5e8', 'secondary_border' => '#d3dee1', 'meta_colour' => '#abbfc6', 
-                                        'footer_text' => '#fff', 'footer_titles' => '#fff', 'header_buttons' => '#fff', 'header_buttons_hover' => '#fff' )
+                                        'footer_text' => '#fff', 'footer_titles' => '#fff', 'header_buttons' => '#fff', 'header_buttons_hover' => '#71ca7a' )
         );
 
         $this->textures = array(
@@ -444,7 +444,7 @@ class OSFA_Customizer {
             // Variables
             var $accent_colour, $accent_hover, $accent_text, $body_background, $body_text, $button_text, 
             $wrapper_background, $posts_background, $widget_background, $primary_border, $secondary_border, 
-            $meta_colour, $footer_text, $footer_titles, $palette,
+            $meta_colour, $footer_text, $footer_titles, $header_buttons, $header_buttons_hover, $palette,
 
             // Swaps a palette
             switchPalette = function() {                
@@ -464,7 +464,9 @@ class OSFA_Customizer {
                 $secondary_border.wpColorPicker('color', colours.secondary_border);
                 $meta_colour.wpColorPicker('color', colours.meta_colour);
                 $footer_text.wpColorPicker('color', colours.footer_text);
-                $footer_titles.wpColorPicker('color', colours.footer_titles);                
+                $footer_titles.wpColorPicker('color', colours.footer_titles);    
+                $header_buttons.wpColorPicker('color', colours.header_buttons);    
+                $header_buttons_hover.wpColorPicker('color', colours.header_buttons_hover);    
             };
 
             $(window).load(function() {             
@@ -483,6 +485,8 @@ class OSFA_Customizer {
                 $meta_colour = $('.color-picker-hex', '#customize-control-meta_colour');
                 $footer_text = $('.color-picker-hex', '#customize-control-footer_text');
                 $footer_titles = $('.color-picker-hex', '#customize-control-footer_titles');
+                $header_buttons = $('.color-picker-hex', '#customize-control-header_buttons');
+                $header_buttons_hover = $('.color-picker-hex', '#customize-control-header_buttons_hover');
             
                 $palette = $('#customize-control-palette'); 
 
@@ -635,7 +639,8 @@ th { border-right-color: <?php echo $secondary_border ?>; }
 
 /* Header buttons */
 .social a, .account-links .button.button-alt, .account-links .button.button-alt::before { color: <?php echo $header_buttons ?>; }
-.social a:hover { color: <?php echo $header_buttons_hover ?>; }
+.social a:hover::before { color: <?php echo $header_buttons_hover ?>; }
+.account-links .button.button-alt:hover, .account-links .button.button-alt:hover::before { background-color: <?php echo $header_buttons_hover ?>; border-color: <?php echo $header_buttons_hover ?>; }
 
 @media all and (min-width: 50em) {
     #login-form .register-block { background-color: <?php echo $widget_background ?>; }

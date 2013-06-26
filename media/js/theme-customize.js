@@ -6,14 +6,15 @@
 	var
 
 	updateAccentColour = function(value) {
-		$('a:not(.button, #site-navigation a), #site-navigation .menu-button, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, .button.accent.button-alt, .hovering .on-hover').css('color', value);
+		$('a:not(.button, #site-navigation a, .social a), #site-navigation .menu-button, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, .button.accent.button-alt, .hovering .on-hover').css('color', value);
 		$('.campaign-button, .active-campaign, .sticky, .button.accent').css('background-color', value);
-		$('.button.accent').css('box-shadow', '0 0 0 0.3rem ' + value);
+		$('.button.accent').css('boxShadow', '0 0 0 0.3rem ' + value);
 		$('#site-navigation .hovering > a, .button.accent.button-alt').css('border-color', value);
 	},
 
 	updateAccentHover = function(value) {
-		$('.sticky .post-title, .barometer .filled, .button.accent').css('border-color', value);
+		$('.sticky .post-title, .barometer .filled, .button.accent, .active-campaign .campaign-image').css('border-color', value);
+		$('.active-campaign .campaign-image').css('boxShadow', '0 0 3px 1px ' + value);
 	},
 
 	updateAccentText = function(value) {
@@ -26,16 +27,16 @@
 	}, 
 
 	updateBodyText = function(value) {
-		$('body, .with-icon:before, .icon, .widget_search #searchsubmit::before, .button.button-alt, #site-navigation a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span').css('color', value)
+		$('body, .with-icon:before, .icon, .widget_search #searchsubmit::before, .button.button-alt, #site-navigation a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span').not('.account-links a').css('color', value)
 		$('.footer-widget .widget-title').css('text-shadow', '0 1px 0 ' + value);
-		$('.button.button-alt, .shadow-wrapper::before, .shadow-wrapper::after').css('border-color', value);
-		$('input[type=submit], input[type=reset], button, .button, .audiojs').css('background-color', value);
-		$('input[type=submit], input[type=reset], button, .button').css('box-shadow', '0 0 0 3px ' + value);
+		$('.button.button-alt, .shadow-wrapper::before, .shadow-wrapper::after').not('.account-links a').css('border-color', value);
+		$('input[type=submit], input[type=reset], button, .button:not(.account-links a), .audiojs').css('background-color', value);
+		$('input[type=submit], input[type=reset], button, .button:not(.account-links a)').css('boxShadow', '0 0 0 3px ' + value);
 	},
 
 	updateButtonText = function(value) {
 		$('input[type=submit], input[type=reset], button, .button, .active-campaign .campaign-button, #site-navigation .menu-button, .sticky.block, .sticky.block a').css('color', value);
-		$('.campaign-support').css('box-shadow', '0 0 0 3px' + value);
+		$('.campaign-support').css('boxShadow', '0 0 0 3px' + value);
 	},
 	
 	updateWrapperBackground = function (value) {
@@ -44,7 +45,7 @@
 
 	updatePostsBackground = function (value) {
 		$('.entry-block, .content-block, .reveal-modal.multi-block .content-block, .widget th, .widget tfoot td, .format-status .meta, .format-quote .entry blockquote, .audiojs .progress, .comments-section, .campaign-pledge-levels.accordion .pledge-level').css('background-color', value);
-		$('.entry-block').css('box-shadow', '0 0 1px ' + value);
+		$('.entry-block').css('boxShadow', '0 0 1px ' + value);
 		$('.sticky.block').css('border-color', value);
 	},
 
@@ -72,6 +73,10 @@
 
 	updateFooterTitles = function (value) {
 		$('.footer-widget .widget-title').css('color', value);
+	}, 
+
+	updateHeaderButtons = function (value) {
+		$('.social a, .account-links .button.button-alt, .account-links .button.button-alt::before').css('color', value);
 	}, 
 
 	updateBodyTexture = function(value) {
@@ -218,6 +223,11 @@
 	wp.customize( 'footer_titles', function( value ) {
 		value.bind( function( newval ) {
 			updateFooterTitles( newval );
+		});
+	} );
+	wp.customize( 'header_buttons', function( value ) {
+		value.bind( function( newval ) {
+			updateHeaderButtons( newval );
 		});
 	} );
 
