@@ -94,9 +94,6 @@ class Franklin_Theme {
         wp_register_style('main', get_bloginfo('stylesheet_url'));
         wp_enqueue_style('main');
 
-        // wp_register_style('colours', $theme_dir . '/colors.css' );
-        // wp_enqueue_style('colours');        
-
         wp_register_style( 'foundation', sprintf( "%s/media/css/foundation.css", $theme_dir));
         wp_enqueue_style( 'foundation' );
 
@@ -105,10 +102,6 @@ class Franklin_Theme {
             wp_register_style( 'franklin-ninja-forms', sprintf( "%s/media/css/franklin-ninja-forms.css", $theme_dir ) );
             wp_enqueue_style( 'franklin-ninja-forms' );
         }
-
-        // Load prettyPhoto stylesheet
-        // wp_register_style('prettyPhoto', sprintf( "%s/media/css/prettyPhoto.css", get_template_directory_uri() ));
-        // wp_enqueue_style('prettyPhoto');
         
         // Scripts    
         // wp_register_script('sharrre', sprintf( "%s/media/js/jquery.sharrre-1.3.4.js", $theme_dir ), array('jquery'), 0.1, true);

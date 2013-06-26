@@ -21,6 +21,11 @@ class OSFA_Customizer {
     /**
      * @var array
      */
+    private $palettes;    
+
+    /**
+     * @var array
+     */
     private $textures;    
 
     /**
@@ -47,6 +52,55 @@ class OSFA_Customizer {
             'footer_text'           => array( 'title' => __( 'Footer text', 'franklin' ), 'default' => '#fff' ),
             'footer_titles'         => array( 'title' => __( 'Footer titles', 'franklin' ), 'default' => '#fff' )
         );
+
+        $this->palettes = array(
+            'Orange & Brown'        => array( 'accent_colour' => '#d95b43', 'accent_hover' => '#df745f', 'accent_text' => '#fff', 
+                                        'body_background' => '#aea198', 'body_text' => '#7d6e63', 'button_text' => '#fff', 
+                                        'wrapper_background' => '#f9f8f7', 'posts_background' => '#fff', 'widget_background' => '#f1efee', 
+                                        'primary_border' => '#e2dedb', 'secondary_border' => '#dbd5d1', 'meta_colour' => '#bdb2ab', 
+                                        'footer_text' => '#fff', 'footer_titles' => '#fff' ), 
+
+            'Teal & Blue/Gray'      => array( 'accent_colour' => '#26c9c4', 'accent_hover' => '#38d9d4', 'accent_text' => '#fff', 
+                                        'body_background' => '#3c5c5e', 'body_text' => '#273d3e', 'button_text' => '#fff', 
+                                        'wrapper_background' => '#f5f8f9', 'posts_background' => '#fff', 'widget_background' => '#ebf2f2', 
+                                        'primary_border' => '#d6e4e5', 'secondary_border' => '#ccddde', 'meta_colour' => '#a2c2c4', 
+                                        'footer_text' => '#fff', 'footer_titles' => '#fff' ),  
+
+            'Orange & Teal'         => array( 'accent_colour' => '#f0b252', 'accent_hover' => '#df745f', 'accent_text' => '#fff', 
+                                        'body_background' => '#87c7c3', 'body_text' => '#767777', 'button_text' => '#fff', 
+                                        'wrapper_background' => '#f9f8f7', 'posts_background' => '#fff', 'widget_background' => '#f1efee', 
+                                        'primary_border' => '#e2dedb', 'secondary_border' => '#dbd5d1', 'meta_colour' => '#bdb2ab', 
+                                        'footer_text' => '#767777', 'footer_titles' => '#767777' ), 
+
+            'Burnt Red & Plum'      => array( 'accent_colour' => '#a73b2d', 'accent_hover' => '#df745f', 'accent_text' => '#fff', 
+                                        'body_background' => '#383438', 'body_text' => '#524d52', 'button_text' => '#fff', 
+                                        'wrapper_background' => '#f9f8f7', 'posts_background' => '#fff', 'widget_background' => '#f1efee', 
+                                        'primary_border' => '#e2dedb', 'secondary_border' => '#dbd5d1', 'meta_colour' => '#bdb2ab', 
+                                        'footer_text' => '#fff', 'footer_titles' => '#fff' ), 
+
+            'Orange & Beige'        => array( 'accent_colour' => '#da9455', 'accent_hover' => '#df745f', 'accent_text' => '#fff', 
+                                        'body_background' => '#dad4cb', 'body_text' => '#848484', 'button_text' => '#fff', 
+                                        'wrapper_background' => '#f9f8f7', 'posts_background' => '#fff', 'widget_background' => '#f1efee', 
+                                        'primary_border' => '#e2dedb', 'secondary_border' => '#dbd5d1', 'meta_colour' => '#bdb2ab', 
+                                        'footer_text' => '#848484', 'footer_titles' => '#848484' ), 
+
+            'Mint & Steel'          => array( 'accent_colour' => '#71ca7a', 'accent_hover' => '#df745f', 'accent_text' => '#fff', 
+                                        'body_background' => '#435a62', 'body_text' => '#354044', 'button_text' => '#fff', 
+                                        'wrapper_background' => '#f9f8f7', 'posts_background' => '#fff', 'widget_background' => '#f1efee', 
+                                        'primary_border' => '#e2dedb', 'secondary_border' => '#dbd5d1', 'meta_colour' => '#bdb2ab', 
+                                        'footer_text' => '#fff', 'footer_titles' => '#fff' )
+        );
+
+
+// Teal & Blue/Gray - Accent #26c9c4, Background #3c5c5e, Text #273d3e
+
+// Orange & Teal - Accent #f0b252, Background #87c7c3, Text #767777, Footer text will need to be same as body text
+
+// Burnt Red & Plum - Accent #a73b2d, Background #383438, Text #524d52
+
+// Orange & Beige - Accent #da9455, Background #dad4cb, Text #848484, Footer text will need to be same as body text
+
+// Mint & Steel - Accent #71ca7a, Background #435a62, Text #354044
 
         $this->textures = array(
             ''                                                                   => __( '— Select —', 'franklin' ),
@@ -122,6 +176,28 @@ class OSFA_Customizer {
          * Colors
          */
         $priority = 10;
+
+        $wp_customize->add_setting( 'palette', array( 'default' => 0, 'transport' => 'postMessage' ) );
+        
+        $priority += 1;
+
+        $wp_customize->add_control( 'palette', array(
+            'settings'      => 'palette',
+            'label'         => __( 'Palette', 'franklin' ), 
+            'section'       => 'colors', 
+            'type'          => 'radio', 
+            'priority'      => $priority,
+            'choices'       => array(
+                json_encode($this->palettes['Orange & Brown'])    => __( 'Orange & Brown', 'franklin' ),
+                json_encode($this->palettes['Teal & Blue/Gray'])  => __( 'Teal & Blue/Gray', 'franklin' ),                 
+                json_encode($this->palettes['Orange & Teal'])     => __( 'Orange & Teal', 'franklin' ),
+                json_encode($this->palettes['Burnt Red & Plum'])  => __( 'Burnt Red & Plum', 'franklin' ),
+                json_encode($this->palettes['Orange & Beige'])    => __( 'Orange & Beige', 'franklin' ),
+                json_encode($this->palettes['Mint & Steel'])      => __( 'Mint & Steel', 'franklin' )
+            )
+        ) ); 
+
+        $priority += 1;
 
         foreach ( $this->colours as $key => $colour ) {          
             $wp_customize->add_setting( $key, array( 'default' => $colour['default'], 'transport' => 'postMessage' ) );
@@ -374,8 +450,55 @@ class OSFA_Customizer {
         <script>
         ( function($){
 
-            $(window).load(function() {                
+            // Variables
+            var $accent_colour, $accent_hover, $accent_text, $body_background, $body_text, $button_text, 
+            $wrapper_background, $posts_background, $widget_background, $primary_border, $secondary_border, 
+            $meta_colour, $footer_text, $footer_titles, $palette,
 
+            // Swaps a palette
+            switchPalette = function() {                
+                var colours = JSON.parse( $palette.find('input:checked').val() );
+                
+                // General link styling
+                $accent_colour.wpColorPicker('color', colours.accent_colour);
+                $accent_hover.wpColorPicker('color', colours.accent_hover);
+                $accent_text.wpColorPicker('color', colours.accent_text);
+                $body_background.wpColorPicker('color', colours.body_background);
+                $body_text.wpColorPicker('color', colours.body_text);
+                $button_text.wpColorPicker('color', colours.button_text);
+                $wrapper_background.wpColorPicker('color', colours.wrapper_background);
+                $posts_background.wpColorPicker('color', colours.posts_background);
+                $widget_background.wpColorPicker('color', colours.widget_background);
+                $primary_border.wpColorPicker('color', colours.primary_border);
+                $secondary_border.wpColorPicker('color', colours.secondary_border);
+                $meta_colour.wpColorPicker('color', colours.meta_colour);
+                $footer_text.wpColorPicker('color', colours.footer_text);
+                $footer_titles.wpColorPicker('color', colours.footer_titles);                
+            };
+
+            $(window).load(function() {             
+
+                $accent_colour = $('.color-picker-hex', '#customize-control-accent_colour');
+                $accent_hover = $('.color-picker-hex', '#customize-control-accent_hover');
+                $accent_text = $('.color-picker-hex', '#customize-control-accent_text');
+                $body_background = $('.color-picker-hex', '#customize-control-body_background');
+                $body_text = $('.color-picker-hex', '#customize-control-body_text');
+                $button_text = $('.color-picker-hex', '#customize-control-button_text');
+                $wrapper_background = $('.color-picker-hex', '#customize-control-wrapper_background');
+                $posts_background = $('.color-picker-hex', '#customize-control-posts_background');
+                $widget_background = $('.color-picker-hex', '#customize-control-widget_background');
+                $primary_border = $('.color-picker-hex', '#customize-control-primary_border');
+                $secondary_border = $('.color-picker-hex', '#customize-control-secondary_border');
+                $meta_colour = $('.color-picker-hex', '#customize-control-meta_colour');
+                $footer_text = $('.color-picker-hex', '#customize-control-footer_text');
+                $footer_titles = $('.color-picker-hex', '#customize-control-footer_titles');
+            
+                $palette = $('#customize-control-palette'); 
+
+                // When one of the preset palettes is selected, change the relevant colours
+                $palette.on('change', function() {
+                    switchPalette();
+                });
             });
         })(jQuery);        
         </script>
