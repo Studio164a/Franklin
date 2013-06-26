@@ -16,6 +16,14 @@
 
 			</div>
 
+			<?php if ( get_theme_mod( 'footer_notice', false ) ) : ?>
+				<!-- You've hit rockbottom -->
+				<div id="rockbottom">
+					<p class="footer-notice aligncenter"><?php echo get_theme_mod( 'footer_notice' ) ?></p>			
+				</div>
+				<!-- You've passed rockbottom -->
+			<?php endif ?>		
+
 		</footer>		
 
 	</div>

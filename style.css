@@ -102,7 +102,8 @@ legend,
 .meta,
 blockquote cite,
 th, 
-.edd_cart_amount {
+.edd_cart_amount, 
+.footer-notice {
 	font-family: 'Oswald', 'Helvetica Neue', Helvetica, sans-serif;
 }
 
@@ -1465,7 +1466,7 @@ body {
 ================================================== */
 
 #site-footer {
-	padding: 24px 0; padding-top: 2.4rem; padding-bottom: 2.4rem;
+	padding: 24px 0 0; padding-top: 2.4rem;
 }
 
 .footer-left, 
@@ -1495,6 +1496,14 @@ body {
 
 .footer-right .footer-widget:nth-of-type(2n+1) {
 	margin-right: 0;
+}
+
+.footer-notice {
+	margin-top: 24px; margin-top: 2.4rem;
+	padding: 24px 0 12px; padding-top: 2.4rem; padding-bottom: 1.2rem;
+	border-top: 1px solid;
+	font-weight: 300;
+	letter-spacing: 1px; 
 }
 
 /* jQuery effects

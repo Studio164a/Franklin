@@ -633,9 +633,10 @@ th { border-right-color: <?php echo $secondary_border ?>; }
 
 /* Footer text */
 #site-footer, #site-footer a { color: <?php echo $footer_text ?>; }    
+.footer-notice { border-color: <?php echo $this->rgb( $this->get_rgb_from_hex( $footer_text ), 0.5 ) ?>; }
 
 /* Footer widget titles */
-.footer-widget .widget-title { color: <?php echo $footer_titles ?>; }
+.footer-widget .widget-title, .footer-notice { color: <?php echo $footer_titles ?>; }
 
 /* Header buttons */
 .social a, .account-links .button.button-alt, .account-links .button.button-alt::before { color: <?php echo $header_buttons ?>; }
