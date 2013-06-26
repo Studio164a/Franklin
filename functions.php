@@ -45,7 +45,8 @@ class Franklin_Theme {
             include_once('inc/crowdfunding/crowdfunding.class.php');            
         }
 
-        add_action('wp_head', array(&$this, 'wp_head'));
+        add_action('wp_head', array(&$this, 'wp_head'), 20);
+        // add_action('wp_head', array(&$this, 'wp_head_late'), 20);
         add_action('widgets_init', array(&$this, 'widgets_init'));
         add_action('wp_footer', array(&$this, 'wp_footer'), 1000);
         add_action('after_setup_theme', array(&$this, 'after_setup_theme'));        
@@ -94,10 +95,16 @@ class Franklin_Theme {
         wp_enqueue_style('main');
 
         // wp_register_style('colours', $theme_dir . '/colors.css' );
-        // wp_enqueue_style('colours');
+        // wp_enqueue_style('colours');        
 
         wp_register_style( 'foundation', sprintf( "%s/media/css/foundation.css", $theme_dir));
         wp_enqueue_style( 'foundation' );
+
+        // Load up Ninja Forms CSS if the plugin is on
+        if ( defined( 'NINJA_FORMS_VERSION' ) ) {
+            wp_register_style( 'franklin-ninja-forms', sprintf( "%s/media/css/franklin-ninja-forms.css", $theme_dir ) );
+            wp_enqueue_style( 'franklin-ninja-forms' );
+        }
 
         // Load prettyPhoto stylesheet
         // wp_register_style('prettyPhoto', sprintf( "%s/media/css/prettyPhoto.css", get_template_directory_uri() ));
@@ -120,9 +127,13 @@ class Franklin_Theme {
 
     /**
      * Executes on the wp_head hook
+     * 
      * @return void
+     * @since Franklin 1.0
      */
     public function wp_head () {
+        // global $post;
+
         echo apply_filters( 'franklin_font_link', "<link href='http://fonts.googleapis.com/css?family=Merriweather:400,400italic,700italic,700,300italic,300|Oswald:400,300' rel='stylesheet' type='text/css'>" );
 
         ?>
@@ -133,6 +144,10 @@ class Franklin_Theme {
         }
         </script>
         <?php
+        // If this is the contact page, don't append the Ninja Forms form with the_content filter
+        if ( is_page_template('page-contact.php') ) {
+            remove_filter( 'the_content', 'ninja_forms_append_to_page', 9999 );
+        }
     }
 
     /**

@@ -464,7 +464,7 @@ a, #site-navigation .menu-button, #site-navigation a:hover, .block-title, .widge
 .campaign-button, .active-campaign, .sticky.block, .button.accent, .button.accent.button-alt:hover, .banner, .gallery-icon, .featured-image a { background-color: <?php echo $accent_colour ?>; color: <?php echo $accent_text ?>; }
 .button.accent, .campaign-support .button.accent:hover { box-shadow: 0 0 0 0.3rem <?php echo $accent_colour ?>; }
 #site-navigation .hovering > a { border-color: <?php echo $accent_colour ?>; border-color: <?php echo $this->rgb($accent_rgb, 0.7) ?>; }
-input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, input[type=email]:focus, textarea:focus, .button.accent.button-alt, .button.accent.button-alt:hover { border-color: <?php echo $accent_colour ?>; }
+input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, input[type=email]:focus, textarea:focus, input[type=text]:active, input[type=password]:active, input[type=number]:active, input[type=email]:active, textarea:active, .button.accent.button-alt, .button.accent.button-alt:hover { border-color: <?php echo $accent_colour ?>; }
 
 /* Accent hover */
 a:hover { color: <?php echo $accent_hover ?>;}
@@ -475,7 +475,7 @@ body, .audiojs .loaded { background-color: <?php echo $body_background ?>; }
 .audiojs .play-pause { border-right-color: <?php echo $body_background ?>; }
 
 /* Body copy */
-body, .with-icon:before, .icon, input[type=submit]:hover, input[type=reset]:hover, button:hover, .button:hover, .button.accent:hover, .widget_search #searchsubmit::before, .button.button-alt, #site-navigation a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title { color: <?php echo $body_text ?>; }
+body, .with-icon:before, .icon, input[type=submit]:hover, input[type=reset]:hover, input[type=submit]:focus, input[type=reset]:focus, input[type=submit]:active, input[type=reset]:active, button:hover, .button:hover, .button.accent:hover, .widget_search #searchsubmit::before, .button.button-alt, #site-navigation a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title { color: <?php echo $body_text ?>; }
 .footer-widget .widget-title { text-shadow: 0 1px 0 <?php echo $body_text ?>; }
 .campaign-excerpt { text-shadow: 0 1px 1px <?php echo $this->rgb($body_text_rgb, 0.7) ?>;}
 .button.button-alt, .button.button-alt:hover, .account-links .button.button-alt:hover::before, .shadow-wrapper::before, .shadow-wrapper::after { border-color: <?php echo $body_text ?>; }
@@ -489,13 +489,13 @@ input[type=submit], input[type=reset], button, .button, .active-campaign .campai
 
 /* Widget background colour */
 input[type=text], input[type=password], input[type=number], input[type=email], textarea, .featured-image, th, .entry blockquote, hr, pre, .meta, .audiojs .scrubber, .widget, .sidebar-block, .accordion h3 { background-color: <?php echo $widget_background ?>; }
-.price-wrapper .currency, input:focus, textarea:focus, select:focus { background-color: <?php echo $this->rgb( $widget_rgb, 0.7 ) ?>; }
+.price-wrapper .currency, input:focus, textarea:focus, select:focus, input:active, textarea:active, select:active { background-color: <?php echo $this->rgb( $widget_rgb, 0.7 ) ?>; }
 
 /* Meta text colour */
 .meta, .comment-meta, .pledge-limit { color: <?php echo $meta_colour ?>; }
 
 /* Primary border colour */
-#header, .widget_search #s, #site-navigation li, #site-navigation.is-active ul ul, #site-navigation ul ul, .block, .page-title, .block-title, .post-title, .meta, .meta .author, .meta .comment-count, .meta .tags, .comment, .pingback, .widget, .campaign-pledge-levels.accordion h3, .campaign-pledge-levels.accordion .pledge-level, .multi-block .content-block:nth-of-type(1n+2), #edd_checkout_form_wrap legend, table, td, th { border-color: <?php echo $primary_border ?>; }
+#header, .widget_search #s, #site-navigation li, #site-navigation.is-active ul ul, #site-navigation ul ul, .block, .page-title, .block-title, .post-title, .meta, .meta .author, .meta .comment-count, .meta .tags, .comment, .pingback, .widget, .campaign-pledge-levels.accordion h3, .campaign-pledge-levels.accordion .pledge-level, .multi-block .content-block:nth-of-type(1n+2), #edd_checkout_form_wrap legend, table, td, th, .contact-page .ninja-forms-form-wrap { border-color: <?php echo $primary_border ?>; }
 
 /* Secondary border colour */
 th { border-right-color: <?php echo $secondary_border ?>; }
@@ -506,7 +506,7 @@ th { border-right-color: <?php echo $secondary_border ?>; }
 #main, #header, #site-navigation ul, #site-navigation ul ul, .even td, .widget td, .widget input[type=text], .widget input[type=password], .widget input[type=email], .widget input[type=number] { background-color: <?php echo $wrapper_background ?>; }
 
 /* Posts background colour */
-.entry-block, .content-block, .reveal-modal.multi-block .content-block, .widget_search #s:focus, .widget input[type=text]:focus, .widget input[type=password]:focus, .widget input[type=email]:focus, .widget input[type=number]:focus, .widget th, .widget tfoot td, .format-status .meta, .format-quote .entry blockquote, .audiojs .progress, .comments-section, .campaign-pledge-levels.accordion .pledge-level { background-color: <?php echo $posts_background ?>; }
+.entry-block, .content-block, .reveal-modal.multi-block .content-block, .widget_search #s:focus, .widget input[type=text]:focus, .widget input[type=password]:focus, .widget input[type=email]:focus, .widget input[type=number]:focus, .widget textarea:focus, .widget input[type=text]:active, .widget input[type=password]:active, .widget input[type=email]:active, .widget input[type=number]:active, .widget textarea:active, .widget th, .widget tfoot td, .format-status .meta, .format-quote .entry blockquote, .audiojs .progress, .comments-section, .campaign-pledge-levels.accordion .pledge-level, .contact-page .ninja-forms-form-wrap { background-color: <?php echo $posts_background ?>; }
 .entry-block { box-shadow: 0 0 1px <?php echo $posts_background ?>; }
 .sticky.block { border-color: <?php echo $posts_background ?>; }
 
