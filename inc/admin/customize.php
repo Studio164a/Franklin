@@ -50,7 +50,9 @@ class OSFA_Customizer {
             'secondary_border'      => array( 'title' => __( 'Secondary border', 'franklin' ), 'default' => '#dbd5d1' ),
             'meta_colour'           => array( 'title' => __( 'Meta text', 'franklin' ), 'default' => '#bdb2ab' ),
             'footer_text'           => array( 'title' => __( 'Footer text', 'franklin' ), 'default' => '#fff' ),
-            'footer_titles'         => array( 'title' => __( 'Footer titles', 'franklin' ), 'default' => '#fff' )
+            'footer_titles'         => array( 'title' => __( 'Footer titles', 'franklin' ), 'default' => '#fff' ), 
+            'header_buttons'        => array( 'title' => __( 'Header buttons', 'franklin' ), 'default' => '#fff' ), 
+            'header_buttons_hover'  => array( 'title' => __( 'Header buttons hover', 'franklin' ), 'default' => '#fff' )  
         );
 
         $this->palettes = array(
@@ -58,49 +60,38 @@ class OSFA_Customizer {
                                         'body_background' => '#aea198', 'body_text' => '#7d6e63', 'button_text' => '#fff', 
                                         'wrapper_background' => '#f9f8f7', 'posts_background' => '#fff', 'widget_background' => '#f1efee', 
                                         'primary_border' => '#e2dedb', 'secondary_border' => '#dbd5d1', 'meta_colour' => '#bdb2ab', 
-                                        'footer_text' => '#fff', 'footer_titles' => '#fff' ), 
+                                        'footer_text' => '#fff', 'footer_titles' => '#fff', 'header_buttons' => '#fff', 'header_buttons_hover' => '#fff' ), 
 
             'Teal & Blue/Gray'      => array( 'accent_colour' => '#26c9c4', 'accent_hover' => '#38d9d4', 'accent_text' => '#fff', 
                                         'body_background' => '#3c5c5e', 'body_text' => '#273d3e', 'button_text' => '#fff', 
                                         'wrapper_background' => '#f5f8f9', 'posts_background' => '#fff', 'widget_background' => '#ebf2f2', 
                                         'primary_border' => '#d6e4e5', 'secondary_border' => '#ccddde', 'meta_colour' => '#a2c2c4', 
-                                        'footer_text' => '#fff', 'footer_titles' => '#fff' ),  
+                                        'footer_text' => '#fff', 'footer_titles' => '#fff', 'header_buttons' => '#fff', 'header_buttons_hover' => '#fff' ),  
 
             'Orange & Teal'         => array( 'accent_colour' => '#f0b252', 'accent_hover' => '#f3c071', 'accent_text' => '#fff', 
                                         'body_background' => '#87c7c3', 'body_text' => '#767777', 'button_text' => '#fff', 
                                         'wrapper_background' => '#fbfdfd', 'posts_background' => '#fff', 'widget_background' => '#eff8f7', 
                                         'primary_border' => '#d8edec', 'secondary_border' => '#cce7e6', 'meta_colour' => '#9ed2cf', 
-                                        'footer_text' => '#767777', 'footer_titles' => '#fff' ), 
+                                        'footer_text' => '#767777', 'footer_titles' => '#fff', 'header_buttons' => '#fff', 'header_buttons_hover' => '#fff' ), 
 
             'Burnt Red & Plum'      => array( 'accent_colour' => '#a73b2d', 'accent_hover' => '#c24434', 'accent_text' => '#fff', 
                                         'body_background' => '#383438', 'body_text' => '#524d52', 'button_text' => '#fff', 
                                         'wrapper_background' => '#faf9fa', 'posts_background' => '#fff', 'widget_background' => '#f1f0f1', 
                                         'primary_border' => '#e1dfe1', 'secondary_border' => '#d9d6d9', 'meta_colour' => '#b8b3b8', 
-                                        'footer_text' => '#fff', 'footer_titles' => '#fff' ), 
+                                        'footer_text' => '#fff', 'footer_titles' => '#fff', 'header_buttons' => '#fff', 'header_buttons_hover' => '#fff' ), 
 
             'Orange & Beige'        => array( 'accent_colour' => '#da9455', 'accent_hover' => '#e0a671', 'accent_text' => '#fff', 
                                         'body_background' => '#dad4cb', 'body_text' => '#848484', 'button_text' => '#fff', 
                                         'wrapper_background' => '#fdfdfd', 'posts_background' => '#fff', 'widget_background' => '#f6f5f3', 
                                         'primary_border' => '#e8e4df', 'secondary_border' => '#e1dcd5', 'meta_colour' => '#959595', 
-                                        'footer_text' => '#848484', 'footer_titles' => '#848484' ), 
+                                        'footer_text' => '#848484', 'footer_titles' => '#848484', 'header_buttons' => '#fff', 'header_buttons_hover' => '#fff' ), 
 
             'Mint & Steel'          => array( 'accent_colour' => '#71ca7a', 'accent_hover' => '#8ad391', 'accent_text' => '#fff', 
                                         'body_background' => '#435a62', 'body_text' => '#354044', 'button_text' => '#fff', 
-                                        'wrapper_background' => '#f9f8f7', 'posts_background' => '#fff', 'widget_background' => '#f1efee', 
-                                        'primary_border' => '#e2dedb', 'secondary_border' => '#dbd5d1', 'meta_colour' => '#bdb2ab', 
-                                        'footer_text' => '#fff', 'footer_titles' => '#fff' )
+                                        'wrapper_background' => '#fbfbfb', 'posts_background' => '#fff', 'widget_background' => '#f2f5f6', 
+                                        'primary_border' => '#dee5e8', 'secondary_border' => '#d3dee1', 'meta_colour' => '#abbfc6', 
+                                        'footer_text' => '#fff', 'footer_titles' => '#fff', 'header_buttons' => '#fff', 'header_buttons_hover' => '#fff' )
         );
-
-
-// Teal & Blue/Gray - Accent #26c9c4, Background #3c5c5e, Text #273d3e
-
-// Orange & Teal - Accent #f0b252, Background #87c7c3, Text #767777, Footer text will need to be same as body text
-
-// Burnt Red & Plum - Accent #a73b2d, Background #383438, Text #524d52
-
-// Orange & Beige - Accent #da9455, Background #dad4cb, Text #848484, Footer text will need to be same as body text
-
-// Mint & Steel - Accent #71ca7a, Background #435a62, Text #354044
 
         $this->textures = array(
             ''                                                                   => __( '— Select —', 'franklin' ),
@@ -177,7 +168,7 @@ class OSFA_Customizer {
          */
         $priority = 10;
 
-        $wp_customize->add_setting( 'palette', array( 'default' => 'Orange & Brown', 'transport' => 'postMessage' ) );
+        $wp_customize->add_setting( 'palette', array( 'default' => json_encode($this->palettes['Orange & Brown']), 'transport' => 'postMessage' ) );
         
         $priority += 1;
 
@@ -598,12 +589,12 @@ body, .audiojs .loaded { background-color: <?php echo $body_background ?>; }
 .audiojs .play-pause { border-right-color: <?php echo $body_background ?>; }
 
 /* Body copy */
-body, .with-icon:before, .icon, input[type=submit]:hover, input[type=reset]:hover, input[type=submit]:focus, input[type=reset]:focus, input[type=submit]:active, input[type=reset]:active, button:hover, .button:hover, .button.accent:hover, .widget_search #searchsubmit::before, .button.button-alt, #site-navigation a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title, .active-campaign .share .icon::before { color: <?php echo $body_text ?>; }
+body, .with-icon:before, .icon, input[type=submit]:hover, input[type=reset]:hover, input[type=submit]:focus, input[type=reset]:focus, input[type=submit]:active, input[type=reset]:active, button:hover, .button:hover, .button.accent:hover, .widget_search #searchsubmit::before, .button.button-alt, #site-navigation a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title, .active-campaign .share, .active-campaign .share .icon::before { color: <?php echo $body_text ?>; }
 <?php if ( $body_text != $footer_titles ) : ?>
 .footer-widget .widget-title { text-shadow: 0 1px 0 <?php echo $body_text ?>; }
 <?php endif ?>
 .campaign-excerpt { text-shadow: 0 1px 1px <?php echo $this->rgb($body_text_rgb, 0.7) ?>;}
-.button.button-alt, .button.button-alt:hover, .account-links .button.button-alt:hover::before, .shadow-wrapper::before, .shadow-wrapper::after { border-color: <?php echo $body_text ?>; }
+.button.button-alt, .button.button-alt:hover, .shadow-wrapper::before, .shadow-wrapper::after, .account-links .button.button-alt { border-color: <?php echo $body_text ?>; }
 input[type=submit], input[type=reset], button, .button, .button.button-alt:hover, .account-links .button.button-alt:hover::before, .audiojs, .campaign-pledge-levels.accordion h3 { background-color: <?php echo $body_text ?>; }
 input[type=submit], input[type=reset], button, .button { box-shadow: 0 0 0 3px <?php echo $body_text ?>; }
 .active-campaign .campaign-image { box-shadow: 0 0 3px 1px <?php echo $this->rgb($body_text_rgb, 0.3) ?>;}
@@ -637,10 +628,14 @@ th { border-right-color: <?php echo $secondary_border ?>; }
 .sticky.block { border-color: <?php echo $posts_background ?>; }
 
 /* Footer text */
-#site-footer, #site-footer a, .social a { color: <?php echo $footer_text ?>; }    
+#site-footer, #site-footer a { color: <?php echo $footer_text ?>; }    
 
 /* Footer widget titles */
 .footer-widget .widget-title { color: <?php echo $footer_titles ?>; }
+
+/* Header buttons */
+.social a, .account-links .button.button-alt, .account-links .button.button-alt::before { color: <?php echo $header_buttons ?>; }
+.social a:hover { color: <?php echo $header_buttons_hover ?>; }
 
 @media all and (min-width: 50em) {
     #login-form .register-block { background-color: <?php echo $widget_background ?>; }
