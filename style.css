@@ -759,19 +759,20 @@ body {
 	text-decoration: none;
 }
 
-/*.sharing {
+/*
+.share {
 	float: left;
-	height: 20px;
-	padding-top: 15px;
+	width: 100%;	
 }
 
-.sharing li {
-	margin-bottom: 0;
+.share li {
+	display: inline;
+	text-align: center;
 	margin-right: 10px; margin-right: 1rem;
 }
 
-.twitter-share-button {
-	width: 76px !important;
+.share li::before {
+	font-size: 28px;
 }*/
 
 /* 3.2 -- User account links ***/

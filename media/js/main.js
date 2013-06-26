@@ -111,6 +111,41 @@
 		// Load up lightbox
 		$(".entry a").not(".attachment,.tiled-gallery-item a").has('img').attr('data-rel', 'lightbox[]');
 		$("[data-rel^='lightbox']").prettyPhoto({ theme: 'pp_sofa', hook: 'data-rel' });
+
+		$('.share-twitter').sharrre({
+			share: {				
+				twitter: true
+			},
+			enableHover : false, 
+			enabledTracking : true, 
+			buttons : { twitter: { via: '' } }, 
+			click : function(api, options) {
+				api.simulateClick();
+				api.openPopup('twitter');
+			}
+		});	
+		$('.share-facebook').sharrre({
+			share: {				
+				facebook: true
+			},
+			enableHover : false, 
+			enabledTracking : true, 
+			click : function(api, options) {
+				api.simulateClick();
+				api.openPopup('facebook');
+			}
+		});	
+		$('.share-googleplus').sharrre({
+			share: {				
+				googlePlus: true
+			},
+			enableHover : false, 
+			enabledTracking : true, 
+			click : function(api, options) {
+				api.simulateClick();
+				api.openPopup('googlePlus');
+			}
+		});			
 	});
 
 	audiojs.events.ready(function() {

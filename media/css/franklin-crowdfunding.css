@@ -25,7 +25,7 @@
 ================================================== */
 .active-campaign {		
 	width: 100%;
-	padding: 0 0 45px; padding-bottom: 4.5rem;
+	padding: 0 0 36px; padding-bottom: 3.6rem;
 	background-repeat: repeat;
 
 	/* Transition */
@@ -49,7 +49,7 @@
 }
 
 .active-campaign .campaign-summary {
-	padding: 30px 4% 0; padding-top: 3rem;
+	padding: 36px 4% 0; padding-top: 3.6rem;
 	margin: 0 auto;
 	width: 380px; width: 38rem;	
 	max-width: 92%;
@@ -160,6 +160,35 @@
 	width: 100%;
 	padding: 0 0 30px; padding-bottom: 3rem;
 	text-align: center;
+}
+
+.active-campaign .share {
+	padding: 24px 4% 0; padding-top: 2.4rem;
+	margin: 12px auto 0 auto; margin-top: 1.2rem;
+	width: 380px; width: 38rem;	
+	max-width: 92%;
+	border-top: 1px solid #fff; border-color: rgba(255, 255, 255, 0.3);
+	text-align: center;		
+}
+
+.active-campaign .share h6 {
+	margin: 0 20px 0 0; margin-right: 2rem;
+	line-height: 28px; line-height: 2.8rem;
+}
+
+.active-campaign .share .box {
+	display: none;
+}
+
+.active-campaign .share .icon {
+	padding: 0 20px; padding: 0 2rem;
+	font-size: 28px; font-size: 2.8rem;
+	cursor: pointer;
+}
+
+.active-campaign .share li {
+	margin-bottom: 0;
+	vertical-align: top;
 }
 
 /* 2.1 --- Countdown */

@@ -465,6 +465,7 @@ a, #site-navigation .menu-button, #site-navigation a:hover, .block-title, .widge
 .button.accent, .campaign-support .button.accent:hover { box-shadow: 0 0 0 0.3rem <?php echo $accent_colour ?>; }
 #site-navigation .hovering > a { border-color: <?php echo $accent_colour ?>; border-color: <?php echo $this->rgb($accent_rgb, 0.7) ?>; }
 input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, input[type=email]:focus, textarea:focus, input[type=text]:active, input[type=password]:active, input[type=number]:active, input[type=email]:active, textarea:active, .button.accent.button-alt, .button.accent.button-alt:hover { border-color: <?php echo $accent_colour ?>; }
+.active-campaign .share li { color: <?php echo $accent_text ?>; }
 
 /* Accent hover */
 a:hover { color: <?php echo $accent_hover ?>;}
