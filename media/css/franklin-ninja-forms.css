@@ -1,17 +1,31 @@
 /* Contact page layout */
+.contact-page {
+	border-width: 0.1rem;
+}
+
+.contact-page .entry {
+	padding: 36px 4% 24px; padding-top: 3.6rem; padding-bottom: 2.4rem;
+}
+
 .contact-page .ninja-forms-form-wrap {	
-	padding: 24px 4%; padding-top: 2.4rem; padding-bottom: 2.4rem;	
+	padding: 36px 4% 24px; padding-top: 3.6rem; padding-bottom: 2.4rem;	
 	border-top: 1px solid;
 }
 
 /* Greater than 600px ***/
 
 @media all and (min-width: 37.5em) {
+	.contact-page {
+		border: none;
+		box-shadow: none;
+	}
+
 	.contact-page .entry {
 		float: right;
 		width: 30%;
 		padding-left: 0;
 		padding-right: 0;
+		padding-top: 3.6rem;
 	}
 
 	.contact-page .ninja-forms-form-wrap {
@@ -25,8 +39,8 @@
 		padding-right: -webkit-calc(3rem);
 		padding-right: -moz-calc(3rem);
 		padding-right: calc(3rem);
-		margin-bottom: 36px; margin-bottom: 3.6rem;
-		border-width: 0 1px 1px 1px;
+		margin-bottom: 3.6rem;
+		border-width: 0.1rem;
 		border-style: solid;
 		border-radius: 0 0 0.4rem 0.4rem;
 	}
@@ -52,3 +66,6 @@
 	text-indent: 12px; text-indent: 1.2rem;
 }
 
+.field-wrap, #ninja_forms_required_items {
+	margin-bottom: 12px; margin-bottom: 1.2rem;
+}

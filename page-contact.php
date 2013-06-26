@@ -1,4 +1,5 @@
-<?php 
+<?php if ( !defined( 'NINJA_FORMS_VERSION' ) ) exit;
+
 /**
  * Template name: Contact Page Template
  */
@@ -13,7 +14,7 @@ get_header(); ?>
 
 				<?php get_template_part( 'banner', 'page' ) ?>
 
-				<div class="content content-wrapper fullwidth">		
+				<div class="content content-wrapper">		
 						
 					<?php get_template_part( 'content', 'contact' ) ?>
 
