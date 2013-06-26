@@ -274,7 +274,17 @@ class Sofa_Crowdfunding_Helper {
     public function get_active_campaign() {
         // If we haven't already set the active campaign, set it now
         if (!isset( $this->active_campaign ) ) {
-            $campaign_id = get_theme_mod('campaign', false);            
+            $campaign_id = get_theme_mod('campaign', false);
+
+            // Active campaign isn't set, so we'll check if the static front page has 
+            // been set to a campaign. If it has, set the activate campaign token.
+            if ( $campaign_id === false ) {
+                if ( 'page' == get_option( 'show_on_front') && get_option( 'page_on_front' ) && get_post_type( get_option( 'page_on_front' ) ) == 'download' ) {
+                    $campaign_id = get_option( 'page_on_front' );
+                    set_theme_mod('campaign', $campaign_id);
+                }
+            }
+
             $this->active_campaign = false == $campaign_id ? false : new ATCF_Campaign($campaign_id);
         }
 

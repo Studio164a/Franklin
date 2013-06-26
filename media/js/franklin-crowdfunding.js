@@ -127,11 +127,11 @@
 		})
 		.on('change', 'input[name=franklin_custom_price]', function() {
 			var pledge = $(this).val(), 
-				$minpledge = $('.pledge-level').first(),				
+				$minpledge = $('.edd_download_purchase_form .pledge-level').first(),				
 				$maxpledge;
 
 			// The pledge has to equal or exceed the minimum pledge amount
-			if ( $minpledge.data().price > pledge ) {
+			if ( $minpledge.data('price') > pledge ) {
 
 				// Explain that the pledge has to be at least the minimum
 				alert( PROJECTION.messages.need_minimum_pledge );
@@ -144,8 +144,14 @@
 				return;
 			}
 
-			$('.pledge-level').each( function() {
-				if ( $(this).data().price <= pledge && $(this).hasClass('not-available') === false ) {
+			$('.edd_download_purchase_form .pledge-level').each( function() {
+
+				console.log($(this));
+				console.log($(this).data('price'));
+				console.log(pledge);
+
+				if ( $(this).data('price') <= pledge && $(this).hasClass('not-available') === false ) {
+					console.log('hello');
 					$maxpledge = $(this);
 				} 
 				// This pledge's amount is greater than the amount set

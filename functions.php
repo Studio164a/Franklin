@@ -53,6 +53,8 @@ class Franklin_Theme {
         add_action('admin_init', array(&$this, 'admin_init'));
         add_action('edd_after_install', array(&$this, 'edd_after_install'));
         add_action('pre_get_posts', array(&$this, 'pre_get_posts'));
+        add_action('add_meta_boxes', array(&$this, 'add_meta_boxes'));
+        add_action('save_post', array(&$this, 'save_post'), 10, 2);
 
         if ( !is_admin() )
             add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'), 11);
@@ -163,8 +165,8 @@ class Franklin_Theme {
 
         // Enable post thumbnail support 
         add_theme_support('post-thumbnails');
-        set_post_thumbnail_size(699, 0, true);
-        add_image_size('widget-thumbnail', 292, 9999, false);
+        set_post_thumbnail_size(706, 0, false);
+        add_image_size('widget-thumbnail', 294, 882, false);
 
         // Register menu
         register_nav_menus( array(
@@ -361,8 +363,7 @@ class Franklin_Theme {
      */
     public function the_content_more_link_filter($more_link, $more_link_text = null) {
         $post = get_post();
-        $text = $more_link_text == '(more&hellip;)' ? __( 'Continue Reading', 'franklin' ) : $more_link_text;
-        return '<span class="aligncenter"><a href="'.get_permalink().'" class="more-link button button-alt" title="'.sprintf( __('Keep reading &#8220;%s&#8221;', 'franklin'), get_the_title() ).'">'.$text.'</a></span>';
+        return '<span class="aligncenter"><a href="'.get_permalink().'" class="more-link button button-alt" title="'.sprintf( __('Keep reading &#8220;%s&#8221;', 'franklin'), get_the_title() ).'">'.__( 'Continue Reading', 'franklin' ).'</a></span>';
     }
 
     /**

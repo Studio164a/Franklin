@@ -66,7 +66,7 @@ if ( !function_exists('franklin_atcf_campaign_contribute_options') ) {
 		?>
 		</div>
 		<!-- End text field with pledge button -->		
-		<?Php
+		<?php
 	}
 }
 
@@ -204,40 +204,44 @@ if ( !function_exists('franklin_campaign_backers') ) {
 
 		<?php foreach ($campaign->backers() as $i => $log ) : ?>
 
-			<?php $backer = sofa_crowdfunding_get_payment($log) ?>
+			<?php if ( ! sofa_crowdfunding_is_backer_anonymous( $log ) ) : ?>
 
-			<li class="campaign-backer"> 			
+				<?php $backer = sofa_crowdfunding_get_payment($log) ?>
 
-				<?php echo sofa_crowdfunding_get_backer_avatar( $backer ) ?>
+				<li class="campaign-backer"> 			
 
-				<div class="if-tiny-hide">
-					<?php if ( $show_name ) : ?>
+					<?php echo sofa_crowdfunding_get_backer_avatar( $backer ) ?>
 
-						<h6><?php echo $backer->post_title ?></h6>
+					<div class="if-tiny-hide">
+						<?php if ( $show_name ) : ?>
 
-					<?php endif ?>
+							<h6><?php echo $backer->post_title ?></h6>
 
-					<?php if ( $show_location || $show_pledge ) : ?>
+						<?php endif ?>
 
-						<p>
-							<?php if ( $show_location ) : ?>
+						<?php if ( $show_location || $show_pledge ) : ?>
 
-								<?php echo sofa_crowdfunding_get_backer_location( $backer ) ?><br />
+							<p>
+								<?php if ( $show_location ) : ?>
 
-							<?php endif ?>
+									<?php echo sofa_crowdfunding_get_backer_location( $backer ) ?><br />
 
-							<?php if ( $show_pledge ) : ?>
+								<?php endif ?>
 
-								<?php echo sofa_crowdfunding_get_backer_pledge( $backer ) ?>					
+								<?php if ( $show_pledge ) : ?>
 
-							<?php endif ?>
+									<?php echo sofa_crowdfunding_get_backer_pledge( $backer ) ?>					
 
-						</p>
+								<?php endif ?>
 
-					<?php endif ?>
-				</div>
+							</p>
 
-			</li>
+						<?php endif ?>
+					</div>
+
+				</li>
+
+			<?php endif ?>
 			
 		<?php endforeach ?>
 

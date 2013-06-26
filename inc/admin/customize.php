@@ -333,28 +333,28 @@ class OSFA_Customizer {
         /** 
          * Campaign
          */    
-        // if ( get_franklin_theme()->crowdfunding_enabled ) {
+        if ( get_franklin_theme()->crowdfunding_enabled ) {
 
-        //     $wp_customize->add_section( 'campaign', array( 
-        //         'priority' => $priority, 
-        //         'title' => __( "Campaign", 'projection' ), 
-        //         'description' => __( 'description' )
-        //     ) );
+            $wp_customize->add_section( 'campaign', array( 
+                'priority' => $priority, 
+                'title' => __( "Campaign", 'projection' ), 
+                'description' => __( 'description' )
+            ) );
 
-        //     $priority += 1; 
+            $priority += 1; 
 
-        //     $wp_customize->add_setting( 'campaign', array( 'transport' => 'postMessage' ) );
-        //     $wp_customize->add_control( 'campaign', array(
-        //         'settings' => 'campaign',
-        //         'label' => __( 'Select the currently active campaign', 'projection' ), 
-        //         'section' => 'campaign', 
-        //         'type' => 'select', 
-        //         'priority' => $priority,
-        //         'choices' => $this->get_campaign_options()
-        //     ) );
+            $wp_customize->add_setting( 'campaign', array( 'transport' => 'postMessage' ) );
+            $wp_customize->add_control( 'campaign', array(
+                'settings' => 'campaign',
+                'label' => __( 'Select the currently active campaign', 'projection' ), 
+                'section' => 'campaign', 
+                'type' => 'select', 
+                'priority' => $priority,
+                'choices' => $this->get_campaign_options()
+            ) );
 
-        //     $priority += 1;             
-        // }
+            $priority += 1;             
+        }
 
         /** 
          * Footer
@@ -407,7 +407,7 @@ class OSFA_Customizer {
         if ( empty( $campaigns->posts ) )
             return array();
 
-        $options[] = __( '&#8212; Select &#8212;', 'franklin' );
+        $options[] = __( '- Select -', 'franklin' );
 
         foreach ( $campaigns->posts as $campaign ) {
             $options[$campaign->ID] = $campaign->post_title;
@@ -578,7 +578,7 @@ body { background-image: url(<?php echo $body_texture_use ?>); }
 <?php endif ?>
 
 /* Accent colour */
-a, #site-navigation .menu-button, #site-navigation a:hover, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, body .button.accent:hover, .button.accent.button-alt, .social a:hover, #site-navigation .current-menu-item a { color: <?php echo $accent_colour ?>; }
+a, #site-navigation .menu-button, #site-navigation a:hover, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, body .button.accent:hover, .button.accent.button-alt, .social a:hover, #site-navigation .current-menu-item > a { color: <?php echo $accent_colour ?>; }
 .campaign-button, .active-campaign, .sticky.block, .button.accent, .button.accent.button-alt:hover, .banner, .gallery-icon, .featured-image a { background-color: <?php echo $accent_colour ?>; color: <?php echo $accent_text ?>; }
 .button.accent, .campaign-support .button.accent:hover { box-shadow: 0 0 0 0.3rem <?php echo $accent_colour ?>; }
 #site-navigation .hovering > a { border-color: <?php echo $accent_colour ?>; border-color: <?php echo $this->rgb($accent_rgb, 0.7) ?>; }

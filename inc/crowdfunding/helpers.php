@@ -93,6 +93,18 @@ function sofa_crowdfunding_get_payment($log) {
 }
 
 /**
+ * Return whether the backer is anonymous.
+ * 
+ * @param WP_Post $log
+ * @return bool
+ * @since Franklin 1.0
+ */
+function sofa_crowdfunding_is_backer_anonymous($log) {
+	$payment_meta = edd_get_payment_meta( get_post_meta( $log->ID, '_edd_log_payment_id', true ) );
+	return $payment_meta['anonymous'];
+}
+
+/**
  * Get the avatar for the backer. 
  * 
  * @param WP_Post $backer
