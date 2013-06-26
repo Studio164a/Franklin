@@ -66,25 +66,25 @@ class OSFA_Customizer {
                                         'primary_border' => '#d6e4e5', 'secondary_border' => '#ccddde', 'meta_colour' => '#a2c2c4', 
                                         'footer_text' => '#fff', 'footer_titles' => '#fff' ),  
 
-            'Orange & Teal'         => array( 'accent_colour' => '#f0b252', 'accent_hover' => '#df745f', 'accent_text' => '#fff', 
+            'Orange & Teal'         => array( 'accent_colour' => '#f0b252', 'accent_hover' => '#f3c071', 'accent_text' => '#fff', 
                                         'body_background' => '#87c7c3', 'body_text' => '#767777', 'button_text' => '#fff', 
                                         'wrapper_background' => '#f9f8f7', 'posts_background' => '#fff', 'widget_background' => '#f1efee', 
                                         'primary_border' => '#e2dedb', 'secondary_border' => '#dbd5d1', 'meta_colour' => '#bdb2ab', 
                                         'footer_text' => '#767777', 'footer_titles' => '#767777' ), 
 
-            'Burnt Red & Plum'      => array( 'accent_colour' => '#a73b2d', 'accent_hover' => '#df745f', 'accent_text' => '#fff', 
+            'Burnt Red & Plum'      => array( 'accent_colour' => '#a73b2d', 'accent_hover' => '#c24434', 'accent_text' => '#fff', 
                                         'body_background' => '#383438', 'body_text' => '#524d52', 'button_text' => '#fff', 
                                         'wrapper_background' => '#f9f8f7', 'posts_background' => '#fff', 'widget_background' => '#f1efee', 
                                         'primary_border' => '#e2dedb', 'secondary_border' => '#dbd5d1', 'meta_colour' => '#bdb2ab', 
                                         'footer_text' => '#fff', 'footer_titles' => '#fff' ), 
 
-            'Orange & Beige'        => array( 'accent_colour' => '#da9455', 'accent_hover' => '#df745f', 'accent_text' => '#fff', 
+            'Orange & Beige'        => array( 'accent_colour' => '#da9455', 'accent_hover' => '#e0a671', 'accent_text' => '#fff', 
                                         'body_background' => '#dad4cb', 'body_text' => '#848484', 'button_text' => '#fff', 
                                         'wrapper_background' => '#f9f8f7', 'posts_background' => '#fff', 'widget_background' => '#f1efee', 
                                         'primary_border' => '#e2dedb', 'secondary_border' => '#dbd5d1', 'meta_colour' => '#bdb2ab', 
                                         'footer_text' => '#848484', 'footer_titles' => '#848484' ), 
 
-            'Mint & Steel'          => array( 'accent_colour' => '#71ca7a', 'accent_hover' => '#df745f', 'accent_text' => '#fff', 
+            'Mint & Steel'          => array( 'accent_colour' => '#71ca7a', 'accent_hover' => '#8ad391', 'accent_text' => '#fff', 
                                         'body_background' => '#435a62', 'body_text' => '#354044', 'button_text' => '#fff', 
                                         'wrapper_background' => '#f9f8f7', 'posts_background' => '#fff', 'widget_background' => '#f1efee', 
                                         'primary_border' => '#e2dedb', 'secondary_border' => '#dbd5d1', 'meta_colour' => '#bdb2ab', 
@@ -177,7 +177,7 @@ class OSFA_Customizer {
          */
         $priority = 10;
 
-        $wp_customize->add_setting( 'palette', array( 'default' => 0, 'transport' => 'postMessage' ) );
+        $wp_customize->add_setting( 'palette', array( 'default' => 'Orange & Brown', 'transport' => 'postMessage' ) );
         
         $priority += 1;
 

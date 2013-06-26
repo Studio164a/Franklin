@@ -10,8 +10,7 @@
 	<div class="shadow-wrapper">
 
 		<div class="campaign-excerpt">
-			<?php the_excerpt() ?>
-			<?php get_template_part( 'sharing' ) ?>
+			<?php the_excerpt() ?>			
 		</div>				
 
 		<?php if ( has_post_thumbnail( $campaign->ID ) ) : ?>
@@ -48,7 +47,9 @@
 				<span><?php _e( 'Time left to donate', 'franklin' ) ?></span>
 			</div>
 			
-		</div>		
+		</div>				
+
+		<?php get_template_part( 'sharing' ) ?>
 
 	</div>	
 
