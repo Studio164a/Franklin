@@ -190,6 +190,7 @@ if ( !function_exists('franklin_campaign_backers') ) {
 	function franklin_campaign_backers( $campaign, $args = array() ) {
 
 		$defaults = array(
+			'number'		=> 10,
 			'show_location'	=> true,
 			'show_pledge'	=> true, 
 			'show_name' 	=> true 
@@ -197,53 +198,66 @@ if ( !function_exists('franklin_campaign_backers') ) {
 
 		extract( wp_parse_args( $args, $defaults ), EXTR_SKIP );
 
+		$backers = $campaign->backers();
+
+		if ( $backers === false )
+			return;		
+
+		$number = count($backers) > $number ? $number : count($backers);
+
 		// Start the buffer 
 		ob_start();
 		?>
 		<ul>
 
-		<?php foreach ($campaign->backers() as $i => $log ) : ?>
+		<?php for( $i = 0; $i <= $number; $i++ ) : ?>
 
-			<?php if ( ! sofa_crowdfunding_is_backer_anonymous( $log ) ) : ?>
+			<?php if ( isset( $backers[$i] ) ) : ?>
 
-				<?php $backer = sofa_crowdfunding_get_payment($log) ?>
+				<?php $log = $backers[$i] ?>
 
-				<li class="campaign-backer"> 			
+				<?php if ( ! sofa_crowdfunding_is_backer_anonymous( $log ) ) : ?>
 
-					<?php echo sofa_crowdfunding_get_backer_avatar( $backer ) ?>
+					<?php $backer = sofa_crowdfunding_get_payment($log) ?>
 
-					<div class="if-tiny-hide">
-						<?php if ( $show_name ) : ?>
+					<li class="campaign-backer"> 			
 
-							<h6><?php echo $backer->post_title ?></h6>
+						<?php echo sofa_crowdfunding_get_backer_avatar( $backer ) ?>
 
-						<?php endif ?>
+						<div class="if-tiny-hide">
+							<?php if ( $show_name ) : ?>
 
-						<?php if ( $show_location || $show_pledge ) : ?>
+								<h6><?php echo $backer->post_title ?></h6>
 
-							<p>
-								<?php if ( $show_location ) : ?>
+							<?php endif ?>
 
-									<?php echo sofa_crowdfunding_get_backer_location( $backer ) ?><br />
+							<?php if ( $show_location || $show_pledge ) : ?>
 
-								<?php endif ?>
+								<p>
+									<?php if ( $show_location ) : ?>
 
-								<?php if ( $show_pledge ) : ?>
+										<?php echo sofa_crowdfunding_get_backer_location( $backer ) ?><br />
 
-									<?php echo sofa_crowdfunding_get_backer_pledge( $backer ) ?>					
+									<?php endif ?>
 
-								<?php endif ?>
+									<?php if ( $show_pledge ) : ?>
 
-							</p>
+										<?php echo sofa_crowdfunding_get_backer_pledge( $backer ) ?>					
 
-						<?php endif ?>
-					</div>
+									<?php endif ?>
 
-				</li>
+								</p>
+
+							<?php endif ?>
+						</div>
+
+					</li>
+
+				<?php endif ?>
 
 			<?php endif ?>
 			
-		<?php endforeach ?>
+		<?php endfor ?>
 
 		</ul>
 

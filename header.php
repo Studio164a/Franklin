@@ -26,13 +26,19 @@
 	<div class="body-wrapper">
 	
 		<!-- Header -->
-		<header id="header" class="cf wrapper">			
+		<header id="header" class="cf wrapper <?php sofa_header_class() ?>">			
+			
+			<div class="site-identity">
+				<!-- Site title -->
+				<?php sofa_site_title() ?>	
+				<!-- End site title -->		
 
-			<!-- Site title -->
-			<?php sofa_site_title() ?>	
-			<!-- End site title -->		
+				<!-- Site tagline -->
+				<?php sofa_site_tagline() ?>				
+				<!-- End site tagline -->
+			</div>
 
-			<!-- Wrapper for the navigation -->
+			<!-- Navigation -->
 			<div id="site-navigation" class="wrapper">		
 				
 				<nav role="navigation">

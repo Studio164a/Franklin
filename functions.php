@@ -133,6 +133,7 @@ class Franklin_Theme {
         echo apply_filters( 'franklin_font_link', "<link href='http://fonts.googleapis.com/css?family=Merriweather:400,400italic,700italic,700,300italic,300|Oswald:400,300' rel='stylesheet' type='text/css'>" );
 
         ?>
+        <!--<script src="<?php echo $this->sofa->plugin_dir_url ?>/js/respond.min.js" type="text/javascript"></script>-->
         <script>var PROJECTION = {
             messages : {
                 need_minimum_pledge : "<?php _e( 'Your pledge must be at least the minimum pledge amount.', 'franklin' ) ?>"
@@ -363,7 +364,7 @@ class Franklin_Theme {
      */
     public function the_content_more_link_filter($more_link, $more_link_text = null) {
         $post = get_post();
-        return '<span class="aligncenter"><a href="'.get_permalink().'" class="more-link button button-alt" title="'.sprintf( __('Keep reading &#8220;%s&#8221;', 'franklin'), get_the_title() ).'">'.__( 'Continue Reading', 'franklin' ).'</a></span>';
+        return '<span class="aligncenter"><a href="'.get_permalink().'" class="more-link button button-alt" title="'.sprintf( __('Keep reading %s', 'franklin'), "&#8220;".get_the_title()."&#8221;" ).'">'.__( 'Continue Reading', 'franklin' ).'</a></span>';
     }
 
     /**
@@ -426,7 +427,8 @@ class Franklin_Theme {
      * @since Franklin 1.0
      */
     public function sofa_load_lt_ie9($default) {
-        return '<script src="'. $this->sofa->plugin_dir_url .'/js/respond.min.js" type="text/javascript"></script>' . PHP_EOL . $default;
+        return '<script>var sofa_ie_lt9 = true;</script>' . $default;
+        // return '<script src="'. $this->sofa->plugin_dir_url .'/js/respond.min.js" type="text/javascript"></script>' . PHP_EOL . $default;
     }
 
     /**

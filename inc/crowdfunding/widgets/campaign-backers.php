@@ -46,6 +46,8 @@ class Sofa_Crowdfunding_Backers_Widget extends WP_Widget {
 
         $title = $instance['title'];
         $campaign_id = $instance['campaign_id'];
+        if ( !isset($instance['number']) || !$number = (int) $instance['number'] )
+			$number = 10;
         $show_location = isset( $instance['show_location'] ) ? $instance['show_location'] : false;
         $show_pledge = isset( $instance['show_pledge'] ) ? $instance['show_pledge'] : false;
         $show_name = isset( $instance['show_name'] ) ? $instance['show_name'] : false;
@@ -56,6 +58,7 @@ class Sofa_Crowdfunding_Backers_Widget extends WP_Widget {
                 <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" />
             </label>
         </p> 
+
         <p>
             <label for="<?php echo $this->get_field_id('campaign_id'); ?>"><?php _e('Campaign:', 'franklin') ?>        
             	<select name="<?php echo $this->get_field_name('campaign_id') ?>">
@@ -66,6 +69,11 @@ class Sofa_Crowdfunding_Backers_Widget extends WP_Widget {
             	</select>    
             </label>      
         </p>
+
+        <p>
+			<label for="<?php echo $this->get_field_id('number'); ?>"><?php _e( 'Number of backers to show:', 'franklin' ); ?></label>
+			<input id="<?php echo esc_attr( $this->get_field_id('number') ); ?>" name="<?php echo esc_attr( $this->get_field_name('number') ); ?>" type="text" value="<?php echo esc_attr( $number ); ?>" size="3" />
+		</p>
 
         <p>
 			<label for="<?php echo $this->get_field_id('show_name') ?>"><?php _e( 'Show backer\'s name:', 'franklin' ) ?></label>
@@ -89,6 +97,7 @@ class Sofa_Crowdfunding_Backers_Widget extends WP_Widget {
 		$instance = $old_instance;
         $instance['title'] = $new_instance['title'];
         $instance['campaign_id'] = $new_instance['campaign_id'];    
+        $instance['number'] = (int) $new_instance['number'];
         $instance['show_location'] = isset( $new_instance['show_location'] ) ? true : false;
         $instance['show_pledge'] = isset( $new_instance['show_pledge'] ) ? true : false;
         $instance['show_name'] = isset( $new_instance['show_name'] ) ? true : false;

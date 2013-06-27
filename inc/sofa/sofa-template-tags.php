@@ -37,7 +37,7 @@ if ( !function_exists('sofa_social_links') ) {
  */
 if ( !function_exists( 'sofa_site_title' ) ) {
 	function sofa_site_title( $echo = true ) {
-		$classes = get_theme_mod('hide_site_title') ? 'site-title hide-title' : 'site-title';
+		$classes = get_theme_mod('hide_site_title') ? 'site-title hidden' : 'site-title';
 		$classes = apply_filters( 'sofa_site_title_class', $classes );
 
 		// Set up HTML 
@@ -51,13 +51,59 @@ if ( !function_exists( 'sofa_site_title' ) ) {
 		// Allow child themes to filter this
 		$html = apply_filters( 'sofa_site_title', $html );
 
-		if ( $echo === true )
-			echo $html;
+		if ( $echo == false )
+			return $html;
 
-		return $html;
+		echo $html;
 	}
 }
 
+/**
+ * Displays the site tagline, if there is one and it's not set to be hidden.
+ * 
+ * @param bool $echo
+ * @return void
+ * @since Sofa 0.1
+ */
+if ( !function_exists( 'sofa_site_tagline' ) ) {
+
+	function sofa_site_tagline($echo = true) {
+		$classes = get_theme_mod('hide_site_tagline') ? 'site-tagline hidden' : 'site-tagline';
+
+		$html = '<h3 class="'.$classes.'">'.get_bloginfo('description').'</h3>';
+		$html = apply_filters( 'sofa_site_tagline', $html );
+
+		if ( $echo == false )
+			return $html;
+		
+		echo $html;
+	}
+}
+
+/**
+ * Displays classes to identify whether the tagline and title are present.
+ * 
+ * @param bool $echo
+ * @return void|array
+ * @since Sofa 0.1
+ */
+if ( !function_exists( 'sofa_header_class' ) ) {
+
+	function sofa_header_class($echo = true) {
+		$classes = array();
+
+		if ( get_theme_mod('hide_site_tagline') || strlen( get_bloginfo('description') ) == 0 )
+			$classes[] = 'no-tagline';
+
+		if ( get_theme_mod('hide_site_title') || strlen( get_bloginfo('title') ) == 0 )
+			$classes[] = 'no-title';
+
+		if ( $echo == false )
+			return $classes; 
+			
+		echo implode( ' ', $classes );
+	}
+}
 
 /**
  * Displays navigation to next/previous pages when applicable.

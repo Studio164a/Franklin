@@ -48,11 +48,11 @@
 
 /* General styling */
 .ninja-forms-form-wrap .ninja-forms-form .text-wrap.label-inside input, .ninja-forms-form-wrap .ninja-forms-form .textarea-wrap.label-inside textarea {
-	max-width: 95%;
+	max-width: 93%;
 }
 
 .ninja-forms-form-wrap .ninja-forms-form .text-wrap.label-inside input.ninja-forms-req, .ninja-forms-form-wrap .ninja-forms-form .textarea-wrap.label-inside textarea.ninja-forms-req {
-	max-width: 90%;
+	max-width: 88%;
 }
 
 .ninja-forms-req-symbol {	

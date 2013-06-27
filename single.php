@@ -5,6 +5,8 @@
 
 get_header() ?>
 
+	<?php get_template_part( 'banner' ) ?>
+
 	<div class="content-wrapper">
 
 		<div class="content">

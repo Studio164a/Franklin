@@ -4,7 +4,7 @@ Theme URI: http://164a.com
 Author: Studio164a
 Author URI: http://164a.com
 Description: A single-page crowdfunding Wordpress theme.
-Version: 0.1
+Version: 1.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: 
@@ -666,7 +666,8 @@ pre {
 
 body {		
 	position: relative;
-	max-width: 100%;
+	max-width: 600px; max-width: 60rem; /* This will be our fallback for any browser that does not support media queries */
+	margin: 0 auto;
 	overflow-x: hidden;	
 }
 
@@ -687,13 +688,10 @@ body {
 	padding: 36px 4%; padding-top: 3.6rem; padding-bottom: 3.6rem;
 }
 
-.content {
-	float: left;
-	width: 100%;
-}
-
 .content,
 .sidebar {
+	width: 100%;
+	float: left;
 	margin-bottom: 48px; margin-bottom: 4.8rem;
 }
 
@@ -745,15 +743,14 @@ body {
 	z-index: 10;
 	width: 92%;
 	padding: 24px 4% 0; padding-top: 2.4rem;	
-	border-bottom: 2px solid; 	
 	border-radius: 0.4rem 0.4rem 0 0;
 }
 
 /* 3.1 -- Social ***/
 
 .social {
-	float: left;
-	margin: 13px 0 0 4%; margin-top: 1.3rem;
+	text-align: center;
+	margin-top: 13px; margin-top: 1.3rem;
 	padding-left: 0;	
 }
 
@@ -838,15 +835,26 @@ body {
 
 /* 3.4 -- Title & Tagline ***/
 
-.site-title {
+.site-identity {
 	position: relative;
 	z-index: 500;
 	float: left;
-	margin: 12px 20px 12px 0; margin-top: 1.2rem; margin-right: 2rem; margin-bottom: 1.2rem;
-	font-size: 34px; font-size: 3.4rem;
-	line-height: 38px; line-height: 3.8rem;
+	padding: 12px 20px 12px 0; padding-top: 1.2rem; padding-right: 2rem; padding-bottom: 1.2rem;
 	text-transform: uppercase;
+}
+
+.site-title {
+	margin: 0;
+	font-size: 34px; font-size: 3.4rem;
+	line-height: 38px; line-height: 3.8rem;	
 	letter-spacing: 2px; letter-spacing: 0.2rem;
+}
+
+.site-tagline {	
+	padding: 6px 0; padding-top: 0.6rem; padding-bottom: 0.6rem;
+	margin: 0;
+	font-size: 13px; font-size: 1.3rem;
+	line-height: 1em;	
 }
 
 /* 4.0 -- Campaign
@@ -931,7 +939,7 @@ body {
 	border-bottom: 2px solid;
 	margin-bottom: 12px; margin-bottom: 1.2rem;
 	padding-bottom: 4px; padding-bottom: 0.4rem;
-	line-height: 30px; line-height: 3rem;
+	line-height: 38px; line-height: 3.8rem;
 }
 
 .page-title,
@@ -1250,6 +1258,7 @@ body {
 .comments-list {
 	float: left;
 	width: 100%;
+	margin-top: 24px; margin-top: 2.4rem;
 	padding-left: 0;
 }
 
@@ -1488,19 +1497,19 @@ body {
 ================================================== */
 
 #site-footer {
-	padding: 24px 0 0; padding-top: 2.4rem;
+	padding: 24px 4% 0; padding-top: 2.4rem;
 }
 
 #site-footer a {
 	height: auto;
 }
 
-.footer-left, 
+/*.footer-left, 
 .footer-right {
 	width: 92%;
 	padding-left: 4%;
 	padding-right: 4%;
-}
+}*/
 
 .footer-widget {
 	float: left;	
@@ -1520,15 +1529,15 @@ body {
 	margin-bottom: 12px; margin-bottom: 1.2rem;	
 }
 
-.footer-right .footer-widget:nth-of-type(2n+1) {
+.footer-right .footer-widget:nth-child(2n+1) {
 	margin-right: 0;
 }
 
 .footer-notice {
 	float: left;
-	width: 92%;
-	margin: 24px 4% 0; margin-top: 2.4rem;
-	padding: 24px 0 12px; padding-top: 2.4rem; padding-bottom: 1.2rem;
+	width: 100%;
+	margin: 24px 0 0; margin-top: 2.4rem;
+	padding: 24px 0; padding-top: 2.4rem; padding-bottom: 2.4rem;
 	border-top: 1px solid;
 	font-weight: 300;
 	letter-spacing: 1px; 
@@ -1580,6 +1589,10 @@ body {
 	}
 
 	/* Site structure */
+	body {
+		max-width: 100%;
+	}
+
 	.entry,
 	.content-block, 
 	.entry blockquote, 
@@ -1613,6 +1626,11 @@ body {
 		padding-left: 2%;
 		padding-right: 2%;
 	}	
+
+	 .social {
+	 	float: left;
+	 	margin-left: 4%;	 	
+	 }
 
 	/* Content */
 	.meta {
@@ -1710,11 +1728,19 @@ body {
 	#site-navigation ul {		
 		height: auto;
 		width: auto;
-		margin: 2rem 0 0 0;
+		margin: 4.5rem 0 0 0;
 		padding-right: 1.6rem;
 		left: 0;
 		border-top: 0;
 		overflow: visible;
+	}
+
+	.no-title #site-navigation ul {
+		margin-top: 1.2rem;
+	}
+
+	.no-tagline #site-navigation ul {
+		margin-top: 2rem;
 	}
 
 	body #site-navigation ul {
@@ -1744,6 +1770,7 @@ body {
 
 	#site-navigation li li a {
 		text-align: left;
+		padding: 0.6rem 1.2rem;
 	}
 
 	#site-navigation .has-sub > a:after {
@@ -1764,10 +1791,13 @@ body {
 		left: -999em;
 		width: 20rem;
 		margin-left: 0;
-		margin-top: 3.8rem;
+		margin-top: 3.8rem !important;
+		padding-top: 1.2rem;
+		padding-bottom: 1.2rem;
 		z-index: 100;
-		border-width: 0 0.1rem 0.1rem 0.1rem;
+		border-width: 0 0.3rem 0.3rem 0.3rem;
 		border-style: solid;
+		border-radius: 0 0 0.4rem 0.4rem;
 	}
 
 	#site-navigation li li {
@@ -1869,8 +1899,7 @@ body {
 
 @media all and (min-width: 74.375em) {
 
-	body {		
-		margin: 0 auto;
+	body {			
 		width: 119rem;
 	}
 

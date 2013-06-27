@@ -109,8 +109,10 @@
 		});
 
 		// Load up lightbox
-		$(".entry a").not(".attachment,.tiled-gallery-item a").has('img').attr('data-rel', 'lightbox[]');
-		$("[data-rel^='lightbox']").prettyPhoto({ theme: 'pp_sofa', hook: 'data-rel' });
+		if ( typeof sofa_ie_lt9 === 'undefined' ) {
+			$(".entry a").not(".attachment,.tiled-gallery-item a").has('img').attr('data-rel', 'lightbox[]');
+			$("[data-rel^='lightbox']").prettyPhoto({ theme: 'pp_sofa', hook: 'data-rel' });
+		}		
 
 		$('.share-twitter').sharrre({
 			share: {				

@@ -132,7 +132,7 @@ class Sofa_Framework {
 		//
 		// Action hooks are named exactly the same as the name of the hook. 
 		// Filter hooks take the form of hook_name_filter. 
-		add_action('wp_head', array(&$this, 'wp_head'));
+		add_action('wp_head', array(&$this, 'wp_head'), 30);
 		add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'));
 
 		add_filter('body_class', array(&$this, 'body_class_filter'));
