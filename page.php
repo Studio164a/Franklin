@@ -5,15 +5,17 @@
 
 get_header(); ?>
 
-	<div class="content-wrapper">
+	<?php if ( have_posts() ) : ?>
 
-		<div class="content">
+		<?php while ( have_posts() ) : ?>
 
-			<?php if ( have_posts() ) : ?>
+			<?php the_post() ?>
 
-				<?php while ( have_posts() ) : ?>
-			
-					<?php the_post() ?>
+			<?php get_template_part( 'banner', 'page' ) ?>
+
+			<div class="content-wrapper">
+
+				<div class="content">									
 							
 					<?php get_template_part( 'content', 'page' ) ?>
 

@@ -351,3 +351,92 @@ if ( !function_exists( 'franklin_campaign_comment' ) ) {
 		endswitch;	
 	}
 }
+
+/**
+ * Campaign Backer Rewards
+ *
+ * @param array $atts
+ * @param ATCF_Campaign $campaign
+ * @return void
+ * @since Franklin 1.1
+ */
+function franklin_atcf_shortcode_submit_field_rewards( $atts, $campaign ) {
+	$rewards  = $atts[ 'previewing' ] || $atts[ 'editing' ] ? edd_get_variable_prices( $campaign->ID ) : array();
+	$shipping = $atts[ 'previewing' ] || $atts[ 'editing' ] ? $campaign->needs_shipping() : 0;
+?>
+	<h3 class="atcf-submit-section backer-rewards"><?php _e( 'Backer Rewards', 'atcf' ); ?></h3>
+
+	<p class="atcf-submit-campaign-shipping">
+		<label for="shipping"><input type="checkbox" id="shipping" name="shipping" value="1" <?php checked(1, $shipping); ?> /> <?php _e( 'Collect shipping information on checkout.', 'atcf' ); ?></label>
+	</p>
+
+	<?php do_action( 'atcf_shortcode_submit_field_rewards_list_before' ); ?>
+
+	<div class="atcf-submit-campaign-rewards">
+		<?php foreach ( $rewards as $key => $reward ) : $disabled = isset ( $reward[ 'bought' ] ) && $reward[ 'bought' ] > 0 ? true : false; ?>
+		<div class="atcf-submit-campaign-reward">
+			<?php do_action( 'atcf_shortcode_submit_field_rewards_before' ); ?>
+
+			<p class="atcf-submit-campaign-reward-price">
+				<label for="rewards[<?php echo esc_attr( $key ); ?>][price]"><?php printf( __( 'Amount (%s)', 'atcf' ), edd_currency_filter( '' ) ); ?></label>
+				<input class="name" type="text" name="rewards[<?php echo esc_attr( $key ); ?>][price]" id="rewards[<?php echo esc_attr( $key ); ?>][price]" value="<?php echo esc_attr( $reward[ 'amount' ] ); ?>" <?php disabled(true, $disabled); ?> />
+			</p>
+
+			<p class="atcf-submit-campaign-reward-limit">
+				<label for="rewards[<?php echo esc_attr( $key ); ?>][limit]"><?php _e( 'Limit', 'atcf' ); ?></label>
+				<input class="description" type="text" name="rewards[<?php echo esc_attr( $key ); ?>][limit]" id="rewards[<?php echo esc_attr( $key ); ?>][limit]" value="<?php echo isset ( $reward[ 'limit' ] ) ? esc_attr( $reward[ 'limit' ] ) : null; ?>" <?php disabled(true, $disabled); ?> />
+			</p>
+
+			<p class="atcf-submit-campaign-reward-description">
+				<label for="rewards[<?php echo esc_attr( $key ); ?>][description]"><?php _e( 'Reward', 'atcf' ); ?></label>
+				<textarea class="description" name="rewards[<?php echo esc_attr( $key ); ?>][description]" id="rewards[<?php echo esc_attr( $key ); ?>][description]" rows="3" <?php disabled(true, $disabled); ?>><?php echo esc_attr( $reward[ 'name' ] ); ?></textarea>
+			</p>			
+
+			<?php do_action( 'atcf_shortcode_submit_field_rewards_after' ); ?>
+
+			<?php if ( ! $disabled ) : ?>
+			<p class="atcf-submit-campaign-reward-remove">
+				<a href="#">&times; <?php _e( 'Remove', 'franklin' ) ?></a>
+			</p>
+			<?php endif; ?>
+		</div>
+		<?php endforeach; ?>
+
+		<?php if ( ! $atts[ 'previewing' ] && ! $atts[ 'editing' ] ) : ?>
+		<div class="atcf-submit-campaign-reward">
+			<?php do_action( 'atcf_shortcode_submit_field_rewards_before' ); ?>
+
+			<p class="atcf-submit-campaign-reward-price">
+				<label for="rewards[0][price]"><?php printf( __( 'Amount (%s)', 'atcf' ), edd_currency_filter( '' ) ); ?></label>
+				<input class="name" type="text" name="rewards[0][price]" id="rewards[0][price]" placeholder="<?php echo edd_format_amount( 20 ); ?>">
+			</p>
+
+			<p class="atcf-submit-campaign-reward-limit">
+				<label for="rewards[0][limit]"><?php _e( 'Limit', 'atcf' ); ?></label>
+				<input class="description" type="text" name="rewards[0][limit]" id="rewards[0][limit]" />
+			</p>
+
+			<p class="atcf-submit-campaign-reward-description">
+				<label for="rewards[0][description]"><?php _e( 'Reward', 'atcf' ); ?></label>
+				<textarea class="description" name="rewards[0][description]" id="rewards[0][description]" rows="3" placeholder="<?php esc_attr_e( 'Description of reward for this level of contribution.', 'atcf' ); ?>"></textarea>
+			</p>			
+
+			<?php do_action( 'atcf_shortcode_submit_field_rewards_after' ); ?>
+
+			<p class="atcf-submit-campaign-reward-remove">
+				<a href="#">&times; <?php _e( 'Remove', 'franklin' ) ?></a>
+			</p>
+		</div>
+		<?php endif; ?>
+
+		<p class="atcf-submit-campaign-add-reward">
+			<a href="#" class="atcf-submit-campaign-add-reward-button"><?php _e( '+ <em>Add Reward</em>', 'atcf' ); ?></a>
+		</p>
+	</div>
+<?php
+}
+remove_action( 'atcf_shortcode_submit_fields', 'atcf_shortcode_submit_field_rewards', 90, 2 );
+add_action( 'atcf_shortcode_submit_fields', 'franklin_atcf_shortcode_submit_field_rewards', 90, 2 );
+
+
+

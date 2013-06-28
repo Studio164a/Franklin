@@ -35,7 +35,7 @@ class Sofa_Crowdfunding_Helper {
     	add_action('after_setup_theme', array(&$this, 'after_setup_theme'));
         add_action('wp_footer', array(&$this, 'wp_footer'));
         add_action('widgets_init', array(&$this, 'widgets_init'));
-        remove_action('atcf_shortcode_profile', 'atcf_shortcode_profile_campaigns', 20, 1 );
+        // remove_action('atcf_shortcode_profile', 'atcf_shortcode_profile_campaigns', 20, 1 );
 
         if ( !is_admin() ) 
             add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'), 11);
@@ -47,6 +47,8 @@ class Sofa_Crowdfunding_Helper {
         add_filter('edd_checkout_image_size', array(&$this, 'edd_checkout_image_size_filter'));
         add_filter('edd_checkout_button_purchase', array(&$this, 'edd_checkout_button_purchase_filter'));
         add_filter('franklin_pledge_levels_wrapper_atts', array(&$this, 'franklin_pledge_levels_wrapper_atts_filter'));
+        add_filter('atcf_submit_field_description_editor_args', array(&$this, 'atcf_submit_field_updates_editor_args_filter'));
+        add_filter('atcf_submit_field_updates_editor_args', array(&$this, 'atcf_submit_field_updates_editor_args_filter'));
 
         add_shortcode('campaign_pledge_levels', array(&$this, 'campaign_pledge_levels_shortcode'));
     }
@@ -234,6 +236,19 @@ class Sofa_Crowdfunding_Helper {
      */
     public function franklin_pledge_levels_wrapper_atts_filter($atts) {
         return 'class="campaign-pledge-levels accordion"';
+    }
+
+    /** 
+     * Filter the editor arguments on the campaign submission page. 
+     * 
+     * @param string $args
+     * @return array
+     * @since Franklin 1.1
+     */
+    public function atcf_submit_field_updates_editor_args_filter($args) {
+        $args['editor_css'] = '<style></style>';
+        $args['media_buttons'] = false;
+        return $args;
     }
 
     /** 

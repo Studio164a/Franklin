@@ -415,7 +415,7 @@
 	margin-bottom: 0;
 }
 
-/* 7.0 - User account links 
+/* 8.0 - User account links 
 ================================================== */
 .account-links {
 	display: block;
@@ -434,7 +434,7 @@
 	max-width: 150px; max-width: 15rem;
 }
 
-/* 8.0 - Login & registration forms 
+/* 9.0 - Login & registration forms 
 ================================================== */
 .atcf-login, 
 .atcf-register {
@@ -472,11 +472,79 @@
 	border-radius: 0;
 }
 
-/* 9.0 - Checkout page: See templates/edd.css
+/* 10.0 - Campaign submission page
+================================================== */
+.atcf-submit-campaign {
+	padding-bottom: 36px; padding-bottom: 3.6rem;
+}
+
+.atcf-submit-campaign input[type=text], 
+.atcf-submit-campaign input[type=password], 
+.atcf-submit-campaign input[type=number], 
+.atcf-submit-campaign input[type=email] {
+	width: -webkit-calc(100% - 2rem);
+	width: -moz-calc(100% - 2rem);
+	width: calc(100% - 2rem);
+	max-width: 100%;
+} 
+
+.atcf-submit-campaign select, 
+.atcf-submit-campaign textarea {
+	max-width: 100%;
+}
+
+.atcf-submit-campaign-goal, 
+.atcf-submit-campaign-length, 
+.atcf-submit-campaign-reward-price, 
+.atcf-submit-campaign-reward-limit, 
+.atcf-submit-campaign-images, 
+.atcf-submit-campaign-video {
+	width: 49%;
+	float: left;
+}
+
+.atcf-submit-campaign-goal, 
+.atcf-submit-campaign-reward-price, 
+.atcf-submit-campaign-images {
+	margin-right: 2%;
+}
+
+.atcf-submit-campaign-reward {
+	border-bottom: 1px solid;
+	margin-bottom: 12px; margin-bottom: 1.2rem; 
+}
+
+.atcf-submit-campaign-submit {
+	margin: 12px 0; margin-top: 1.2rem; margin-bottom: 1.2rem;
+}
+
+.atcf-submit-campaign-submit .button {
+	float: right;
+	margin-right: 13px; margin-right: 1.3rem;
+}
+
+.atcf-submit-campaign-submit .button-secondary {
+	float: left;
+}
+
+/* 11.0 - Projects page
 ================================================== */
 
 
-/* 10.0 - Media Queries
+
+/* 12.0 - Profile page
+================================================== */
+.atcf-profile-campaigns {
+	padding-left: 0;
+	list-style-type: none;	
+}
+
+.atcf-profile-campaign-overview ul {
+	list-style-type: disc;
+}
+
+
+/* 12.0 - Media Queries
 ================================================== */
 
 /* 10.1 --- Greater than 400px ***/

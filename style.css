@@ -272,8 +272,21 @@ textarea {
 
 input:focus,
 textarea:focus, 
-select:focus {
+select:focus, 
+select:active {
 	outline: none;
+}
+
+select {	
+	padding: 11px 2%; padding-top: 1.1rem; padding-bottom: 1.1rem;
+	width: 100%;
+	max-width: 300px; max-width: 30rem;
+	border-width: 1px; border-width: 0.1rem;
+	border-style: solid;
+	border-radius: 0.2rem;
+	text-indent: 3px; text-indent: 0.3rem;
+
+	-webkit-appearance: none;
 }
 
 label {
@@ -360,7 +373,8 @@ input[type=reset].button-large,
 	line-height: 50px; line-height: 5rem;
 }
 
-body .button.button-alt {
+body .button.button-alt, 
+body .button.button-secondary {
 	margin: 0;
 	border: 2px solid; border-width: 0.2rem;
 	background: transparent;
@@ -744,6 +758,11 @@ body {
 	width: 92%;
 	padding: 24px 4% 0; padding-top: 2.4rem;	
 	border-radius: 0.4rem 0.4rem 0 0;
+}
+
+.page-template-default #header {
+	border-bottom-width: 2px; border-bottom-width: 0.2rem;
+	border-bottom-style: solid;
 }
 
 /* 3.1 -- Social ***/
