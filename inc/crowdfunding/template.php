@@ -200,68 +200,71 @@ if ( !function_exists('franklin_campaign_backers') ) {
 
 		$backers = $campaign->backers();
 
-		if ( $backers === false )
-			return;		
-
-		$number = count($backers) > $number ? $number : count($backers);
-
 		// Start the buffer 
 		ob_start();
-		?>
-		<ul>
 
-		<?php for( $i = 0; $i <= $number; $i++ ) : ?>
+		if ( $backers === false ) : ?>
+			
+			<p><?php _e( 'No backers yet. Be the first!', 'franklin' ) ?></p>
+		
+		<?php else :
 
-			<?php if ( isset( $backers[$i] ) ) : ?>
+			$number = count($backers) > $number ? $number : count($backers);		
+			?>
+			<ul>
 
-				<?php $log = $backers[$i] ?>
+			<?php for( $i = 0; $i <= $number; $i++ ) : ?>
 
-				<?php if ( ! sofa_crowdfunding_is_backer_anonymous( $log ) ) : ?>
+				<?php if ( isset( $backers[$i] ) ) : ?>
 
-					<?php $backer = sofa_crowdfunding_get_payment($log) ?>
+					<?php $log = $backers[$i] ?>
 
-					<li class="campaign-backer"> 			
+					<?php if ( ! sofa_crowdfunding_is_backer_anonymous( $log ) ) : ?>
 
-						<?php echo sofa_crowdfunding_get_backer_avatar( $backer ) ?>
+						<?php $backer = sofa_crowdfunding_get_payment($log) ?>
 
-						<div class="if-tiny-hide">
-							<?php if ( $show_name ) : ?>
+						<li class="campaign-backer"> 			
 
-								<h6><?php echo $backer->post_title ?></h6>
+							<?php echo sofa_crowdfunding_get_backer_avatar( $backer ) ?>
 
-							<?php endif ?>
+							<div class="if-tiny-hide">
+								<?php if ( $show_name ) : ?>
 
-							<?php if ( $show_location || $show_pledge ) : ?>
+									<h6><?php echo $backer->post_title ?></h6>
 
-								<p>
-									<?php if ( $show_location ) : ?>
+								<?php endif ?>
 
-										<?php echo sofa_crowdfunding_get_backer_location( $backer ) ?><br />
+								<?php if ( $show_location || $show_pledge ) : ?>
 
-									<?php endif ?>
+									<p>
+										<?php if ( $show_location ) : ?>
 
-									<?php if ( $show_pledge ) : ?>
+											<?php echo sofa_crowdfunding_get_backer_location( $backer ) ?><br />
 
-										<?php echo sofa_crowdfunding_get_backer_pledge( $backer ) ?>					
+										<?php endif ?>
 
-									<?php endif ?>
+										<?php if ( $show_pledge ) : ?>
 
-								</p>
+											<?php echo sofa_crowdfunding_get_backer_pledge( $backer ) ?>					
 
-							<?php endif ?>
-						</div>
+										<?php endif ?>
 
-					</li>
+									</p>
+
+								<?php endif ?>
+							</div>
+
+						</li>
+
+					<?php endif ?>
 
 				<?php endif ?>
+				
+			<?php endfor ?>
 
-			<?php endif ?>
-			
-		<?php endfor ?>
+			</ul>
 
-		</ul>
-
-		<?php 
+		<?php endif;
 
 		return apply_filters( 'franklin_campaign_backers', ob_get_clean(), $campaign, $show_location );
 	}

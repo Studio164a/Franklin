@@ -28,13 +28,14 @@ class Sofa_Crowdfunding_Backers_Widget extends WP_Widget {
 			return;
 
 		$title = apply_filters( 'widget_title', $instance['title'] );
+		$campaign_id = $instance['campaign_id'] == 'current' ? get_the_ID() : $instance['campaign_id'];
 
 		echo $before_widget;
 
 		if ( !empty($title) )
 			echo $before_title . $title . $after_title;
 
-		echo franklin_campaign_backers( new ATCF_Campaign( $instance['campaign_id'] ), $instance );
+		echo franklin_campaign_backers( new ATCF_Campaign( $campaign_id ), $instance );
 
 		echo $after_widget;
 	}
@@ -62,10 +63,12 @@ class Sofa_Crowdfunding_Backers_Widget extends WP_Widget {
         <p>
             <label for="<?php echo $this->get_field_id('campaign_id'); ?>"><?php _e('Campaign:', 'franklin') ?>        
             	<select name="<?php echo $this->get_field_name('campaign_id') ?>">
-            		<option value=""><?php _e( 'Select', 'franklin' ) ?></option>
-            		<?php foreach ( $campaigns->posts as $campaign ) : ?>
-            			<option value="<?php echo $campaign->ID ?>" <?php selected( $campaign->ID, $campaign_id ) ?>><?php echo $campaign->post_title ?></option>
-            		<?php endforeach ?>
+            		<option value="current"><?php _e( 'Campaign currently viewed', 'franklin' ) ?></option>
+            		<optgroup label="<?php _e( 'Specific campaigns', 'franklin' ) ?>">
+	            		<?php foreach ( $campaigns->posts as $campaign ) : ?>
+	            			<option value="<?php echo $campaign->ID ?>" <?php selected( $campaign->ID, $campaign_id ) ?>><?php echo $campaign->post_title ?></option>
+	            		<?php endforeach ?>
+            		</optgroup>
             	</select>    
             </label>      
         </p>
