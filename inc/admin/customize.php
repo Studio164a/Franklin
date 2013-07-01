@@ -578,7 +578,7 @@ body { background-image: url(<?php echo $body_texture_use ?>); }
 <?php endif ?>
 
 /* Accent colour */
-a, #site-navigation .menu-button, #site-navigation a:hover, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, body .button.accent:hover, .button.accent.button-alt, .social a:hover, #site-navigation .current-menu-item > a { color: <?php echo $accent_colour ?>; }
+a, #site-navigation .menu-button, #site-navigation a:hover, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, body .button.accent:hover, .button.accent.button-alt, .social a:hover, #site-navigation .current-menu-item > a, .campaign .campaign-status .campaign-raised span, .campaign .campaign-status .campaign-pledged span, .campaign .campaign-status .campaign-time-left span { color: <?php echo $accent_colour ?>; }
 .campaign-button, .active-campaign, .sticky.block, .button.accent, .button.accent.button-alt:hover, .banner, .gallery-icon, .featured-image a, .edd_success { background-color: <?php echo $accent_colour ?>; color: <?php echo $accent_text ?>; }
 .active-campaign .share { color: <?php echo $accent_text ?>; }
 .active-campaign .share .icon::before { color: <?php echo $accent_text ?>; }
@@ -589,21 +589,21 @@ input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, in
 
 /* Accent hover */
 a:hover { color: <?php echo $accent_hover ?>;}
-.sticky .post-title, .barometer .filled, .button.accent, .active-campaign .campaign-image { border-color: <?php echo $accent_hover ?>; }
+.sticky .post-title, .barometer .filled, .button.accent, .active-campaign .campaign-image, .featured-campaigns .block-title { border-color: <?php echo $accent_hover ?>; }
 
 /* Body background colour */
-body, .audiojs .loaded { background-color: <?php echo $body_background ?>; }
+body, .audiojs .loaded, .edd_errors { background-color: <?php echo $body_background ?>; }
 .audiojs .play-pause { border-right-color: <?php echo $body_background ?>; }
 
 /* Body copy */
-body, .icon, input[type=submit]:hover, input[type=reset]:hover, input[type=submit]:focus, input[type=reset]:focus, input[type=submit]:active, input[type=reset]:active, button:hover, .button:hover, .button.accent:hover, .button.button-alt, .button.button-secondary, #site-navigation a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title { color: <?php echo $body_text ?>; }
+body, .icon, input[type=submit]:hover, input[type=reset]:hover, input[type=submit]:focus, input[type=reset]:focus, input[type=submit]:active, input[type=reset]:active, button:hover, .button:hover, .button.accent:hover, .button.button-alt, .button.button-secondary, #site-navigation a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title, .featured-campaign .button.button-alt:hover { color: <?php echo $body_text ?>; }
 .with-icon::before, .widget_search #searchsubmit::before { color: <?php echo $body_text ?>; }
 <?php if ( $body_text != $footer_titles ) : ?>
 .footer-widget .widget-title { text-shadow: 0 1px 0 <?php echo $body_text ?>; }
 <?php endif ?>
 .campaign-excerpt { text-shadow: 0 1px 1px <?php echo $body_text ?>; text-shadow: 0 1px 1px <?php echo $this->rgb($body_text_rgb, 0.7) ?>;}
 .active-campaign .share .icon::before { text-shadow: 0 1px 1px <?php echo $this->rgb($body_text_rgb, 0.7) ?>;}
-.button.button-alt, .button.button-alt:hover, .account-links .button.button-alt, .button.button-secondary, .button.button-secondary:hover { border-color: <?php echo $body_text ?>; }
+.button.button-alt, .button.button-alt:hover, .account-links .button.button-alt, .button.button-secondary, .button.button-secondary:hover, .featured-campaign .campaign-status { border-color: <?php echo $body_text ?>; }
 .shadow-wrapper::before, .shadow-wrapper::after { border-color: <?php echo $body_text ?>; }
 input[type=submit], input[type=reset], button, .button, .button.button-alt:hover, .button.button-secondary:hover, .audiojs, .campaign-pledge-levels.accordion h3 { background-color: <?php echo $body_text ?>; }
 .account-links .button.button-alt:hover::before { background-color: <?php echo $body_text ?>; }
@@ -611,20 +611,23 @@ input[type=submit], input[type=reset], button, .button { box-shadow: 0 0 0 3px <
 .active-campaign .campaign-image { box-shadow: 0 0 3px 1px <?php echo $this->rgb($body_text_rgb, 0.3) ?>;}
 
 /* Button text colour */
-input[type=submit], input[type=reset], button, .button, .active-campaign .campaign-button, .button.button-alt:hover, .button.button-secondary:hover, .sticky.block, .sticky.block a, .campaign-support .button:hover, .campaign-pledge-levels.accordion h3 { color: <?php echo $button_text ?>; }
-.account-links .button.button-alt:hover::before { color: <?php echo $button_text ?>; }
+input[type=submit], input[type=reset], button, .button, .active-campaign .campaign-button, .button.button-alt:hover, .button.button-secondary:hover, .sticky.block, .sticky.block a, .campaign-support .button:hover, .campaign-pledge-levels.accordion h3, .featured-campaign .button, .featured-campaign .campaign-summary h3 a, .featured-campaigns .block-title { color: <?php echo $button_text ?>; }
+.account-links .button.button-alt:hover::before, .featured-campaigns .block-title::before { color: <?php echo $button_text ?>; }
 .campaign-support .button:hover { box-shadow: 0 0 0 3px <?php echo $button_text ?>; }
+.featured-campaign .button.button-alt { border-color: <?php echo $button_text ?>; }
+.featured-campaign .button.button-alt:hover { background-color: <?php echo $button_text ?>; }
 
 /* Widget background colour */
-input[type=text], input[type=password], input[type=number], input[type=email], input[type=file], textarea, select, .featured-image, th, .entry blockquote, hr, pre, .meta, .audiojs .scrubber, .widget, .sidebar-block, .accordion h3 { background-color: <?php echo $widget_background ?>; }
+input[type=text], input[type=password], input[type=number], input[type=email], .chrome input[type=file], .safari input[type=file], textarea, select, .featured-image, th, .entry blockquote, hr, pre, .meta, .audiojs .scrubber, .widget, .sidebar-block, .accordion h3 { background-color: <?php echo $widget_background ?>; }
 .price-wrapper .currency, input:focus, textarea:focus, select:focus, input:active, textarea:active, select:active { background-color: <?php echo $this->rgb( $widget_rgb, 0.7 ) ?>; }
 
 /* Meta text colour */
 .meta, .comment-meta, .pledge-limit { color: <?php echo $meta_colour ?>; }
 
 /* Primary border colour */
-.widget_search #s, #site-navigation li, #site-navigation.is-active ul ul, .block, .page-title, .block-title, .post-title, .meta, .meta .author, .meta .comment-count, .meta .tags, .comment, .pingback, .widget, .campaign-pledge-levels.accordion h3, .campaign-pledge-levels.accordion .pledge-level, #edd_checkout_form_wrap legend, table, td, th, .contact-page .ninja-forms-form-wrap, .atcf-submit-campaign-reward { border-color: <?php echo $primary_border ?>; }
+.widget_search #s, #site-navigation li, #site-navigation.is-active ul ul, .block, .page-title, .block-title, .post-title, .meta, .meta .author, .meta .comment-count, .meta .tags, .comment, .pingback, .widget, .campaign-pledge-levels.accordion h3, .campaign-pledge-levels.accordion .pledge-level, #edd_checkout_form_wrap legend, table, td, th, .contact-page .ninja-forms-form-wrap, .atcf-submit-campaign-reward, .campaign .campaign-status, .campaign .campaign-status .campaign-raised, .campaign .campaign-status .campaign-pledged, .campaign .campaign-status .campaign-time-left { border-color: <?php echo $primary_border ?>; }
 .multi-block .content-block:nth-of-type(1n+2) { border-color: <?php echo $primary_border ?>; }
+.campaigns-grid .campaign { box-shadow: 0 0 0 1px <?php echo $primary_border ?>; }
 
 /* Secondary border colour */
 th { border-right-color: <?php echo $secondary_border ?>; }
@@ -641,7 +644,7 @@ th { border-right-color: <?php echo $secondary_border ?>; }
 .sticky.block { border-color: <?php echo $posts_background ?>; }
 
 /* Footer text */
-#site-footer, #site-footer a { color: <?php echo $footer_text ?>; }    
+#site-footer, #site-footer a, .edd_errors, .edd_errors a { color: <?php echo $footer_text ?>; }    
 .footer-notice { border-color: <?php echo $this->rgb( $this->get_rgb_from_hex( $footer_text ), 0.5 ) ?>; }
 
 /* Footer widget titles */

@@ -5,7 +5,7 @@
 <?php if ( $campaign === false ) return ?>
 
 <!-- Active campaign -->
-<section class="active-campaign cf">
+<section class="active-campaign current-campaign cf">
 
 	<div class="shadow-wrapper">
 
@@ -23,7 +23,7 @@
 
 			<p class="campaign-support"><a class="button button-large" data-reveal-id="campaign-form" href="#"><?php _e( 'Support', 'franklin' ) ?></a></p>
 
-			<div class="barometer" data-progress="<?php echo $campaign->percent_completed(false) ?>">
+			<div class="barometer" data-progress="<?php echo $campaign->percent_completed(false) ?>" data-width="148" data-height="148" data-strokewidth="11" data-stroke="<?php echo get_theme_mod('accent_text', '#fff') ?>" data-progress-stroke="<?php echo get_theme_mod('body_text', '#7D6E63') ?>">
 				<span><?php printf( _x( "%s Funded", 'x percent funded', 'franklin' ), '<span>'.$campaign->percent_completed(false).'<sup>%</sup></span>' ) ?></span>
 			</div>		
 

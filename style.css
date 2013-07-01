@@ -103,7 +103,10 @@ legend,
 blockquote cite,
 th, 
 .edd_cart_amount, 
-.footer-notice {
+.footer-notice,
+.campaign-status .campaign-raised span, 
+.campaign-status .campaign-pledged span, 
+.campaign-status .campaign-time-left span {
 	font-family: 'Oswald', 'Helvetica Neue', Helvetica, sans-serif;
 }
 
@@ -279,32 +282,41 @@ select:active {
 }
 
 select {	
+	position: relative;
 	padding: 11px 0; padding-top: 1.1rem; padding-bottom: 1.1rem;
 	padding-left: -webkit-calc(1rem); padding-right: -webkit-calc(1rem);
 	padding-left: -moz-calc(1rem); padding-right: -moz-calc(1rem);
 	padding-left: calc(1rem); padding-right: calc(1rem);
 	width: 100%;
 	max-width: 300px; max-width: 30rem;
-	border-width: 1px; border-width: 0.1rem;
-	border-style: solid;
+	border: none;
 	border-radius: 0.2rem;
-	text-indent: 3px; text-indent: 0.3rem;
+	text-indent: 3px; text-indent: 0.3rem;	
+}
 
+.select-wrapper {
+	position: relative;
+}
+
+.select-wrapper select {
 	-webkit-appearance: none;
 }
 
-.chrome input[type=file] {
+.chrome .select-wrapper::after, 
+.safari .select-wrapper::after {
+	font-family: 'fontawesome';
+	content: "\F0D7";	
+	display: block;
+	position: absolute;
+	right: 1rem;
+	top: 1rem;
+	font-size: 1.6rem;
+}
+
+.chrome input[type=file], 
+.safari input[type=file] {
 	padding-top: 0.8rem;
 	padding-bottom: 0.9rem;
-}
-
-.gecko input[type=file] {
-	padding-top: 0.8rem;
-	padding-bottom: 0.8rem;
-}
-
-input[type=file] {
-	
 }
 
 label {
@@ -661,8 +673,8 @@ pre {
 /* credit: http://designfestival.com/when-and-how-to-visually-hide-content/ */
 
 /* Responsively hide elements */
-.if-tiny-hide {
-	display: none;
+.is-tiny .if-tiny-hide {
+	display: none !important;
 }
 
 /* Icons */
@@ -919,7 +931,8 @@ body {
 }
 
 .content-block,
-.reveal-modal.multi-block .content-block {
+.reveal-modal.multi-block .content-block, 
+.reveal-modal.multi-block .block {
 	padding: 0 4% 24px; padding-bottom: 2.4rem;	
 }
 
@@ -970,9 +983,12 @@ body {
 
 /* 5.1 --- Entry Header ***/
 
-.page-title, 
-.block-title, 
-.post-title {	
+h1.page-title, 
+h1.block-title, 
+h1.post-title, 
+h2.page-title, 
+h2.block-title, 
+h2.post-title {	
 	border-bottom: 2px solid;
 	margin-bottom: 12px; margin-bottom: 1.2rem;
 	padding-bottom: 4px; padding-bottom: 0.4rem;
@@ -1611,10 +1627,6 @@ body {
 @media all and (min-width: 37.5em) {
 
 	/* Re-usable classes */
-	.if-tiny-hide {
-		display: block;
-	}
-
 	.column-half {
 		float: left;
 		width: 49%;

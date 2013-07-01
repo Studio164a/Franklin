@@ -13,6 +13,8 @@ get_header() ?>
 
 			<?php $campaign = new ATCF_Campaign( get_the_ID() ) ?>
 
+			<?php do_action( 'atcf_campaign_before', $campaign ) ?>
+
 			<?php get_template_part('campaign', 'blurb') ?>			
 
 			<div class="content-wrapper">

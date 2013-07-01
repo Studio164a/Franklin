@@ -74,10 +74,11 @@ class Sofa_Crowdfunding_Helper {
      */
     public function after_setup_theme() {
     	add_theme_support('appthemer-crowdfunding', apply_filters( 'franklin_crowdfunding_supports', array(
-    		'campaign-widget' => true, 
+    		'campaign-widget'         => true, 
     		'campaign-featured-image' => true, 
-    		'campaign-video' => true, 
-    		'anonymous-backers' => true
+    		'campaign-video'          => true, 
+    		'anonymous-backers'       => true, 
+            'campaign-edit'           => true
     	)));
     }
 
@@ -93,11 +94,12 @@ class Sofa_Crowdfunding_Helper {
         
         wp_register_script('raphael', sprintf( "%s/media/js/raphael-min.js", $theme_dir ), array('jquery'), 0.1, true);
         wp_register_script('countdown', sprintf( "%s/media/js/jquery.countdown.min.js", $theme_dir ), array('jquery'), 0.1, true);
-        wp_register_script('franklin-crowdfunding', sprintf( "%s/media/js/franklin-crowdfunding.js", $theme_dir ), array('raphael', 'countdown'), 0.1, true);
+        // wp_register_script('jquery-isotope', sprintf( "%s/media/js/jquery.isotope.min.js", $theme_dir ), array('jquery'), 0.1, true);
+        wp_register_script('franklin-crowdfunding', sprintf( "%s/media/js/franklin-crowdfunding.js", $theme_dir ), array('raphael', 'countdown', 'jquery-masonry'), 0.1, true);
         wp_enqueue_script('franklin-crowdfunding');
 
-        wp_localize_script('franklin-crowdfunding', 'SofaCrowdfunding', array(
-            'button_colour' => get_theme_mod('body_text', '#7D6E63')));
+        // wp_localize_script('franklin-crowdfunding', 'SofaCrowdfunding', array(
+        //     'button_colour' => get_theme_mod('body_text', '#7D6E63')));
 
         wp_register_style('franklin-crowdfunding', sprintf( "%s/media/css/franklin-crowdfunding.css", $theme_dir ));
         wp_enqueue_style('franklin-crowdfunding');
@@ -304,6 +306,21 @@ class Sofa_Crowdfunding_Helper {
         }
 
         return $this->active_campaign;
+    }
+
+    /**
+     * Get featured campaigns. 
+     * 
+     * @return WP_query
+     * @since Franklin 1.1
+     */
+    public function get_featured_campaigns() {
+        return new ATCF_Campaign_Query( array(
+            'meta_query' => array(
+                array( 'key' => '_campaign_featured', 'value' => 1 ) 
+                ) 
+            ) 
+        );
     }
 }
 

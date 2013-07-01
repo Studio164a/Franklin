@@ -156,7 +156,7 @@ if ( !function_exists('franklin_pledge_levels') ) {
 
 			<?php foreach ( $prices as $i => $price ) : ?>
 
-				<?php $remaining = $price['limit'] - count($price['bought']) + 1 ?>
+				<?php $remaining = isset( $price['bought'] ) ? $price['limit'] - count($price['bought']) + 1 : $price['limit'] ?>
 
 				<h3 class="pledge-title" data-icon="&#xf0d7;"><?php printf( _x( 'Pledge %s', 'pledge amount', 'franklin' ), '<strong>'.edd_currency_filter( edd_format_amount( $price['amount'] ) ).'</strong>' ) ?></h3>
 				<div class="pledge-level cf<?php if ($remaining == 0) echo ' not-available' ?>">										

@@ -50,9 +50,12 @@
 
 .active-campaign .campaign-summary {
 	padding: 36px 4% 0; padding-top: 3.6rem;
-	margin: 0 auto;
-	width: 380px; width: 38rem;	
+	margin: 0 auto;	
 	max-width: 92%;
+}
+
+.current-campaign .campaign-summary {
+	width: 380px; width: 38rem;	
 }
 
 .active-campaign.is-active .campaign-button {
@@ -420,7 +423,7 @@
 .account-links {
 	display: block;
 	margin: 0 auto 24px; margin-bottom: 2.4rem;
-	width: 200px; width: 20rem;	
+	/*width: 100%;	*/
 	text-transform: uppercase;
 	font-size: 12px; font-size: 1.2rem;
 	font-weight: 300;
@@ -429,9 +432,10 @@
 }
 
 .account-links .button.button-alt {
-	text-decoration: none;
+	display: inline-block;	
 	margin: 10px 0 10px 8px; margin-top: 1rem; margin-bottom: 1rem; margin-left: 0.8rem;
 	max-width: 150px; max-width: 15rem;
+	text-decoration: none;
 }
 
 /* 9.0 - Login & registration forms 
@@ -481,7 +485,9 @@
 .atcf-submit-campaign input[type=text], 
 .atcf-submit-campaign input[type=password], 
 .atcf-submit-campaign input[type=number], 
-.atcf-submit-campaign input[type=email] {
+.atcf-submit-campaign input[type=email], 
+.safari .atcf-submit-campaign input[type=file],
+.chrome .atcf-submit-campaign input[type=file] {
 	width: -webkit-calc(100% - 2rem);
 	width: -moz-calc(100% - 2rem);
 	width: calc(100% - 2rem);
@@ -530,6 +536,120 @@
 /* 11.0 - Projects page
 ================================================== */
 
+.featured-campaigns .block-title {
+	padding-bottom: 6px; padding-bottom: 0.6rem;
+	margin: 24px 4%; margin-top: 3.6rem; margin-bottom: 3.6rem;
+	border-bottom: 2px solid;
+}
+
+.featured-campaign .campaign-summary {
+	font-size: 14px; font-size: 1.4rem;
+	line-height: 22px; line-height: 2.2rem;
+}
+
+.featured-campaign .campaign-summary h3 {
+	margin-top: 0;
+}
+
+.featured-campaign .campaign-support {
+	margin: 12px 0 0; margin-top: 1.2rem;
+}
+
+.featured-campaign .button {
+	display: inline-block;
+}
+
+.featured-campaign .button.button-alt:hover {
+	box-shadow: none;
+}
+
+.featured-campaign .campaign-summary ul {
+	float: left;
+	width: 100%;
+	max-width: 100%;
+	text-align: left;
+}
+
+.featured-campaign .campaign-status {	
+	border-top-width: 2px; border-top-width: 0.2rem; 
+	border-bottom: 2px solid; border-bottom-width: 0.2rem;	
+}
+
+.featured-campaign .campaign-status li {	
+	padding: 6px 0;
+	width: 23%;
+	border: none;
+	font-size: 10px; font-size: 1rem;
+	text-align: center;	
+}
+
+.featured-campaign .campaign-status span {
+	font-size: 14px; font-size: 1.4rem;
+	line-height: 1em; 	
+}
+
+.featured-campaign .share li, 
+.featured-campaign .share .icon {
+	padding-top: 24px; padding-top: 2.4rem;
+}
+
+.content.campaigns-grid {
+	width: 100%;	
+}
+
+.campaigns-grid .campaign.block {
+	margin-bottom: 12px; margin-bottom: 1.2rem;
+	border: none;	
+}
+
+.campaign .entry {
+	padding: 0 4%;
+}
+
+.campaign-status {
+	padding: 6px 0; padding-top: 0.6rem; padding-bottom: 0.6rem;
+	margin: 0;
+	height: 43px; height: 4.3rem;
+	border-top: 1px solid;
+	text-align: center;
+}
+
+.campaign-status li {
+	position: relative;
+	display: inline-block;
+	padding: 0 10px; padding: 0 1rem;
+	margin: 0;
+}
+
+.barometer-small {
+	float: none;
+	width: 36px; width: 3.6rem;
+	height: 36px; height: 3.6rem;
+	margin: 0;
+}
+
+.campaign .campaign-status .campaign-raised, 
+.campaign .campaign-status .campaign-pledged, 
+.campaign .campaign-status .campaign-time-left {		
+	border-left: 1px solid;
+	font-style: italic;
+	font-size: 10px; font-size: 1rem;	
+}
+
+.campaign .campaign-status .campaign-raised span, 
+.campaign .campaign-status .campaign-pledged span, 
+.campaign .campaign-status .campaign-time-left span {
+	display: block;
+	font-style: normal;
+	font-size: 14px; font-size: 1.4rem;
+} 
+
+.campaign .campaign-status.barometer-added .campaign-raised, 
+.campaign .campaign-status.barometer-added .campaign-pledged, 
+.campaign .campaign-status.barometer-added .campaign-time-left {
+	position: relative;
+	bottom: 10px; bottom: 1rem;
+}
 
 
 /* 12.0 - Profile page
@@ -610,18 +730,35 @@
 	.block .campaign-backer:nth-child(5n+5) {
 		margin-right: 0;
 	}	
+
+	.active-campaign .featured-campaign .campaign-status li {
+		width: 18%;
+	}
+
+	.campaigns-grid .campaign {
+		width: 49%;
+		float: left;
+	}
+
+	.campaigns-grid .campaign:nth-child(2n+2) {
+		float: right;
+	}
+
+	.campaigns-grid .campaign:nth-child(2n+3) {
+		clear: left;
+	}
 }
 
 /* 10.3 --- Between 800px and 880px ***/
 @media all and (min-width: 37.5em) and (max-width: 55em) {
 
-	.active-campaign .campaign-summary {
+	.current-campaign .campaign-summary {
 		position: relative;
 		width: 92%;			
 		padding-bottom: 7.6rem;	
 	}
 
-	.campaign-summary .campaign-support {
+	.current-campaign .campaign-summary .campaign-support {
 		float: right; 
 		width: 70%;
 	}
@@ -655,7 +792,7 @@
 		border: none;
 	}
 
-	.active-campaign .share {
+	.current-campaign .share {
 		padding-top: 24px; padding-top: 2.4rem;
 		margin-top: 12px; margin-top: 1.2rem;
 		border-top: 1px solid #fff; border-color: rgba(255, 255, 255, 0.3);		
@@ -690,6 +827,53 @@
 		float: right;
 		border-radius: 4px; border-radius: 0.4rem;
 	}
+
+	/* Campaigns index ***/
+	.campaigns-grid .campaign {
+		width: 32%;
+		margin-right: 2%;
+	}
+
+	.campaigns-grid .campaign:nth-child(2n+2) {
+		float: left;
+	}
+
+	.campaigns-grid .campaign:nth-child(3n+3) {
+		margin-right: 0;
+	}
+
+	.campaigns-grid .campaign:nth-child(2n+3) {
+		clear: none;
+	}
+
+	.campaigns-grid .campaign:nth-child(3n+4) {
+		clear: left;
+	}
+
+	/* Featured campaign */
+	.active-campaign .featured-campaign {
+		float: left;
+		width: 92%;
+		margin: 0 4%;
+	}
+
+	.active-campaign .featured-campaign .campaign-image, 
+	.active-campaign .featured-campaign .campaign-summary {		
+		width: 48%;
+		width: -webkit-calc(50% - 2rem);	
+		width: -moz-calc(50% - 2rem);	
+		width: calc(50% - 2rem);
+		margin: 0;
+		padding: 0;	
+	}
+
+	.active-campaign .featured-campaign .campaign-image {
+		float: left;
+	}	
+
+	.active-campaign .featured-campaign .campaign-summary {
+		float: right; 			
+	}	
 }
 
 /* 10.5 --- Greater than 880px ***/
@@ -700,7 +884,7 @@
 		padding-bottom: 36px; padding-bottom: 3.6rem;
 	}
 
-	.active-campaign .campaign-image {
+	.current-campaign .campaign-image {
 		width: 50%;
 		width: -moz-calc(92% - 43rem);
 		width: -webkit-calc(92% - 43rem);
@@ -711,7 +895,7 @@
 		border-radius: 0.4rem;
 	}
 
-	.active-campaign .campaign-summary {
+	.current-campaign .campaign-summary {
 		float: left;
 		padding-left: 0;
 		padding-top: 0.3rem;
@@ -719,7 +903,7 @@
 		margin-right: 0;
 	}	
 
-	.active-campaign .share {
+	.current-campaign .share {
 		float: right;
 		width: 43rem;
 		margin-right: 0;

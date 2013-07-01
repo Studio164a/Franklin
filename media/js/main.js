@@ -70,25 +70,37 @@
 					$(this).removeClass('hovering');
 				});
 			});
+		}, 
+
+		// Hide/show elements responsive
+		responsiveHide = function() {
+			console.log( $(window).width() );
+			$('body').toggleClass('is-tiny', $(window).width() < 600);
 		};
 	
-		return ( function() {
+		return {			
 
-			// Remove the no-js class from the html element
-			$("html").removeClass('no-js');
+			init : function() {
+				// Remove the no-js class from the html element
+				$("html").removeClass('no-js');
 
-			// Set up cross-browser placeholders
-			crossBrowserPlaceholder();
+				// Set up cross-browser placeholders
+				crossBrowserPlaceholder();
 
-			// Dropdown menus
-			dropdownMenus();
+				// Dropdown menus
+				dropdownMenus();
 
-			// Image hovers
-			imageHovers();
+				// Image hovers
+				imageHovers();
 
-			return {};
-		})();	
-	});
+				responsiveHide();
+			}, 
+
+			responsiveHide : function() {
+				responsiveHide();
+			}
+		};	
+	})();
 
 	$(document)
 	// Initiate foundation
@@ -97,7 +109,7 @@
 	// Perform other actions on ready event
 	.ready(function() {
 
-		var s = Sofa();	
+		Sofa.init();
 
 		$('.menu-button').on( 'click', function() {			
 			$(this).children().toggleClass('icon-th-list').toggleClass('icon-remove');
@@ -107,6 +119,8 @@
 		$('.accordion').accordion({
 			heightStyle: "content"
 		});
+
+		$('select').wrap('<div class="select-wrapper" />');
 
 		// Load up lightbox
 		if ( typeof sofa_ie_lt9 === 'undefined' ) {
@@ -153,5 +167,9 @@
 	audiojs.events.ready(function() {
     	var as = audiojs.createAll();
   	});
+
+  	$(window).resize( function() {
+  		Sofa.responsiveHide();
+  	})
 
 })( jQuery );

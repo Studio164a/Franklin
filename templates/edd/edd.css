@@ -167,8 +167,9 @@ input.edd_submit_plain { background: none !important; border: none !important; p
 
 /* =Error styles
 -------------------------------------------------------------- */
-.edd_errors { -webkit-border-radius: 0.2rem; -moz-border-radius: 0.2rem; border-radius: 0.2rem; border: 1px solid; margin: 0; background: #FFFFE0; color: #333; }
-.edd_error { padding:10px; }
+.edd_errors { margin: 0; }
+.edd_errors a { text-decoration: underline; }
+.edd_error { padding: 12px 4%; padding-top: 1.2rem; padding-bottom: 1.2rem; }
 p.edd_error { margin: 0 !important; }
 
 /* =Success Message styles
