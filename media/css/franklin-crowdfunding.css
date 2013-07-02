@@ -482,6 +482,15 @@
 	padding-bottom: 36px; padding-bottom: 3.6rem;
 }
 
+.atcf-profile-section,
+.atcf-submit-section {
+	float: left;
+	width: 100%;
+	border-bottom: 2px solid;
+	text-align: center;
+	text-transform: uppercase;	
+}
+
 .atcf-submit-campaign input[type=text], 
 .atcf-submit-campaign input[type=password], 
 .atcf-submit-campaign input[type=number], 
@@ -502,17 +511,18 @@
 .atcf-submit-campaign-goal, 
 .atcf-submit-campaign-length, 
 .atcf-submit-campaign-reward-price, 
-.atcf-submit-campaign-reward-limit, 
-.atcf-submit-campaign-images, 
-.atcf-submit-campaign-video {
+.atcf-submit-campaign-reward-limit {
 	width: 49%;
 	float: left;
 }
 
 .atcf-submit-campaign-goal, 
-.atcf-submit-campaign-reward-price, 
-.atcf-submit-campaign-images {
+.atcf-submit-campaign-reward-price {
 	margin-right: 2%;
+}
+
+.atcf-submit-campaign-description {
+	margin-bottom: 12px; margin-bottom: 1.2rem;
 }
 
 .atcf-submit-campaign-reward {
@@ -735,6 +745,18 @@
 		width: 18%;
 	}
 
+	/* Submit campaign form ***/
+	.atcf-submit-campaign-images, 
+	.atcf-submit-campaign-video {
+		width: 49%;
+		float: left;
+	}
+
+	.atcf-submit-campaign-images {
+		margin-right: 2%;
+	}
+
+	/* Campaigns grid ***/
 	.campaigns-grid .campaign {
 		width: 49%;
 		float: left;

@@ -50,7 +50,7 @@ function sofa_crowdfunding_get_enddate( $campaign, $json_format = false ) {
 function sofa_crowdfunding_get_page_url($page) {
 	global $edd_options;
 	
-	if ( !isset( $edd_options[$page] ) )
+	if ( !isset( $edd_options[$page] ) || $edd_options[$page] == 0 )
 		return false;
 
 	return get_permalink( $edd_options[$page] );
