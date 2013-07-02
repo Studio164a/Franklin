@@ -21,7 +21,19 @@ get_header() ?>
 					<?php the_content() ?>
 				</div>
 
-				<div class="content campaigns-grid">
+				<h3 class="section-title"><?php _e( 'Latest Projects', 'franklin' ) ?></h3>
+
+				<nav class="campaigns-navigation" role="navigation">
+		            <a class="menu-button toggle-button"><i class="icon-th-list"></i></a>
+					<?php 
+					wp_nav_menu( array(   
+			                'theme_location' => 'campaigns_navigation',
+			                'container' => false,
+			                'menu_class' => 'menu', 
+			                'fallback_cb' => 'sofa_crowdfunding_campaign_nav' ) ) ?>
+				</nav>
+
+				<div class="content campaigns-grid masonry-grid">					
 
 					<?php $campaigns = new ATCF_Campaign_Query() ?>
 

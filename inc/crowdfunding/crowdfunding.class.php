@@ -40,6 +40,8 @@ class Sofa_Crowdfunding_Helper {
         if ( !is_admin() ) 
             add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'), 11);
 
+        add_filter('page_template', array(&$this, 'page_template_filter'));
+        add_filter('wp_nav_menu_items', array(&$this, 'wp_nav_menu_items_filter'), 10, 2);
         add_filter('edd_purchase_link_defaults', array(&$this, 'edd_purchase_link_defaults_filter'));
         add_filter('edd_templates_dir', array(&$this, 'edd_templates_dir_filter'));
         add_filter('edd_add_to_cart_item', array(&$this, 'edd_add_to_cart_item_filter'));
@@ -80,6 +82,11 @@ class Sofa_Crowdfunding_Helper {
     		'anonymous-backers'       => true, 
             'campaign-edit'           => true
     	)));
+
+        // Register menu
+        register_nav_menus( array(
+            'campaigns_navigation' => 'Campaigns Menu'
+        ) ); 
     }
 
     /**
@@ -95,7 +102,7 @@ class Sofa_Crowdfunding_Helper {
         wp_register_script('raphael', sprintf( "%s/media/js/raphael-min.js", $theme_dir ), array('jquery'), 0.1, true);
         wp_register_script('countdown', sprintf( "%s/media/js/jquery.countdown.min.js", $theme_dir ), array('jquery'), 0.1, true);
         // wp_register_script('jquery-isotope', sprintf( "%s/media/js/jquery.isotope.min.js", $theme_dir ), array('jquery'), 0.1, true);
-        wp_register_script('franklin-crowdfunding', sprintf( "%s/media/js/franklin-crowdfunding.js", $theme_dir ), array('raphael', 'countdown', 'jquery-masonry'), 0.1, true);
+        wp_register_script('franklin-crowdfunding', sprintf( "%s/media/js/franklin-crowdfunding.js", $theme_dir ), array('raphael', 'countdown', 'jquery-masonry', 'franklin'), 0.1, true);
         wp_enqueue_script('franklin-crowdfunding');
 
         // wp_localize_script('franklin-crowdfunding', 'SofaCrowdfunding', array(
@@ -144,6 +151,45 @@ class Sofa_Crowdfunding_Helper {
         register_widget( 'Sofa_Crowdfunding_Updates_Widget' );
         register_widget( 'Sofa_Crowdfunding_Video_Widget' );
     }
+
+    /**
+     * Filter the template file loaded for profile and campain submission pages. 
+     * 
+     * @uses sofa_application_page_template     Child themes can use this to use a different page template, or restore default behaviour.
+     *
+     * @global $post
+     * @global $edd_options
+     * @param string $page_template
+     * @return string          
+     * @since Franklin 1.1
+     */
+    public function page_template_filter($page_template) {
+        global $post, $edd_options;
+
+        if ( $post->ID == $edd_options['submit_page'] 
+            || $post->ID == $edd_options['profile_page']
+            || $post->ID == $edd_options['purchase_page'] 
+        ) {
+            $page_template = apply_filters( 'sofa_application_page_template', get_template_directory() . '/page-app.php', $page_template );
+        }        
+        
+        return $page_template;
+    }
+
+    /**
+     * Filter the campaigns navigation to include a dropdown list of all the categories.
+     *
+     * @uses
+     * 
+     * @param string $items
+     * @param array $args
+     * @return string
+     * @since Franklin 1.1
+     */
+    public function wp_nav_menu_items_filter($items, $args) {
+        return $items;
+    }
+
 
     /**
      * Filter the default arguments for the purchase link.

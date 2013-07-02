@@ -4,10 +4,6 @@
 	margin-top: 0;
 }
 
-.sidebar-campaign .widget:first-child .widget-title {
-	margin-top: 0;
-}
-
 .campaign-support.campaign-support-small {
 	float: none;
 	max-width: 300px; max-width: 30rem;
@@ -434,7 +430,7 @@
 .account-links .button.button-alt {
 	display: inline-block;	
 	margin: 10px 0 10px 8px; margin-top: 1rem; margin-bottom: 1rem; margin-left: 0.8rem;
-	max-width: 150px; max-width: 15rem;
+	max-width: 100%;
 	text-decoration: none;
 }
 
@@ -535,7 +531,7 @@
 }
 
 .atcf-submit-campaign-submit .button {
-	float: right;
+	float: left;
 	margin-right: 13px; margin-right: 1.3rem;
 }
 
@@ -546,6 +542,7 @@
 /* 11.0 - Projects page
 ================================================== */
 
+/* 11.1 --- Featured campaigns ***/
 .featured-campaigns .block-title {
 	padding-bottom: 6px; padding-bottom: 0.6rem;
 	margin: 24px 4%; margin-top: 3.6rem; margin-bottom: 3.6rem;
@@ -603,11 +600,18 @@
 	padding-top: 24px; padding-top: 2.4rem;
 }
 
+/* 11.2 --- Grid ***/
+.campaigns-navigation {
+	float: right;
+}
+
+
 .content.campaigns-grid {
 	width: 100%;	
 }
 
 .campaigns-grid .campaign.block {
+	max-width: 100%;
 	margin-bottom: 12px; margin-bottom: 1.2rem;
 	border: none;	
 }
@@ -636,6 +640,7 @@
 	width: 36px; width: 3.6rem;
 	height: 36px; height: 3.6rem;
 	margin: 0;
+	vertical-align: top;
 }
 
 .campaign .campaign-status .campaign-raised, 
@@ -650,16 +655,17 @@
 .campaign .campaign-status .campaign-pledged span, 
 .campaign .campaign-status .campaign-time-left span {
 	display: block;
+	padding-top: 2px; padding-top: 0.2rem;
 	font-style: normal;
 	font-size: 14px; font-size: 1.4rem;
 } 
 
-.campaign .campaign-status.barometer-added .campaign-raised, 
-.campaign .campaign-status.barometer-added .campaign-pledged, 
-.campaign .campaign-status.barometer-added .campaign-time-left {
+/*.gecko .campaign .campaign-status.barometer-added .campaign-raised, 
+.gecko .campaign .campaign-status.barometer-added .campaign-pledged, 
+.gecko .campaign .campaign-status.barometer-added .campaign-time-left {
 	position: relative;
 	bottom: 10px; bottom: 1rem;
-}
+}*/
 
 
 /* 12.0 - Profile page
@@ -757,13 +763,20 @@
 	}
 
 	/* Campaigns grid ***/
+	.content.campaigns-grid {
+		width: 102%;
+	}
+
 	.campaigns-grid .campaign {
-		width: 49%;
+		width: 48%;
+		margin-right: 1.9%;
 		float: left;
+		border: none !important;
+		padding: 0 !important;
 	}
 
 	.campaigns-grid .campaign:nth-child(2n+2) {
-		float: right;
+		margin-right: 0;
 	}
 
 	.campaigns-grid .campaign:nth-child(2n+3) {
@@ -850,28 +863,6 @@
 		border-radius: 4px; border-radius: 0.4rem;
 	}
 
-	/* Campaigns index ***/
-	.campaigns-grid .campaign {
-		width: 32%;
-		margin-right: 2%;
-	}
-
-	.campaigns-grid .campaign:nth-child(2n+2) {
-		float: left;
-	}
-
-	.campaigns-grid .campaign:nth-child(3n+3) {
-		margin-right: 0;
-	}
-
-	.campaigns-grid .campaign:nth-child(2n+3) {
-		clear: none;
-	}
-
-	.campaigns-grid .campaign:nth-child(3n+4) {
-		clear: left;
-	}
-
 	/* Featured campaign */
 	.active-campaign .featured-campaign {
 		float: left;
@@ -930,6 +921,36 @@
 		width: 43rem;
 		margin-right: 0;
 		margin-left: 0;
+	}
+}
+
+/* 10.7 --- Greater than 920px ***/
+@media all and (min-width: 57.5em) {
+
+	/* Campaigns index ***/
+	.content.campaigns-grid {
+		width: 104%;
+	}
+
+	.campaigns-grid .campaign {
+		width: 30.7692308%;
+		margin-right: 1.9230769%;
+	}
+
+	.campaigns-grid .campaign:nth-child(2n+2) {
+		margin-right: 1.9230769%;
+	}
+
+	.campaigns-grid .campaign:nth-child(3n+3) {
+		margin-right: 0;
+	}
+
+	.campaigns-grid .campaign:nth-child(2n+3) {
+		clear: none;
+	}
+
+	.campaigns-grid .campaign:nth-child(3n+4) {
+		clear: left;
 	}
 }
 

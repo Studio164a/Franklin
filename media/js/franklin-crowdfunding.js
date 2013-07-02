@@ -1,128 +1,200 @@
 ( function( $ ){	 
 
-	// Check whether the element is in view
-	var isInView = function($el) {
-	    var docViewTop = $(window).scrollTop(), 
-	    	docViewBottom = docViewTop + $(window).height(), 
-			elemTop = $el.offset().top,
-			elemBottom = elemTop + $el.height();
+	Sofa.Barometer = ( function() {
 
-	    return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom)
-  			&& (elemBottom <= docViewBottom) &&  (elemTop >= docViewTop) );
-	};
+		// Barometers collection
+		var $barometers = $('.barometer'), 
 
-	// Countdown 
-	var $countdown = (function() {
-		var $countdown = $('.countdown'), 
-			enddate;
+		// Check whether the element is in view
+		isInView = function($el) {
+		    var docViewTop = $(window).scrollTop(), 
+		    	docViewBottom = docViewTop + $(window).height(), 
+				elemTop = $el.offset().top,
+				elemBottom = elemTop + $el.height();
 
-		if ($countdown.length) {
-			enddate = $countdown.data().enddate;
+		    return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom)
+	  			&& (elemBottom <= docViewBottom) &&  (elemTop >= docViewTop) );
+		}, 
 
-			$countdown.countdown({until: new Date( enddate.year, enddate.month-1, enddate.day ), format: 'dHMs'});
-		}		
+		// A custom arc to apply to the barometer's paths.
+		// @see http://stackoverflow.com/questions/5061318/drawing-centered-arcs-in-raphael-js
+		customArc = function (xloc, yloc, value, total, R) {
+			var alpha = 360 / total * value,
+				a = (90 - alpha) * Math.PI / 180,
+				x = xloc + R * Math.cos(a),
+				y = yloc - R * Math.sin(a),
+				path;
 
-		return $countdown;
+			if (total == value) {
+				path = [
+					["M", xloc, yloc - R],
+					["A", R, R, 0, 1, 1, xloc - 0.01, yloc - R]
+				];
+			} else {
+				path = [
+					["M", xloc, yloc - R],
+					["A", R, R, 0, +(alpha > 180), 1, x, y]
+				];
+			}
+			return {
+				path: path
+			};
+		}
+
+		// Draws a barometer
+		drawBarometer = function($barometer, r, width, height, progress_val) {			
+			var progress;
+
+			// Draw the percentage filled arc
+			progress = r.path().attr({ 
+				stroke: $barometer.data('progress-stroke'), 
+				'stroke-width' : $barometer.data('strokewidth')+1, 
+				arc: [width/2, height/2, 0, 100, (width/2)-8]
+			});
+
+			// Animate it
+			progress.animate({
+				arc: [width/2, height/2, progress_val, 100, (width/2)-8]
+			}, 1500, "easeInOut", function() {
+				$barometer.find('span').animate( { opacity: 1}, 300, 'linear');
+			});
+		}, 
+
+		// Init barometer
+		initBarometer = function($barometer) {
+			var width = $barometer.data('width'), 
+				height = $barometer.data('height'),					
+				r = Raphael( $barometer[0], width, height),
+				drawn = false,							
+				progress_val = $barometer.data('progress'),
+				circle;
+
+			// @see http://stackoverflow.com/questions/5061318/drawing-centered-arcs-in-raphael-js
+			r.customAttributes.arc = customArc;
+
+			// Draw the main circle
+			circle = r.path().attr({
+				stroke: $barometer.data('stroke'), 
+				'stroke-width' : $barometer.data('strokewidth'), 
+				arc: [width/2, height/2, 0, 100, (width/2)-8]
+			});
+
+			// Fill the main circle
+			$barometer.parent().addClass('barometer-added');
+			circle.animate({ arc: [width/2, height/2, 100, 100, (width/2)-8] }, 1000, function() {
+				if ( progress_val === 0 ) {
+					$barometer.find('span').animate( { opacity: 1}, 500, 'linear' );
+				}					
+			});
+
+			if ( isInView($barometer) ) {
+				drawBarometer($barometer, r, width, height, progress_val);
+
+				drawn = true;
+			}
+			else {
+				$(window).scroll( function() {
+					if ( drawn === false && isInView($barometer) ) {
+						drawBarometer($barometer, r, width, height, progress_val);
+
+						drawn = true;
+					}
+				});
+			}
+		};
+
+		return {
+
+			init : function() {
+
+				$barometers.each( function() {
+					initBarometer( $(this) );
+				});					
+
+			},
+
+			getBarometers : function() {
+				return $barometers;
+			}
+
+		}
+
+	})();
+
+	Sofa.Countdown = ( function() {
+
+		var 
+		// Start the countdown script
+		startCountdown = function() {
+			var $countdown = $('.countdown'), 
+				enddate;
+
+			if ($countdown.length) {
+				enddate = $countdown.data().enddate;
+
+				$countdown.countdown({until: new Date( enddate.year, enddate.month-1, enddate.day ), format: 'dHMs'});
+			}		
+
+			return $countdown;
+		}
+
+		return {
+
+			init : function() {
+				startCountdown();
+			}
+			
+		};
+
 	})();	
+
+	Sofa.Grid = ( function() {
+
+		var $grids = $('.masonry-grid');
+
+		initGrid = function($grid) {
+			$grid.masonry();
+		};
+
+		return {
+
+			init : function() {
+
+				if ( $(window).width() > 400 ) {
+					$grids.each( function() {
+						initGrid( $(this) );
+					});
+				}
+							
+			}, 
+
+			getGrids : function() {
+				return $grids;
+			}, 
+
+			resizeGrid : function() {
+				$grids.each( function(){
+					initGrid( $(this) );
+				})
+			}			
+		}
+
+	})();
 
 	// Set up Raphael on window load event
 	$(window).load(function() {
-		var $barometers = $('.barometer'), 
-			max = $barometers.length, 
-			i = 0;
+		Sofa.Grid.init();
+		Sofa.Barometer.init();
 
-		if ( max ) { 
-
-			// @see http://stackoverflow.com/questions/5061318/drawing-centered-arcs-in-raphael-js
-			var customArc = function (xloc, yloc, value, total, R) {
-				var alpha = 360 / total * value,
-					a = (90 - alpha) * Math.PI / 180,
-					x = xloc + R * Math.cos(a),
-					y = yloc - R * Math.sin(a),
-					path;
-
-				if (total == value) {
-					path = [
-						["M", xloc, yloc - R],
-						["A", R, R, 0, 1, 1, xloc - 0.01, yloc - R]
-					];
-				} else {
-					path = [
-						["M", xloc, yloc - R],
-						["A", R, R, 0, +(alpha > 180), 1, x, y]
-					];
-				}
-				return {
-					path: path
-				};
-			}, 
-
-			drawBarometer = function($barometer, r, width, height, progress_val) {			
-				var progress;
-
-				// Draw the percentage filled arc
-				progress = r.path().attr({ 
-					stroke: $barometer.data('progress-stroke'), 
-					'stroke-width' : $barometer.data('strokewidth')+1, 
-					arc: [width/2, height/2, 0, 100, (width/2)-8]
-				});
-
-				// Animate it
-				progress.animate({
-					arc: [width/2, height/2, progress_val, 100, (width/2)-8]
-				}, 1500, "easeInOut", function() {
-					$barometer.find('span').animate( { opacity: 1}, 300, 'linear');
-				});
-			};
-
-			$barometers.each( function() {
-				var $barometer = $(this), 			
-					width = $barometer.data('width'), 
-					height = $barometer.data('height'),					
-					r = Raphael( $barometer[0], width, height),
-					drawn = false,							
-					progress_val = $barometer.data('progress'),
-					circle;
-
-				// console.log( $barometer.data('stroke') );
-
-				// @see http://stackoverflow.com/questions/5061318/drawing-centered-arcs-in-raphael-js
-				r.customAttributes.arc = customArc;
-
-				// Draw the main circle
-				circle = r.path().attr({
-					stroke: $barometer.data('stroke'), 
-					'stroke-width' : $barometer.data('strokewidth'), 
-					arc: [width/2, height/2, 0, 100, (width/2)-8]
-				});
-
-				// Fill the main circle
-				$barometer.parent().addClass('barometer-added');
-				circle.animate({ arc: [width/2, height/2, 100, 100, (width/2)-8] }, 1000, function() {
-					if ( progress_val === 0 ) {
-						$barometer.find('span').animate( { opacity: 1}, 500, 'linear' );
-					}					
-				});
-
-				if (isInView($barometer) ) {
-					drawBarometer($barometer, r, width, height, progress_val);
-
-					drawn = true;
-				}
-				else {
-					$(window).scroll( function() {
-						if ( drawn === false && isInView($barometer) ) {
-							drawBarometer($barometer, r, width, height, progress_val);
-
-							drawn = true;
-						}
-					});
-				}
-			});			
-		}
-	});
+	}). 
+	resize( function() {
+		Sofa.Grid.resizeGrid();
+	})
 
 	$(document).ready( function() {
+
+		Sofa.Countdown.init();		
+
 		$('.campaign-button').on( 'click', function() {
 			$(this).toggleClass('icon-remove');
 			$(this).parent().toggleClass('is-active');

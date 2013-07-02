@@ -2,6 +2,8 @@
 
 /**
  * Template name: Contact Page Template
+ * 
+ * @since Franklin 1.0
  */
 
 get_header(); ?>

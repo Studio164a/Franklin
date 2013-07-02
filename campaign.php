@@ -15,8 +15,9 @@
 		</div>
 
 		<ul class="campaign-status horizontal center">
-			<li class="barometer barometer-small" data-progress="<?php echo $campaign->percent_completed(false) ?>" data-width="46" data-height="46" data-strokewidth="8" data-stroke="<?php echo get_theme_mod('secondary_border', '#dbd5d1') ?>" data-progress-stroke="<?php echo get_theme_mod('accent_colour', '#d95b43') ?>">
+			<li class="barometer barometer-small" data-progress="<?php echo $campaign->percent_completed(false) ?>" data-width="42" data-height="42" data-strokewidth="8" data-stroke="<?php echo get_theme_mod('secondary_border', '#dbd5d1') ?>" data-progress-stroke="<?php echo get_theme_mod('accent_colour', '#d95b43') ?>">
 			</li>
+			<!-- <li class="barometer barometer-small">hello</li> -->
 			<li class="campaign-raised">
 				<span><?php echo $campaign->percent_completed(false) ?><sup>%</sup></span>
 				<?php _e( 'Funded', 'franklin' ) ?>		

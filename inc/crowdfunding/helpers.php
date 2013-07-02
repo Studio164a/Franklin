@@ -17,6 +17,26 @@ function sofa_crowdfunding_get_campaign() {
 }
 
 /**
+ * The callback function for the campaigns navigation
+ * 
+ * @param bool $echo
+ * @return string
+ * @since Franklin 1.1
+ */
+function sofa_crowdfunding_campaign_nav($echo = true) {	
+	$categories = wp_list_categories( array( 
+		'show_option_all' => __('All', 'franklin'),
+		'taxonomy' => 'download_category', 
+		'echo' => false
+	) );	
+
+	if ( $echo === false ) 
+		return '<ul class="menu">' . $categories . '</ul>';
+	
+	echo '<ul class="menu">' . $categories . '</ul>';
+}
+
+/**
  * Get the end date of the given campaign. 
  * 
  * @param ATCF_Campaign $campaign

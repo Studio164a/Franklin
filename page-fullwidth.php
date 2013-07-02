@@ -1,6 +1,8 @@
 <?php 
 /**
  * Template name: Fullwidth Template
+ * 
+ * @since Franklin 1.0
  */
 
 get_header(); ?>

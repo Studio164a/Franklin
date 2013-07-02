@@ -85,7 +85,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6, 
-#site-navigation li,
+.menu li,
 button,
 .button, 
 input[type=submit], 
@@ -114,6 +114,10 @@ input,
 textarea,
 .format-status .post-title {
 	font-family: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
+}
+
+.alt {
+	font-family: 'Merriweather', Georgia, 'Times New Roman', Times, serif !important;	
 }
 
 h1 {
@@ -166,6 +170,11 @@ h1, h2, h3, h4, h5, h6 {
 	display: inline-block;
 	padding-right: 10px; padding-right: 1rem; 
 	padding-left: 10px; padding-left: 1rem;	
+}
+
+.section-title {
+	text-transform: uppercase;
+	letter-spacing: 2px; letter-spacing: 0.2rem;
 }
 
 p {
@@ -435,10 +444,15 @@ img {
 	-ms-interpolation-mode: bicubic; 
 }
 
+.featured-image, 
+.featured-image a, 
+.featured-image img {
+	border-radius: 0.4rem 0.4rem 0 0;
+}
+
 .featured-image {
 	max-width: 100%;
-	line-height: 0;	
-	border-radius: 0.4rem 0.4rem 0 0;
+	line-height: 0;		
 	text-align: center;	
 }
 
@@ -703,6 +717,11 @@ pre {
 	width: 100%;
 }
 
+/* Menu buttons */
+.menu-button {
+	font-size: 20px; font-size: 2rem;
+}
+
 /* 2.0 -- Site Structure
 ================================================== */
 
@@ -878,8 +897,7 @@ body {
 	position: absolute;
 	right: 4%;
 	top: 36px; top: 3.6rem;
-	line-height: 38px; line-height: 3.8rem;
-	font-size: 20px; font-size: 2rem;
+	line-height: 38px; line-height: 3.8rem;	
 }
 
 /* 3.4 -- Title & Tagline ***/
@@ -1045,6 +1063,13 @@ h2.post-title {
 }
 
 /* 5.3 --- Entry Content ***/
+
+.home-content.block {
+	padding-bottom: 36px; padding-bottom: 3.6rem;
+	border-width: 0 0 2px 0;
+	border-radius: 0;
+	background-color: transparent;
+}
 
 .sticky.block {	
 	border: 1px solid;	
@@ -1756,6 +1781,10 @@ h2.post-title {
 /* 8.2 --- Greater than 800px ***/
 
 @media all and (min-width: 50em) {	
+	.menu-button {
+		display: none !important;
+	}
+
 	/* Navigation */
 	#site-navigation {	
 		position: static;
@@ -1768,11 +1797,7 @@ h2.post-title {
 
 	body #site-navigation {
 		background: transparent;		
-	}
-
-	#site-navigation .menu-button {
-		display: none;
-	}
+	}	
 
 	#site-navigation ul {		
 		height: auto;
@@ -1797,15 +1822,18 @@ h2.post-title {
 	}
 
 	#site-navigation li {
-		position: relative;
-		display: inline-block;
-		margin: 0 0 0 1rem;		
-		padding-bottom: 0.8rem;
 		border: none;
+		margin: 0 0 0 1rem;
 		text-indent: 0;
 	}
 
-	#site-navigation a {
+	.menu li {
+		position: relative;
+		display: inline-block;
+		padding-bottom: 0.8rem;				
+	}
+
+	.menu a {
 		position: relative;
 		z-index: 50;
 		display: inline-block;
@@ -1817,12 +1845,12 @@ h2.post-title {
 		text-align: center;
 	}
 
-	#site-navigation li li a {
+	.menu li li a {
 		text-align: left;
 		padding: 0.6rem 1.2rem;
 	}
 
-	#site-navigation .has-sub > a:after {
+	.menu .has-sub > a:after {
 		font-family: 'FontAwesome', sans-serif;
 		content: '\f107';
 		position: relative;	
@@ -1830,12 +1858,12 @@ h2.post-title {
 		left: 4px; left: 0.4rem;
 	}
 
-	#site-navigation ul ul .has-sub > a:after {
+	.menu ul ul .has-sub > a:after {
 		content: '\f105';
 		top: 0;
 	}
 
-	#site-navigation ul ul {
+	.menu ul ul {
 		position: absolute;	
 		left: -999em;
 		width: 20rem;
@@ -1849,29 +1877,29 @@ h2.post-title {
 		border-radius: 0 0 0.4rem 0.4rem;
 	}
 
-	#site-navigation li li {
+	.menu li li {
 		padding-bottom: 0;
 	}
 
-	#site-navigation ul ul ul {
+	.menu ul ul ul {
 		top: 0;
 		margin-top: 0;
 		margin-left: 20rem;
 	}
 
-	#site-navigation li:hover > ul,
-	#site-navigation li.hovering > ul {
+	.menu li:hover > ul,
+	.menu li.hovering > ul {
 		left: auto;
 	}
 
-	#site-navigation li li {	
+	.menu li li {	
 		display: block;
 		width: 100%;
 		clear: left;
 		margin: 0;
 	}
 
-	#site-navigation ul ul a {
+	.menu ul ul a {
 		font-size: 1.2rem;
 		border: none;
 	}

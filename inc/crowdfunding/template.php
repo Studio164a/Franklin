@@ -102,27 +102,27 @@ function franklin_atcf_shortcode_register_form() {
 	global $edd_options;
 ?>
 	<p class="atcf-register-name">
-		<label for="user_nicename"><?php _e( 'Your Name', 'atcf' ); ?></label>
+		<label for="user_nicename"><?php _e( 'Your Name', 'tranklin' ); ?></label>
 		<input type="text" name="displayname" id="atcf-register-displayname" class="input" value="" />
 	</p>
 
 	<p class="atcf-register-email">
-		<label for="user_login"><?php _e( 'Email Address', 'atcf' ); ?></label>
+		<label for="user_login"><?php _e( 'Email Address', 'tranklin' ); ?></label>
 		<input type="text" name="user_email" id="atcf-register-user_email" class="input" value="" />
 	</p>
 
 	<p class="atcf-register-username">
-		<label for="user_login"><?php _e( 'Username', 'atcf' ); ?></label>
+		<label for="user_login"><?php _e( 'Username', 'tranklin' ); ?></label>
 		<input type="text" name="user_login" id="atcf-register-user_login" class="input" value="" />
 	</p>
 
 	<p class="atcf-register-password">
-		<label for="user_pass"><?php _e( 'Password', 'atcf' ); ?></label>
+		<label for="user_pass"><?php _e( 'Password', 'tranklin' ); ?></label>
 		<input type="password" name="user_pass" id="atcf-register-user_pass" class="input" value="" />
 	</p>
 	
 	<p class="atcf-register-submit">
-		<input type="submit" name="submit" id="atcf-register-submit" class="<?php echo apply_filters( 'atcf_shortcode_register_button_class', 'button-primary' ); ?>" value="<?php _e( 'Register', 'atcf' ); ?>" />
+		<input type="submit" name="submit" id="atcf-register-submit" class="<?php echo apply_filters( 'atcf_shortcode_register_button_class', 'button-primary' ); ?>" value="<?php _e( 'Register', 'tranklin' ); ?>" />
 		<input type="hidden" name="action" value="atcf-register-submit" />
 		<?php wp_nonce_field( 'atcf-register-submit' ); ?>
 	</p>
@@ -367,10 +367,10 @@ function franklin_atcf_shortcode_submit_field_rewards( $atts, $campaign ) {
 	$rewards  = $atts[ 'previewing' ] || $atts[ 'editing' ] ? edd_get_variable_prices( $campaign->ID ) : array();
 	$shipping = $atts[ 'previewing' ] || $atts[ 'editing' ] ? $campaign->needs_shipping() : 0;
 ?>
-	<h3 class="atcf-submit-section backer-rewards"><?php _e( 'Backer Rewards', 'atcf' ); ?></h3>
+	<h3 class="atcf-submit-section backer-rewards"><?php _e( 'Backer Rewards', 'tranklin' ); ?></h3>
 
 	<p class="atcf-submit-campaign-shipping">
-		<label for="shipping"><input type="checkbox" id="shipping" name="shipping" value="1" <?php checked(1, $shipping); ?> /> <?php _e( 'Collect shipping information on checkout.', 'atcf' ); ?></label>
+		<label for="shipping"><input type="checkbox" id="shipping" name="shipping" value="1" <?php checked(1, $shipping); ?> /> <?php _e( 'Collect shipping information on checkout.', 'tranklin' ); ?></label>
 	</p>
 
 	<?php do_action( 'atcf_shortcode_submit_field_rewards_list_before' ); ?>
@@ -381,17 +381,17 @@ function franklin_atcf_shortcode_submit_field_rewards( $atts, $campaign ) {
 			<?php do_action( 'atcf_shortcode_submit_field_rewards_before' ); ?>
 
 			<p class="atcf-submit-campaign-reward-price">
-				<label for="rewards[<?php echo esc_attr( $key ); ?>][price]"><?php printf( __( 'Amount (%s)', 'atcf' ), edd_currency_filter( '' ) ); ?></label>
+				<label for="rewards[<?php echo esc_attr( $key ); ?>][price]"><?php printf( __( 'Amount (%s)', 'tranklin' ), edd_currency_filter( '' ) ); ?></label>
 				<input class="name" type="text" name="rewards[<?php echo esc_attr( $key ); ?>][price]" id="rewards[<?php echo esc_attr( $key ); ?>][price]" value="<?php echo esc_attr( $reward[ 'amount' ] ); ?>" <?php disabled(true, $disabled); ?> />
 			</p>
 
 			<p class="atcf-submit-campaign-reward-limit">
-				<label for="rewards[<?php echo esc_attr( $key ); ?>][limit]"><?php _e( 'Limit', 'atcf' ); ?></label>
+				<label for="rewards[<?php echo esc_attr( $key ); ?>][limit]"><?php _e( 'Limit', 'tranklin' ); ?></label>
 				<input class="description" type="text" name="rewards[<?php echo esc_attr( $key ); ?>][limit]" id="rewards[<?php echo esc_attr( $key ); ?>][limit]" value="<?php echo isset ( $reward[ 'limit' ] ) ? esc_attr( $reward[ 'limit' ] ) : null; ?>" <?php disabled(true, $disabled); ?> />
 			</p>
 
 			<p class="atcf-submit-campaign-reward-description">
-				<label for="rewards[<?php echo esc_attr( $key ); ?>][description]"><?php _e( 'Reward', 'atcf' ); ?></label>
+				<label for="rewards[<?php echo esc_attr( $key ); ?>][description]"><?php _e( 'Reward', 'tranklin' ); ?></label>
 				<textarea class="description" name="rewards[<?php echo esc_attr( $key ); ?>][description]" id="rewards[<?php echo esc_attr( $key ); ?>][description]" rows="3" <?php disabled(true, $disabled); ?>><?php echo esc_attr( $reward[ 'name' ] ); ?></textarea>
 			</p>			
 
@@ -410,18 +410,18 @@ function franklin_atcf_shortcode_submit_field_rewards( $atts, $campaign ) {
 			<?php do_action( 'atcf_shortcode_submit_field_rewards_before' ); ?>
 
 			<p class="atcf-submit-campaign-reward-price">
-				<label for="rewards[0][price]"><?php printf( __( 'Amount (%s)', 'atcf' ), edd_currency_filter( '' ) ); ?></label>
+				<label for="rewards[0][price]"><?php printf( __( 'Amount (%s)', 'tranklin' ), edd_currency_filter( '' ) ); ?></label>
 				<input class="name" type="text" name="rewards[0][price]" id="rewards[0][price]" placeholder="<?php echo edd_format_amount( 20 ); ?>">
 			</p>
 
 			<p class="atcf-submit-campaign-reward-limit">
-				<label for="rewards[0][limit]"><?php _e( 'Limit', 'atcf' ); ?></label>
+				<label for="rewards[0][limit]"><?php _e( 'Limit', 'tranklin' ); ?></label>
 				<input class="description" type="text" name="rewards[0][limit]" id="rewards[0][limit]" />
 			</p>
 
 			<p class="atcf-submit-campaign-reward-description">
-				<label for="rewards[0][description]"><?php _e( 'Reward', 'atcf' ); ?></label>
-				<textarea class="description" name="rewards[0][description]" id="rewards[0][description]" rows="3" placeholder="<?php esc_attr_e( 'Description of reward for this level of contribution.', 'atcf' ); ?>"></textarea>
+				<label for="rewards[0][description]"><?php _e( 'Reward', 'tranklin' ); ?></label>
+				<textarea class="description" name="rewards[0][description]" id="rewards[0][description]" rows="3" placeholder="<?php esc_attr_e( 'Description of reward for this level of contribution.', 'tranklin' ); ?>"></textarea>
 			</p>			
 
 			<?php do_action( 'atcf_shortcode_submit_field_rewards_after' ); ?>
@@ -433,13 +433,43 @@ function franklin_atcf_shortcode_submit_field_rewards( $atts, $campaign ) {
 		<?php endif; ?>
 
 		<p class="atcf-submit-campaign-add-reward">
-			<a href="#" class="atcf-submit-campaign-add-reward-button"><?php _e( '+ <em>Add Reward</em>', 'atcf' ); ?></a>
+			<a href="#" class="atcf-submit-campaign-add-reward-button"><?php _e( '+ <em>Add Reward</em>', 'tranklin' ); ?></a>
 		</p>
 	</div>
 <?php
 }
 remove_action( 'atcf_shortcode_submit_fields', 'atcf_shortcode_submit_field_rewards', 90, 2 );
 add_action( 'atcf_shortcode_submit_fields', 'franklin_atcf_shortcode_submit_field_rewards', 90, 2 );
+
+
+
+/**
+ * Campaign Contact Email
+ *
+ * @since CrowdFunding 0.1-alpha
+ *
+ * @return void
+ */
+function franklin_atcf_shortcode_submit_field_contact_email( $atts, $campaign ) {
+?>
+	<h3 class="atcf-submit-section payment-information"><?php _e( 'Your Information', 'tranklin' ); ?></h3>
+
+	<?php if ( ! $atts[ 'editing' ] ) : ?>
+		<p class="atcf-submit-campaign-contact-email">
+		<?php if ( ! is_user_logged_in() ) : ?>
+			<label for="email"><?php _e( 'Contact Email', 'tranklin' ); ?></label>
+			<input type="text" name="contact-email" id="contact-email" value="<?php echo $atts[ 'editing' ] ? $campaign->contact_email() : null; ?>" placeholder="<?php if ( ! $atts[ 'editing' ] ) : ?><?php _e( 'An account will be created for you with this email address. It must be active.', 'tranklin' ); ?><?php endif; ?>" />			
+		<?php else : ?>
+			<?php $current_user = wp_get_current_user(); ?>
+			<?php printf( __( '<strong>Note</strong>: You are currently logged in as %1$s. This %2$s will be associated with that account. Please <a href="%3$s">log out</a> if you would like to make a %2$s under a new account.', 'tranklin' ), $current_user->user_email, strtolower( edd_get_label_singular() ), wp_logout_url( get_permalink() ) ); ?>
+		<?php endif; ?>
+		</p>
+	<?php endif; ?>
+<?php
+}
+remove_action( 'atcf_shortcode_submit_fields', 'atcf_shortcode_submit_field_contact_email', 100, 2 );
+add_action( 'atcf_shortcode_submit_fields', 'franklin_atcf_shortcode_submit_field_contact_email', 100, 2 );
+
 
 
 
