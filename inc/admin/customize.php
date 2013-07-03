@@ -608,21 +608,26 @@ input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, in
 a:hover { color: <?php echo $accent_hover ?>;}
 .sticky .post-title, .barometer .filled, .button.accent, .active-campaign .campaign-image, .site-navigation ul { border-color: <?php echo $accent_hover ?>; }
 
+/* Secondary accent text */
+.featured-campaign .button.button-alt:hover, .featured-campaign .campaign-summary h3 a, .featured-campaign .button.button-alt { color: <?php echo $accent_text_secondary ?>; }
+.featured-campaign .button.button-alt { border-color: <?php echo $accent_text_secondary ?>; }
+.featured-campaign .button.button-alt:hover { background-color: <?php echo $accent_text_secondary ?>; }
+
 /* Body background colour */
 body, .audiojs .loaded, .edd_errors { background-color: <?php echo $body_background ?>; }
 .audiojs .play-pause { border-right-color: <?php echo $body_background ?>; }
 
 /* Body copy */
-body, .icon, input[type=submit]:hover, input[type=reset]:hover, input[type=submit]:focus, input[type=reset]:focus, input[type=submit]:active, input[type=reset]:active, button:hover, .button:hover, .button.accent:hover, .button.button-alt, .button.button-secondary, .menu a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title, .featured-campaign .button.button-alt:hover, .featured-campaign .campaign-summary h3 a, .featured-campaign .button.button-alt  { color: <?php echo $body_text ?>; }
+body, .icon, input[type=submit]:hover, input[type=reset]:hover, input[type=submit]:focus, input[type=reset]:focus, input[type=submit]:active, input[type=reset]:active, button:hover, .button:hover, .button.accent:hover, .button.button-alt, .button.button-secondary, .menu a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title { color: <?php echo $body_text ?>; }
 .with-icon::before, .widget_search #searchsubmit::before { color: <?php echo $body_text ?>; }
 <?php if ( $body_text != $footer_titles ) : ?>
 .footer-widget .widget-title { text-shadow: 0 1px 0 <?php echo $body_text ?>; }
 <?php endif ?>
 .campaign-excerpt { text-shadow: 0 1px 1px <?php echo $body_text ?>; text-shadow: 0 1px 1px <?php echo $this->rgb($body_text_rgb, 0.7) ?>;}
 .active-campaign .share .icon::before { text-shadow: 0 1px 1px <?php echo $this->rgb($body_text_rgb, 0.7) ?>;}
-.button.button-alt, .button.button-alt:hover, .account-links .button.button-alt, .button.button-secondary, .button.button-secondary:hover, .featured-campaign .button.button-alt  { border-color: <?php echo $body_text ?>; }
+.button.button-alt, .button.button-alt:hover, .account-links .button.button-alt, .button.button-secondary, .button.button-secondary:hover  { border-color: <?php echo $body_text ?>; }
 .shadow-wrapper::before, .shadow-wrapper::after { border-color: <?php echo $body_text ?>; }
-input[type=submit], input[type=reset], button, .button, .button.button-alt:hover, .button.button-secondary:hover, .audiojs, .campaign-pledge-levels.accordion h3, .featured-campaign .button.button-alt:hover { background-color: <?php echo $body_text ?>; }
+input[type=submit], input[type=reset], button, .button, .button.button-alt:hover, .button.button-secondary:hover, .audiojs, .campaign-pledge-levels.accordion h3 { background-color: <?php echo $body_text ?>; }
 .account-links .button.button-alt:hover::before { background-color: <?php echo $body_text ?>; }
 input[type=submit], input[type=reset], button, .button { box-shadow: 0 0 0 3px <?php echo $body_text ?>; }
 .active-campaign .campaign-image { box-shadow: 0 0 3px 1px <?php echo $this->rgb($body_text_rgb, 0.3) ?>;}

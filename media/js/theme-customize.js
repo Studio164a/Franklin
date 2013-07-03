@@ -21,6 +21,11 @@
 		$('.campaign-button, .active-campaign, .sticky, .button.accent').css('color', value);
 	}, 
 
+	updateAccentTextSecondary = function(value) {
+		$('.featured-campaign .campaign-summary h3 a, .featured-campaign .button.button-alt').css('color', value);
+		$('.featured-campaign .button.button-alt').css('border-color', value);
+	},
+
 	updateBodyBackground = function(value) {
 		$('body, .audiojs .loaded').css('background-color', value);
 		$('.audiojs .play-pause').css('border-right-color', value);
@@ -179,6 +184,11 @@
 			updateAccentText( newval );
 		} );  
 	} );
+	wp.customize( 'accent_text_secondary', function( value ) {
+		value.bind( function( newval ) {
+			updateAccentTextSecondary( newval );
+		});
+	});
 	wp.customize( 'body_background', function( value ) {
 		value.bind( function( newval ) {
 			updateBodyBackground( newval );
