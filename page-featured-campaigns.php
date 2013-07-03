@@ -5,32 +5,46 @@
 
 get_header() ?>
 	
-	<?php get_template_part( 'banner', 'page' ) ?>
-	
-	<div class="content-wrapper">
+	<?php if ( have_posts() ) : ?>
 
-		<div class="campaigns-grid-wrapper">								
+		<?php while ( have_posts() ) : ?>
 
-			<div class="content campaigns-grid masonry-grid">					
+			<?php the_post() ?>
 
-				<?php $campaigns = get_sofa_crowdfunding()->get_featured_campaigns() ?>
+			<?php get_template_part( 'banner', 'page' ) ?>
+			
+			<div class="content-wrapper">
 
-				<?php if ( $campaigns->have_posts() ) : ?>
+				<div <?php post_class('home-content') ?>>
+					<?php the_content() ?>
+				</div>
 
-					<?php while ( $campaigns->have_posts() ) : ?>
+				<div class="campaigns-grid-wrapper">								
 
-						<?php $campaigns->the_post() ?>
+					<div class="content campaigns-grid masonry-grid">					
 
-						<?php get_template_part( 'campaign' ) ?>					
+						<?php $campaigns = get_sofa_crowdfunding()->get_featured_campaigns() ?>
 
-					<?php endwhile ?>
+						<?php if ( $campaigns->have_posts() ) : ?>
 
-				<?php endif ?>
+							<?php while ( $campaigns->have_posts() ) : ?>
 
+								<?php $campaigns->the_post() ?>
+
+								<?php get_template_part( 'campaign' ) ?>					
+
+							<?php endwhile ?>
+
+						<?php endif ?>
+
+					</div>
+
+				</div>
+			
 			</div>
 
-		</div>
-	
-	</div>
+		<?php endwhile ?>
+
+	<?php endif ?>
 
 <?php get_footer() ?>

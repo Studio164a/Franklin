@@ -469,7 +469,3 @@ function franklin_atcf_shortcode_submit_field_contact_email( $atts, $campaign ) 
 }
 remove_action( 'atcf_shortcode_submit_fields', 'atcf_shortcode_submit_field_contact_email', 100, 2 );
 add_action( 'atcf_shortcode_submit_fields', 'franklin_atcf_shortcode_submit_field_contact_email', 100, 2 );
-
-
-
-

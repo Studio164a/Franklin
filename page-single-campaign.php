@@ -1,17 +1,21 @@
 <?php 
 /**
- * Single campaign template.
+ * Template name: Single Campaign
  */
 
-get_header() ?>	
+get_header() ?>
 
-	<?php if ( have_posts() ) : ?>
+	<?php $campaign_id = get_post_meta( get_the_ID(), '_franklin_single_campaign_id', true ) ?>
 
-		<?php while( have_posts() ) : ?>
+	<?php $campaign_query = new ATCF_Campaign_Query( array( 'p' => $campaign_id ) ) ?>	
 
-			<?php the_post() ?>
+	<?php if ( $campaign_query->have_posts() ) : ?>
 
-			<?php $campaign = new ATCF_Campaign( get_the_ID() ) ?>
+		<?php while( $campaign_query->have_posts() ) : ?>
+
+			<?php $campaign_query->the_post() ?>
+		
+			<?php $campaign = new ATCF_Campaign( $campaign_id ) ?>
 
 			<?php do_action( 'atcf_campaign_before', $campaign ) ?>
 
@@ -44,9 +48,9 @@ get_header() ?>
 	<?php endif ?>
 
 	<!-- Support modal -->
-	<div id="campaign-form-<?php echo $campaign->ID ?>" class="campaign-form reveal-modal content-block block">
+	<div id="campaign-form-<?php echo $campaign_id ?>" class="campaign-form reveal-modal content-block block">
         <a class="close-reveal-modal icon"><i class="icon-remove-sign"></i></a>
-        <?php echo edd_get_purchase_link( array( 'download_id' => $campaign->ID ) ); ?>
+        <?php echo edd_get_purchase_link( array( 'download_id' => $campaign_id ) ); ?>
     </div>
     <!-- End support modal -->
 

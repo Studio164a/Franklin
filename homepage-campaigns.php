@@ -40,16 +40,7 @@ get_header() ?>
 
 								<?php get_template_part( 'campaign' ) ?>					
 
-							<?php endwhile ?>
-							
-							<?php while ( $campaigns->have_posts() ) : ?>
-
-								<?php $campaigns->the_post() ?>
-
-								<?php get_template_part( 'campaign' ) ?>					
-
-							<?php endwhile ?>
-
+							<?php endwhile ?>						
 
 						<?php endif ?>
 

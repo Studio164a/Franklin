@@ -342,6 +342,11 @@ legend {
 	letter-spacing: 2px; letter-spacing: 0.2rem;
 }
 
+.error {
+	background-color: #fee !important;
+	outline: 1px solid #f99;
+}
+
 /* Buttons */
 input[type=submit], 
 input[type=reset], 

@@ -335,28 +335,28 @@ class OSFA_Customizer {
         /** 
          * Campaign
          */    
-        if ( get_franklin_theme()->crowdfunding_enabled ) {
+        // if ( get_franklin_theme()->crowdfunding_enabled ) {
 
-            $wp_customize->add_section( 'campaign', array( 
-                'priority' => $priority, 
-                'title' => __( "Campaign", 'projection' ), 
-                'description' => __( 'description' )
-            ) );
+        //     $wp_customize->add_section( 'campaign', array( 
+        //         'priority' => $priority, 
+        //         'title' => __( "Campaign", 'projection' ), 
+        //         'description' => __( 'description' )
+        //     ) );
 
-            $priority += 1; 
+        //     $priority += 1; 
 
-            $wp_customize->add_setting( 'campaign', array( 'transport' => 'postMessage' ) );
-            $wp_customize->add_control( 'campaign', array(
-                'settings' => 'campaign',
-                'label' => __( 'Select the currently active campaign', 'projection' ), 
-                'section' => 'campaign', 
-                'type' => 'select', 
-                'priority' => $priority,
-                'choices' => $this->get_campaign_options()
-            ) );
+        //     $wp_customize->add_setting( 'campaign', array( 'transport' => 'postMessage' ) );
+        //     $wp_customize->add_control( 'campaign', array(
+        //         'settings' => 'campaign',
+        //         'label' => __( 'Select the currently active campaign', 'projection' ), 
+        //         'section' => 'campaign', 
+        //         'type' => 'select', 
+        //         'priority' => $priority,
+        //         'choices' => $this->get_campaign_options()
+        //     ) );
 
-            $priority += 1;             
-        }
+        //     $priority += 1;             
+        // }
 
         /** 
          * Footer

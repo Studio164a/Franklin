@@ -17,9 +17,9 @@ get_header(); ?>
 
 				<?php get_template_part( 'banner', 'page' ) ?>
 
-				<div class="content content-wrapper fullwidth">		
+				<div class="content content-wrapper fullwidth">							
 						
-					<article id="post-<?php the_ID() ?>" <?php post_class() ?>>			
+					<article id="post-<?php the_ID() ?>" <?php post_class() ?>>						
 					
 						<div class="entry cf">
 							<?php get_template_part( 'featured_image' ) ?>
