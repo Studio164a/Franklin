@@ -425,6 +425,11 @@ body .button.button-secondary {
 	padding-bottom: 24px; padding-bottom: 2.4rem;
 }
 
+/* Buttons created using the sofa_button shortcode */
+.button.entry-button {
+	display: inline-block;	
+}
+
 /* 1.6 -- Images & other media ***/
 
 img,

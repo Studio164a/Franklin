@@ -3,7 +3,7 @@
  * Plugin name: SOFA Framework 
  * Plugin URI: http://164a.com
  * Description: The Studio164a theme framework. Not a theme.
- * Version: 0.1
+ * Version: 0.2
  * Author: Studio164a
  * Author URI: http://164a.com
  * Requires at least: 3.5
@@ -203,6 +203,7 @@ class Sofa_Framework {
 		// Include files
 		include_once('sofa-template-tags.php');
 		include_once('sofa-helpers.php');
+		include_once('sofa-shortcodes.php');
 
 		do_action('sofa_init');
 	}
@@ -314,7 +315,7 @@ class Sofa_Framework {
             return $title;
 
         // Add the site name.
-        $title .= get_bloginfo( 'name' );
+        $title .= ' ' . $sep . ' ' . get_bloginfo( 'name' );
 
         // Add the site description for the home/front page.
         $site_description = get_bloginfo( 'description', 'display' );
