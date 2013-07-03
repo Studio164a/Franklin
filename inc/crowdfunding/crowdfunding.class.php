@@ -35,6 +35,9 @@ class Sofa_Crowdfunding_Helper {
     	add_action('after_setup_theme', array(&$this, 'after_setup_theme'));
         add_action('wp_footer', array(&$this, 'wp_footer'));
         add_action('widgets_init', array(&$this, 'widgets_init'));
+        add_action('add_meta_boxes', array(&$this, 'add_meta_boxes'));
+        add_action('save_post', array(&$this, 'save_post'), 10, 2);
+
         // remove_action('atcf_shortcode_profile', 'atcf_shortcode_profile_campaigns', 20, 1 );
 
         if ( !is_admin() ) 
@@ -145,6 +148,125 @@ class Sofa_Crowdfunding_Helper {
         register_widget( 'Sofa_Crowdfunding_Backers_Widget' );
         register_widget( 'Sofa_Crowdfunding_Updates_Widget' );
         register_widget( 'Sofa_Crowdfunding_Video_Widget' );
+    }
+
+    /**
+     * Executes on the add_meta_boxes hook. 
+     * 
+     * @return void
+     * @since Franklin 1.1
+     */
+    public function add_meta_boxes() {
+        add_meta_box('franklin_campaign_homepage_options', __( 'Page Options', 'franklin' ), array( &$this, 'homepage_options' ), 'page' );
+    }
+
+    /**
+     * Hide post meta meta box
+     *
+     * @return void
+     * @since Franklin 1.1
+     */
+    public function homepage_options($post) {
+
+        if ( get_page_template_slug( $post->ID ) == 'homepage-campaigns.php' ) {
+
+            // Use nonce for verification
+            wp_nonce_field( 'franklin_campaign_homepage_options', '_franklin_campaign_homepage_nonce' );
+
+            $campaigns = get_sofa_crowdfunding()->get_featured_campaigns();
+            $featured_mode = get_post_meta( $post->ID, '_franklin_featured_campaigns_option', true );            
+            ?>
+
+            <h4><?php _e( 'Featured Campaigns', 'franklin' ) ?></h4>
+            <p>
+                <label for="_franklin_featured_campaigns_option" id="franklin_featured_campaigns_option">
+                    <?php _e( 'Campaign(s) to show:', 'franklin' ) ?>
+                    <select name="_franklin_featured_campaigns_option">
+                        <option value="ending_soonest" <?php selected( $featured_mode, 'ending_soonest' ) ?>><?php _e( 'Ending soonest', 'franklin' ) ?></option>
+                        <option value="most_recent" <?php selected( $featured_mode, 'most_recent' ) ?>><?php _e( 'Most recent', 'franklin' ) ?></option>
+                        <option value="random" <?php selected( $featured_mode, 'random' ) ?>><?php _e( 'Random', 'franklin' ) ?></option>
+                        <?php if ( $campaigns->have_posts() ) : ?>
+                            <optgroup label="<?php _e( 'Specific campaign', 'franklin' ) ?>">
+                            <?php while ( $campaigns->have_posts() ) : ?>
+                                <?php $campaigns->the_post() ?>
+                                <option value="<?php the_ID() ?>" <?php selected(get_the_ID(), $featured_mode) ?>><?php the_title() ?></option>
+                            <?php endwhile ?>                                
+                            </optgroup>
+                        <?php endif ?>
+                    </select>
+                </label>
+            </p>
+
+            <?php 
+            wp_reset_postdata();
+
+            $featured_campaigns_pages = apply_filters( 'sofa_crowdfunding_featured_campaign_pages', new WP_Query( 
+                array( 
+                    'post_type' => 'page', 
+                    'meta_query' => array( 
+                        array( 'key' => '_wp_page_template', 'value' => 'page-featured-campaigns.php' )
+                    ) 
+                ) 
+            ) );
+
+            $featured_page = get_post_meta( $post->ID, '_franklin_featured_campaigns_page', true );
+            $featured_page_text = get_post_meta( $post->ID, '_franklin_featured_campaigns_page_text', true );
+
+            if ( $featured_campaigns_pages->have_posts() ) : ?>
+                <p>
+                    <label for="_franklin_featured_campaigns_page">
+                        <?php _e( 'Link to featured campaigns page', 'franklin' ) ?>
+                        <select name="_franklin_featured_campaigns_page">
+                        <option value=""><?php _e('- Select -', 'franklin') ?></option>
+                        <?php while ( $featured_campaigns_pages->have_posts() ) : ?>
+                            <?php $featured_campaigns_pages->the_post() ?>
+                            <option value="<?php the_ID() ?>" <?php selected(get_the_ID(), $featured_page) ?>><?php the_title() ?></option>
+                        <?php endwhile ?>
+
+                        </select>
+                    </label>
+                </p>
+                <p>
+                    <label for="_franklin_featured_campaigns_page_text">
+                        <?php _e( 'Featured campaigns page link text', 'franklin' ) ?>
+                        <input type="text" name="_franklin_featured_campaigns_page_text" value="<?php echo $featured_page_text ?>" />
+                    </label>
+                </p>
+
+            <?php endif;
+
+            // Restore order to the universe
+            wp_reset_postdata();
+        }        
+    }
+
+    /**
+     * Executes on the save_post hook. Used to save the custom meta. 
+     * 
+     * @return void
+     * @since Franklin 1.1
+     */
+    public function save_post($post_id, $post) {
+        // Verify if this is an auto save routine. 
+        // If it is our form has not been submitted, so we dont want to do anything
+        if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+            return;        
+
+        if ( isset( $_POST['post_type'] ) && in_array( $_POST['post_type'], array('page') )  ) {
+            // Verify this came from the our screen and with proper authorization,
+            // because save_post can be triggered at other times
+            if ( !array_key_exists('_franklin_theme_nonce', $_POST ) || !wp_verify_nonce( $_POST['_franklin_campaign_homepage_nonce'], 'franklin_campaign_homepage_options' ) )
+                return;
+
+             // Ensure current user can edit pages
+            if ( !current_user_can( 'edit_page', $post_id ) && !current_user_can( 'edit_post', $post_id ) )
+                return;
+
+            // Save custom fields found in our $settings variable
+            update_post_meta( $post_id, '_franklin_featured_campaigns_option', $_POST['_franklin_featured_campaigns_option'] );
+            update_post_meta( $post_id, '_franklin_featured_campaigns_page', $_POST['_franklin_featured_campaigns_page'] );
+            update_post_meta( $post_id, '_franklin_featured_campaigns_page_text', $_POST['_franklin_featured_campaigns_page_text'] );
+        }
     }
 
     /**
@@ -362,6 +484,59 @@ class Sofa_Crowdfunding_Helper {
                 ) 
             ) 
         );
+    }
+
+    /**
+     * Get the featured campaign to show in the featured campaigns block.
+     * 
+     * @param int $post_id
+     * @return WP_Query
+     * @since Franklin 1.1
+     */
+    public function get_featured_campaign( $post_id ) {
+        $mode = get_post_meta( $post_id, '_franklin_featured_campaigns_option', true );
+
+        // Set ending_soonest as the default mode
+        if ( empty( $mode ) )
+            $mode = 'ending_soonest';        
+
+        switch ( $mode ) {
+            case 'ending_soonest' : 
+                return new ATCF_Campaign_Query( array( 
+                    'meta_key' => 'campaign_end_date',
+                    'meta_query' => array(
+                        array( 'key' => '_campaign_featured', 'value' => 1 ) 
+                    ), 
+                    'posts_per_page' => 1, 
+                    'orderby' => 'meta_value', 
+                    'order' => 'ASC'
+                ) );
+                break;
+
+            case 'most_recent' : 
+                return new ATCF_Campaign_Query( array( 
+                    'meta_query' => array(
+                        array( 'key' => '_campaign_featured', 'value' => 1 ) 
+                    ), 
+                    'posts_per_page' => 1, 
+                    'orderby' => 'date', 
+                    'order' => 'DESC'
+                ) );
+                break;
+
+            case 'random' : 
+                return new ATCF_Campaign_Query( array(
+                    'meta_query' => array(
+                        array( 'key' => '_campaign_featured', 'value' => 1 ) 
+                    ), 
+                    'posts_per_page' => 1, 
+                    'orderby' => 'rand'
+                ) );
+                break;
+
+            default : 
+                return new ATCF_Campaign_Query( array( 'p' => $mode ) );
+        }
     }
 }
 

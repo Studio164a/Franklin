@@ -597,7 +597,7 @@ body { background-image: url(<?php echo $body_texture_use ?>); }
 /* Accent colour */
 a, .menu-button, .menu a:hover, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, body .button.accent:hover, .button.accent.button-alt, .social a:hover, .menu .current-menu-item > a, .campaign .campaign-status .campaign-raised span, .campaign .campaign-status .campaign-pledged span, .campaign .campaign-status .campaign-time-left span, body .featured-campaign .button.button-alt:hover { color: <?php echo $accent_colour ?>; }
 .campaign-button, .active-campaign, .sticky.block, .button.accent, .button.accent.button-alt:hover, .banner, .gallery-icon, .featured-image a, .edd_success { background-color: <?php echo $accent_colour ?>; color: <?php echo $accent_text ?>; }
-.active-campaign .share { color: <?php echo $accent_text ?>; }
+.active-campaign .share, .active-campaign .more-link { color: <?php echo $accent_text ?>; }
 .active-campaign .share .icon::before { color: <?php echo $accent_text ?>; }
 .button.accent, .campaign-support .button.accent:hover { box-shadow: 0 0 0 0.3rem <?php echo $accent_colour ?>; }
 .menu .hovering > a { border-color: <?php echo $accent_colour ?>; border-color: <?php echo $this->rgb($accent_rgb, 0.7) ?>; }

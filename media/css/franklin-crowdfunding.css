@@ -543,6 +543,12 @@
 ================================================== */
 
 /* 11.1 --- Featured campaigns ***/
+.featured-campaigns .more-link {
+	margin-right: 4%;
+	font-size: 11px; font-size: 1.1rem;
+	font-style: italic;	
+}
+
 .featured-campaigns .block-title {
 	padding-bottom: 6px; padding-bottom: 0.6rem;
 	margin: 24px 4%; margin-top: 3.6rem; margin-bottom: 3.6rem;
