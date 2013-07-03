@@ -356,6 +356,37 @@ if ( !function_exists( 'franklin_campaign_comment' ) ) {
 }
 
 /**
+ * Campaign Length 
+ *
+ * @param array $atts
+ * @param ATCF_Campaign $campaign
+ * @return void
+ * @since Franklin 1.1
+ */
+function franklin_atcf_shortcode_submit_field_length( $atts, $campaign ) {
+	global $edd_options;
+
+	if ( $atts[ 'editing' ] )
+		return;
+
+	$min = isset ( $edd_options[ 'atcf_campaign_length_min' ] ) ? $edd_options[ 'atcf_campaign_length_min' ] : 14;
+	$max = isset ( $edd_options[ 'atcf_campaign_length_max' ] ) ? $edd_options[ 'atcf_campaign_length_max' ] : 48;
+
+	$start = apply_filters( 'atcf_shortcode_submit_field_length_start', round( ( $min + $max ) / 2 ) );
+
+	$length = $atts[ 'previewing' ] ? $campaign->days_remaining() : null;
+?>
+	<p class="atcf-submit-campaign-length">
+		<label for="length"><?php _e( 'Length (Days)', 'atcf' ); ?></label>
+		<input type="number" min="<?php echo esc_attr( $min ); ?>" max="<?php echo esc_attr( $max ); ?>" step="1" name="length" id="length" value="<?php echo esc_attr( $start ); ?>" value="<?php echo esc_attr( $length ); ?>">
+		<span class="description"><?php printf( __( "Your campaign's length can be between %d and %d days", 'franklin' ), $min, $max ) ?></span>
+	</p>
+<?php
+}
+remove_action( 'atcf_shortcode_submit_fields', 'atcf_shortcode_submit_field_length', 30, 2 );
+add_action( 'atcf_shortcode_submit_fields', 'franklin_atcf_shortcode_submit_field_length', 30, 2 );
+
+/**
  * Campaign Backer Rewards
  *
  * @param array $atts

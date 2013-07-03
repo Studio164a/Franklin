@@ -474,6 +474,11 @@
 
 /* 10.0 - Campaign submission page
 ================================================== */
+.description {
+	font-size: 11px; font-size: 1.1rem;
+	font-style: italic;
+}
+
 .atcf-submit-campaign {
 	padding-bottom: 36px; padding-bottom: 3.6rem;
 }

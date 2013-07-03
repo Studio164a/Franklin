@@ -419,10 +419,15 @@ input[type=reset].button-large,
 
 body .button.button-alt, 
 body .button.button-secondary {
-	margin: 0;
+	margin: 0;	
 	border: 2px solid; border-width: 0.2rem;
 	background: transparent;
 	box-shadow: none;			
+}
+
+body button.button-alt, 
+body button.button-secondary {
+	height: 38px; height: 3.8rem;
 }
 
 .login-submit {
