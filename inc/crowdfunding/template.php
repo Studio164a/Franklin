@@ -288,8 +288,8 @@ if ( !function_exists( 'franklin_campaign_video' ) ) {
 			return;
 
 		// If there is no video, do nothing
-		if ( !$campaign->video() )
-			return;
+		if ( !$campaign->video() || trim( $campaign->video() ) == 'http://' )
+			return;		
 		?>
 
 		<!-- Campaign video -->

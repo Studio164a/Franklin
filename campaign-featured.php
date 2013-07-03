@@ -33,7 +33,7 @@
 
 						<?php the_excerpt() ?>
 
-						<p class="campaign-support center"><a class="button button-alt" data-reveal-id="campaign-form" href="#"><?php _e( 'Support', 'franklin' ) ?></a></p>
+						<p class="campaign-support center"><a class="button button-alt" data-reveal-id="campaign-form-<?php the_ID() ?>" href="#"><?php _e( 'Support', 'franklin' ) ?></a></p>
 
 						<ul class="campaign-status horizontal center">
 							<li class="campaign-funded">
@@ -62,7 +62,7 @@
 
 					<?php get_template_part( 'sharing' ) ?>	
 
-				</div>		
+				</div>					
 
 			<?php endwhile ?>
 
@@ -70,6 +70,18 @@
 
 	</section>
 	<!-- End featured campaigns -->
+
+	<?php while ( $campaigns->have_posts() ) : ?>
+
+		<?php $campaigns->the_post() ?>
+		<!-- Support modal -->
+		<div id="campaign-form-<?php the_ID() ?>" class="campaign-form reveal-modal content-block block">
+	        <a class="close-reveal-modal icon"><i class="icon-remove-sign"></i></a>
+	        <?php echo edd_get_purchase_link( array( 'download_id' => get_the_ID() ) ); ?>
+	    </div>
+	    <!-- End support modal -->	
+
+	<?php endwhile ?>
 
 <?php endif ?>
 

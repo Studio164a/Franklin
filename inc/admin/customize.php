@@ -595,7 +595,7 @@ body { background-image: url(<?php echo $body_texture_use ?>); }
 <?php endif ?>
 
 /* Accent colour */
-a, .menu-button, .menu a:hover, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, body .button.accent:hover, .button.accent.button-alt, .social a:hover, .menu .current-menu-item > a, .campaign .campaign-status .campaign-raised span, .campaign .campaign-status .campaign-pledged span, .campaign .campaign-status .campaign-time-left span { color: <?php echo $accent_colour ?>; }
+a, .menu-button, .menu a:hover, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, body .button.accent:hover, .button.accent.button-alt, .social a:hover, .menu .current-menu-item > a, .campaign .campaign-status .campaign-raised span, .campaign .campaign-status .campaign-pledged span, .campaign .campaign-status .campaign-time-left span, body .featured-campaign .button.button-alt:hover { color: <?php echo $accent_colour ?>; }
 .campaign-button, .active-campaign, .sticky.block, .button.accent, .button.accent.button-alt:hover, .banner, .gallery-icon, .featured-image a, .edd_success { background-color: <?php echo $accent_colour ?>; color: <?php echo $accent_text ?>; }
 .active-campaign .share { color: <?php echo $accent_text ?>; }
 .active-campaign .share .icon::before { color: <?php echo $accent_text ?>; }
@@ -609,8 +609,8 @@ a:hover { color: <?php echo $accent_hover ?>;}
 .sticky .post-title, .barometer .filled, .button.accent, .active-campaign .campaign-image, .site-navigation ul { border-color: <?php echo $accent_hover ?>; }
 
 /* Secondary accent text */
-.featured-campaign .button.button-alt:hover, .featured-campaign .campaign-summary h3 a, .featured-campaign .button.button-alt { color: <?php echo $accent_text_secondary ?>; }
-.featured-campaign .button.button-alt { border-color: <?php echo $accent_text_secondary ?>; }
+.featured-campaign .campaign-summary h3 a, .featured-campaign .button.button-alt { color: <?php echo $accent_text_secondary ?>; }
+.featured-campaign .button.button-alt, .featured-campaign .button.button-alt:hover { border-color: <?php echo $accent_text_secondary ?>; }
 .featured-campaign .button.button-alt:hover { background-color: <?php echo $accent_text_secondary ?>; }
 
 /* Body background colour */
