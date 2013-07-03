@@ -40,6 +40,7 @@ class OSFA_Customizer {
             'accent_colour'         => array( 'title' => __( 'Accent colour', 'franklin' ), 'default' => '#d95b43' ), 
             'accent_hover'          => array( 'title' => __( 'Accent hover', 'franklin' ), 'default' => '#df745f' ), 
             'accent_text'           => array( 'title' => __( 'Text on accent', 'franklin' ), 'default' => '#fff' ),
+            'accent_text_secondary' => array( 'title' => __( 'Text on accent (secondary)', 'franklin' ), 'default' => '#fff' ),
             'body_background'       => array( 'title' => __( 'Body background colour', 'franklin' ), 'default' => '#aea198' ),
             'body_text'             => array( 'title' => __( 'Body copy', 'franklin' ), 'default' => '#7d6e63' ),
             'button_text'           => array( 'title' => __( 'Button text colour', 'franklin' ), 'default' => '#fff' ),
@@ -598,12 +599,12 @@ a, .menu-button, .menu a:hover, .block-title, .widget-title, .page-title, .post-
 .active-campaign .share .icon::before { color: <?php echo $accent_text ?>; }
 .button.accent, .campaign-support .button.accent:hover { box-shadow: 0 0 0 0.3rem <?php echo $accent_colour ?>; }
 .menu .hovering > a { border-color: <?php echo $accent_colour ?>; border-color: <?php echo $this->rgb($accent_rgb, 0.7) ?>; }
-.site-navigation ul, .page-template-default #header, .is-active > .menu { border-color: <?php echo $accent_colour ?>; }
+.page-template-default #header, .is-active > .menu { border-color: <?php echo $accent_colour ?>; }
 input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, input[type=email]:focus, textarea:focus, input[type=text]:active, input[type=password]:active, input[type=number]:active, input[type=email]:active, textarea:active, .button.accent.button-alt, .button.button-secondary.accent, .button.accent.button-alt:hover, .button.button-secondary.accent:hover select:active { border-color: <?php echo $accent_colour ?>; }
 
 /* Accent hover */
 a:hover { color: <?php echo $accent_hover ?>;}
-.sticky .post-title, .barometer .filled, .button.accent, .active-campaign .campaign-image { border-color: <?php echo $accent_hover ?>; }
+.sticky .post-title, .barometer .filled, .button.accent, .active-campaign .campaign-image, .site-navigation ul { border-color: <?php echo $accent_hover ?>; }
 
 /* Body background colour */
 body, .audiojs .loaded, .edd_errors { background-color: <?php echo $body_background ?>; }
