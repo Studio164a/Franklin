@@ -111,8 +111,8 @@ var Sofa = ( function( $ ) {
 		Sofa.init();
 
 		$('.menu-button').on( 'click', function() {			
-			$(this).children().toggleClass('icon-th-list').toggleClass('icon-remove');
-			$('#site-navigation').toggleClass('is-active');			
+			$(this).children().toggleClass('icon-th-list').toggleClass('icon-remove'); 
+			$(this).parent().toggleClass('is-active');			
 		});
 
 		$('.accordion').accordion({

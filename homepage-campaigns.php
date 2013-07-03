@@ -21,42 +21,41 @@ get_header() ?>
 					<?php the_content() ?>
 				</div>
 
-				<h3 class="section-title"><?php _e( 'Latest Projects', 'franklin' ) ?></h3>
+				<div class="campaigns-grid-wrapper">								
 
-				<nav class="campaigns-navigation" role="navigation">
-		            <a class="menu-button toggle-button"><i class="icon-th-list"></i></a>
-					<?php 
-					wp_nav_menu( array(   
-			                'theme_location' => 'campaigns_navigation',
-			                'container' => false,
-			                'menu_class' => 'menu', 
-			                'fallback_cb' => 'sofa_crowdfunding_campaign_nav' ) ) ?>
-				</nav>
+					<nav class="campaigns-navigation" role="navigation">
+			            <a class="menu-button toggle-button"><i class="icon-th-list"></i></a>
+			            <?php sofa_crowdfunding_campaign_nav() ?>				
+					</nav>
 
-				<div class="content campaigns-grid masonry-grid">					
+					<h3 class="section-title"><?php _e( 'Latest Projects', 'franklin' ) ?></h3>
 
-					<?php $campaigns = new ATCF_Campaign_Query() ?>
+					<div class="content campaigns-grid masonry-grid">					
 
-					<?php if ( $campaigns->have_posts() ) : ?>
+						<?php $campaigns = new ATCF_Campaign_Query() ?>
 
-						<?php while ( $campaigns->have_posts() ) : ?>
+						<?php if ( $campaigns->have_posts() ) : ?>
 
-							<?php $campaigns->the_post() ?>
+							<?php while ( $campaigns->have_posts() ) : ?>
 
-							<?php get_template_part( 'campaign' ) ?>					
+								<?php $campaigns->the_post() ?>
 
-						<?php endwhile ?>
-						
-						<?php while ( $campaigns->have_posts() ) : ?>
+								<?php get_template_part( 'campaign' ) ?>					
 
-							<?php $campaigns->the_post() ?>
+							<?php endwhile ?>
+							
+							<?php while ( $campaigns->have_posts() ) : ?>
 
-							<?php get_template_part( 'campaign' ) ?>					
+								<?php $campaigns->the_post() ?>
 
-						<?php endwhile ?>
+								<?php get_template_part( 'campaign' ) ?>					
+
+							<?php endwhile ?>
 
 
-					<?php endif ?>
+						<?php endif ?>
+
+					</div>
 
 				</div>
 			

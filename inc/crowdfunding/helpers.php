@@ -24,16 +24,27 @@ function sofa_crowdfunding_get_campaign() {
  * @since Franklin 1.1
  */
 function sofa_crowdfunding_campaign_nav($echo = true) {	
-	$categories = wp_list_categories( array( 
-		'show_option_all' => __('All', 'franklin'),
-		'taxonomy' => 'download_category', 
-		'echo' => false
-	) );	
+	$categories = get_categories( array( 'taxonomy' => 'download_category', 'orderby' => 'name', 'order' => 'ASC' ) );
+
+	if ( empty( $categories ) )
+		return;
+
+	$html = '<ul class="menu"><li class="download_category">'.__('Categories', 'franklin');
+	$html .= '<ul><li><a href="'.get_post_type_archive_link('download').'">'.__('All', 'franklin').'</a></li>';
+
+	foreach ( $categories as $category ) {
+		$html .= '<li><a href="'.esc_url( get_term_link($category) ).'">'.$category->name.'</a></li>';
+	}
+
+	$html .= '</li></ul>';
 
 	if ( $echo === false ) 
-		return '<ul class="menu">' . $categories . '</ul>';
+		return $html;
 	
-	echo '<ul class="menu">' . $categories . '</ul>';
+	echo $html;
+
+	//wp_list_categories();
+
 }
 
 /**

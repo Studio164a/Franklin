@@ -578,32 +578,32 @@ body { background-image: url(<?php echo $body_texture_use ?>); }
 <?php endif ?>
 
 /* Accent colour */
-a, #site-navigation .menu-button, #site-navigation a:hover, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, body .button.accent:hover, .button.accent.button-alt, .social a:hover, #site-navigation .current-menu-item > a, .campaign .campaign-status .campaign-raised span, .campaign .campaign-status .campaign-pledged span, .campaign .campaign-status .campaign-time-left span { color: <?php echo $accent_colour ?>; }
+a, .menu-button, .menu a:hover, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, body .button.accent:hover, .button.accent.button-alt, .social a:hover, .menu .current-menu-item > a, .campaign .campaign-status .campaign-raised span, .campaign .campaign-status .campaign-pledged span, .campaign .campaign-status .campaign-time-left span { color: <?php echo $accent_colour ?>; }
 .campaign-button, .active-campaign, .sticky.block, .button.accent, .button.accent.button-alt:hover, .banner, .gallery-icon, .featured-image a, .edd_success { background-color: <?php echo $accent_colour ?>; color: <?php echo $accent_text ?>; }
 .active-campaign .share { color: <?php echo $accent_text ?>; }
 .active-campaign .share .icon::before { color: <?php echo $accent_text ?>; }
 .button.accent, .campaign-support .button.accent:hover { box-shadow: 0 0 0 0.3rem <?php echo $accent_colour ?>; }
-#site-navigation .hovering > a { border-color: <?php echo $accent_colour ?>; border-color: <?php echo $this->rgb($accent_rgb, 0.7) ?>; }
-#site-navigation ul ul, .page-template-default #header { border-color: <?php echo $accent_colour ?>; }
+.menu .hovering > a { border-color: <?php echo $accent_colour ?>; border-color: <?php echo $this->rgb($accent_rgb, 0.7) ?>; }
+.site-navigation ul, .page-template-default #header, .is-active > .menu { border-color: <?php echo $accent_colour ?>; }
 input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, input[type=email]:focus, textarea:focus, input[type=text]:active, input[type=password]:active, input[type=number]:active, input[type=email]:active, textarea:active, .button.accent.button-alt, .button.button-secondary.accent, .button.accent.button-alt:hover, .button.button-secondary.accent:hover select:active { border-color: <?php echo $accent_colour ?>; }
 
 /* Accent hover */
 a:hover { color: <?php echo $accent_hover ?>;}
-.sticky .post-title, .barometer .filled, .button.accent, .active-campaign .campaign-image, .featured-campaigns .block-title { border-color: <?php echo $accent_hover ?>; }
+.sticky .post-title, .barometer .filled, .button.accent, .active-campaign .campaign-image { border-color: <?php echo $accent_hover ?>; }
 
 /* Body background colour */
 body, .audiojs .loaded, .edd_errors { background-color: <?php echo $body_background ?>; }
 .audiojs .play-pause { border-right-color: <?php echo $body_background ?>; }
 
 /* Body copy */
-body, .icon, input[type=submit]:hover, input[type=reset]:hover, input[type=submit]:focus, input[type=reset]:focus, input[type=submit]:active, input[type=reset]:active, button:hover, .button:hover, .button.accent:hover, .button.button-alt, .button.button-secondary, #site-navigation a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title, .featured-campaign .button.button-alt:hover { color: <?php echo $body_text ?>; }
+body, .icon, input[type=submit]:hover, input[type=reset]:hover, input[type=submit]:focus, input[type=reset]:focus, input[type=submit]:active, input[type=reset]:active, button:hover, .button:hover, .button.accent:hover, .button.button-alt, .button.button-secondary, .menu a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title, .featured-campaign .button.button-alt:hover { color: <?php echo $body_text ?>; }
 .with-icon::before, .widget_search #searchsubmit::before { color: <?php echo $body_text ?>; }
 <?php if ( $body_text != $footer_titles ) : ?>
 .footer-widget .widget-title { text-shadow: 0 1px 0 <?php echo $body_text ?>; }
 <?php endif ?>
 .campaign-excerpt { text-shadow: 0 1px 1px <?php echo $body_text ?>; text-shadow: 0 1px 1px <?php echo $this->rgb($body_text_rgb, 0.7) ?>;}
 .active-campaign .share .icon::before { text-shadow: 0 1px 1px <?php echo $this->rgb($body_text_rgb, 0.7) ?>;}
-.button.button-alt, .button.button-alt:hover, .account-links .button.button-alt, .button.button-secondary, .button.button-secondary:hover, .featured-campaign .campaign-status { border-color: <?php echo $body_text ?>; }
+.button.button-alt, .button.button-alt:hover, .account-links .button.button-alt, .button.button-secondary, .button.button-secondary:hover { border-color: <?php echo $body_text ?>; }
 .shadow-wrapper::before, .shadow-wrapper::after { border-color: <?php echo $body_text ?>; }
 input[type=submit], input[type=reset], button, .button, .button.button-alt:hover, .button.button-secondary:hover, .audiojs, .campaign-pledge-levels.accordion h3 { background-color: <?php echo $body_text ?>; }
 .account-links .button.button-alt:hover::before { background-color: <?php echo $body_text ?>; }
@@ -625,18 +625,18 @@ input[type=text], input[type=password], input[type=number], input[type=email], .
 .meta, .comment-meta, .pledge-limit { color: <?php echo $meta_colour ?>; }
 
 /* Primary border colour */
-.widget_search #s, #site-navigation li, #site-navigation.is-active ul ul, .block, .page-title, .block-title, .post-title, .meta, .meta .author, .meta .comment-count, .meta .tags, .comment, .pingback, .widget, .campaign-pledge-levels.accordion h3, .campaign-pledge-levels.accordion .pledge-level, #edd_checkout_form_wrap legend, table, td, th, .contact-page .ninja-forms-form-wrap, .atcf-submit-campaign-reward, .campaign .campaign-status, .campaign .campaign-status .campaign-raised, .campaign .campaign-status .campaign-pledged, .campaign .campaign-status .campaign-time-left, .atcf-profile-section, .atcf-submit-section { border-color: <?php echo $primary_border ?>; }
+.widget_search #s, .menu li, .is-active > .menu ul, .block, .page-title, .block-title, .post-title, .meta, .meta .author, .meta .comment-count, .meta .tags, .comment, .pingback, .widget, .campaign-pledge-levels.accordion h3, .campaign-pledge-levels.accordion .pledge-level, #edd_checkout_form_wrap legend, table, td, th, .contact-page .ninja-forms-form-wrap, .atcf-submit-campaign-reward, .campaign .campaign-status, .campaign .campaign-status .campaign-raised, .campaign .campaign-status .campaign-pledged, .campaign .campaign-status .campaign-time-left, .atcf-profile-section, .atcf-submit-section { border-color: <?php echo $primary_border ?>; }
 .multi-block .content-block:nth-of-type(1n+2) { border-color: <?php echo $primary_border ?>; }
 .campaigns-grid .campaign { box-shadow: 0 0 0 1px <?php echo $primary_border ?>; }
 
 /* Secondary border colour */
 th { border-right-color: <?php echo $secondary_border ?>; }
-#site-navigation ul { border-top-color: <?php echo $secondary_border ?>; }
+.menu { border-top-color: <?php echo $secondary_border ?>; }
 .widget-title { border-color: <?php echo $secondary_border ?>;}
 
 /* Main content area background colour */
-#main, #header, #site-navigation ul, #site-navigation ul ul, .even td, .widget td, .widget input[type=text], .widget input[type=password], .widget input[type=email], .widget input[type=number] { background-color: <?php echo $wrapper_background ?>; }
-#site-navigation ul ul { box-shadow: 0 -2px 0 <?php echo $wrapper_background ?>; }
+#main, #header, .menu, .menu ul, .even td, .widget td, .widget input[type=text], .widget input[type=password], .widget input[type=email], .widget input[type=number] { background-color: <?php echo $wrapper_background ?>; }
+.menu ul { box-shadow: 0 -2px 0 <?php echo $wrapper_background ?>; }
 
 /* Posts background colour */
 .entry-block, .content-block, .reveal-modal.multi-block .content-block, .widget_search #s:focus, .widget input[type=text]:focus, .widget input[type=password]:focus, .widget input[type=email]:focus, .widget input[type=number]:focus, .widget textarea:focus, .widget input[type=text]:active, .widget input[type=password]:active, .widget input[type=email]:active, .widget input[type=number]:active, .widget textarea:active, .widget th, .widget tfoot td, .format-status .meta, .format-quote .entry blockquote, .audiojs .progress, .comments-section, .campaign-pledge-levels.accordion .pledge-level, .contact-page .ninja-forms-form-wrap { background-color: <?php echo $posts_background ?>; }
@@ -671,12 +671,12 @@ th { border-right-color: <?php echo $secondary_border ?>; }
 .site-identity { background: url(<?php echo $logo ?>) no-repeat left 50%; padding-left: <?php echo $logo_meta['width'] + 10 ?>px; min-height: <?php echo $logo_meta['height'] ?>px; }
 .no-tagline .site-title { line-height: <?php echo $logo_meta['height'] ?>px; }
 .no-title .site-tagline { line-height: <?php echo $logo_meta['height'] - 12 ?>px; }
-.no-title.no-tagline #site-navigation ul { margin-top: <?php echo $logo_meta['height'] - 18 ?>px;  }
+.no-title.no-tagline .site-navigation ul { margin-top: <?php echo $logo_meta['height'] - 18 ?>px;  }
     <?php if ( $logo_meta['height'] > 34 ) : ?>
-    .no-tagline #site-navigation ul { margin-top: <?php echo $logo_meta['height'] - 18 ?>px; }
+    .no-tagline .site-navigation ul { margin-top: <?php echo $logo_meta['height'] - 18 ?>px; }
     <?php endif ?>
     <?php if ( $logo_meta['height'] > 34 ) : ?>
-    .no-title #site-navigation ul { margin-top: <?php echo $logo_meta['height'] - 18 ?>px; }
+    .no-title .site-navigation ul { margin-top: <?php echo $logo_meta['height'] - 18 ?>px; }
     <?php endif ?>
 <?php endif ?>
                 

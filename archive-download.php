@@ -5,9 +5,9 @@
 
 get_header() ?>
 
-	<div class="content-wrapper">
+	<?php get_template_part( 'banner', 'campaign-archive' ) ?>
 
-		<?php get_template_part( 'campaign', 'featured' ) ?>
+	<div class="content-wrapper">
 		
 		<div class="content campaigns-grid">
 

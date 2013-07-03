@@ -39,7 +39,7 @@
 			</div>
 
 			<!-- Navigation -->
-			<div id="site-navigation" class="wrapper">		
+			<div class="site-navigation wrapper">		
 				
 				<nav role="navigation">
 		            <a class="menu-button toggle-button"><i class="icon-th-list"></i></a>

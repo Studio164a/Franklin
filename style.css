@@ -719,7 +719,11 @@ pre {
 
 /* Menu buttons */
 .menu-button {
-	font-size: 20px; font-size: 2rem;
+	font-size: 20px; font-size: 2rem;	
+}
+
+.menu-button:hover {
+	text-decoration: none;
 }
 
 /* 2.0 -- Site Structure
@@ -759,7 +763,7 @@ body {
 }
 
 .active-campaign .campaign-button,
-#site-navigation .menu-button {
+.site-navigation .menu-button {
 	position: fixed;
 	top: 0;
 	cursor: pointer;
@@ -803,7 +807,7 @@ body {
 
 #header {
 	position: relative;		
-	z-index: 10;
+	z-index: 50;
 	width: 92%;
 	padding: 24px 4% 0; padding-top: 2.4rem;	
 	border-radius: 0.4rem 0.4rem 0 0;
@@ -838,19 +842,14 @@ body {
 
 /* 3.3 -- Navigation ***/
 
-#site-navigation {				
-	float: left;
-	clear: both;
-	height: 0;	
-	width: 100%;
-}
+/* Menu defaults ***/
 
-#site-navigation ul {		
+.menu {		
 	position: relative;	
 	left: -4.3478%;	
-	top: 2px; top: 0.2rem;
+	top: 0;
 	z-index: 50;
-	width: 108.6956%; /* 100/92 = 1.086956 */
+	width: 0;
 	height: 0;
 	padding: 0;
 	overflow: hidden;
@@ -863,37 +862,55 @@ body {
 	transition: max-height 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
 }
 
-#site-navigation.is-active ul {
+.is-active > .menu {
+	width: 108.6956%; /* 100/92 = 1.086956 */
 	height: auto;
 	max-height: 10000px; /* Required for animation */
+	border-top: 2px solid;
 }
 
-#site-navigation.is-active ul ul {
-	padding-left: 5%;
-	margin-top: 0;
+.is-active > .menu ul {
+	margin-top: 12px; margin-top: 1.2rem;
+	margin-left: 0;
+	padding-left: 5%;	
 	border-top: 1px solid;
 }
 
-#site-navigation li {
-	list-style: none;
-	text-transform: uppercase;
-	letter-spacing: 1px; letter-spacing: 0.1rem;
-	line-height: 1em; 	
-	border-bottom: 1px solid;
-	text-align: left;
-	text-indent: 10px; text-indent: 1rem;
-	margin: 0;
+.is-active > .menu ul li:last-child {
+	padding-bottom: 0;
+	border: none;
 }
 
-#site-navigation a {	
+.menu li {
+	list-style: none;
+	text-transform: uppercase;	
+	letter-spacing: 1px; letter-spacing: 0.1rem;	
+	line-height: 1em; 		
+	border-bottom: 1px solid;
+	text-align: left;
+	text-indent: 4%;
+	margin: 0;
+	padding-top: 12px; padding-top: 1.2rem; padding-bottom: 1.2rem;	
+}
+
+.menu a {	
 	display: block;		
 	width: 100%;
-	padding: 12px 0; padding: 1.2rem 0;	
+	height: 100%;	
 	text-decoration: none;
 	font-weight: 400;
 }
 
-#site-navigation .menu-button {
+/* Site navigation ***/
+
+.site-navigation {				
+	float: left;
+	clear: both;
+	height: 0;	
+	width: 100%;
+}
+
+.site-navigation .menu-button {
 	position: absolute;
 	right: 4%;
 	top: 36px; top: 3.6rem;
@@ -1582,13 +1599,6 @@ h2.post-title {
 	height: auto;
 }
 
-/*.footer-left, 
-.footer-right {
-	width: 92%;
-	padding-left: 4%;
-	padding-right: 4%;
-}*/
-
 .footer-widget {
 	float: left;	
 	width: 48%;
@@ -1781,51 +1791,8 @@ h2.post-title {
 /* 8.2 --- Greater than 800px ***/
 
 @media all and (min-width: 50em) {	
-	.menu-button {
-		display: none !important;
-	}
 
-	/* Navigation */
-	#site-navigation {	
-		position: static;
-		text-align: right;			
-		box-shadow: none;
-		height: auto;
-		float: none;
-		clear: none;
-	}
-
-	body #site-navigation {
-		background: transparent;		
-	}	
-
-	#site-navigation ul {		
-		height: auto;
-		width: auto;
-		margin: 4.5rem 0 0 0;
-		padding-right: 1.6rem;
-		left: 0;
-		border-top: 0;
-		overflow: visible;
-	}
-
-	.no-title #site-navigation ul {
-		margin-top: 1.2rem;
-	}
-
-	.no-tagline #site-navigation ul {
-		margin-top: 2rem;
-	}
-
-	body #site-navigation ul {
-		background: transparent;
-	}
-
-	#site-navigation li {
-		border: none;
-		margin: 0 0 0 1rem;
-		text-indent: 0;
-	}
+	/* Menus ***/
 
 	.menu li {
 		position: relative;
@@ -1858,19 +1825,18 @@ h2.post-title {
 		left: 4px; left: 0.4rem;
 	}
 
-	.menu ul ul .has-sub > a:after {
+	.menu ul .has-sub > a:after {
 		content: '\f105';
 		top: 0;
 	}
 
-	.menu ul ul {
+	.menu ul {
 		position: absolute;	
 		left: -999em;
 		width: 20rem;
 		margin-left: 0;
-		margin-top: 3.8rem !important;
-		padding-top: 1.2rem;
-		padding-bottom: 1.2rem;
+		margin-top: 0.8rem;
+		padding: 0 0 1.2rem 0;		
 		z-index: 100;
 		border-width: 0 0.3rem 0.3rem 0.3rem;
 		border-style: solid;
@@ -1881,7 +1847,7 @@ h2.post-title {
 		padding-bottom: 0;
 	}
 
-	.menu ul ul ul {
+	.menu ul ul {
 		top: 0;
 		margin-top: 0;
 		margin-left: 20rem;
@@ -1899,9 +1865,55 @@ h2.post-title {
 		margin: 0;
 	}
 
-	.menu ul ul a {
+	.menu ul a {
 		font-size: 1.2rem;
 		border: none;
+	}
+
+	.menu-button {
+		display: none !important;
+	}
+
+	/* Main navigation ***/
+	.site-navigation {	
+		position: static;
+		text-align: right;			
+		box-shadow: none;
+		height: auto;
+		float: none;
+		clear: none;
+	}
+
+	body .site-navigation {
+		background: transparent;		
+	}	
+
+	.site-navigation .menu {		
+		height: auto;
+		width: auto;
+		margin: 4.5rem 0 0 0;
+		padding-right: 1.6rem;
+		left: 0;
+		border-top: 0;
+		overflow: visible;
+	}
+
+	.no-title .site-navigation .menu {
+		margin-top: 1.2rem;
+	}
+
+	.no-tagline .site-navigation .menu {
+		margin-top: 2rem;
+	}
+
+	body .site-navigation .menu {
+		background: transparent;
+	}
+
+	.site-navigation li {
+		border: none;
+		margin: 0 0 0 1rem;
+		text-indent: 0;
 	}
 
 	/* Comments */
