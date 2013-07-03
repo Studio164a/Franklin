@@ -882,21 +882,25 @@ body {
 }
 
 .menu li {
-	list-style: none;
-	text-transform: uppercase;	
-	letter-spacing: 1px; letter-spacing: 0.1rem;	
-	line-height: 1em; 		
-	border-bottom: 1px solid;
-	text-align: left;
-	text-indent: 4%;
 	margin: 0;
 	padding-top: 12px; padding-top: 1.2rem; padding-bottom: 1.2rem;	
+	border-bottom: 1px solid;
+	list-style: none;
+	line-height: 1em;
+	letter-spacing: 1px; letter-spacing: 0.1rem;		
+	text-transform: uppercase;	
+	text-align: left;
+	text-indent: 4%;	
+}
+
+.menu li.hovering,
+.menu li.hovering li {
+	height: auto;
 }
 
 .menu a {	
 	display: block;		
 	width: 100%;
-	height: 100%;	
 	text-decoration: none;
 	font-weight: 400;
 }
@@ -1024,7 +1028,8 @@ h1.post-title,
 h2.page-title, 
 h2.block-title, 
 h2.post-title {	
-	border-bottom: 2px solid;
+	border-bottom-width: 2px; border-bottom-width: 0.2rem;
+	border-bottom-style: solid;
 	margin-bottom: 12px; margin-bottom: 1.2rem;
 	padding-bottom: 4px; padding-bottom: 0.4rem;
 	line-height: 38px; line-height: 3.8rem;
@@ -1836,21 +1841,21 @@ h2.post-title {
 		width: 20rem;
 		margin-left: 0;
 		margin-top: 0.8rem;
-		padding: 0 0 1.2rem 0;		
+		padding: 0.6rem 0;		
 		z-index: 100;
-		border-width: 0 0.3rem 0.3rem 0.3rem;
+		border-width: 0.3rem;
 		border-style: solid;
-		border-radius: 0 0 0.4rem 0.4rem;
-	}
-
-	.menu li li {
-		padding-bottom: 0;
+		border-radius: 0.4rem;
 	}
 
 	.menu ul ul {
 		top: 0;
 		margin-top: 0;
 		margin-left: 20rem;
+	}
+
+	.menu ul li:last-child {
+		border: none;
 	}
 
 	.menu li:hover > ul,
@@ -1861,6 +1866,7 @@ h2.post-title {
 	.menu li li {	
 		display: block;
 		width: 100%;
+		padding: 0;
 		clear: left;
 		margin: 0;
 	}
@@ -1891,7 +1897,7 @@ h2.post-title {
 	.site-navigation .menu {		
 		height: auto;
 		width: auto;
-		margin: 4.5rem 0 0 0;
+		margin: 3.3rem 0 0 0;
 		padding-right: 1.6rem;
 		left: 0;
 		border-top: 0;
@@ -1899,19 +1905,26 @@ h2.post-title {
 	}
 
 	.no-title .site-navigation .menu {
-		margin-top: 1.2rem;
+		margin-top: 0;
 	}
 
 	.no-tagline .site-navigation .menu {
-		margin-top: 2rem;
+		margin-top: 1.2rem;
+	}
+
+	.no-title .menu li {
+		padding-top: 0.7rem;
 	}
 
 	body .site-navigation .menu {
 		background: transparent;
 	}
 
-	.site-navigation li {
+	.site-navigation .menu > li {
 		border: none;
+	}
+
+	.site-navigation li {				
 		margin: 0 0 0 1rem;
 		text-indent: 0;
 	}

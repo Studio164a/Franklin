@@ -107,6 +107,7 @@ class OSFA_Customizer {
 
 		add_action('customize_register', array(&$this, 'customize_register'));        
         add_action('customize_preview_init', array(&$this, 'customize_preview_init') ); 
+        add_action('customize_controls_print_styles', array(&$this, 'customize_controls_print_styles'), 100);
         add_action('customize_controls_print_scripts', array(&$this, 'customize_controls_print_scripts'), 100);
 
         add_action('wp_head', array(&$this, 'wp_head'));
@@ -432,6 +433,19 @@ class OSFA_Customizer {
     }     
 
     /**
+     * Custom styles printed only on the theme customizer.
+     * 
+     * @see customize_controls_print_styles action
+     */
+    public function customize_controls_print_styles() {
+        ?>
+        <style>
+            .menu li.hovering { height: 1em; }
+        </style>
+        <?php 
+    }
+
+    /**
      * customize_controls_print_scripts
      * 
      * 
@@ -596,26 +610,24 @@ body, .audiojs .loaded, .edd_errors { background-color: <?php echo $body_backgro
 .audiojs .play-pause { border-right-color: <?php echo $body_background ?>; }
 
 /* Body copy */
-body, .icon, input[type=submit]:hover, input[type=reset]:hover, input[type=submit]:focus, input[type=reset]:focus, input[type=submit]:active, input[type=reset]:active, button:hover, .button:hover, .button.accent:hover, .button.button-alt, .button.button-secondary, .menu a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title, .featured-campaign .button.button-alt:hover { color: <?php echo $body_text ?>; }
+body, .icon, input[type=submit]:hover, input[type=reset]:hover, input[type=submit]:focus, input[type=reset]:focus, input[type=submit]:active, input[type=reset]:active, button:hover, .button:hover, .button.accent:hover, .button.button-alt, .button.button-secondary, .menu a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title, .featured-campaign .button.button-alt:hover, .featured-campaign .campaign-summary h3 a, .featured-campaign .button.button-alt  { color: <?php echo $body_text ?>; }
 .with-icon::before, .widget_search #searchsubmit::before { color: <?php echo $body_text ?>; }
 <?php if ( $body_text != $footer_titles ) : ?>
 .footer-widget .widget-title { text-shadow: 0 1px 0 <?php echo $body_text ?>; }
 <?php endif ?>
 .campaign-excerpt { text-shadow: 0 1px 1px <?php echo $body_text ?>; text-shadow: 0 1px 1px <?php echo $this->rgb($body_text_rgb, 0.7) ?>;}
 .active-campaign .share .icon::before { text-shadow: 0 1px 1px <?php echo $this->rgb($body_text_rgb, 0.7) ?>;}
-.button.button-alt, .button.button-alt:hover, .account-links .button.button-alt, .button.button-secondary, .button.button-secondary:hover { border-color: <?php echo $body_text ?>; }
+.button.button-alt, .button.button-alt:hover, .account-links .button.button-alt, .button.button-secondary, .button.button-secondary:hover, .featured-campaign .button.button-alt  { border-color: <?php echo $body_text ?>; }
 .shadow-wrapper::before, .shadow-wrapper::after { border-color: <?php echo $body_text ?>; }
-input[type=submit], input[type=reset], button, .button, .button.button-alt:hover, .button.button-secondary:hover, .audiojs, .campaign-pledge-levels.accordion h3 { background-color: <?php echo $body_text ?>; }
+input[type=submit], input[type=reset], button, .button, .button.button-alt:hover, .button.button-secondary:hover, .audiojs, .campaign-pledge-levels.accordion h3, .featured-campaign .button.button-alt:hover { background-color: <?php echo $body_text ?>; }
 .account-links .button.button-alt:hover::before { background-color: <?php echo $body_text ?>; }
 input[type=submit], input[type=reset], button, .button { box-shadow: 0 0 0 3px <?php echo $body_text ?>; }
 .active-campaign .campaign-image { box-shadow: 0 0 3px 1px <?php echo $this->rgb($body_text_rgb, 0.3) ?>;}
 
 /* Button text colour */
-input[type=submit], input[type=reset], button, .button, .active-campaign .campaign-button, .button.button-alt:hover, .button.button-secondary:hover, .sticky.block, .sticky.block a, .campaign-support .button:hover, .campaign-pledge-levels.accordion h3, .featured-campaign .button, .featured-campaign .campaign-summary h3 a, .featured-campaigns .block-title { color: <?php echo $button_text ?>; }
+input[type=submit], input[type=reset], button, .button, .active-campaign .campaign-button, .button.button-alt:hover, .button.button-secondary:hover, .sticky.block, .sticky.block a, .campaign-support .button:hover, .campaign-pledge-levels.accordion h3, .featured-campaign .button, .featured-campaigns .block-title, .featured-campaign .button.button-alt:hover { color: <?php echo $button_text ?>; }
 .account-links .button.button-alt:hover::before, .featured-campaigns .block-title::before { color: <?php echo $button_text ?>; }
 .campaign-support .button:hover { box-shadow: 0 0 0 3px <?php echo $button_text ?>; }
-.featured-campaign .button.button-alt { border-color: <?php echo $button_text ?>; }
-.featured-campaign .button.button-alt:hover { background-color: <?php echo $button_text ?>; }
 
 /* Widget background colour */
 input[type=text], input[type=password], input[type=number], input[type=email], .chrome input[type=file], .safari input[type=file], textarea, select, .featured-image, th, .entry blockquote, hr, pre, .meta, .audiojs .scrubber, .widget, .sidebar-block, .accordion h3 { background-color: <?php echo $widget_background ?>; }
@@ -636,7 +648,7 @@ th { border-right-color: <?php echo $secondary_border ?>; }
 
 /* Main content area background colour */
 #main, #header, .menu, .menu ul, .even td, .widget td, .widget input[type=text], .widget input[type=password], .widget input[type=email], .widget input[type=number] { background-color: <?php echo $wrapper_background ?>; }
-.menu ul { box-shadow: 0 -2px 0 <?php echo $wrapper_background ?>; }
+/*.menu ul { box-shadow: 0 -2px 0 <?php echo $wrapper_background ?>; }*/
 
 /* Posts background colour */
 .entry-block, .content-block, .reveal-modal.multi-block .content-block, .widget_search #s:focus, .widget input[type=text]:focus, .widget input[type=password]:focus, .widget input[type=email]:focus, .widget input[type=number]:focus, .widget textarea:focus, .widget input[type=text]:active, .widget input[type=password]:active, .widget input[type=email]:active, .widget input[type=number]:active, .widget textarea:active, .widget th, .widget tfoot td, .format-status .meta, .format-quote .entry blockquote, .audiojs .progress, .comments-section, .campaign-pledge-levels.accordion .pledge-level, .contact-page .ninja-forms-form-wrap { background-color: <?php echo $posts_background ?>; }

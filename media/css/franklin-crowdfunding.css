@@ -930,19 +930,14 @@
 		position: absolute;
 		right: 0;
 		border-top-width: 0.3rem;
-		border-radius: 0.4rem;
-		padding: 0.6rem 0;
-	}
+		border-radius: 0.4rem;		
+	}	
 
 	.campaigns-navigation .download_category ul li {
 		text-indent: 0;
 		padding-top: 0; 
 		padding-bottom: 0;
-	}
-
-	.campaigns-navigation .download_category ul li:last-child {
-		border: none;
-	}
+	}	
 
 	body .campaigns-navigation {
 		background: transparent;		
@@ -958,7 +953,7 @@
 		border: none;
 		overflow: visible;
 	}
-	
+
 	.campaigns-navigation .menu ul {
 		float: right;
 		width: 14rem;

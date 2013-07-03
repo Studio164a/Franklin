@@ -11,8 +11,6 @@ get_header() ?>
 
 			<?php the_post() ?>
 
-			<?php //the_excerpt() ?>
-
 			<?php get_template_part( 'campaign', 'featured' ) ?>
 
 			<div class="content-wrapper">

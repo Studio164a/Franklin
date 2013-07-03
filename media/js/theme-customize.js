@@ -6,7 +6,7 @@
 	var
 
 	updateAccentColour = function(value) {
-		$('a:not(.button, #site-navigation a, .social a), #site-navigation .menu-button, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, .button.accent.button-alt, .hovering .on-hover').css('color', value);
+		$('a:not(.button, .menu a, .social a), .menu-button, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, .button.accent.button-alt, .hovering .on-hover').not('.featured-campaigns .block-title, .featured-campaign .campaign-summary h3 a').css('color', value);
 		$('.campaign-button, .active-campaign, .sticky, .button.accent').css('background-color', value);
 		$('.button.accent').css('boxShadow', '0 0 0 0.3rem ' + value);
 		$('#site-navigation .hovering > a, .button.accent.button-alt').css('border-color', value);
@@ -27,20 +27,21 @@
 	}, 
 
 	updateBodyText = function(value) {
-		$('body, .with-icon:before, .icon, .widget_search #searchsubmit::before, .button.button-alt, #site-navigation a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span').not('.account-links a').css('color', value)
+		$('body, .with-icon:before, .icon, .widget_search #searchsubmit::before, .button.button-alt, .menu a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .featured-campaign .campaign-summary h3 a').not('.account-links a').css('color', value)
 		$('.footer-widget .widget-title').css('text-shadow', '0 1px 0 ' + value);
 		$('.button.button-alt, .shadow-wrapper::before, .shadow-wrapper::after').not('.account-links a').css('border-color', value);
-		$('input[type=submit], input[type=reset], button, .button:not(.account-links a), .audiojs').css('background-color', value);
-		$('input[type=submit], input[type=reset], button, .button:not(.account-links a)').css('boxShadow', '0 0 0 3px ' + value);
+		$('input[type=submit], input[type=reset], button, .button:not(.account-links a,.featured-campaign .button.button-alt), .audiojs').css('background-color', value);
+		$('input[type=submit], input[type=reset], button, .button:not(.account-links a,.featured-campaign .button.button-alt)').css('boxShadow', '0 0 0 3px ' + value);
 	},
 
 	updateButtonText = function(value) {
-		$('input[type=submit], input[type=reset], button, .button, .active-campaign .campaign-button, #site-navigation .menu-button, .sticky.block, .sticky.block a').css('color', value);
+		$('input[type=submit], input[type=reset], button, .button, .active-campaign .campaign-button, .menu-button, .sticky.block, .sticky.block a').css('color', value);
 		$('.campaign-support').css('boxShadow', '0 0 0 3px' + value);
+		$('.featured-campaign .button.button-alt').css('border-color', value);
 	},
 	
 	updateWrapperBackground = function (value) {
-		$('#main, #header, #site-navigation ul, .even td, .widget td, .widget input[type=text], .widget input[type=password], .widget input[type=email], .widget input[type=number]').css('background-color', value);
+		$('#main, #header, .menu, .even td, .widget td, .widget input[type=text], .widget input[type=password], .widget input[type=email], .widget input[type=number]').css('background-color', value);
 	},
 
 	updatePostsBackground = function (value) {
@@ -54,7 +55,7 @@
 	},
 
 	updatePrimaryBorder = function (value) {
-		$('#header, .widget_search #s, #site-navigation li, .block, .page-title, .block-title, .post-title, .meta, .meta .author, .meta .comment-count, .meta .tags, .comment, .pingback, .widget, .campaign-pledge-levels.accordion h3, .campaign-pledge-levels.accordion .pledge-level, .multi-block .content-block:nth-of-type(1n+2), #edd_checkout_form_wrap legend, table, td, th').css('border-color', value);
+		$('#header, .widget_search #s, .menu li, .block, .page-title, .block-title, .post-title, .meta, .meta .author, .meta .comment-count, .meta .tags, .comment, .pingback, .widget, .campaign-pledge-levels.accordion h3, .campaign-pledge-levels.accordion .pledge-level, .multi-block .content-block:nth-of-type(1n+2), #edd_checkout_form_wrap legend, table, td, th').css('border-color', value);
 	},
 
 	updateSecondaryBorder = function (value) {
@@ -111,7 +112,7 @@
 	// Update the site title in real time...
 	wp.customize( 'blogname', function( value ) {
 		value.bind( function( newval ) {
-			$( '.site_title a' ).html( newval );
+			$( '.site-title a' ).html( newval );
 		} );
 	} );
 	
@@ -131,9 +132,17 @@
 			img.src = newval;
 			img.onload = function() {
 				if ( newval.length > 0 ) {
-					$('.site_title a').css( {
+					$('.site-identity').css( {
 						'background' : 'url('+newval+') no-repeat left 50%', 
-						'padding-left' : img.width + 10
+						'padding-left' : img.width + 10, 
+						'min-height' : img.height
+					} );
+				}
+				else {
+					$('.site-identity').css( {
+						'background-image' : 'none',
+						'padding-left' : 0,
+						'min-height' : 0
 					} );
 				}
 			}			
@@ -143,7 +152,7 @@
 	// Hide the site title
 	wp.customize( 'hide_site_title', function( value ) {
 		value.bind( function( newval ) {
-			$( '.site_title' ).toggleClass('hidden', newval);
+			$( '.site-title' ).toggleClass('hidden', newval);
 		} );
 	} );
 
