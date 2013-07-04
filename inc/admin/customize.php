@@ -40,7 +40,7 @@ class OSFA_Customizer {
             'accent_colour'         => array( 'title' => __( 'Accent colour', 'franklin' ), 'default' => '#d95b43' ), 
             'accent_hover'          => array( 'title' => __( 'Accent hover', 'franklin' ), 'default' => '#df745f' ), 
             'accent_text'           => array( 'title' => __( 'Text on accent', 'franklin' ), 'default' => '#fff' ),
-            'accent_text_secondary' => array( 'title' => __( 'Text on accent (secondary)', 'franklin' ), 'default' => '#fff' ),
+            'accent_text_secondary' => array( 'title' => __( 'Text on accent (secondary)', 'franklin' ), 'default' => '#574c45' ),
             'body_background'       => array( 'title' => __( 'Body background colour', 'franklin' ), 'default' => '#aea198' ),
             'body_text'             => array( 'title' => __( 'Body copy', 'franklin' ), 'default' => '#7d6e63' ),
             'button_text'           => array( 'title' => __( 'Button text colour', 'franklin' ), 'default' => '#fff' ),
@@ -57,37 +57,37 @@ class OSFA_Customizer {
         );
 
         $this->palettes = array(
-            'Orange & Brown'        => array( 'accent_colour' => '#d95b43', 'accent_hover' => '#df745f', 'accent_text' => '#fff', 'accent_text_secondary' => '#fff',
+            'Orange & Brown'        => array( 'accent_colour' => '#d95b43', 'accent_hover' => '#df745f', 'accent_text' => '#fff', 'accent_text_secondary' => '#574c45',
                                         'body_background' => '#aea198', 'body_text' => '#7d6e63', 'button_text' => '#fff', 
                                         'wrapper_background' => '#f9f8f7', 'posts_background' => '#fff', 'widget_background' => '#f1efee', 
                                         'primary_border' => '#e2dedb', 'secondary_border' => '#dbd5d1', 'meta_colour' => '#bdb2ab', 
                                         'footer_text' => '#fff', 'footer_titles' => '#fff', 'header_buttons' => '#fff', 'header_buttons_hover' => '#d95b43' ), 
 
-            'Teal & Blue/Gray'      => array( 'accent_colour' => '#26c9c4', 'accent_hover' => '#38d9d4', 'accent_text' => '#fff', 'accent_text_secondary' => '#fff',
+            'Teal & Blue/Gray'      => array( 'accent_colour' => '#26c9c4', 'accent_hover' => '#38d9d4', 'accent_text' => '#fff', 'accent_text_secondary' => '#273d3e',
                                         'body_background' => '#3c5c5e', 'body_text' => '#273d3e', 'button_text' => '#fff', 
                                         'wrapper_background' => '#f5f8f9', 'posts_background' => '#fff', 'widget_background' => '#ebf2f2', 
                                         'primary_border' => '#d6e4e5', 'secondary_border' => '#ccddde', 'meta_colour' => '#a2c2c4', 
                                         'footer_text' => '#fff', 'footer_titles' => '#fff', 'header_buttons' => '#fff', 'header_buttons_hover' => '#26c9c4' ),  
 
-            'Orange & Teal'         => array( 'accent_colour' => '#f0b252', 'accent_hover' => '#f3c071', 'accent_text' => '#fff', 'accent_text_secondary' => '#fff',
+            'Orange & Teal'         => array( 'accent_colour' => '#f0b252', 'accent_hover' => '#f3c071', 'accent_text' => '#fff', 'accent_text_secondary' => '#767777',
                                         'body_background' => '#87c7c3', 'body_text' => '#767777', 'button_text' => '#fff', 
                                         'wrapper_background' => '#fbfdfd', 'posts_background' => '#fff', 'widget_background' => '#eff8f7', 
                                         'primary_border' => '#d8edec', 'secondary_border' => '#cce7e6', 'meta_colour' => '#9ed2cf', 
                                         'footer_text' => '#767777', 'footer_titles' => '#fff', 'header_buttons' => '#fff', 'header_buttons_hover' => '#f0b252' ), 
 
-            'Burnt Red & Plum'      => array( 'accent_colour' => '#a73b2d', 'accent_hover' => '#c24434', 'accent_text' => '#fff', 'accent_text_secondary' => '#fff',
+            'Burnt Red & Plum'      => array( 'accent_colour' => '#a73b2d', 'accent_hover' => '#c24434', 'accent_text' => '#fff', 'accent_text_secondary' => '#383438',
                                         'body_background' => '#383438', 'body_text' => '#524d52', 'button_text' => '#fff', 
                                         'wrapper_background' => '#faf9fa', 'posts_background' => '#fff', 'widget_background' => '#f1f0f1', 
                                         'primary_border' => '#e1dfe1', 'secondary_border' => '#d9d6d9', 'meta_colour' => '#b8b3b8', 
                                         'footer_text' => '#fff', 'footer_titles' => '#fff', 'header_buttons' => '#fff', 'header_buttons_hover' => '#a73b2d' ), 
 
-            'Orange & Beige'        => array( 'accent_colour' => '#da9455', 'accent_hover' => '#e0a671', 'accent_text' => '#fff', 'accent_text_secondary' => '#fff',
+            'Orange & Beige'        => array( 'accent_colour' => '#da9455', 'accent_hover' => '#e0a671', 'accent_text' => '#fff', 'accent_text_secondary' => '#574d3e',
                                         'body_background' => '#dad4cb', 'body_text' => '#848484', 'button_text' => '#fff', 
                                         'wrapper_background' => '#fdfdfd', 'posts_background' => '#fff', 'widget_background' => '#f6f5f3', 
                                         'primary_border' => '#e8e4df', 'secondary_border' => '#e1dcd5', 'meta_colour' => '#959595', 
                                         'footer_text' => '#848484', 'footer_titles' => '#848484', 'header_buttons' => '#fff', 'header_buttons_hover' => '#da9455' ), 
 
-            'Mint & Steel'          => array( 'accent_colour' => '#71ca7a', 'accent_hover' => '#8ad391', 'accent_text' => '#fff', 'accent_text_secondary' => '#fff',
+            'Mint & Steel'          => array( 'accent_colour' => '#71ca7a', 'accent_hover' => '#8ad391', 'accent_text' => '#fff', 'accent_text_secondary' => '#354044',
                                         'body_background' => '#435a62', 'body_text' => '#354044', 'button_text' => '#fff', 
                                         'wrapper_background' => '#fbfbfb', 'posts_background' => '#fff', 'widget_background' => '#f2f5f6', 
                                         'primary_border' => '#dee5e8', 'secondary_border' => '#d3dee1', 'meta_colour' => '#abbfc6', 
@@ -595,10 +595,9 @@ body { background-image: url(<?php echo $body_texture_use ?>); }
 <?php endif ?>
 
 /* Accent colour */
-a, .menu-button, .menu a:hover, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, body .button.accent:hover, .button.accent.button-alt, .social a:hover, .menu .current-menu-item > a, .campaign .campaign-status .campaign-raised span, .campaign .campaign-status .campaign-pledged span, .campaign .campaign-status .campaign-time-left span, body .featured-campaign .button.button-alt:hover { color: <?php echo $accent_colour ?>; }
+a, .menu-button, .menu a:hover, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, body .button.accent:hover, .button.accent.button-alt, .social a:hover, .menu .current-menu-item > a, .campaign .campaign-status .campaign-raised span, .campaign .campaign-status .campaign-pledged span, .campaign .campaign-status .campaign-time-left span { color: <?php echo $accent_colour ?>; }
 .campaign-button, .active-campaign, .sticky.block, .button.accent, .button.accent.button-alt:hover, .banner, .gallery-icon, .featured-image a, .edd_success { background-color: <?php echo $accent_colour ?>; color: <?php echo $accent_text ?>; }
-.active-campaign .share, .active-campaign .more-link { color: <?php echo $accent_text ?>; }
-.active-campaign .share .icon::before { color: <?php echo $accent_text ?>; }
+.active-campaign .share, .active-campaign .more-link, .featured-campaign .button.button-alt:hover, .active-campaign .share .icon:before { color: <?php echo $accent_text ?>; }
 .button.accent, .campaign-support .button.accent:hover { box-shadow: 0 0 0 0.3rem <?php echo $accent_colour ?>; }
 .menu .hovering > a { border-color: <?php echo $accent_colour ?>; border-color: <?php echo $this->rgb($accent_rgb, 0.7) ?>; }
 .page-template-default #header, .is-active > .menu { border-color: <?php echo $accent_colour ?>; }
@@ -618,23 +617,18 @@ body, .audiojs .loaded, .edd_errors { background-color: <?php echo $body_backgro
 .audiojs .play-pause { border-right-color: <?php echo $body_background ?>; }
 
 /* Body copy */
-body, .icon, input[type=submit]:hover, input[type=reset]:hover, input[type=submit]:focus, input[type=reset]:focus, input[type=submit]:active, input[type=reset]:active, button:hover, .button:hover, .button.accent:hover, .button.button-alt, .button.button-secondary, .menu a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title { color: <?php echo $body_text ?>; }
-.with-icon::before, .widget_search #searchsubmit::before { color: <?php echo $body_text ?>; }
+body, .icon, input[type=submit]:hover, input[type=reset]:hover, input[type=submit]:focus, input[type=reset]:focus, input[type=submit]:active, input[type=reset]:active, button:hover, .button:hover, .button.accent:hover, .button.button-alt, .button.button-secondary, .menu a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title, .with-icon:before, .widget_search #searchsubmit:before { color: <?php echo $body_text ?>; }
 <?php if ( $body_text != $footer_titles ) : ?>
 .footer-widget .widget-title { text-shadow: 0 1px 0 <?php echo $body_text ?>; }
 <?php endif ?>
-.campaign-excerpt { text-shadow: 0 1px 1px <?php echo $body_text ?>; text-shadow: 0 1px 1px <?php echo $this->rgb($body_text_rgb, 0.7) ?>;}
-.active-campaign .share .icon::before { text-shadow: 0 1px 1px <?php echo $this->rgb($body_text_rgb, 0.7) ?>;}
-.button.button-alt, .button.button-alt:hover, .account-links .button.button-alt, .button.button-secondary, .button.button-secondary:hover  { border-color: <?php echo $body_text ?>; }
-.shadow-wrapper::before, .shadow-wrapper::after { border-color: <?php echo $body_text ?>; }
-input[type=submit], input[type=reset], button, .button, .button.button-alt:hover, .button.button-secondary:hover, .audiojs, .campaign-pledge-levels.accordion h3 { background-color: <?php echo $body_text ?>; }
-.account-links .button.button-alt:hover::before { background-color: <?php echo $body_text ?>; }
+.campaign-excerpt, .active-campaign .share .icon:before { text-shadow: 0 1px 1px <?php echo $body_text ?>; text-shadow: 0 1px 1px <?php echo $this->rgb($body_text_rgb, 0.7) ?>;}
+.button.button-alt, .button.button-alt:hover, .account-links .button.button-alt, .button.button-secondary, .button.button-secondary:hover, .shadow-wrapper:before, .shadow-wrapper:after { border-color: <?php echo $body_text ?>; }
+input[type=submit], input[type=reset], button, .button, .button.button-alt:hover, .button.button-secondary:hover, .audiojs, .campaign-pledge-levels.accordion h3, .account-links .button.button-alt:hover:before { background-color: <?php echo $body_text ?>; }
 input[type=submit], input[type=reset], button, .button { box-shadow: 0 0 0 3px <?php echo $body_text ?>; }
 .active-campaign .campaign-image { box-shadow: 0 0 3px 1px <?php echo $this->rgb($body_text_rgb, 0.3) ?>;}
 
 /* Button text colour */
-input[type=submit], input[type=reset], button, .button, .active-campaign .campaign-button, .button.button-alt:hover, .button.button-secondary:hover, .sticky.block, .sticky.block a, .campaign-support .button:hover, .campaign-pledge-levels.accordion h3, .featured-campaign .button, .featured-campaigns .block-title, .featured-campaign .button.button-alt:hover { color: <?php echo $button_text ?>; }
-.account-links .button.button-alt:hover::before, .featured-campaigns .block-title::before { color: <?php echo $button_text ?>; }
+input[type=submit], input[type=reset], button, .button, .active-campaign .campaign-button, .button.button-alt:hover, .button.button-secondary:hover, .sticky.block, .sticky.block a, .campaign-support .button:hover, .campaign-pledge-levels.accordion h3, .featured-campaign .button, .featured-campaigns .block-title, .account-links .button.button-alt:hover:before, .featured-campaigns .block-title:before { color: <?php echo $button_text ?>; }
 .campaign-support .button:hover { box-shadow: 0 0 0 3px <?php echo $button_text ?>; }
 
 /* Widget background colour */
@@ -671,11 +665,9 @@ th { border-right-color: <?php echo $secondary_border ?>; }
 .footer-widget .widget-title, .footer-notice { color: <?php echo $footer_titles ?>; }
 
 /* Header buttons */
-.social a, .account-links .button.button-alt { color: <?php echo $header_buttons ?>; }
-.account-links .button.button-alt::before { color: <?php echo $header_buttons ?>; }
-.social a:hover::before { color: <?php echo $header_buttons_hover ?>; }
-.account-links .button.button-alt:hover { background-color: <?php echo $header_buttons_hover ?>; border-color: <?php echo $header_buttons_hover ?>; }
-.account-links .button.button-alt:hover::before { background-color: <?php echo $header_buttons_hover ?>; border-color: <?php echo $header_buttons_hover ?>; }
+.social a, .account-links .button.button-alt, .account-links .button.button-alt:before { color: <?php echo $header_buttons ?>; }
+.social a:hover:before { color: <?php echo $header_buttons_hover ?>; }
+.account-links .button.button-alt:hover, .account-links .button.button-alt:hover:before { background-color: <?php echo $header_buttons_hover ?>; border-color: <?php echo $header_buttons_hover ?>; }
 
 @media all and (min-width: 50em) {
     #login-form .register-block { background-color: <?php echo $widget_background ?>; }

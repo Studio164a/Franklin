@@ -38,13 +38,10 @@ class Sofa_Crowdfunding_Helper {
         add_action('add_meta_boxes', array(&$this, 'add_meta_boxes'));
         add_action('save_post', array(&$this, 'save_post'), 10, 2);
 
-        // remove_action('atcf_shortcode_profile', 'atcf_shortcode_profile_campaigns', 20, 1 );
-
         if ( !is_admin() ) 
             add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'), 11);
 
         add_filter('page_template', array(&$this, 'page_template_filter'));
-        add_filter('wp_nav_menu_items', array(&$this, 'wp_nav_menu_items_filter'), 10, 2);
         add_filter('edd_purchase_link_defaults', array(&$this, 'edd_purchase_link_defaults_filter'));
         add_filter('edd_templates_dir', array(&$this, 'edd_templates_dir_filter'));
         add_filter('edd_add_to_cart_item', array(&$this, 'edd_add_to_cart_item_filter'));
@@ -160,7 +157,7 @@ class Sofa_Crowdfunding_Helper {
     public function add_meta_boxes() {
         global $post;
 
-        if ( get_page_template_slug( $post->ID ) == 'homepage-campaigns.php' ) {
+        if ( get_page_template_slug( $post->ID ) == 'page-campaigns.php' ) {
             add_meta_box('franklin_campaign_homepage_options', __( 'Page Options', 'franklin' ), array( &$this, 'homepage_options' ), 'page' );
         }
 
@@ -307,7 +304,7 @@ class Sofa_Crowdfunding_Helper {
                 return;
 
             // Save custom fields found in our $settings variable
-            if ( get_page_template_slug( $post->ID ) == 'homepage-campaigns.php' ) {
+            if ( get_page_template_slug( $post->ID ) == 'page-campaigns.php' ) {
                 update_post_meta( $post_id, '_franklin_featured_campaigns_option', $_POST['_franklin_featured_campaigns_option'] );
                 update_post_meta( $post_id, '_franklin_featured_campaigns_page', $_POST['_franklin_featured_campaigns_page'] );
                 update_post_meta( $post_id, '_franklin_featured_campaigns_page_text', $_POST['_franklin_featured_campaigns_page_text'] );
@@ -342,21 +339,6 @@ class Sofa_Crowdfunding_Helper {
         
         return $page_template;
     }
-
-    /**
-     * Filter the campaigns navigation to include a dropdown list of all the categories.
-     *
-     * @uses
-     * 
-     * @param string $items
-     * @param array $args
-     * @return string
-     * @since Franklin 1.1
-     */
-    public function wp_nav_menu_items_filter($items, $args) {
-        return $items;
-    }
-
 
     /**
      * Filter the default arguments for the purchase link.

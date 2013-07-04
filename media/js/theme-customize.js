@@ -22,8 +22,8 @@
 	}, 
 
 	updateAccentTextSecondary = function(value) {
-		$('.featured-campaign .campaign-summary h3 a, .featured-campaign .button.button-alt').css('color', value);
-		$('.featured-campaign .button.button-alt').css('border-color', value);
+		$('.featured-campaigns .campaign-summary h3 a, .featured-campaigns .button.button-alt').css('color', value);
+		$('.featured-campaigns .button.button-alt').css('border-color', value);
 	},
 
 	updateBodyBackground = function(value) {
@@ -32,11 +32,11 @@
 	}, 
 
 	updateBodyText = function(value) {
-		$('body, .with-icon:before, .icon, .widget_search #searchsubmit::before, .button.button-alt, .menu a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .featured-campaign .campaign-summary h3 a').not('.account-links a').css('color', value)
+		$('body, .with-icon:before, .icon, .widget_search #searchsubmit::before, .button.button-alt, .menu a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span').not('.account-links a, .featured-campaigns .campaign-summary h3 a, .featured-campaigns .button.button-alt').css('color', value);
 		$('.footer-widget .widget-title').css('text-shadow', '0 1px 0 ' + value);
-		$('.button.button-alt, .shadow-wrapper::before, .shadow-wrapper::after').not('.account-links a').css('border-color', value);
-		$('input[type=submit], input[type=reset], button, .button:not(.account-links a,.featured-campaign .button.button-alt), .audiojs').css('background-color', value);
-		$('input[type=submit], input[type=reset], button, .button:not(.account-links a,.featured-campaign .button.button-alt)').css('boxShadow', '0 0 0 3px ' + value);
+		$('.button.button-alt, .shadow-wrapper::before, .shadow-wrapper::after').not('.account-links a, .featured-campaigns .button.button-alt').css('border-color', value);
+		$('input[type=submit], input[type=reset], button, .button, .audiojs').not('.account-links a, .featured-campaigns .button.button-alt').css('background-color', value);
+		$('input[type=submit], input[type=reset], button, .button').not('.account-links a, .featured-campaigns .button.button-alt').css('boxShadow', '0 0 0 3px ' + value);
 	},
 
 	updateButtonText = function(value) {

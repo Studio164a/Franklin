@@ -20,7 +20,7 @@ class Sofa_Crowdfunding_Pledge_Levels_Widget extends WP_Widget {
 	}
 
 	public function widget( $args, $instance ) {
-
+		
 		extract( $args );
 
 		// We have to have a campaign id

@@ -152,25 +152,36 @@ if ( !function_exists('franklin_pledge_levels') ) {
 
 		if ( is_array( $prices ) && count( $prices )) : ?>
 
-		<div id="campaign-pledge-levels-<?php echo $campaign_id ?>" <?php echo $wrapper_atts ?>>
+			<div id="campaign-pledge-levels-<?php echo $campaign_id ?>" <?php echo $wrapper_atts ?>>
 
-			<?php foreach ( $prices as $i => $price ) : ?>
+				<?php foreach ( $prices as $i => $price ) : ?>
 
-				<?php $remaining = isset( $price['bought'] ) ? $price['limit'] - count($price['bought']) + 1 : $price['limit'] ?>
+					<?php $remaining = isset( $price['bought'] ) ? $price['limit'] - count($price['bought']) + 1 : $price['limit'] ?>
 
-				<h3 class="pledge-title" data-icon="&#xf0d7;"><?php printf( _x( 'Pledge %s', 'pledge amount', 'franklin' ), '<strong>'.edd_currency_filter( edd_format_amount( $price['amount'] ) ).'</strong>' ) ?></h3>
-				<div class="pledge-level cf<?php if ($remaining == 0) echo ' not-available' ?>">										
-					<span class="pledge-limit"><?php printf( __( '%d of %d remaining', 'franklin' ), $remaining, $price['limit'] ) ?></span>
-					<p class="pledge-description"><?php echo $price['name'] ?></p>
+					<h3 class="pledge-title" data-icon="&#xf0d7;"><?php printf( _x( 'Pledge %s', 'pledge amount', 'franklin' ), '<strong>'.edd_currency_filter( edd_format_amount( $price['amount'] ) ).'</strong>' ) ?></h3>
+					<div class="pledge-level cf<?php if ($remaining == 0) echo ' not-available' ?>">										
+						<span class="pledge-limit"><?php printf( __( '%d of %d remaining', 'franklin' ), $remaining, $price['limit'] ) ?></span>
+						<p class="pledge-description"><?php echo $price['name'] ?></p>
 
-					<?php if ($remaining > 0) : ?>
-						<a class="pledge-button button button-alt button-small accent" data-reveal-id="campaign-form" data-price="<?php echo $price['amount'] ?>" href="#"><?php printf( _x( 'Pledge %s', 'pledge amount', 'franklin' ), edd_currency_filter( edd_format_amount( $price['amount'] ) ) ) ?></a>
-					<?php endif ?>
-				</div>
+						<?php if ($remaining > 0) : ?>
+							<a class="pledge-button button button-alt button-small accent" data-reveal-id="campaign-form-<?php echo $campaign_id ?>" data-price="<?php echo $price['amount'] ?>" href="#"><?php printf( _x( 'Pledge %s', 'pledge amount', 'franklin' ), edd_currency_filter( edd_format_amount( $price['amount'] ) ) ) ?></a>
+						<?php endif ?>
+					</div>
 
-			<?php endforeach ?>
+				<?php endforeach ?>
 
-		</div>
+			</div>
+
+			<?php if ( get_the_ID() != $campaign_id && ! in_array( get_page_template(), array( 'homepage-campaigns.php', 'page-single-campaign.php' ) ) ) : ?>
+
+				<!-- Support modal -->
+				<div id="campaign-form-<?php echo $campaign_id ?>" class="campaign-form reveal-modal content-block block">
+			        <a class="close-reveal-modal icon"><i class="icon-remove-sign"></i></a>
+			        <?php echo edd_get_purchase_link( array( 'download_id' => $campaign_id ) ); ?>
+			    </div>
+			    <!-- End support modal -->
+
+			<?php endif ?>
 
 		<?php endif;
 

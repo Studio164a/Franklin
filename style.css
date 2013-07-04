@@ -3,8 +3,8 @@ Theme Name: Franklin
 Theme URI: http://164a.com
 Author: Studio164a
 Author URI: http://164a.com
-Description: A single-page crowdfunding Wordpress theme.
-Version: 1.0
+Description: A responsive, retina ready Wordpress crowdfunding theme.
+Version: 1.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: 
@@ -719,8 +719,9 @@ pre {
 }
 
 .with-icon::before {
-	font-size: 120%;
+	display: inline;	
 	margin-right: 6px; margin-right: 0.6rem;
+	font-size: 120%;
 }
 
 .icon:hover {	
@@ -898,7 +899,7 @@ body {
 
 .menu li {
 	margin: 0;
-	padding-top: 12px; padding-top: 1.2rem; padding-bottom: 1.2rem;	
+	padding-top: 12px; padding-top: 1.2rem; padding-bottom: 12px; padding-bottom: 1.2rem;	
 	border-bottom: 1px solid;
 	list-style: none;
 	line-height: 1em;
@@ -916,6 +917,7 @@ body {
 .menu a {	
 	display: block;		
 	width: 100%;
+	height: 100%;
 	text-decoration: none;
 	font-weight: 400;
 }
@@ -1834,7 +1836,7 @@ h2.post-title {
 
 	.menu li li a {
 		text-align: left;
-		padding: 0.6rem 1.2rem;
+		padding: 1.2rem;
 	}
 
 	.menu .has-sub > a:after {
@@ -1917,6 +1919,13 @@ h2.post-title {
 		left: 0;
 		border-top: 0;
 		overflow: visible;
+	}
+
+	.site-navigation .menu ul {
+		margin-top: 0.8rem;
+		padding-top: 0;
+		border-top: 0;
+		border-radius: 0 0 0.4rem 0.4rem;			
 	}
 
 	.no-title .site-navigation .menu {

@@ -1,6 +1,6 @@
 <?php 
 /*
- Template name: Campaigns homepage
+ Template name: Campaigns Homepage
  */
 
 get_header() ?>
@@ -15,9 +15,11 @@ get_header() ?>
 
 			<div class="content-wrapper">
 				
-				<div <?php post_class('home-content') ?>>
-					<?php the_content() ?>
-				</div>
+				<?php if ( strlen( get_the_content() ) ) : ?>
+					<div <?php post_class('home-content') ?>>
+						<?php the_content() ?>
+					</div>
+				<?php endif ?>
 
 				<div class="campaigns-grid-wrapper">								
 

@@ -46,18 +46,20 @@
 			var progress;
 
 			// Draw the percentage filled arc
-			progress = r.path().attr({ 
-				stroke: $barometer.data('progress-stroke'), 
-				'stroke-width' : $barometer.data('strokewidth')+1, 
-				arc: [width/2, height/2, 0, 100, (width/2)-8]
-			});
+			if ( progress_val > 0 ) {
+				progress = r.path().attr({ 
+					stroke: $barometer.data('progress-stroke'), 
+					'stroke-width' : $barometer.data('strokewidth')+1, 
+					arc: [width/2, height/2, 0, 100, (width/2)-8]
+				});
 
-			// Animate it
-			progress.animate({
-				arc: [width/2, height/2, progress_val, 100, (width/2)-8]
-			}, 1500, "easeInOut", function() {
-				$barometer.find('span').animate( { opacity: 1}, 300, 'linear');
-			});
+				// Animate it
+				progress.animate({
+					arc: [width/2, height/2, progress_val, 100, (width/2)-8]
+				}, 1500, "easeInOut", function() {
+					$barometer.find('span').animate( { opacity: 1}, 300, 'linear');
+				});
+			}			
 		}, 
 
 		// Init barometer

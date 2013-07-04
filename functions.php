@@ -112,6 +112,8 @@ class Franklin_Theme {
         wp_register_script('foundation-reveal', sprintf( "%s/media/js/foundation.reveal.js", $theme_dir ), array('foundation'), 0.1, true);        
         wp_register_script('sharrre', sprintf( "%s/media/js/jquery.sharrre-1.3.4.min.js", $theme_dir ), array('jquery'), 0.1, true );
         wp_register_script('franklin', sprintf( "%s/media/js/main.js", $theme_dir ), array( 'prettyPhoto', 'jquery-ui-accordion', 'audio-js', 'sharrre', 'hoverIntent', 'foundation-reveal', 'jquery-ui-accordion', 'jquery'), 0.1, true);
+
+        wp_enqueue_script('jquery');
 	    wp_enqueue_script('franklin');
 
         // If Symple Shortcodes is installed, dequeue its stylesheet
@@ -427,8 +429,9 @@ class Franklin_Theme {
      * @since Franklin 1.0
      */
     public function sofa_load_lt_ie9($default) {
-        return '<script>var sofa_ie_lt9 = true;</script>' . $default;
-        // return '<script src="'. $this->sofa->plugin_dir_url .'/js/respond.min.js" type="text/javascript"></script>' . PHP_EOL . $default;
+        return '<link rel="stylesheet" type="text/css" media="all" href="'.get_template_directory_uri().'/media/css/ie8.css" />' 
+        . '<script>var sofa_ie_lt9 = true;</script>' 
+        . $default;
     }
 
     /**

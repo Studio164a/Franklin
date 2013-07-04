@@ -474,7 +474,7 @@
 
 /* 10.0 - Campaign submission page
 ================================================== */
-.description {
+span.description {
 	font-size: 11px; font-size: 1.1rem;
 	font-style: italic;
 }
@@ -969,6 +969,12 @@
 		float: right;
 		width: 14rem;
 	}
+
+	.campaigns-navigation .menu > li {
+		width: 14rem;
+		padding-right: 0.6rem;
+		text-align: right;		
+	}
 }
 
 /* 10.5 --- Greater than 880px ***/
@@ -1045,9 +1051,10 @@
 
 	.active-campaign {
 		width: 100%;
-		padding-right: 9px; padding-left: 9px; padding-right: .9rem; padding-left: .9rem;
+		padding-right: 0.9rem; padding-left: 0.9rem;
 		position: relative;
-		left: -9px; left: -.9rem;		
+		left: -0.9rem;		
+		top: -0.2rem;
 	}
 
 	.block .campaign-backer {

@@ -1,0 +1,45 @@
+/* Pseudo-element fix */
+[data-icon]:before {
+	font-family: 'fontawesome';
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+.with-icon:before {
+	display: inline;	
+	margin-right: 6px; margin-right: 0.6rem;
+	font-size: 120%;
+}
+
+.accordion h3:before {
+	float: right;
+	margin-right: 4%;
+}
+
+.shadow-wrapper:before,
+.shadow-wrapper:after {
+	content: "";
+	position: absolute;
+	bottom: -0.9rem;
+	width: 0;
+	height: 0;
+}
+
+.shadow-wrapper:before {
+	left: -0.9rem;
+	border-left: 0.9rem solid transparent !important;
+	border-bottom: 0.9rem solid transparent !important;
+	border-right: 0.9rem solid;
+}
+
+.shadow-wrapper:after {
+	right: -0.9rem;
+	border-right: 0.9rem solid transparent !important;
+	border-bottom: 0.9rem solid transparent !important;
+	border-left: 0.9rem solid;
+}	

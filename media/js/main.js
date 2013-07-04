@@ -71,7 +71,8 @@ var Sofa = ( function( $ ) {
 
 	// Hide/show elements responsive
 	responsiveHide = function() {
-		$('body').toggleClass('is-tiny', $(window).width() < 600);
+		// IE8 and below are dished up the mobile version, so this is always applied to them		
+		$('body').toggleClass('is-tiny', $(window).width() < 600 || $('html').hasClass('lt-ie9') );
 	};		
 
 	return {			

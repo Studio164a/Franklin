@@ -1,4 +1,4 @@
-#edd_checkout_cart td/**
+/**
  * Easy Digital Downloads Styles
  *
  * @package     EDD
@@ -175,10 +175,3 @@ p.edd_error { margin: 0 !important; }
 /* =Success Message styles
 -------------------------------------------------------------- */
 .edd_success { -webkit-border-radius: 0.2rem; -moz-border-radius: 0.2rem; border-radius: 0.2rem; margin: 12px 0 24px !important; margin-top: 1.2rem !important; margin-bottom: 2.4rem !important; padding: 12px 10px; padding: 1.2rem 1rem; }
-
-
-
-
-
-
-
