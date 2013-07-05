@@ -106,7 +106,8 @@ th,
 .footer-notice,
 .campaign-status .campaign-raised span, 
 .campaign-status .campaign-pledged span, 
-.campaign-status .campaign-time-left span {
+.campaign-status .campaign-time-left span,
+.widget_crowdfunding_stats_widget li span {
 	font-family: 'Oswald', 'Helvetica Neue', Helvetica, sans-serif;
 }
 
@@ -1919,13 +1920,17 @@ h2.post-title {
 		left: 0;
 		border-top: 0;
 		overflow: visible;
-	}
+	}	
 
 	.site-navigation .menu ul {
-		margin-top: 0.8rem;
+		margin-top: 0.9rem;
 		padding-top: 0;
 		border-top: 0;
 		border-radius: 0 0 0.4rem 0.4rem;			
+	}
+
+	.gecko .site-navigation .menu ul {
+		margin-top: 0.8rem;
 	}
 
 	.no-title .site-navigation .menu {

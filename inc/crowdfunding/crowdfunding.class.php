@@ -31,6 +31,7 @@ class Sofa_Crowdfunding_Helper {
         include_once('widgets/campaign-updates.php');
         include_once('widgets/campaign-backers.php');
         include_once('widgets/campaign-video.php');
+        include_once('widgets/stats.php');
 
     	add_action('after_setup_theme', array(&$this, 'after_setup_theme'));
         add_action('wp_footer', array(&$this, 'wp_footer'));
@@ -146,6 +147,7 @@ class Sofa_Crowdfunding_Helper {
         register_widget( 'Sofa_Crowdfunding_Backers_Widget' );
         register_widget( 'Sofa_Crowdfunding_Updates_Widget' );
         register_widget( 'Sofa_Crowdfunding_Video_Widget' );
+        register_widget( 'Sofa_Crowdfunding_Stats_Widget' );
     }
 
     /**

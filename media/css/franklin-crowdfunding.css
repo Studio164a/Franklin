@@ -414,6 +414,28 @@
 	margin-bottom: 0;
 }
 
+.widget_crowdfunding_stats_widget li span {
+	font-size: 20px; font-size: 2rem;
+	line-height: 30px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	display: block;
+	font-style: normal;
+}
+
+.widget_crowdfunding_stats_widget li {
+	font-size: 16px; font-size: 1.6rem;
+	padding-bottom: 12px; padding-bottom: 1.2rem;
+	margin-bottom: 12px; margin-bottom: 1.2rem;
+	border-bottom: 1px solid #fff; border-color: rgba(255, 255, 255, 0.3);
+	font-style: italic;
+	font-weight: 300;
+}
+
+.widget_crowdfunding_stats_widget li:last-child {
+	border: none;
+}
+
 /* 8.0 - User account links 
 ================================================== */
 .account-links {
@@ -1053,8 +1075,7 @@ span.description {
 		width: 100%;
 		padding-right: 0.9rem; padding-left: 0.9rem;
 		position: relative;
-		left: -0.9rem;		
-		top: -0.2rem;
+		left: -0.9rem;	
 	}
 
 	.block .campaign-backer {

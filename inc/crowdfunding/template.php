@@ -282,9 +282,9 @@ if ( !function_exists('franklin_campaign_backers') ) {
 }
 
 /**
- * Show the campaign video
+ * Show the campaign video.
  * 
- * @
+ * @param ATCF_Campaign $campaign
  * @global $wp_embed
  * @return string
  * @since Franklin 1.0
@@ -311,6 +311,38 @@ if ( !function_exists( 'franklin_campaign_video' ) ) {
 
 		<?php
 	}
+}
+
+/**
+ * Displays the site's crowdfunding stats.
+ * 
+ * @uses franklin_crowdfunding_stats filter
+ * 
+ * @return string
+ * @since Franklin 1.2
+ */
+if ( !function_exists( 'franklin_crowdfunding_stats' ) ) {
+
+	function franklin_crowdfunding_stats() {
+
+		$post_count = wp_count_posts('download');
+
+		ob_start();
+		?>
+
+		<ul>
+			<li><span><?php echo $post_count->publish ?></span>
+				<?php echo _n('Campaign', 'Campaigns', $post_count->publish, 'franklin') ?>
+			</li>
+			<li>				
+				<?php printf( __( '%s Funded', 'franklin' ), '<span>' . edd_currency_filter( edd_format_amount( edd_get_total_earnings() ) ) . '</span>' ) ?>
+			</li>
+		</ul>
+
+		<?php
+		return apply_filters( 'franklin_crowdfunding_stats', ob_get_clean(), $post_count );
+	}
+
 }
 
 /**
@@ -483,14 +515,11 @@ function franklin_atcf_shortcode_submit_field_rewards( $atts, $campaign ) {
 remove_action( 'atcf_shortcode_submit_fields', 'atcf_shortcode_submit_field_rewards', 90, 2 );
 add_action( 'atcf_shortcode_submit_fields', 'franklin_atcf_shortcode_submit_field_rewards', 90, 2 );
 
-
-
 /**
  * Campaign Contact Email
  *
- * @since CrowdFunding 0.1-alpha
- *
  * @return void
+ * @since Franklin 1.1
  */
 function franklin_atcf_shortcode_submit_field_contact_email( $atts, $campaign ) {
 ?>

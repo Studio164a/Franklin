@@ -133,7 +133,7 @@ class Sofa_Posts_Widget extends WP_Widget {
 		extract($args);
 
 		// Title, with default 
-		$title = apply_filters('widget_title', empty($instance['title']) ? __('Posts', 'franklin' ) : $instance['title'], $instance, $this->id_base);
+		$title = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
 
 		// Start our query_args array
 		$query_args = array(
