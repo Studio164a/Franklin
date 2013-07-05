@@ -337,6 +337,10 @@ if ( !function_exists( 'franklin_crowdfunding_stats' ) ) {
 			<li>				
 				<?php printf( __( '%s Funded', 'franklin' ), '<span>' . edd_currency_filter( edd_format_amount( edd_get_total_earnings() ) ) . '</span>' ) ?>
 			</li>
+			<li>
+				<span><?php echo edd_count_total_customers() ?></span>				
+				<?php echo _n('Backer', 'Backers', edd_count_total_customers(), 'franklin') ?>
+			</li>
 		</ul>
 
 		<?php

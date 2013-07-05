@@ -177,3 +177,18 @@ function sofa_crowdfunding_get_backer_pledge($backer, $formatted = true) {
 
 	return edd_get_payment_amount($backer->ID);	
 }
+
+/**
+ * Counts the total number of customers. 
+ *  
+ * @global object $wpdb
+ * @return int
+ * @since Franklin 1.2
+ */
+if ( !function_exists( 'edd_count_total_customers' ) ) {
+	function edd_count_total_customers() {
+		global $wpdb;
+		$count = $wpdb->get_col( "SELECT COUNT(DISTINCT meta_value) FROM $wpdb->postmeta WHERE meta_key = '_edd_payment_user_email'" );
+		return $count[0];
+	}
+}

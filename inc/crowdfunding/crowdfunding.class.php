@@ -84,11 +84,6 @@ class Sofa_Crowdfunding_Helper {
     		'anonymous-backers'       => true, 
             'campaign-edit'           => true
     	)));
-
-        // Register menu
-        register_nav_menus( array(
-            'campaigns_navigation' => 'Campaigns Menu'
-        ) ); 
     }
 
     /**
