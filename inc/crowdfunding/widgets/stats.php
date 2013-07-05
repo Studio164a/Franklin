@@ -23,7 +23,13 @@ class Sofa_Crowdfunding_Stats_Widget extends WP_Widget {
 
 		extract( $args );
 
+		// Title, with default 
+		$title = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
+
 		echo $before_widget;
+
+		// Widget tilte
+		if ( $title ) echo $before_title . $title . $after_title; 
 
 		echo franklin_crowdfunding_stats();
 
@@ -31,13 +37,19 @@ class Sofa_Crowdfunding_Stats_Widget extends WP_Widget {
 	}
 
 	public function form( $instance ) {
+		$title = isset($instance['title']) ? esc_attr($instance['title']) : '';
+		
         ?>
-        <p><?php _e( 'This widget has no configuration settings.', 'franklin' ) ?></p>
+		<p>
+			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( 'Title:', 'franklin' ); ?></label>
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id('title') ); ?>" name="<?php echo esc_attr( $this->get_field_name('title') ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+		</p>
         <?php
 	}
 
 	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
+		$instance['title'] = strip_tags($new_instance['title']);
         return $instance;
 	}
 }
