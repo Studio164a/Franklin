@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Franklin Wordpress Theme\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-04 00:03+0930\n"
-"PO-Revision-Date: 2013-07-04 00:22+0930\n"
+"POT-Creation-Date: 2013-07-06 13:43+0930\n"
+"PO-Revision-Date: 2013-07-06 13:54+0930\n"
 "Last-Translator: Eric Daams <eric@ericnicolaas.com>\n"
 "Language-Team: Studio164a <eric@164a.com>\n"
 "MIME-Version: 1.0\n"
@@ -207,57 +207,57 @@ msgstr ""
 msgid "Pages: "
 msgstr ""
 
-#: ../functions.php:139
+#: ../functions.php:141
 msgid "Your pledge must be at least the minimum pledge amount."
 msgstr ""
 
-#: ../functions.php:222
+#: ../functions.php:224
 msgid "Default sidebar"
 msgstr ""
 
-#: ../functions.php:223
+#: ../functions.php:225
 msgid "The default sidebar."
 msgstr ""
 
-#: ../functions.php:232
+#: ../functions.php:234
 msgid "Campaign sidebar"
 msgstr ""
 
-#: ../functions.php:233
+#: ../functions.php:235
 msgid "The campaign sidebar."
 msgstr ""
 
-#: ../functions.php:242
+#: ../functions.php:244
 msgid "Campaign below content"
 msgstr ""
 
-#: ../functions.php:243
+#: ../functions.php:245
 msgid "Displayed below the campaign's content, but above the comment section."
 msgstr ""
 
-#: ../functions.php:252
+#: ../functions.php:254
 msgid "Footer left"
 msgstr ""
 
-#: ../functions.php:261
+#: ../functions.php:263
 msgid "Footer right"
 msgstr ""
 
-#: ../functions.php:278
-#: ../functions.php:279
+#: ../functions.php:280
+#: ../functions.php:281
 msgid "Hide post/page meta"
 msgstr ""
 
-#: ../functions.php:295
+#: ../functions.php:297
 msgid "Hide post/page meta?"
 msgstr ""
 
-#: ../functions.php:367
+#: ../functions.php:369
 #, php-format
 msgid "Keep reading %s"
 msgstr ""
 
-#: ../functions.php:367
+#: ../functions.php:369
 msgid "Continue Reading"
 msgstr ""
 
@@ -320,17 +320,17 @@ msgid "Leave your comment"
 msgstr ""
 
 #: ../inc/comments.php:80
-#: ../inc/crowdfunding/template.php:336
+#: ../inc/crowdfunding/template.php:372
 msgid "Pingback:"
 msgstr ""
 
 #: ../inc/comments.php:81
-#: ../inc/crowdfunding/template.php:337
+#: ../inc/crowdfunding/template.php:373
 msgid "Edit"
 msgstr ""
 
 #: ../inc/comments.php:94
-#: ../inc/crowdfunding/template.php:350
+#: ../inc/crowdfunding/template.php:386
 msgid "Author"
 msgstr ""
 
@@ -340,7 +340,7 @@ msgid "at"
 msgstr ""
 
 #: ../inc/comments.php:99
-#: ../inc/crowdfunding/template.php:357
+#: ../inc/crowdfunding/template.php:393
 msgctxt "reply to comment"
 msgid "Reply"
 msgstr ""
@@ -560,60 +560,63 @@ msgstr ""
 msgid "Set up links to your online social presences"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:130
+#: ../inc/crowdfunding/crowdfunding.class.php:123
 msgid "Login"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:134
+#: ../inc/crowdfunding/crowdfunding.class.php:127
 #: ../inc/crowdfunding/template.php:125
 msgid "Register"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:164
+#: ../inc/crowdfunding/crowdfunding.class.php:158
 msgid "Page Options"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:168
+#: ../inc/crowdfunding/crowdfunding.class.php:162
+#: ../inc/crowdfunding/template.php:335
 msgid "Campaign"
-msgstr ""
+msgid_plural "Campaigns"
+msgstr[0] ""
+msgstr[1] ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:187
+#: ../inc/crowdfunding/crowdfunding.class.php:181
 msgid "Featured Campaigns"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:190
+#: ../inc/crowdfunding/crowdfunding.class.php:184
 msgid "Campaign(s) to show:"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:192
+#: ../inc/crowdfunding/crowdfunding.class.php:186
 msgid "Ending soonest"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:193
+#: ../inc/crowdfunding/crowdfunding.class.php:187
 msgid "Most recent"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:194
+#: ../inc/crowdfunding/crowdfunding.class.php:188
 msgid "Random"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:196
+#: ../inc/crowdfunding/crowdfunding.class.php:190
 msgid "Specific campaign"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:225
+#: ../inc/crowdfunding/crowdfunding.class.php:219
 msgid "Link to featured campaigns page"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:227
+#: ../inc/crowdfunding/crowdfunding.class.php:221
 msgid "- Select -"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:238
+#: ../inc/crowdfunding/crowdfunding.class.php:232
 msgid "Featured campaigns page link text"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:268
+#: ../inc/crowdfunding/crowdfunding.class.php:262
 msgid "Select a campaign:"
 msgstr ""
 
@@ -663,66 +666,77 @@ msgstr ""
 msgid "No backers yet. Be the first!"
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:356
+#: ../inc/crowdfunding/template.php:338
+#, php-format
+msgid "%s Funded"
+msgstr ""
+
+#: ../inc/crowdfunding/template.php:342
+msgid "Backer"
+msgid_plural "Backers"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../inc/crowdfunding/template.php:392
 #, php-format
 msgid "%s ago"
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:391
+#: ../inc/crowdfunding/template.php:427
 msgid "Length (Days)"
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:393
+#: ../inc/crowdfunding/template.php:429
 #, php-format
 msgid "Your campaign's length can be between %d and %d days"
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:412
+#: ../inc/crowdfunding/template.php:448
 msgid "Backer Rewards"
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:415
+#: ../inc/crowdfunding/template.php:451
 msgid "Collect shipping information on checkout."
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:426
-#: ../inc/crowdfunding/template.php:455
+#: ../inc/crowdfunding/template.php:462
+#: ../inc/crowdfunding/template.php:491
 #, php-format
 msgid "Amount (%s)"
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:431
-#: ../inc/crowdfunding/template.php:460
+#: ../inc/crowdfunding/template.php:467
+#: ../inc/crowdfunding/template.php:496
 msgid "Limit"
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:436
-#: ../inc/crowdfunding/template.php:465
+#: ../inc/crowdfunding/template.php:472
+#: ../inc/crowdfunding/template.php:501
 msgid "Reward"
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:444
-#: ../inc/crowdfunding/template.php:472
+#: ../inc/crowdfunding/template.php:480
+#: ../inc/crowdfunding/template.php:508
 msgid "Remove"
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:478
+#: ../inc/crowdfunding/template.php:514
 msgid "+ <em>Add Reward</em>"
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:497
+#: ../inc/crowdfunding/template.php:530
 msgid "Your Information"
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:502
+#: ../inc/crowdfunding/template.php:535
 msgid "Contact Email"
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:503
+#: ../inc/crowdfunding/template.php:536
 msgid "An account will be created for you with this email address. It must be active."
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:506
+#: ../inc/crowdfunding/template.php:539
 #, php-format
 msgid "<strong>Note</strong>: You are currently logged in as %1$s. This %2$s will be associated with that account. Please <a href=\"%3$s\">log out</a> if you would like to make a %2$s under a new account."
 msgstr ""
@@ -739,6 +753,7 @@ msgstr ""
 #: ../inc/crowdfunding/widgets/campaign-pledge-levels.php:54
 #: ../inc/crowdfunding/widgets/campaign-updates.php:62
 #: ../inc/crowdfunding/widgets/campaign-video.php:54
+#: ../inc/crowdfunding/widgets/stats.php:44
 #: ../inc/widgets/sofa-posts.php:40
 msgid "Title:"
 msgstr ""
@@ -798,6 +813,14 @@ msgstr ""
 
 #: ../inc/crowdfunding/widgets/campaign-video.php:18
 msgid "Display a campaign's video."
+msgstr ""
+
+#: ../inc/crowdfunding/widgets/stats.php:17
+msgid "Crowdfunding Stats"
+msgstr ""
+
+#: ../inc/crowdfunding/widgets/stats.php:18
+msgid "Display a the website's crowdfunding stats."
 msgstr ""
 
 #: ../inc/sofa/sofa-template-tags.php:46
@@ -947,10 +970,6 @@ msgstr ""
 
 #: ../inc/widgets/sofa-posts.php:75
 msgid "Show post meta:"
-msgstr ""
-
-#: ../inc/widgets/sofa-posts.php:136
-msgid "Posts"
 msgstr ""
 
 #: ../inc/widgets/sofa-posts.php:237
