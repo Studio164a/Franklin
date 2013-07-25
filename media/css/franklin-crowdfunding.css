@@ -425,9 +425,7 @@
 
 .widget_crowdfunding_stats_widget li {
 	font-size: 13px; font-size: 1.3rem;
-	/*padding-bottom: 12px; padding-bottom: 1.2rem;*/
 	margin-bottom: 12px; margin-bottom: 1.2rem;
-	/*border-bottom: 1px solid #fff; border-color: rgba(255, 255, 255, 0.3);*/
 	font-style: italic;
 	font-weight: 300;
 }
@@ -448,24 +446,10 @@
 }
 
 /* 8.0 - User account links 
-================================================== */
-.account-links {
-	display: block;
-	margin: 0 auto 24px; margin-bottom: 2.4rem;
-	/*width: 100%;	*/
-	text-transform: uppercase;
-	font-size: 12px; font-size: 1.2rem;
-	font-weight: 300;
-	line-height: 44px; line-height: 4.4rem;
-	text-align: center;
-}
 
-.account-links .button.button-alt {
-	display: inline-block;	
-	margin: 10px 0 10px 8px; margin-top: 1rem; margin-bottom: 1rem; margin-left: 0.8rem;
-	max-width: 100%;
-	text-decoration: none;
-}
+NOTE: As of version 1.2.1, this has been moved to style.css
+================================================== */
+
 
 /* 9.0 - Login & registration forms 
 ================================================== */
@@ -548,6 +532,10 @@ span.description {
 .atcf-submit-campaign-reward-limit {
 	width: 49%;
 	float: left;
+}
+
+.atcf-submit-campaign-shipping {
+	clear: both;
 }
 
 .atcf-submit-campaign-goal, 
@@ -761,14 +749,6 @@ span.description {
 
 /* 10.2 --- Greater than 600px ***/
 @media all and (min-width: 37.5em) {
-
-	.account-links {
-		float: right;
-		margin-left: 0;
-		margin-right: 4%;
-		margin-bottom: 0;
-		width: auto;
-	}
 
 	.edd_purchase_submit_wrapper {
 		padding-top: 0; 

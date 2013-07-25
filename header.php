@@ -27,16 +27,20 @@
 	
 		<!-- Header -->
 		<header id="header" class="cf wrapper <?php sofa_header_class() ?>">			
-			
-			<div class="site-identity">
+						
+			<div class="site-identity">				
+
+				<a class="home-link" href="<?php echo site_url() ?>"></a>
+
 				<!-- Site title -->
 				<?php sofa_site_title() ?>	
 				<!-- End site title -->		
 
 				<!-- Site tagline -->
 				<?php sofa_site_tagline() ?>				
-				<!-- End site tagline -->
-			</div>
+				<!-- End site tagline -->				
+
+			</div>			
 
 			<!-- Navigation -->
 			<div class="site-navigation wrapper">		

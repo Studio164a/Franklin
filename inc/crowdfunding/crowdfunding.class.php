@@ -98,12 +98,8 @@ class Sofa_Crowdfunding_Helper {
         
         wp_register_script('raphael', sprintf( "%s/media/js/raphael-min.js", $theme_dir ), array('jquery'), 0.1, true);
         wp_register_script('countdown', sprintf( "%s/media/js/jquery.countdown.min.js", $theme_dir ), array('jquery'), 0.1, true);
-        // wp_register_script('jquery-isotope', sprintf( "%s/media/js/jquery.isotope.min.js", $theme_dir ), array('jquery'), 0.1, true);
         wp_register_script('franklin-crowdfunding', sprintf( "%s/media/js/franklin-crowdfunding.js", $theme_dir ), array('raphael', 'countdown', 'jquery-masonry', 'franklin'), 0.1, true);
         wp_enqueue_script('franklin-crowdfunding');
-
-        // wp_localize_script('franklin-crowdfunding', 'SofaCrowdfunding', array(
-        //     'button_colour' => get_theme_mod('body_text', '#7D6E63')));
 
         wp_register_style('franklin-crowdfunding', sprintf( "%s/media/css/franklin-crowdfunding.css", $theme_dir ));
         wp_enqueue_style('franklin-crowdfunding');

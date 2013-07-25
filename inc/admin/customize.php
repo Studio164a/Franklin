@@ -665,7 +665,7 @@ th { border-right-color: <?php echo $secondary_border ?>; }
 .footer-widget .widget-title, .footer-notice { color: <?php echo $footer_titles ?>; }
 
 /* Header buttons */
-.social a, .account-links .button.button-alt, .account-links .button.button-alt:before { color: <?php echo $header_buttons ?>; }
+.social a, .account-links .button.button-alt, .account-links .button.button-alt:before, .logout, .logout:before, .logout:hover { color: <?php echo $header_buttons ?>; }
 .social a:hover:before { color: <?php echo $header_buttons_hover ?>; }
 .account-links .button.button-alt:hover, .account-links .button.button-alt:hover:before { background-color: <?php echo $header_buttons_hover ?>; border-color: <?php echo $header_buttons_hover ?>; }
 
@@ -683,12 +683,10 @@ th { border-right-color: <?php echo $secondary_border ?>; }
 .site-identity { background: url(<?php echo $logo ?>) no-repeat left 50%; padding-left: <?php echo $logo_meta['width'] + 10 ?>px; min-height: <?php echo $logo_meta['height'] ?>px; }
 .no-tagline .site-title { line-height: <?php echo $logo_meta['height'] ?>px; }
 .no-title .site-tagline { line-height: <?php echo $logo_meta['height'] - 12 ?>px; }
-.no-title.no-tagline .site-navigation ul { margin-top: <?php echo $logo_meta['height'] - 18 ?>px;  }
+.no-title.no-tagline .site-navigation .menu { margin-top: <?php echo $logo_meta['height'] - 18 ?>px;  }
     <?php if ( $logo_meta['height'] > 34 ) : ?>
-    .no-tagline .site-navigation ul { margin-top: <?php echo $logo_meta['height'] - 18 ?>px; }
-    <?php endif ?>
-    <?php if ( $logo_meta['height'] > 34 ) : ?>
-    .no-title .site-navigation ul { margin-top: <?php echo $logo_meta['height'] - 18 ?>px; }
+    .no-tagline .site-navigation .menu { margin-top: <?php echo $logo_meta['height'] - 18 ?>px; }
+    .no-title .site-navigation .menu { margin-top: <?php echo $logo_meta['height'] - 18 ?>px; }
     <?php endif ?>
 <?php endif ?>
                 

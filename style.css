@@ -4,7 +4,7 @@ Theme URI: http://164a.com
 Author: Studio164a
 Author URI: http://164a.com
 Description: A responsive, retina ready Wordpress crowdfunding theme.
-Version: 1.1
+Version: 1.2.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: 
@@ -27,8 +27,10 @@ Text Domain: franklin
  *   2.1 - Default
  *   2.2 - Admin bar
  * 3.0 - Header
- *   3.1 - Navigation
- *   3.2 - Title & Tagline
+ * 	 3.1 - Social
+ *   3.2 - Account Links 
+ *   3.3 - Navigation
+ *   3.4 - Title & Tagline
  * 4.0 - Campaign
  * 5.0 - Content
  *   5.1 - Entry Header
@@ -830,17 +832,12 @@ body {
 	border-radius: 0.4rem 0.4rem 0 0;
 }
 
-.page-template-default #header {
-	border-bottom-width: 2px; border-bottom-width: 0.2rem;
-	border-bottom-style: solid;
-}
-
 /* 3.1 -- Social ***/
 
 .social {
-	text-align: center;
+	text-align: left;
 	margin-top: 13px; margin-top: 1.3rem;
-	padding-left: 0;	
+	padding-left: 4%;	
 }
 
 .social li {
@@ -856,6 +853,34 @@ body {
 }
 
 /* 3.2 -- User account links ***/
+
+.account-links {
+	display: block;
+	margin: 0 auto 24px; margin-bottom: 2.4rem;
+	/*width: 100%;	*/
+	text-transform: uppercase;
+	font-size: 12px; font-size: 1.2rem;
+	font-weight: 300;
+	line-height: 44px; line-height: 4.4rem;
+	text-align: center;
+}
+
+.account-links .button.button-alt {
+	display: inline-block;	
+	margin: 10px 0 10px 8px; margin-top: 1rem; margin-bottom: 1rem; margin-left: 0.8rem;
+	max-width: 100%;
+	text-decoration: none;
+}
+
+.logout {
+	position: absolute;
+	right: 4%;
+	top: -12px; top: -1.2rem;
+}
+
+.logout:hover {
+	text-decoration: none;
+}
 
 /* 3.3 -- Navigation ***/
 
@@ -947,6 +972,14 @@ body {
 	float: left;
 	padding: 12px 20px 12px 0; padding-top: 1.2rem; padding-right: 2rem; padding-bottom: 1.2rem;
 	text-transform: uppercase;
+}
+
+.home-link {
+	position: absolute;
+	left: 0;
+	display: block;
+	width: 100%; 
+	height: 100%;	
 }
 
 .site-title {
@@ -1734,10 +1767,24 @@ h2.post-title {
 		padding-right: 2%;
 	}	
 
-	 .social {
+	/* Header */
+	.social {
 	 	float: left;
 	 	margin-left: 4%;	 	
-	 }
+	}
+	 
+	.account-links {
+		float: right;
+		margin-left: 0;
+		margin-right: 4%;
+		margin-bottom: 0;
+		width: auto;
+	}
+
+	.logout {
+		position: static;
+		margin-left: 1rem;
+	}
 
 	/* Content */
 	.meta {
@@ -1929,6 +1976,7 @@ h2.post-title {
 		border-radius: 0 0 0.4rem 0.4rem;			
 	}
 
+	.no-tagline.no-title .site-navigation .menu ul,
 	.gecko .site-navigation .menu ul {
 		margin-top: 0.8rem;
 	}

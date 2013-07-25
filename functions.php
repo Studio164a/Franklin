@@ -130,8 +130,6 @@ class Franklin_Theme {
      * @since Franklin 1.0
      */
     public function wp_head () {
-        // global $post;
-
         echo apply_filters( 'franklin_font_link', "<link href='http://fonts.googleapis.com/css?family=Merriweather:400,400italic,700italic,700,300italic,300|Oswald:400,300' rel='stylesheet' type='text/css'>" );
 
         ?>

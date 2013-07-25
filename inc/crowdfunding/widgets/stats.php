@@ -24,7 +24,7 @@ class Sofa_Crowdfunding_Stats_Widget extends WP_Widget {
 		extract( $args );
 
 		// Title, with default 
-		$title = apply_filters('widget_title', $instance['title'], $instance, $this->id_base);
+		$title = apply_filters('widget_title', isset( $instance['title'] ) ? $instance['title'] : '', $instance, $this->id_base);
 
 		echo $before_widget;
 
