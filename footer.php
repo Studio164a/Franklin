@@ -19,6 +19,7 @@
 			<?php if ( get_theme_mod( 'footer_notice', false ) ) : ?>
 				<!-- You've hit rockbottom -->
 				<div id="rockbottom">
+					<?php if ( function_exists('wpml_languages_list') ) echo wpml_languages_list(0, 'language-list') ?>
 					<p class="footer-notice aligncenter"><?php echo get_theme_mod( 'footer_notice' ) ?></p>			
 				</div>
 				<!-- You've passed rockbottom -->

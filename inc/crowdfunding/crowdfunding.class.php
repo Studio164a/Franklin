@@ -323,9 +323,15 @@ class Sofa_Crowdfunding_Helper {
     public function page_template_filter($page_template) {
         global $post, $edd_options;
 
+        // If we're using WPML, we need to apply the same templates to the other language versions
+        $language_copy = get_post_meta($post->ID, '_icl_lang_duplicate_of', true);
+
         if ( $post->ID == $edd_options['submit_page'] 
             || $post->ID == $edd_options['profile_page']
             || $post->ID == $edd_options['purchase_page'] 
+            || $language_copy == $edd_options['submit_page']
+            || $language_copy == $edd_options['profile_page']
+            || $language_copy == $edd_options['purchase_page'] 
         ) {
             $page_template = apply_filters( 'sofa_application_page_template', get_template_directory() . '/page-app.php', $page_template );
         }        

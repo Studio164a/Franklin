@@ -441,7 +441,7 @@ class OSFA_Customizer {
     public function customize_controls_print_styles() {
         ?>
         <style>
-            .menu li.hovering { height: 1em; }
+            .menu-site li.hovering { height: 1em; }
         </style>
         <?php 
     }
@@ -595,12 +595,12 @@ body { background-image: url(<?php echo $body_texture_use ?>); }
 <?php endif ?>
 
 /* Accent colour */
-a, .menu-button, .menu a:hover, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, body .button.accent:hover, .button.accent.button-alt, .social a:hover, .menu .current-menu-item > a, .campaign .campaign-status .campaign-raised span, .campaign .campaign-status .campaign-pledged span, .campaign .campaign-status .campaign-time-left span { color: <?php echo $accent_colour ?>; }
+a, .menu-button, .menu-site a:hover, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, body .button.accent:hover, .button.accent.button-alt, .social a:hover, .menu-site .current-menu-item > a, .campaign .campaign-status .campaign-raised span, .campaign .campaign-status .campaign-pledged span, .campaign .campaign-status .campaign-time-left span, #lang_sel ul ul a, #lang_sel ul ul a:visited { color: <?php echo $accent_colour ?>; }
 .campaign-button, .active-campaign, .sticky.block, .button.accent, .button.accent.button-alt:hover, .banner, .gallery-icon, .featured-image a, .edd_success { background-color: <?php echo $accent_colour ?>; color: <?php echo $accent_text ?>; }
 .active-campaign .share, .active-campaign .more-link, .featured-campaign .button.button-alt:hover, .active-campaign .share .icon:before { color: <?php echo $accent_text ?>; }
 .button.accent, .campaign-support .button.accent:hover { box-shadow: 0 0 0 0.3rem <?php echo $accent_colour ?>; }
-.menu .hovering > a { border-color: <?php echo $accent_colour ?>; border-color: <?php echo $this->rgb($accent_rgb, 0.7) ?>; }
-.page-template-default #header, .is-active > .menu { border-color: <?php echo $accent_colour ?>; }
+.menu-site .hovering > a { border-color: <?php echo $accent_colour ?>; border-color: <?php echo $this->rgb($accent_rgb, 0.7) ?>; }
+.page-template-default #header, .is-active > .menu-site { border-color: <?php echo $accent_colour ?>; }
 input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, input[type=email]:focus, textarea:focus, input[type=text]:active, input[type=password]:active, input[type=number]:active, input[type=email]:active, textarea:active, .button.accent.button-alt, .button.button-secondary.accent, .button.accent.button-alt:hover, .button.button-secondary.accent:hover select:active { border-color: <?php echo $accent_colour ?>; }
 
 /* Accent hover */
@@ -617,7 +617,7 @@ body, .audiojs .loaded, .edd_errors { background-color: <?php echo $body_backgro
 .audiojs .play-pause { border-right-color: <?php echo $body_background ?>; }
 
 /* Body copy */
-body, .icon, input[type=submit]:hover, input[type=reset]:hover, input[type=submit]:focus, input[type=reset]:focus, input[type=submit]:active, input[type=reset]:active, button:hover, .button:hover, .button.accent:hover, .button.button-alt, .button.button-secondary, .menu a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title, .with-icon:before, .widget_search #searchsubmit:before { color: <?php echo $body_text ?>; }
+body, .icon, input[type=submit]:hover, input[type=reset]:hover, input[type=submit]:focus, input[type=reset]:focus, input[type=submit]:active, input[type=reset]:active, button:hover, .button:hover, .button.accent:hover, .button.button-alt, .button.button-secondary, .menu-site a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title, .with-icon:before, .widget_search #searchsubmit:before, #lang_sel a.lang_sel_sel { color: <?php echo $body_text ?>; }
 <?php if ( $body_text != $footer_titles ) : ?>
 .footer-widget .widget-title { text-shadow: 0 1px 0 <?php echo $body_text ?>; }
 <?php endif ?>
@@ -639,18 +639,18 @@ input[type=text], input[type=password], input[type=number], input[type=email], .
 .meta, .comment-meta, .pledge-limit { color: <?php echo $meta_colour ?>; }
 
 /* Primary border colour */
-.widget_search #s, .menu li, .is-active > .menu ul, .block, .page-title, .block-title, .post-title, .meta, .meta .author, .meta .comment-count, .meta .tags, .comment, .pingback, .widget, .campaign-pledge-levels.accordion h3, .campaign-pledge-levels.accordion .pledge-level, #edd_checkout_form_wrap legend, table, td, th, .contact-page .ninja-forms-form-wrap, .atcf-submit-campaign-reward, .campaign .campaign-status, .campaign .campaign-status .campaign-raised, .campaign .campaign-status .campaign-pledged, .campaign .campaign-status .campaign-time-left, .atcf-profile-section, .atcf-submit-section { border-color: <?php echo $primary_border ?>; }
+.widget_search #s, .menu-site li, .is-active > .menu-site ul, .block, .page-title, .block-title, .post-title, .meta, .meta .author, .meta .comment-count, .meta .tags, .comment, .pingback, .widget, .campaign-pledge-levels.accordion h3, .campaign-pledge-levels.accordion .pledge-level, #edd_checkout_form_wrap legend, table, td, th, .contact-page .ninja-forms-form-wrap, .atcf-submit-campaign-reward, .campaign .campaign-status, .campaign .campaign-status .campaign-raised, .campaign .campaign-status .campaign-pledged, .campaign .campaign-status .campaign-time-left, .atcf-profile-section, .atcf-submit-section, #lang_sel ul ul, #lang_sel ul ul a { border-color: <?php echo $primary_border ?>; }
 .multi-block .content-block:nth-of-type(1n+2) { border-color: <?php echo $primary_border ?>; }
 .campaigns-grid .campaign { box-shadow: 0 0 0 1px <?php echo $primary_border ?>; }
 
 /* Secondary border colour */
 th { border-right-color: <?php echo $secondary_border ?>; }
-.menu { border-top-color: <?php echo $secondary_border ?>; }
+.menu-site { border-top-color: <?php echo $secondary_border ?>; }
 .widget-title { border-color: <?php echo $secondary_border ?>;}
 
 /* Main content area background colour */
-#main, #header, .menu, .menu ul, .even td, .widget td, .widget input[type=text], .widget input[type=password], .widget input[type=email], .widget input[type=number] { background-color: <?php echo $wrapper_background ?>; }
-/*.menu ul { box-shadow: 0 -2px 0 <?php echo $wrapper_background ?>; }*/
+#main, #header, .menu-site, .menu-site ul, .even td, .widget td, .widget input[type=text], .widget input[type=password], .widget input[type=email], .widget input[type=number] { background-color: <?php echo $wrapper_background ?>; }
+/*.menu-site ul { box-shadow: 0 -2px 0 <?php echo $wrapper_background ?>; }*/
 
 /* Posts background colour */
 .entry-block, .content-block, .reveal-modal.multi-block .content-block, .widget_search #s:focus, .widget input[type=text]:focus, .widget input[type=password]:focus, .widget input[type=email]:focus, .widget input[type=number]:focus, .widget textarea:focus, .widget input[type=text]:active, .widget input[type=password]:active, .widget input[type=email]:active, .widget input[type=number]:active, .widget textarea:active, .widget th, .widget tfoot td, .format-status .meta, .format-quote .entry blockquote, .audiojs .progress, .comments-section, .campaign-pledge-levels.accordion .pledge-level, .contact-page .ninja-forms-form-wrap { background-color: <?php echo $posts_background ?>; }
@@ -659,10 +659,10 @@ th { border-right-color: <?php echo $secondary_border ?>; }
 
 /* Footer text */
 #site-footer, #site-footer a, .edd_errors, .edd_errors a { color: <?php echo $footer_text ?>; }    
-.footer-notice { border-color: <?php echo $this->rgb( $this->get_rgb_from_hex( $footer_text ), 0.5 ) ?>; }
+#rockbottom { border-color: <?php echo $this->rgb( $this->get_rgb_from_hex( $footer_text ), 0.5 ) ?>; }
 
 /* Footer widget titles */
-.footer-widget .widget-title, .footer-notice { color: <?php echo $footer_titles ?>; }
+.footer-widget .widget-title, #rockbottom { color: <?php echo $footer_titles ?>; }
 
 /* Header buttons */
 .social a, .account-links .button.button-alt, .account-links .button.button-alt:before, .logout, .logout:before, .logout:hover { color: <?php echo $header_buttons ?>; }
@@ -683,10 +683,10 @@ th { border-right-color: <?php echo $secondary_border ?>; }
 .site-identity { background: url(<?php echo $logo ?>) no-repeat left 50%; padding-left: <?php echo $logo_meta['width'] + 10 ?>px; min-height: <?php echo $logo_meta['height'] ?>px; }
 .no-tagline .site-title { line-height: <?php echo $logo_meta['height'] ?>px; }
 .no-title .site-tagline { line-height: <?php echo $logo_meta['height'] - 12 ?>px; }
-.no-title.no-tagline .site-navigation .menu { margin-top: <?php echo $logo_meta['height'] - 18 ?>px;  }
+.no-title.no-tagline .site-navigation .menu-site { margin-top: <?php echo $logo_meta['height'] - 18 ?>px;  }
     <?php if ( $logo_meta['height'] > 34 ) : ?>
-    .no-tagline .site-navigation .menu { margin-top: <?php echo $logo_meta['height'] - 18 ?>px; }
-    .no-title .site-navigation .menu { margin-top: <?php echo $logo_meta['height'] - 18 ?>px; }
+    .no-tagline .site-navigation .menu-site { margin-top: <?php echo $logo_meta['height'] - 18 ?>px; }
+    .no-title .site-navigation .menu-site { margin-top: <?php echo $logo_meta['height'] - 18 ?>px; }
     <?php endif ?>
 <?php endif ?>
                 

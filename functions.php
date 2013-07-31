@@ -21,6 +21,11 @@ class Franklin_Theme {
     public $crowdfunding_enabled = false;
 
     /**
+     * @var bool
+     */
+    public $wpml_enabled = false;
+
+    /**
      * Private constructor. Singleton pattern.
      */
 	private function __construct() {                 
@@ -43,6 +48,12 @@ class Franklin_Theme {
 
             $this->crowdfunding_enabled = true;
             include_once('inc/crowdfunding/crowdfunding.class.php');            
+        }
+
+        if ( defined('ICL_SITEPRESS_VERSION') ) {
+            $this->wpml_enabled = true;
+            include_once('inc/wpml/wpml.class.php');
+            include_once('inc/wpml/helpers.php');
         }
 
         add_action('wp_head', array(&$this, 'wp_head'), 20);

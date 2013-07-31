@@ -1,0 +1,43 @@
+/* Footer */
+#rockbottom #language-list {
+	text-align: center;
+}
+#language-list ul {
+	padding-left: 0;
+}
+#language-list li {
+	display: inline-block;
+	list-style: none;
+	margin-right: 14px; margin-right: 1.4rem;
+}
+#language-list li:last-child {
+	margin-right: 0;
+}
+#language-list li img {
+	margin-right: 4px; margin-right: 0.4rem;
+}
+
+
+/* Content */
+.language-options {
+	font-style: italic;
+}
+.language-options::before {
+	font-style: normal;
+}
+
+/* Widget */
+.widget.icl_languages_selector {
+	overflow: visible;
+}
+#lang_sel a, 
+#lang_sel a:visited,
+#lang_sel ul ul a, 
+#lang_sel ul ul a:visited {
+	padding-top: 6px; padding-top: 0.6rem;
+	padding-bottom: 6px; padding-bottom: 0.6rem;
+	line-height: 20px; line-height: 2rem;
+}
+#lang_sel ul ul {
+	top: 32px; top: 3.2rem;
+}

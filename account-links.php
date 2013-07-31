@@ -1,7 +1,9 @@
 <?php $crowdfunding_enabled = get_franklin_theme()->crowdfunding_enabled ?>
 
-<?php $submit_page = sofa_crowdfunding_get_page_url('submit_page') ?>
-<?php $profile_page = sofa_crowdfunding_get_page_url('profile_page') ?>
+<?php if ( $crowdfunding_enabled ) : ?>
+	<?php $submit_page = sofa_crowdfunding_get_page_url('submit_page') ?>
+	<?php $profile_page = sofa_crowdfunding_get_page_url('profile_page') ?>
+<?php endif ?>
 
 <span class="account-links">
 	<?php if ( $crowdfunding_enabled && $submit_page ) : ?>

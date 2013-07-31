@@ -27,10 +27,10 @@
 	
 		<!-- Header -->
 		<header id="header" class="cf wrapper <?php sofa_header_class() ?>">			
-						
+
 			<div class="site-identity">				
 
-				<a class="home-link" href="<?php echo site_url() ?>"></a>
+				<a class="home-link" href="<?php echo sofa_site_url() ?>"></a>
 
 				<!-- Site title -->
 				<?php sofa_site_title() ?>	
@@ -50,7 +50,7 @@
 		            <?php wp_nav_menu( array(   
 		                'theme_location' => 'primary_navigation',
 		                'container' => false,
-		                'menu_class' => 'menu responsive_menu' ) ) ?>
+		                'menu_class' => 'menu menu-site responsive_menu' ) ) ?>
 		        </nav>
 		    </div>
 		    <!-- End navigation -->

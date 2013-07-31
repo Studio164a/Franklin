@@ -1,0 +1,42 @@
+<wpml-config>
+    <custom-fields>
+    	<!-- Franklin -->
+    	<custom-field action="copy">title</custom-field>
+    	<custom-field action="copy">_format_audio_embed</custom-field>
+		<custom-field action="copy">_format_image</custom-field>
+		<custom-field action="copy">_format_link_url</custom-field>
+		<custom-field action="copy">_format_quote_source_name</custom-field>
+		<custom-field action="copy">_format_quote_source_url</custom-field>
+		<custom-field action="copy">_format_url</custom-field>
+		<custom-field action="copy">_format_video_embed</custom-field>
+		<custom-field action="ignore">_franklin_featured_campaigns_option</custom-field>
+		<custom-field action="ignore">_franklin_featured_campaigns_page</custom-field>
+		<custom-field action="translate">_franklin_featured_campaigns_page_text</custom-field>
+		<custom-field action="copy">_franklin_hide_post_meta</custom-field>
+		<custom-field action="ignore">_franklin_single_campaign_id</custom-field>
+
+		<!-- Crowdfunding -->
+    	<custom-field action="copy">campaign_author</custom-field>
+    	<custom-field action="copy">campaign_contact_email</custom-field>
+    	<custom-field action="ignore">campaign_end_date</custom-field>
+    	<custom-field action="ignore">campaign_goal</custom-field>
+		<custom-field action="translate">campaign_location</custom-field>
+		<custom-field action="ignore">campaign_type</custom-field>
+		<custom-field action="translate">campaign_updates</custom-field>
+		<custom-field action="copy">campaign_video</custom-field>
+		<custom-field action="translate">description</custom-field>		
+		<custom-field action="copy">enclosure</custom-field>		
+		<custom-field action="ignore">_campaign_featured</custom-field>
+		<custom-field action="ignore">_campaign_physical</custom-field>	
+    </custom-fields>  
+    <admin-texts>
+    	<key name="theme_mods_franklin-child">
+    		<key name="blog_banner_title" />
+    		<key name="404_banner_title" />
+    		<key name="footer_notice" />
+    	</key>
+    	<key name="theme_mods_franklin">
+    		<key name="blog_banner_title" />
+    	</key>
+    </admin-texts>
+</wpml-config>

@@ -29,7 +29,7 @@ function sofa_crowdfunding_campaign_nav($echo = true) {
 	if ( empty( $categories ) )
 		return;
 
-	$html = '<ul class="menu"><li class="download_category with-icon" data-icon="&#xf02c;">'.__('Categories', 'franklin');
+	$html = '<ul class="menu menu-site"><li class="download_category with-icon" data-icon="&#xf02c;">'.__('Categories', 'franklin');
 	$html .= '<ul><li><a href="'.get_post_type_archive_link('download').'">'.__('All', 'franklin').'</a></li>';
 
 	foreach ( $categories as $category ) {

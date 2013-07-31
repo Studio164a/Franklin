@@ -98,7 +98,7 @@ function sofa_get_image_id_from_url($image_url) {
 }    
 
 /**
- * This returns the currently viewed author on an author archvie. 
+ * This returns the currently viewed author on an author archive. 
  * 
  * @return string
  * @since Franklin 1.0
@@ -247,3 +247,13 @@ Add the filter. Because we want to allow users to swap out the usual gallery mod
 Jetpack's gallery mode, we're setting this filter to be fired after Jetpack
 */
 add_filter('post_gallery', 'sofa_gallery_shortcode', 1003, 2); 
+
+/**
+ * Return the home URL. Checks if WPML is installed and defers to the WPML function if it is. 
+ * 
+ * @return string
+ * @since Franklin 1.3
+ */
+function sofa_site_url() {
+	return function_exists('wpml_get_home_url') ? wpml_get_home_url() : site_url();
+}
