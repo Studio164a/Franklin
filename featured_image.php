@@ -13,7 +13,7 @@ if ( has_post_thumbnail() ) :
 
 		<?php $full_src = wp_get_attachment_image_src( $thumbnail_id, 'full' ); ?>
 
-		<?php if ( is_single() ) : ?>
+		<?php if ( is_single() && ! isset( $_GET['widget'] ) ) : ?>
 
 			<a href="<?php echo $full_src[0] ?>" title="<?php echo get_the_title( $thumbnail_id ) ?>" data-rel="lightbox" class="lightbox">				
 				<?php the_post_thumbnail() ?> 

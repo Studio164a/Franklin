@@ -21,6 +21,11 @@ class Sofa_Crowdfunding_Helper {
     private $active_campaign;
 
     /**
+     * @var bool
+     */
+    private $viewing_widget = false;
+
+    /**
      * Private constructor. Singleton pattern.
      */
     private function __construct() {
@@ -41,6 +46,8 @@ class Sofa_Crowdfunding_Helper {
 
         if ( !is_admin() ) 
             add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'), 11);
+
+        add_action('atcf_found_widget', array(&$this, 'atcf_found_widget'));
 
         add_filter('page_template', array(&$this, 'page_template_filter'));
         add_filter('edd_purchase_link_defaults', array(&$this, 'edd_purchase_link_defaults_filter'));
@@ -93,16 +100,41 @@ class Sofa_Crowdfunding_Helper {
      * @since Franklin 1.0
      */
     public function wp_enqueue_scripts() {
+
         // Theme directory
         $theme_dir = get_template_directory_uri();   
-        
-        wp_register_script('raphael', sprintf( "%s/media/js/raphael-min.js", $theme_dir ), array('jquery'), 0.1, true);
-        wp_register_script('countdown', sprintf( "%s/media/js/jquery.countdown.min.js", $theme_dir ), array('jquery'), 0.1, true);
-        wp_register_script('franklin-crowdfunding', sprintf( "%s/media/js/franklin-crowdfunding.js", $theme_dir ), array('raphael', 'countdown', 'jquery-masonry', 'franklin'), 0.1, true);
-        wp_enqueue_script('franklin-crowdfunding');
 
+        // Array of required scripts
+        $req = array('raphael', 'franklin');
+
+        wp_register_script('raphael', sprintf( "%s/media/js/raphael-min.js", $theme_dir ), array('jquery'), 0.1, true);
+
+        // Add scripts that are only applied if we're not looking at a widget
+        if ( $this->viewing_widget === false ) {    
+
+            $req[] = 'jquery-masonry';
+
+            if ( get_post_type() == 'download' ) {
+                wp_register_script('countdown', sprintf( "%s/media/js/jquery.countdown.min.js", $theme_dir ), array('jquery'), 0.1, true);
+                $req[] = 'countdown';
+            }
+        }
+
+        wp_register_script('franklin-crowdfunding', sprintf( "%s/media/js/franklin-crowdfunding.js", $theme_dir ), $req, 0.1, true);    
+
+        // Load the Franklin crowdfunding script
+        wp_enqueue_script('franklin-crowdfunding');
+    
         wp_register_style('franklin-crowdfunding', sprintf( "%s/media/css/franklin-crowdfunding.css", $theme_dir ));
         wp_enqueue_style('franklin-crowdfunding');
+
+        // We're viewing the widget, so there are a bunch of scripts that we don't need to load
+        if ( $this->viewing_widget ) {
+            wp_dequeue_script('franklin');
+            wp_dequeue_script('prettyPhoto');
+            wp_dequeue_script('fitVids');
+            wp_dequeue_script('flexnav');
+        }
     }
 
     /**
@@ -112,6 +144,7 @@ class Sofa_Crowdfunding_Helper {
      * @since Franklin 1.0
      */
     public function wp_footer() {
+        if ( $this->viewing_widget === false ) : 
         ?>                     
         <div id="login-form" class="reveal-modal block multi-block">            
             <a class="close-reveal-modal icon"><i class="icon-remove-sign"></i></a>
@@ -125,6 +158,7 @@ class Sofa_Crowdfunding_Helper {
             </div>
         </div>
         <?php
+        endif;
     }
 
     /**
@@ -307,6 +341,31 @@ class Sofa_Crowdfunding_Helper {
                 update_post_meta( $post_id, '_franklin_single_campaign_id', $_POST['_franklin_single_campaign_id'] );
             }
         }
+    }
+
+    /**
+     * Hooked when we're on the campaign widget template.
+     * 
+     * @since Franklin 1.3
+     */
+    public function atcf_found_widget() {
+        $this->viewing_widget = true;
+
+        add_action('wp_head', array(&$this, 'wp_head_widget'));
+    }
+
+    /**
+     * Called on wp_head on the widget template. 
+     * 
+     * @since Franklin 1.3
+     */
+    public function wp_head_widget() {
+        ?>
+        <style>
+        body { background: transparent !important; } 
+        #wpadminbar { display: none; }
+        </style>
+        <?php
     }
 
     /**

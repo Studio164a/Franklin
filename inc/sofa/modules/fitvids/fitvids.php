@@ -60,9 +60,9 @@ class Sofa_Fitvids {
      * @since Sofa 0.1
      */
     public function oembed_dataparse_filter($html, $data, $url) {
-        if ( $data->type == 'video'  )
-            return $this->video_embed_html_filter($html);
-
+        if ( $data->type == 'video'  ) {
+                return $this->video_embed_html_filter($html);
+        }
         return $html;
     }
 

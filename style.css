@@ -451,7 +451,6 @@ object,
 embed, 
 iframe {
 	max-width: 100%;
-	height: auto; 
 }
 
 object,
@@ -460,6 +459,7 @@ embed {
 }
 
 img {
+	height: auto;
 	-ms-interpolation-mode: bicubic; 
 }
 
@@ -643,7 +643,8 @@ acronym { border-bottom: 1px dotted; }
 pre, code, kbd, tt { font-family: Monaco, Consolas, "Lucida Console", monospace; }
 pre { 	
 	padding: 12px 6px; padding: 1.2rem 0.6rem; 
-	margin-bottom: 12px; margin-bottom: 1.2rem; 	
+	margin-bottom: 12px; margin-bottom: 1.2rem;
+	white-space: normal; 	
 }
 
 /* 1.10 -- Reusable classes **/

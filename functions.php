@@ -36,7 +36,6 @@ class Franklin_Theme {
 
         // Include other files
         require_once('inc/comments.php');
-  //       require_once('inc/shortcodes.php');
         require_once('inc/helpers.php');
         require_once('inc/template-tags.php');    
         require_once('inc/widgets/sofa-posts.php');
@@ -59,7 +58,6 @@ class Franklin_Theme {
         add_action('wp_head', array(&$this, 'wp_head'), 20);
         // add_action('wp_head', array(&$this, 'wp_head_late'), 20);
         add_action('widgets_init', array(&$this, 'widgets_init'));
-        add_action('wp_footer', array(&$this, 'wp_footer'), 1000);
         add_action('after_setup_theme', array(&$this, 'after_setup_theme'));        
         add_action('admin_init', array(&$this, 'admin_init'));
         add_action('edd_after_install', array(&$this, 'edd_after_install'));
@@ -121,11 +119,13 @@ class Franklin_Theme {
         wp_register_script('audio-js', sprintf( "%s/media/js/audiojs/audio.min.js", $theme_dir ), array(), 0.1, true);
         wp_register_script('foundation', sprintf( "%s/media/js/foundation.min.js", $theme_dir ), array(), 0.1, true);
         wp_register_script('foundation-reveal', sprintf( "%s/media/js/foundation.reveal.js", $theme_dir ), array('foundation'), 0.1, true);        
-        wp_register_script('sharrre', sprintf( "%s/media/js/jquery.sharrre-1.3.4.min.js", $theme_dir ), array('jquery'), 0.1, true );
+        wp_register_script('sharrre', sprintf( "%s/media/js/jquery.sharrre-1.3.4.js", $theme_dir ), array('jquery'), 0.1, true );
         wp_register_script('franklin', sprintf( "%s/media/js/main.js", $theme_dir ), array( 'prettyPhoto', 'jquery-ui-accordion', 'audio-js', 'sharrre', 'hoverIntent', 'foundation-reveal', 'jquery-ui-accordion', 'jquery'), 0.1, true);
 
         wp_enqueue_script('jquery');
 	    wp_enqueue_script('franklin');
+
+        wp_localize_script('franklin', 'Sofa_Localized', array('sharrreUrl' => get_template_directory_uri() . '/inc/sharrre/sharrre.php'));
 
         // If Symple Shortcodes is installed, dequeue its stylesheet
         // if (function_exists('symple_shortcodes_scripts')) {
@@ -196,31 +196,6 @@ class Franklin_Theme {
         // Load custom editor styles
         require_once('inc/admin/editor-styles.php');
         $editor = Sofa_Editor_Styles::get_instance();
-    }
-
-    /**
-     * Executes on the wp_footer hook
-     * 
-     * @return void
-     */
-    public function wp_footer() {
-        ?>
-        <!-- <div class="loading-overlay"></div> -->
-
-        <!-- Load scripts -->
-        <script type="text/javascript">
-        
-            /* Twitter share button */
-            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-
-            /* Google Plus share button */
-            (function() {
-                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                po.src = 'https://apis.google.com/js/plusone.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-            })();
-        </script>
-        <?php   
     }
 
     /**

@@ -33,8 +33,20 @@ class OSFA_Customizer {
      */
     private $sofa;
 
+    /**
+     * @var bool
+     */
+    public $in_customizer = false;    
+
 	private function __construct() {
         $this->sofa = get_sofa_framework();
+
+            // Check whether we're currently using the customizer
+        if ( isset( $_SERVER['HTTP_REFERER'] ) && $_SERVER['HTTP_REFERER'] == admin_url('customize.php') ) { 
+            $this->in_customizer = true;
+        } 
+
+        add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'), 12);
 
         $this->colours =  array(
             'accent_colour'         => array( 'title' => __( 'Accent colour', 'franklin' ), 'default' => '#d95b43' ), 
@@ -112,6 +124,8 @@ class OSFA_Customizer {
         add_action('customize_controls_print_scripts', array(&$this, 'customize_controls_print_scripts'), 100);
 
         add_action('wp_head', array(&$this, 'wp_head'));
+
+        include_once('customize-controls/textarea.class.php');
 	}
 
 	/**
@@ -335,28 +349,50 @@ class OSFA_Customizer {
         /** 
          * Campaign
          */    
-        // if ( get_franklin_theme()->crowdfunding_enabled ) {
+        if ( get_franklin_theme()->crowdfunding_enabled ) {
 
-        //     $wp_customize->add_section( 'campaign', array( 
-        //         'priority' => $priority, 
-        //         'title' => __( "Campaign", 'projection' ), 
-        //         'description' => __( 'description' )
-        //     ) );
+            $sharing_options = array(
+                'campaign_share_twitter' => __( 'Share on Twitter', 'franklin' ), 
+                'campaign_share_facebook' => __( 'Share on Facebook', 'franklin' ), 
+                'campaign_share_googleplus' => __( 'Share on Google+', 'franklin' ), 
+                'campaign_share_linkedin' => __( 'Share on LinkedIn', 'franklin' ), 
+                'campaign_share_pinterest' => __( 'Share on Pinterest', 'franklin' ),
+                'campaign_share_widget' => __( 'Share with embed code', 'franklin' )
+            );
 
-        //     $priority += 1; 
+            $wp_customize->add_section( 'campaign', array( 
+                'priority' => $priority, 
+                'title' => __( "Campaigns", 'projection' ), 
+                'description' => __( 'Configure your campaign pages' )
+            ) );
 
-        //     $wp_customize->add_setting( 'campaign', array( 'transport' => 'postMessage' ) );
-        //     $wp_customize->add_control( 'campaign', array(
-        //         'settings' => 'campaign',
-        //         'label' => __( 'Select the currently active campaign', 'projection' ), 
-        //         'section' => 'campaign', 
-        //         'type' => 'select', 
-        //         'priority' => $priority,
-        //         'choices' => $this->get_campaign_options()
-        //     ) );
+            $priority += 1; 
 
-        //     $priority += 1;             
-        // }
+            foreach ( $sharing_options as $setting_key => $label ) {
+                $wp_customize->add_setting( $setting_key, array( 'transport' => 'postMessage' ) );
+                $wp_customize->add_control( $setting_key, array(
+                    'settings' => $setting_key, 
+                    'label' => $label,
+                    'section' => 'campaign', 
+                    'type' => 'checkbox', 
+                    'priority' => $priority
+                ) );
+
+                $priority += 1;
+            }
+
+            $wp_customize->add_setting( 'campaign_sharing_text', array( 'transport' => 'postMessage' ) );
+            $wp_customize->add_control( new Sofa_Customize_Textarea_Control( $wp_customize, 'campaign_sharing_text', array(
+                'settings' => 'campaign_sharing_text',
+                'label' => __( 'Text to display on campaign sharing widget', 'projection' ), 
+                'section' => 'campaign', 
+                'type' => 'text', 
+                'default' => __( 'Spread the word about this campaign by sharing this widget. Copy the snippet of HTML code below and paste it on your blog, website or anywhere else on the web.', 'franklin' ),
+                'priority' => $priority
+            ) ) );
+
+            $priority += 1;             
+        }
 
         /** 
          * Footer
@@ -440,10 +476,18 @@ class OSFA_Customizer {
      */
     public function customize_controls_print_styles() {
         ?>
-        <style>
-            .menu-site li.hovering { height: 1em; }
-        </style>
         <?php 
+    }
+
+    /**
+     * Executed on wp_enqueue_scripts hook. 
+     *
+     * @see wp_enqueue_scripts action
+     */
+    public function wp_enqueue_scripts() {
+        if ( $this->in_customizer ) {
+            // wp_localize_script('franklin', 'sofa_in_customizer', array( 'sofa_in_customizer' => true) );
+        }        
     }
 
     /**
@@ -595,7 +639,7 @@ body { background-image: url(<?php echo $body_texture_use ?>); }
 <?php endif ?>
 
 /* Accent colour */
-a, .menu-button, .menu-site a:hover, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, body .button.accent:hover, .button.accent.button-alt, .social a:hover, .menu-site .current-menu-item > a, .campaign .campaign-status .campaign-raised span, .campaign .campaign-status .campaign-pledged span, .campaign .campaign-status .campaign-time-left span, #lang_sel ul ul a, #lang_sel ul ul a:visited { color: <?php echo $accent_colour ?>; }
+a, .menu-button, .menu-site a:hover, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, body .button.accent:hover, .button.accent.button-alt, .social a:hover, .menu-site .current-menu-item > a, .campaign .campaign-status .campaign-raised span, .campaign .campaign-status .campaign-pledged span, .campaign .campaign-status .campaign-time-left span, #lang_sel ul ul a, #lang_sel ul ul a:visited, #campaign-widget-sharing h2 { color: <?php echo $accent_colour ?>; }
 .campaign-button, .active-campaign, .sticky.block, .button.accent, .button.accent.button-alt:hover, .banner, .gallery-icon, .featured-image a, .edd_success { background-color: <?php echo $accent_colour ?>; color: <?php echo $accent_text ?>; }
 .active-campaign .share, .active-campaign .more-link, .featured-campaign .button.button-alt:hover, .active-campaign .share .icon:before { color: <?php echo $accent_text ?>; }
 .button.accent, .campaign-support .button.accent:hover { box-shadow: 0 0 0 0.3rem <?php echo $accent_colour ?>; }
@@ -617,7 +661,7 @@ body, .audiojs .loaded, .edd_errors { background-color: <?php echo $body_backgro
 .audiojs .play-pause { border-right-color: <?php echo $body_background ?>; }
 
 /* Body copy */
-body, .icon, input[type=submit]:hover, input[type=reset]:hover, input[type=submit]:focus, input[type=reset]:focus, input[type=submit]:active, input[type=reset]:active, button:hover, .button:hover, .button.accent:hover, .button.button-alt, .button.button-secondary, .menu-site a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title, .with-icon:before, .widget_search #searchsubmit:before, #lang_sel a.lang_sel_sel { color: <?php echo $body_text ?>; }
+body, .icon, input[type=submit]:hover, input[type=reset]:hover, input[type=submit]:focus, input[type=reset]:focus, input[type=submit]:active, input[type=reset]:active, button:hover, .button:hover, .button.accent:hover, .button.button-alt, .button.button-secondary, .menu-site a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title, .with-icon:before, .widget_search #searchsubmit:before, #lang_sel a.lang_sel_sel, #campaign-widget-sharing { color: <?php echo $body_text ?>; }
 <?php if ( $body_text != $footer_titles ) : ?>
 .footer-widget .widget-title { text-shadow: 0 1px 0 <?php echo $body_text ?>; }
 <?php endif ?>
@@ -639,7 +683,7 @@ input[type=text], input[type=password], input[type=number], input[type=email], .
 .meta, .comment-meta, .pledge-limit { color: <?php echo $meta_colour ?>; }
 
 /* Primary border colour */
-.widget_search #s, .menu-site li, .is-active > .menu-site ul, .block, .page-title, .block-title, .post-title, .meta, .meta .author, .meta .comment-count, .meta .tags, .comment, .pingback, .widget, .campaign-pledge-levels.accordion h3, .campaign-pledge-levels.accordion .pledge-level, #edd_checkout_form_wrap legend, table, td, th, .contact-page .ninja-forms-form-wrap, .atcf-submit-campaign-reward, .campaign .campaign-status, .campaign .campaign-status .campaign-raised, .campaign .campaign-status .campaign-pledged, .campaign .campaign-status .campaign-time-left, .atcf-profile-section, .atcf-submit-section, #lang_sel ul ul, #lang_sel ul ul a { border-color: <?php echo $primary_border ?>; }
+.widget_search #s, .menu-site li, .is-active > .menu-site ul, .block, .page-title, .block-title, .post-title, .meta, .meta .author, .meta .comment-count, .meta .tags, .comment, .pingback, .widget, .campaign-pledge-levels.accordion h3, .campaign-pledge-levels.accordion .pledge-level, #edd_checkout_form_wrap legend, table, td, th, .contact-page .ninja-forms-form-wrap, .atcf-submit-campaign-reward, .campaign .campaign-status, .campaign .campaign-status .campaign-raised, .campaign .campaign-status .campaign-pledged, .campaign .campaign-status .campaign-time-left, .atcf-profile-section, .atcf-submit-section, #lang_sel ul ul, #lang_sel ul ul a, #campaign-widget-sharing h2 { border-color: <?php echo $primary_border ?>; }
 .multi-block .content-block:nth-of-type(1n+2) { border-color: <?php echo $primary_border ?>; }
 .campaigns-grid .campaign { box-shadow: 0 0 0 1px <?php echo $primary_border ?>; }
 
@@ -714,15 +758,23 @@ body { background-image: url(<?php echo $body_texture_retina ?>); background-siz
 .site-identity { background-image:url(<?php echo $retina_logo ?>); background-size: <?php echo $logo_meta['width'] ?>px <?php echo $logo_meta['height'] ?>px; } 
 <?php endif ?>
 }
-</style>
         <?php
+        // Extra stuff to print if we're inside the customizer -- some styles are getting whacked
+        if ( $this->in_customizer ) : ?>
+.site-navigation .menu-site > li, .menu-site li.hovering { height: 1em; }
+        <?php
+        endif;
 
+        // That's all folks
+        ?>
+</style>        
+        
+        <?php 
         $html = ob_get_clean();
 
         echo $html;
 
-        // Cache the output
-
+        // TODO: Cache the output
     }
 
     /**

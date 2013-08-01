@@ -126,9 +126,10 @@ var Sofa = ( function( $ ) {
 		if ( typeof sofa_ie_lt9 === 'undefined' ) {
 			$(".entry a").not(".attachment,.tiled-gallery-item a").has('img').attr('data-rel', 'lightbox[]');
 			$("[data-rel^='lightbox']").prettyPhoto({ theme: 'pp_sofa', hook: 'data-rel' });
-		}		
+		}				
 
 		$('.share-twitter').sharrre({
+			urlCurl: Sofa_Localized.sharrreUrl,
 			share: {				
 				twitter: true
 			},
@@ -141,6 +142,7 @@ var Sofa = ( function( $ ) {
 			}
 		});	
 		$('.share-facebook').sharrre({
+			urlCurl: Sofa_Localized.sharrreUrl,
 			share: {				
 				facebook: true
 			},
@@ -152,6 +154,7 @@ var Sofa = ( function( $ ) {
 			}
 		});	
 		$('.share-googleplus').sharrre({
+			urlCurl: Sofa_Localized.sharrreUrl,
 			share: {				
 				googlePlus: true
 			},
@@ -161,7 +164,31 @@ var Sofa = ( function( $ ) {
 				api.simulateClick();
 				api.openPopup('googlePlus');
 			}
-		});			
+		});		
+		$('.share-linkedin').sharrre({
+			urlCurl: Sofa_Localized.sharrreUrl,
+			share: {				
+				linkedin: true
+			},
+			enableHover : false, 
+			enabledTracking : true, 
+			click : function(api, options) {
+				api.simulateClick();
+				api.openPopup('linkedin');
+			}
+		});	
+		$('.share-pinterest').sharrre({
+			urlCurl: Sofa_Localized.sharrreUrl,
+			share: {				
+				pinterest: true
+			},
+			enableHover : false, 
+			enabledTracking : true, 
+			click : function(api, options) {
+				api.simulateClick();
+				api.openPopup('pinterest');
+			}
+		});		
 	});
 
 	audiojs.events.ready(function() {

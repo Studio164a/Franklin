@@ -9,7 +9,7 @@ get_header() ?>
 
 	<div class="content-wrapper">
 		
-		<div class="content campaigns-grid">
+		<div class="content campaigns-grid masonry-grid">
 
 			<?php if ( have_posts() ) : ?>
 

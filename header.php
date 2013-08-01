@@ -58,12 +58,6 @@
 		</header>
 		<!-- End header -->
 
-		<?php if ( !is_front_page() ) : ?>
-
-			<?php //get_template_part('campaign', 'flyout') ?>
-
-		<?php endif ?>	
-
 		<!-- Main content section. Everything between the header and the footer -->
 		<div id="main" class="cf" role="main"> 	
 
