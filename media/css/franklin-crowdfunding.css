@@ -66,11 +66,11 @@
 }
 
 .campaign-image .campaign-successful { 
-	background-color: green;
+	background-color: #1ba714;
 }
 
 .campaign-image .campaign-unsuccessful {
-	background-color: red; 
+	background-color: #cc181e; 
 }
 
 .active-campaign .wp-post-image {
