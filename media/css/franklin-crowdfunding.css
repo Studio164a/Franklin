@@ -74,7 +74,7 @@
 }
 
 .active-campaign .wp-post-image {
-	width: 100%;
+	width: 92%;
 }
 
 .active-campaign .campaign-summary {
@@ -1073,12 +1073,7 @@ span.description {
 	/* Campaign */
 	.active-campaign {
 		padding-bottom: 36px; padding-bottom: 3.6rem;
-	}
-
-	.active-campaign .campaign-image .wp-post-image {
-		border: 0.5rem solid;
-		border-radius: 0.4rem;
-	}
+	}	
 
 	.current-campaign .campaign-image {
 		width: 50%;
@@ -1087,6 +1082,15 @@ span.description {
 		width: calc(92% - 43rem);
 		float: left;
 		margin-right: 0;		
+	}
+
+	.current-campaign .campaign-image .wp-post-image {
+		border: 0.5rem solid;
+		border-radius: 0.4rem;
+		width: 95.3%;
+		width: -moz-calc(100% - 1.8rem);
+		width: -webkit-calc(100% - 1.8rem);
+		width: calc(100% - 1.8rem);
 	}
 
 	.current-campaign .campaign-summary {
