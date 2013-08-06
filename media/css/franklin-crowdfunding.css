@@ -38,6 +38,39 @@
 	width: 92%;
 	margin: 0 4% 36px; margin-bottom: 3.6rem;
 	line-height: 0;	
+
+	overflow: hidden;
+}
+
+.campaign-image span {	
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	line-height: 1em;
+	padding: 6px 0; padding: 0.6rem 0;
+	width: 200px; width: 20rem;
+	margin: 30px 0 0 -60px; margin-top: 3rem; margin-left: -6rem;
+
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 1px; letter-spacing: 0.1rem;
+	font-size: 11px; font-size: 1.1rem;
+	color: #fff;
+
+	-moz-transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+.campaign-image .campaign-successful { 
+	background-color: green;
+}
+
+.campaign-image .campaign-unsuccessful {
+	background-color: red; 
 }
 
 .active-campaign .wp-post-image {
@@ -71,6 +104,13 @@
 
 .campaign-excerpt p:last-child {
 	margin-bottom: 0;
+}
+
+.campaign-ended {
+	margin: 0 0 24px; margin-bottom: 2.4rem;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 300;
 }
 
 .barometer {
@@ -163,7 +203,7 @@
 
 .active-campaign .share {
 	padding: 0;
-	margin: 0 4%;
+	margin: 20px 4% 0 4%; margin-top: 2rem;
 	max-width: 92%;	
 	text-align: center;		
 }
@@ -673,6 +713,7 @@ span.description {
 	max-width: 100%;
 	margin-bottom: 24px; margin-bottom: 2.4rem;
 	border: none;	
+	overflow: hidden;
 }
 
 .campaign .entry {
@@ -850,7 +891,6 @@ span.description {
 		width: -moz-calc( 84% - 27.5rem );
 		width: -webkit-calc( 84% - 27.5rem );
 		width: calc( 84% - 27.5rem );
-		margin-top: 1.2rem;
 	}
 }
 
@@ -860,7 +900,15 @@ span.description {
 	.current-campaign .campaign-summary {
 		position: relative;
 		width: 92%;			
-		padding-bottom: 7.6rem;	
+		padding-bottom: 7.4rem;	
+	}
+
+	.current-campaign.ended .campaign-summary {
+		padding-bottom: 1.2rem;
+	}
+
+	.current-campaign.ended .campaign-summary ul {
+		margin-top: 4.8rem; 
 	}
 
 	.current-campaign .campaign-summary .campaign-support {
@@ -1027,7 +1075,7 @@ span.description {
 		padding-bottom: 36px; padding-bottom: 3.6rem;
 	}
 
-	.active-campaign .campaign-image {
+	.active-campaign .campaign-image .wp-post-image {
 		border: 0.5rem solid;
 		border-radius: 0.4rem;
 	}

@@ -129,7 +129,7 @@ var Sofa = ( function( $ ) {
 		}				
 
 		$('.share-twitter').sharrre({
-			urlCurl: Sofa_Localized.sharrreUrl,
+			urlCurl: Sofa_Localized.sharrre_url,
 			share: {				
 				twitter: true
 			},
@@ -142,7 +142,7 @@ var Sofa = ( function( $ ) {
 			}
 		});	
 		$('.share-facebook').sharrre({
-			urlCurl: Sofa_Localized.sharrreUrl,
+			urlCurl: Sofa_Localized.sharrre_url,
 			share: {				
 				facebook: true
 			},
@@ -154,7 +154,7 @@ var Sofa = ( function( $ ) {
 			}
 		});	
 		$('.share-googleplus').sharrre({
-			urlCurl: Sofa_Localized.sharrreUrl,
+			urlCurl: Sofa_Localized.sharrre_url,
 			share: {				
 				googlePlus: true
 			},
@@ -166,7 +166,7 @@ var Sofa = ( function( $ ) {
 			}
 		});		
 		$('.share-linkedin').sharrre({
-			urlCurl: Sofa_Localized.sharrreUrl,
+			urlCurl: Sofa_Localized.sharrre_url,
 			share: {				
 				linkedin: true
 			},
@@ -178,7 +178,7 @@ var Sofa = ( function( $ ) {
 			}
 		});	
 		$('.share-pinterest').sharrre({
-			urlCurl: Sofa_Localized.sharrreUrl,
+			urlCurl: Sofa_Localized.sharrre_url,
 			share: {				
 				pinterest: true
 			},

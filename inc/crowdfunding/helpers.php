@@ -52,6 +52,7 @@ function sofa_crowdfunding_campaign_nav($echo = true) {
  * 
  * @param ATCF_Campaign $campaign
  * @param bool $json_format 	
+ * @return mixed
  * @since Franklin 1.0
  */
 function sofa_crowdfunding_get_enddate( $campaign, $json_format = false ) {
@@ -69,6 +70,29 @@ function sofa_crowdfunding_get_enddate( $campaign, $json_format = false ) {
 	);
 
 	return $json_format ? json_encode($end_date_array) : $end_date_array;
+}
+
+/**
+ * Get the time elapsed since the campaign ended. 
+ * 
+ * @param ATCF_Campaign $campaign
+ * @param bool $readable 
+ * @return string|int
+ * @since Franklin 1.3
+ */
+function sofa_crowdfunding_get_time_since_ended( $campaign, $readable = true ) {
+	if ( false === ( $campaign instanceof ATCF_Campaign ) )
+		return;
+
+	$end_date = strtotime( $campaign->__get( 'campaign_end_date' ) );
+
+	// Return it as a readable string
+	if ( $readable ) {
+		return human_time_diff( $end_date, current_time('timestamp') ) . ' ' . __( 'ago', 'franklin' );
+	}
+
+	// Return as an int representing the seconds elapsed
+	return $end_date - current_time('timestamp');
 }
 
 /**

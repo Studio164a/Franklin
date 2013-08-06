@@ -6,8 +6,30 @@
 
 	<div class="campaign block entry-block cf">
 
-		<?php get_template_part( 'featured_image' ) ?>
+		<?php if ( has_post_thumbnail( $campaign->ID ) ) : ?>
+			<div class="campaign-image">
 
+				<?php 
+				// Campaign ended, fully funded
+				if ( ! $campaign->is_active() && $campaign->is_funded() ) : ?>
+
+					<span class="campaign-successful"><?php _e( 'Successful' ) ?></span>
+
+				<?php 
+				// Campaign ended, not funded
+				elseif ( ! $campaign->is_active() && ! $campaign->is_funded() ) : ?>
+
+					<span class="campaign-unsuccessful"><?php _e( 'Unsuccessful' ) ?></span>
+
+				<?php endif ?>
+
+				<a href="<?php the_permalink() ?>" title="<?php printf( __( 'Go to %s', 'franklin' ), get_the_title() ) ?>">
+					<?php the_post_thumbnail() ?> 
+				</a>
+
+			</div>			
+		<?php endif ?>
+		
 		<div class="title-wrapper"><h3 class="block-title"><a href="<?php the_permalink() ?>" title="<?php printf( __('Link to %s', 'franklin'), get_the_title() ) ?>"><?php the_title() ?></a></h3></div>
 
 		<div class="entry">

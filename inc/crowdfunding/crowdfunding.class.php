@@ -362,7 +362,7 @@ class Sofa_Crowdfunding_Helper {
     public function wp_head_widget() {
         ?>
         <style>
-        body { background: transparent !important; } 
+        body { background: transparent !important; position: absolute; top: 0; left: 0;} 
         #wpadminbar { display: none; }
         </style>
         <?php

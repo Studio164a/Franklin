@@ -362,7 +362,7 @@ class OSFA_Customizer {
 
             $wp_customize->add_section( 'campaign', array( 
                 'priority' => $priority, 
-                'title' => __( "Campaigns", 'projection' ), 
+                'title' => __( "Campaigns", 'franklin' ), 
                 'description' => __( 'Configure your campaign pages' )
             ) );
 
@@ -384,7 +384,7 @@ class OSFA_Customizer {
             $wp_customize->add_setting( 'campaign_sharing_text', array( 'transport' => 'postMessage' ) );
             $wp_customize->add_control( new Sofa_Customize_Textarea_Control( $wp_customize, 'campaign_sharing_text', array(
                 'settings' => 'campaign_sharing_text',
-                'label' => __( 'Text to display on campaign sharing widget', 'projection' ), 
+                'label' => __( 'Text to display on campaign sharing widget', 'franklin' ), 
                 'section' => 'campaign', 
                 'type' => 'text', 
                 'default' => __( 'Spread the word about this campaign by sharing this widget. Copy the snippet of HTML code below and paste it on your blog, website or anywhere else on the web.', 'franklin' ),
@@ -397,14 +397,14 @@ class OSFA_Customizer {
         /** 
          * Footer
          */
-        $wp_customize->add_section( 'footer', array( 'title' => __('Footer', 'projection'), 'priority' => $priority ) );
+        $wp_customize->add_section( 'footer', array( 'title' => __('Footer', 'franklin'), 'priority' => $priority ) );
 
         $priority += 1; 
 
         $wp_customize->add_setting( 'footer_notice', array( 'transport' => 'postMessage' ) );
         $wp_customize->add_control( 'footer_notice', array( 
             'setting' => 'footer_notice', 
-            'label' => __( 'Text for footer notice', 'projection' ), 
+            'label' => __( 'Text for footer notice', 'franklin' ), 
             'type' => 'text', 
             'section' => 'footer', 
             'priority' => $priority
@@ -649,10 +649,10 @@ input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, in
 
 /* Accent hover */
 a:hover { color: <?php echo $accent_hover ?>;}
-.sticky .post-title, .barometer .filled, .button.accent, .active-campaign .campaign-image, .site-navigation ul { border-color: <?php echo $accent_hover ?>; }
+.sticky .post-title, .barometer .filled, .button.accent, .active-campaign .campaign-image .wp-post-image, .site-navigation ul { border-color: <?php echo $accent_hover ?>; }
 
 /* Secondary accent text */
-.featured-campaign .campaign-summary h3 a, .featured-campaign .button.button-alt { color: <?php echo $accent_text_secondary ?>; }
+.featured-campaign .campaign-summary h3 a, .featured-campaign .button.button-alt, .campaign-ended .time-ago { color: <?php echo $accent_text_secondary ?>; }
 .featured-campaign .button.button-alt, .featured-campaign .button.button-alt:hover { border-color: <?php echo $accent_text_secondary ?>; }
 .featured-campaign .button.button-alt:hover { background-color: <?php echo $accent_text_secondary ?>; }
 
@@ -669,7 +669,7 @@ body, .icon, input[type=submit]:hover, input[type=reset]:hover, input[type=submi
 .button.button-alt, .button.button-alt:hover, .account-links .button.button-alt, .button.button-secondary, .button.button-secondary:hover, .shadow-wrapper:before, .shadow-wrapper:after { border-color: <?php echo $body_text ?>; }
 input[type=submit], input[type=reset], button, .button, .button.button-alt:hover, .button.button-secondary:hover, .audiojs, .campaign-pledge-levels.accordion h3, .account-links .button.button-alt:hover:before { background-color: <?php echo $body_text ?>; }
 input[type=submit], input[type=reset], button, .button { box-shadow: 0 0 0 3px <?php echo $body_text ?>; }
-.active-campaign .campaign-image { box-shadow: 0 0 3px 1px <?php echo $this->rgb($body_text_rgb, 0.3) ?>;}
+.active-campaign .campaign-image .wp-post-image { box-shadow: 0 0 3px 1px <?php echo $this->rgb($body_text_rgb, 0.3) ?>;}
 
 /* Button text colour */
 input[type=submit], input[type=reset], button, .button, .active-campaign .campaign-button, .button.button-alt:hover, .button.button-secondary:hover, .sticky.block, .sticky.block a, .campaign-support .button:hover, .campaign-pledge-levels.accordion h3, .featured-campaign .button, .featured-campaigns .block-title, .account-links .button.button-alt:hover:before, .featured-campaigns .block-title:before { color: <?php echo $button_text ?>; }

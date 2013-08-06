@@ -125,7 +125,17 @@ class Franklin_Theme {
         wp_enqueue_script('jquery');
 	    wp_enqueue_script('franklin');
 
-        wp_localize_script('franklin', 'Sofa_Localized', array('sharrreUrl' => get_template_directory_uri() . '/inc/sharrre/sharrre.php'));
+        wp_localize_script('franklin', 'Sofa_Localized', array(
+            'sharrre_url' => get_template_directory_uri() . '/inc/sharrre/sharrre.php', 
+            'need_minimum_pledge' => __( 'Your pledge must be at least the minimum pledge amount.', 'franklin' ), 
+            'years' => __( 'Years', 'franklin' ), 
+            'months' => __( 'Months', 'franklin' ), 
+            'weeks' => __( 'Weeks', 'franklin' ), 
+            'days' => __( 'Days', 'franklin' ), 
+            'hours' => __( 'Hours', 'franklin' ), 
+            'minutes' => __( 'Minutes', 'franklin' ), 
+            'seconds' => __( 'Seconds', 'franklin' )
+        ) );        
 
         // If Symple Shortcodes is installed, dequeue its stylesheet
         // if (function_exists('symple_shortcodes_scripts')) {
@@ -144,13 +154,7 @@ class Franklin_Theme {
         echo apply_filters( 'franklin_font_link', "<link href='http://fonts.googleapis.com/css?family=Merriweather:400,400italic,700italic,700,300italic,300|Oswald:400,300' rel='stylesheet' type='text/css'>" );
 
         ?>
-        <!--<script src="<?php echo $this->sofa->plugin_dir_url ?>/js/respond.min.js" type="text/javascript"></script>-->
-        <script>var PROJECTION = {
-            messages : {
-                need_minimum_pledge : "<?php _e( 'Your pledge must be at least the minimum pledge amount.', 'franklin' ) ?>"
-            }
-        }
-        </script>
+        <!--<script src="<?php echo $this->sofa->plugin_dir_url ?>/js/respond.min.js" type="text/javascript"></script>-->        
         <?php
         // If this is the contact page, don't append the Ninja Forms form with the_content filter
         if ( is_page_template('page-contact.php') ) {

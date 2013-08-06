@@ -134,7 +134,11 @@
 			if ($countdown.length) {
 				enddate = $countdown.data().enddate;
 
-				$countdown.countdown({until: new Date( enddate.year, enddate.month-1, enddate.day ), format: 'dHMs'});
+				$countdown.countdown({
+					until: new Date( enddate.year, enddate.month-1, enddate.day ), 
+					format: 'dHMs', 
+					labels : [Sofa_Localized.years, Sofa_Localized.months, Sofa_Localized.weeks, Sofa_Localized.days, Sofa_Localized.hours, Sofa_Localized.minutes, Sofa_Localized.seconds]
+				});
 			}		
 
 			return $countdown;
@@ -220,7 +224,7 @@
 			if ( $minpledge.data('price') > pledge ) {
 
 				// Explain that the pledge has to be at least the minimum
-				alert( PROJECTION.messages.need_minimum_pledge );
+				alert( Sofa_Localized.need_minimum_pledge );
 
 				// Select the minimum pledge amount
 				$minpledge.find('input').prop('checked', true);
