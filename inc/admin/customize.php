@@ -721,8 +721,9 @@ th { border-right-color: <?php echo $secondary_border ?>; }
 /* Text selection */
 *::selection { background-color:<?php echo $accent_colour ?>; color: <?php echo $accent_text ?>; } 
 *::-moz-selection { background-color:<?php echo $accent_colour ?>; color: <?php echo $accent_text ?>; }
-.active-campaign::selection { background-color:<?php echo $accent_text ?>; color: <?php echo $accent_colour ?>; }
-.active-campaign::-moz-selection { background-color:<?php echo $accent_text ?>; color: <?php echo $accent_colour ?>; }
+.active-campaign::selection, .active-campaign *::selection { background-color:<?php echo $accent_text_secondary ?>; color: <?php echo $accent_text ?>; }
+.active-campaign::-moz-selection, .active-campaign *::-moz-selection { background-color:<?php echo $accent_text_secondary ?>; color: <?php echo $accent_text ?>; }
+
 
 <?php if ( $logo ) : ?>            
 /* Logo */
