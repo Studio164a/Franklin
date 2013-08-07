@@ -42,6 +42,11 @@
 	overflow: hidden;
 }
 
+
+.active-campaign .wp-post-image {
+	width: 100%;
+}
+
 .campaign-image span {	
 	position: absolute;
 	top: 0;
@@ -71,10 +76,6 @@
 
 .campaign-image .campaign-unsuccessful {
 	background-color: #cc181e; 
-}
-
-.active-campaign .wp-post-image {
-	width: 92%;
 }
 
 .active-campaign .campaign-summary {
@@ -176,7 +177,7 @@
 	float: left;
 	width: 100%;
 	padding-bottom: 10px;
-	margin-bottom: 20px; 
+	margin-bottom: 0; 
 	border-bottom: 1px solid #fff; border-color: rgba(255, 255, 255, 0.3);
 }
 
@@ -1075,7 +1076,7 @@ span.description {
 		padding-bottom: 36px; padding-bottom: 3.6rem;
 	}	
 
-	.current-campaign .campaign-image {
+	.active-campaign .campaign-image {
 		width: 50%;
 		width: -moz-calc(92% - 43rem);
 		width: -webkit-calc(92% - 43rem);
@@ -1084,7 +1085,7 @@ span.description {
 		margin-right: 0;		
 	}
 
-	.current-campaign .campaign-image .wp-post-image {
+	.active-campaign .campaign-image .wp-post-image {
 		border: 0.5rem solid;
 		border-radius: 0.4rem;
 		width: 95.3%;
@@ -1103,8 +1104,8 @@ span.description {
 
 	.current-campaign .share {
 		float: right;
-		width: 43rem;
-		margin-right: 0;
+		width: 38rem;
+		margin-right: 4%;
 		margin-left: 0;
 	}
 }

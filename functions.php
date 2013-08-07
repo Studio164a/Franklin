@@ -26,6 +26,11 @@ class Franklin_Theme {
     public $wpml_enabled = false;
 
     /**
+     * @var int
+     */
+    private $theme_db_version;
+
+    /**
      * Private constructor. Singleton pattern.
      */
 	private function __construct() {                 
@@ -54,6 +59,10 @@ class Franklin_Theme {
             include_once('inc/wpml/wpml.class.php');
             include_once('inc/wpml/helpers.php');
         }
+
+        // Check for theme update
+        $this->theme_db_version = mktime(15,30,0,8,6,2013);
+        $this->version_update();
 
         add_action('wp_head', array(&$this, 'wp_head'), 20);
         // add_action('wp_head', array(&$this, 'wp_head_late'), 20);
@@ -91,6 +100,24 @@ class Franklin_Theme {
           self::$instance = new Franklin_Theme();
         }
         return self::$instance;
+    }    
+
+    /**
+     * Check for theme version update
+     * 
+     * @return void
+     */
+    public function version_update() {
+        // Check whether we are updated to the most recent version
+        $db_version = get_option('franklin_db_version', false);
+
+        if ( $db_version === false || $db_version < $this->theme_db_version ) {
+            require_once('inc/upgrade.php');        
+
+            Sofa_Upgrade_Helper::do_upgrade($this->theme_db_version, $db_version);
+
+            update_option('franklin_db_version', $this->theme_db_version);
+        }    
     }    
 
     /**
