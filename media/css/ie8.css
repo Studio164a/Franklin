@@ -43,3 +43,7 @@
 	border-bottom: 0.9rem solid transparent !important;
 	border-left: 0.9rem solid;
 }	
+
+.campaign-image span {
+	filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=-1);
+}
