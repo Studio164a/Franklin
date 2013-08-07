@@ -216,3 +216,19 @@ if ( !function_exists( 'edd_count_total_customers' ) ) {
 		return $count[0];
 	}
 }
+
+/**
+ * Determines whether to show the campaign's countdown. 
+ * 
+ * The countdown is only shown if the campaign is finite and still active.
+ * 
+ * @param ATCF_Campaign $campaign
+ * @return bool
+ * @since Franklin 1.3
+ */
+function sofa_crowdfunding_show_countdown($campaign) {
+	if ( false === ( $campaign instanceof ATCF_Campaign ) )
+		return;
+
+	return $campaign->is_active() && ( method_exists($campaign, 'is_endless') && ! $campaign->is_endless() );
+} 

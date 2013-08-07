@@ -229,6 +229,10 @@
 	vertical-align: top;
 }
 
+#campaign-widget-sharing pre {
+	word-break: break-word;
+}
+
 /* 2.1 --- Countdown */
 .hasCountdown {	
 }

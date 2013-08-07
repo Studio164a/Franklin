@@ -110,7 +110,6 @@ class Franklin_Theme {
     public function version_update() {
         // Check whether we are updated to the most recent version
         $db_version = get_option('franklin_db_version', false);
-        $db_version = false;
 
         if ( $db_version === false || $db_version < $this->theme_db_version ) {
             require_once('inc/upgrade.php');        

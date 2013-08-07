@@ -69,7 +69,7 @@
 				</li>				
 			</ul>
 
-			<?php if ( ! $campaign->is_endless() && $campaign->is_active() ) : ?>
+			<?php if ( sofa_crowdfunding_show_countdown($campaign) ) : ?>
 				<div class="campaign-countdown">
 					<span class="countdown" data-enddate='<?php echo sofa_crowdfunding_get_enddate($campaign, true) ?>'></span>
 					<span><?php _e( 'Time left to donate', 'franklin' ) ?></span>
