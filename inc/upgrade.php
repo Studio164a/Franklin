@@ -40,10 +40,5 @@ class Sofa_Upgrade_Helper {
 
         $theme = get_option( 'stylesheet' );
         update_option("theme_mods_$theme", $mods);
-
-        // foreach ( array( 'mod1', 'mod2', 'mod3', 'mod4', 'mod5', 'mod6'
-        // ) as $key ) {
-        //     set_theme_mod($key, 'set');
-        // }
     }
 }
