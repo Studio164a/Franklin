@@ -132,6 +132,7 @@ function sofa_crowdfunding_edd_get_currency_symbol() {
 		case "MXN" :
 		case "SGD" : return '&#36;'; break;
 		case "JPY" : return '&yen;'; break;
+		case "EUR" : return '&euro;'; break;
 		default : return $currency;
 	}	
 }
@@ -230,5 +231,5 @@ function sofa_crowdfunding_show_countdown($campaign) {
 	if ( false === ( $campaign instanceof ATCF_Campaign ) )
 		return;
 
-	return $campaign->is_active() && ( method_exists($campaign, 'is_endless') && ! $campaign->is_endless() );
+	return $campaign->is_active() && ( ! method_exists($campaign, 'is_endless') || ! $campaign->is_endless() );
 } 

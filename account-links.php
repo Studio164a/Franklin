@@ -22,7 +22,7 @@
 
 	<?php elseif ( $crowdfunding_enabled && ! is_user_logged_in() ) : ?>
 
-		<a class="user-login button with-icon button-alt button-small" href="#" data-reveal-id="login-form" data-icon="&#xf007;"><?php _e('Login / Register', 'franklin') ?></a>
+		<a class="user-login button with-icon button-alt button-small" href="#login-form" data-reveal-id="login-form" data-icon="&#xf007;"><?php _e('Login / Register', 'franklin') ?></a>
 
 	<?php endif ?>
 </span>

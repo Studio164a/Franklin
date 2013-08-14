@@ -818,6 +818,7 @@ span.description {
 	}
 
 	.campaign-price-input .price-wrapper {
+		float: left;
 		margin-bottom: 0;
 		width: 61%;
 		width: -moz-calc(66% - 3rem);

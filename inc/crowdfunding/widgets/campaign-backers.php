@@ -29,13 +29,20 @@ class Sofa_Crowdfunding_Backers_Widget extends WP_Widget {
 
 		$title = apply_filters( 'widget_title', $instance['title'] );
 		$campaign_id = $instance['campaign_id'] == 'current' ? get_the_ID() : $instance['campaign_id'];
+		$campaign = new ATCF_Campaign( $campaign_id );
+		$backers = $campaign->backers();
 
+		// If there are no backers, users can elect to hide this.
+		if ( isset( $instance['hide_if_no_backers'] ) && $instance['hide_if_no_backers'] && empty( $backers ) ) {
+			return;
+		}
+		
 		echo $before_widget;
 
 		if ( !empty($title) )
 			echo $before_title . $title . $after_title;
 
-		echo franklin_campaign_backers( new ATCF_Campaign( $campaign_id ), $instance );
+		echo franklin_campaign_backers( $campaign, $instance );
 
 		echo $after_widget;
 	}
@@ -52,6 +59,7 @@ class Sofa_Crowdfunding_Backers_Widget extends WP_Widget {
         $show_location = isset( $instance['show_location'] ) ? $instance['show_location'] : false;
         $show_pledge = isset( $instance['show_pledge'] ) ? $instance['show_pledge'] : false;
         $show_name = isset( $instance['show_name'] ) ? $instance['show_name'] : false;
+        $hide_if_no_backers = isset( $instance['hide_if_no_backers'] ) ? $instance['hide_if_no_backers'] : false;
         ?>
 
         <p>
@@ -93,6 +101,11 @@ class Sofa_Crowdfunding_Backers_Widget extends WP_Widget {
 			<input id="<?php echo esc_attr( $this->get_field_id('show_location') ) ?>" type="checkbox" name="<?php echo esc_attr( $this->get_field_name('show_location') ); ?>" <?php checked( $show_location ) ?>>
 		</p>
 
+		<p>
+			<label for="<?php echo $this->get_field_id('hide_if_no_backers') ?>"><?php _e( 'Hide if there are no backers:', 'franklin' ) ?></label>
+			<input id="<?php echo esc_attr( $this->get_field_id('hide_if_no_backers') ) ?>" type="checkbox" name="<?php echo esc_attr( $this->get_field_name('hide_if_no_backers') ); ?>" <?php checked( $hide_if_no_backers ) ?>>
+		</p>
+
         <?php
 	}
 
@@ -104,6 +117,7 @@ class Sofa_Crowdfunding_Backers_Widget extends WP_Widget {
         $instance['show_location'] = isset( $new_instance['show_location'] ) ? true : false;
         $instance['show_pledge'] = isset( $new_instance['show_pledge'] ) ? true : false;
         $instance['show_name'] = isset( $new_instance['show_name'] ) ? true : false;
+        $instance['hide_if_no_backers'] = isset( $new_instance['hide_if_no_backers'] ) ? true : false;
         return $instance;
 	}
 }

@@ -6,50 +6,103 @@
  * Child themes can override these functions by simply creating 
  * their own function with the same name. 
  * 
- * @package cheers
+ * @package franklin
  */
 
-if ( !function_exists('franklin_edd_before_price_options') ) {
+/**
+ * Remove output of variable pricing, and add our own system.
+ *
+ * @since Franklin 1.4
+ * @return void
+ */
+if ( !function_exists('franklin_atcf_theme_variable_pricing')) {
 
-	function franklin_edd_before_price_options($campaign_id) {
-		?>
-		<div class="title-wrapper"><h2 class="block-title"><?php _e( 'Enter Pledge Amount', 'franklin' ) ?></h2></div>
+	function franklin_atcf_theme_variable_pricing() {
+		remove_action( 'edd_purchase_link_top', 'edd_purchase_variable_pricing' );
+		add_action( 'edd_purchase_link_top', 'atcf_purchase_variable_pricing' );
+	}
+}
 
-		<?php
-		$prices = edd_get_variable_prices( $campaign_id );		
+remove_action( 'after_setup_theme', 'atcf_theme_custom_variable_pricing', 100 );
+add_action( 'init', 'franklin_atcf_theme_variable_pricing' );
 
-		if ( count( $prices )) : ?>
+/**
+ * Displays the title 
+ * 
+ * @see edd_before_price_options
+ * @return void
+ * @since Franklin 1.4
+ */
+function franklin_edd_before_price_options() {
+	?>
+	<div class="title-wrapper"><h2 class="block-title"><?php _e( 'Enter Pledge Amount', 'franklin' ) ?></h2></div>
+	<?php
+}
+
+add_action('edd_before_price_options', 'franklin_edd_before_price_options');
+
+
+/**
+ * Displays the contribution options. 
+ * 
+ * @see atcf_campaign_contribute_options
+ * @return void
+ * @since Franklin 1.4
+ */
+function franklin_atcf_campaign_contribute_options( $prices, $type, $campaign_id ) {
+	global $edd_options;
+
+	$campaign = new ATCF_Campaign( $campaign_id );
+
+	if ( $campaign->is_donations_only() ) : ?>
+
+		<input type="radio" name="edd_options[price_id][]" id="edd_price_option_<?php echo $campaign_id ?>_<?php echo $i ?>" class="edd_price_option_<?php echo $campaign_id ?> hidden" value="<?php echo $i ?>" checked />
+
+	<?php
+	elseif ( count( $prices )) : ?>
 
 		<ul class="campaign-pledge-levels">			
 
 			<?php foreach ( $prices as $i => $price ) : ?>
 
-				<?php $remaining = $price['limit'] - $price['bought'] ?>
+				<?php 
+					$has_limit = strlen( $price['limit'] ) > 0;
+					$remaining = $price['limit'] - $price['bought'];
+					$class = ! $has_limit ? 'limitless' : ( $remaining == 0 ? 'not-available' : 'available' );
+				?>
 
-				<li data-price="<?php echo $price['amount'] ?>" class="pledge-level<?php if ($remaining == 0) echo ' not-available' ?>">
-					<?php if ( $remaining > 0 ) : ?>
+				<li data-price="<?php echo edd_sanitize_amount( $price['amount'] )?>" class="pledge-level <?php echo $class ?>">
+					
+					<?php if ( ! $has_limit ) : ?>
+
 						<input type="radio" name="edd_options[price_id][]" id="edd_price_option_<?php echo $campaign_id ?>_<?php echo $i ?>" class="edd_price_option_<?php echo $campaign_id ?> edd_price_options_input" value="<?php echo $i ?>" />
+						<h3 class="pledge-title"><?php printf( _x( 'Pledge %s', 'pledge amount', 'franklin' ), '<strong>'.edd_currency_filter( edd_format_amount( $price['amount'] ) ).'</strong>' ) ?></h3>
+						<span class="pledge-limit"><?php _e( 'Unlimited backers', 'franklin' ) ?></span>
+						<p class="pledge-description"><?php echo $price['name'] ?></p>
+
+					<?php else : ?>
+
+						<?php if ( $remaining > 0 ) : ?>
+							<input type="radio" name="edd_options[price_id][]" id="edd_price_option_<?php echo $campaign_id ?>_<?php echo $i ?>" class="edd_price_option_<?php echo $campaign_id ?> edd_price_options_input" value="<?php echo $i ?>" />
+						<?php endif ?>
+
+						<h3 class="pledge-title"><?php printf( _x( 'Pledge %s', 'pledge amount', 'franklin' ), '<strong>'.edd_currency_filter( edd_format_amount( $price['amount'] ) ).'</strong>' ) ?></h3>
+						<span class="pledge-limit"><?php printf( __( '%d of %d remaining', 'franklin' ), $remaining, $price['limit'] ) ?></span>
+						<p class="pledge-description"><?php echo $price['name'] ?></p>
+
 					<?php endif ?>
-					<h3 class="pledge-title"><?php printf( _x( 'Pledge %s', 'pledge amount', 'franklin' ), '<strong>'.edd_currency_filter( edd_format_amount( $price['amount'] ) ).'</strong>' ) ?></h3>
-					<span class="pledge-limit"><?php printf( __( '%d of %d remaining', 'franklin' ), $remaining, $price['limit'] ) ?></span>
-					<p class="pledge-description"><?php echo $price['name'] ?></p>
+
 				</li>
 
 			<?php endforeach ?>
 
 		</ul>
 
-		<?php endif ?>
-
-		<!-- Text field with pledge button -->
-		<div class="campaign-price-input">
-			<span class="price-wrapper alignleft"><span class="currency"><?php echo sofa_crowdfunding_edd_get_currency_symbol() ?></span><input type="text" name="franklin_custom_price" id="franklin_custom_price" value="" /></span>
-		<?php
-	}
+	<?php endif;
 }
 
-add_action('edd_before_price_options', 'franklin_edd_before_price_options');
-
+remove_action('atcf_campaign_contribute_options', 'atcf_campaign_contribute_options', 10, 3);
+add_action('atcf_campaign_contribute_options', 'franklin_atcf_campaign_contribute_options', 10, 3);
 
 /**
  * Display the list of pledge options. 
@@ -59,7 +112,33 @@ add_action('edd_before_price_options', 'franklin_edd_before_price_options');
  * @return void
  * @since Franklin 1.0
  */
-if ( !function_exists('franklin_atcf_campaign_contribute_options') ) {
+if ( !function_exists('franklin_edd_after_price_options') ) {
+
+	function franklin_edd_after_price_options() {		
+		?>
+
+		<!-- Text field with pledge button -->
+		<div class="campaign-price-input">
+			<div class="price-wrapper"><span class="currency"><?php echo sofa_crowdfunding_edd_get_currency_symbol() ?></span><input type="text" name="atcf_custom_price" id="franklin_custom_price" value="" /></div>
+
+		<?php
+	}
+
+}
+
+remove_action( 'edd_purchase_link_top', 'atcf_purchase_variable_pricing' );
+remove_action( 'edd_purchase_link_top', 'atcf_campaign_contribute_custom_price', 5 );
+add_action('edd_after_price_options', 'franklin_edd_after_price_options', 10, 2);
+
+/**
+ * Display the list of pledge options. 
+ * 
+ * @see edd_purchase_link_end
+ * @param int $campaign_id
+ * @return void
+ * @since Franklin 1.0
+ */
+if ( !function_exists('franklin_edd_purchase_link_end') ) {
 
 	function franklin_edd_purchase_link_end() {		
 		// Close the .campaign-price-input div, which wraps around the text field & pledge button 
@@ -84,9 +163,14 @@ if ( !function_exists('franklin_edd_append_purchase_link') ) {
 	function franklin_edd_append_purchase_link() {
 		global $post; 
 
-		?>
-		<p class="campaign-support campaign-support-small"><a class="button accent" data-reveal-id="campaign-form-<?php echo $post->ID ?>" href="#"><?php _e( 'Support', 'franklin' ) ?></a></p>
+		$campaign = new ATCF_Campaign( $post->ID );
+
+		if ( $campaign->is_active() ) : ?>
+
+			<p class="campaign-support campaign-support-small"><a class="button accent" data-reveal-id="campaign-form-<?php echo $post->ID ?>" href="#"><?php _e( 'Support', 'franklin' ) ?></a></p>
+		
 		<?php 
+		endif;
 	}
 }
 
@@ -158,14 +242,24 @@ if ( !function_exists('franklin_pledge_levels') ) {
 
 				<?php foreach ( $prices as $i => $price ) : ?>
 
-					<?php $remaining = isset( $price['bought'] ) ? $price['limit'] - count($price['bought']) + 1 : $price['limit'] ?>
+					<?php 
+					$has_limit = strlen( $price['limit'] ) > 0;
+					$remaining = isset( $price['bought'] ) ? $price['limit'] - count($price['bought']) + 1 : $price['limit'];
+					$class = !$has_limit ? 'limitless' : ( $remaining == 0 ? 'not-available' : 'available' );
+					?>
 
 					<h3 class="pledge-title" data-icon="&#xf0d7;"><?php printf( _x( 'Pledge %s', 'pledge amount', 'franklin' ), '<strong>'.edd_currency_filter( edd_format_amount( $price['amount'] ) ).'</strong>' ) ?></h3>
-					<div class="pledge-level cf<?php if ($remaining == 0) echo ' not-available' ?>">										
-						<span class="pledge-limit"><?php printf( __( '%d of %d remaining', 'franklin' ), $remaining, $price['limit'] ) ?></span>
+					<div class="pledge-level cf<?php if ($has_limit && $remaining == 0) echo ' not-available' ?>">
+
+						<?php if ( $has_limit ) : ?>
+							<span class="pledge-limit"><?php printf( __( '%d of %d remaining', 'franklin' ), $remaining, $price['limit'] ) ?></span>
+						<?php else : ?>
+							<span class="pledge-limit"><?php _e( 'Unlimited backers', 'franklin' ) ?></span>
+						<?php endif ?>
+
 						<p class="pledge-description"><?php echo $price['name'] ?></p>
 
-						<?php if ($remaining > 0) : ?>
+						<?php if ( !$has_limit || $remaining > 0) : ?>
 							<a class="pledge-button button button-alt button-small accent" data-reveal-id="campaign-form-<?php echo $campaign_id ?>" data-price="<?php echo $price['amount'] ?>" href="#"><?php printf( _x( 'Pledge %s', 'pledge amount', 'franklin' ), edd_currency_filter( edd_format_amount( $price['amount'] ) ) ) ?></a>
 						<?php endif ?>
 					</div>
@@ -216,7 +310,7 @@ if ( !function_exists('franklin_campaign_backers') ) {
 		// Start the buffer 
 		ob_start();
 
-		if ( $backers === false ) : ?>
+		if ( empty( $backers ) ): ?>
 			
 			<p><?php _e( 'No backers yet. Be the first!', 'franklin' ) ?></p>
 		

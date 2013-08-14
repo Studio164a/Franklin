@@ -68,7 +68,7 @@
 				height = $barometer.data('height'),					
 				r = Raphael( $barometer[0], width, height),
 				drawn = false,							
-				progress_val = $barometer.data('progress'),
+				progress_val = $barometer.data('progress') > 100 ? 100 : $barometer.data('progress'),
 				circle;
 
 			// @see http://stackoverflow.com/questions/5061318/drawing-centered-arcs-in-raphael-js
@@ -213,9 +213,9 @@
 		});
 
 		$('.edd_download_purchase_form').on('change', '.pledge-level', function() {
-			$('input[name=franklin_custom_price]').val( $(this).data().price );
+			$('input[name=atcf_custom_price]').val( $(this).data().price );
 		})
-		.on('change', 'input[name=franklin_custom_price]', function() {
+		.on('change', 'input[name=atcf_custom_price]', function() {
 			var pledge = $(this).val(), 
 				$minpledge = $('.edd_download_purchase_form .pledge-level').first(),				
 				$maxpledge;
@@ -232,7 +232,7 @@
 
 				// Exit
 				return;
-			}
+			}			
 
 			$('.edd_download_purchase_form .pledge-level').each( function() {
 

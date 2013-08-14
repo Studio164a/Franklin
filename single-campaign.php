@@ -5,6 +5,8 @@
 
 get_header() ?>	
 
+	<?php //global $wp_query; echo "<pre>"; print_r( $wp_query ); echo "</pre>" ?>
+
 	<?php if ( have_posts() ) : ?>
 
 		<?php while( have_posts() ) : ?>

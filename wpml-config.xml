@@ -29,14 +29,14 @@
 		<custom-field action="ignore">_campaign_featured</custom-field>
 		<custom-field action="ignore">_campaign_physical</custom-field>	
     </custom-fields>  
-    <admin-texts>
-    	<key name="theme_mods_franklin-child">
-    		<key name="blog_banner_title" />
-    		<key name="404_banner_title" />
-    		<key name="footer_notice" />
-    	</key>
-    	<key name="theme_mods_franklin">
-    		<key name="blog_banner_title" />
-    	</key>
+	<admin-texts>
+        <key name="theme_mods_franklin-child">
+			<key name="blog_banner_title" />
+			<key name="404_banner_title" />
+			<key name="footer_notice" />
+        </key>
+        <key name="theme_mods_franklin">
+            <key name="blog_banner_title" />
+        </key>
     </admin-texts>
 </wpml-config>

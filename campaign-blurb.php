@@ -18,7 +18,7 @@
 
 				<?php 
 				// Campaign ended, fully funded
-				if ( ! $campaign->is_active() && $campaign->is_funded() ) : ?>
+				if ( $campaign->is_funded() ) : ?>
 
 					<span class="campaign-successful"><?php _e( 'Successful' ) ?></span>
 

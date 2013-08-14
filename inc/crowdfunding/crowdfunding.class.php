@@ -388,9 +388,13 @@ class Sofa_Crowdfunding_Helper {
         if ( $post->ID == $edd_options['submit_page'] 
             || $post->ID == $edd_options['profile_page']
             || $post->ID == $edd_options['purchase_page'] 
+            || $post->ID == $edd_options['success_page']
+            || $post->ID == $edd_options['failure_page']
             || $language_copy == $edd_options['submit_page']
             || $language_copy == $edd_options['profile_page']
             || $language_copy == $edd_options['purchase_page'] 
+            || $language_copy == $edd_options['success_page']
+            || $language_copy == $edd_options['failure_page']
         ) {
             $page_template = apply_filters( 'sofa_application_page_template', get_template_directory() . '/page-app.php', $page_template );
         }        
@@ -648,6 +652,16 @@ class Sofa_Crowdfunding_Helper {
             default : 
                 return new ATCF_Campaign_Query( array( 'p' => $mode ) );
         }
+    }
+
+    /**
+     * Returns whether we're viewing the widget.
+     * 
+     * @return bool
+     * @since Franklin 1.3
+     */
+    public function is_viewing_widget() {
+        return $this->viewing_widget;
     }
 }
 

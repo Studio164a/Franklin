@@ -12,7 +12,7 @@
 .reveal-modal {
   visibility: hidden;
   display: none;
-  position: fixed;  
+  position: absolute;  
   z-index: 99;
   height: auto;
   margin-left: 1%;
@@ -22,7 +22,7 @@
   border: none;
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  top: 50px !important; }
+  top: 24px; }
   .reveal-modal .column,
   .reveal-modal .columns {
     min-width: 0; }

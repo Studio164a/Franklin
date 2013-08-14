@@ -677,7 +677,7 @@ input[type=submit], input[type=reset], button, .button, .active-campaign .campai
 
 /* Widget background colour */
 input[type=text], input[type=password], input[type=number], input[type=email], .chrome input[type=file], .safari input[type=file], textarea, select, .featured-image, th, .entry blockquote, hr, pre, .meta, .audiojs .scrubber, .widget, .sidebar-block, .accordion h3 { background-color: <?php echo $widget_background ?>; }
-.price-wrapper .currency, input:focus, textarea:focus, select:focus, input:active, textarea:active, select:active { background-color: <?php echo $this->rgb( $widget_rgb, 0.7 ) ?>; }
+input:focus, textarea:focus, select:focus, input:active, textarea:active, select:active { background-color: <?php echo $this->rgb( $widget_rgb, 0.7 ) ?>; }
 
 /* Meta text colour */
 .meta, .comment-meta, .pledge-limit { color: <?php echo $meta_colour ?>; }
