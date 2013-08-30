@@ -220,6 +220,10 @@
 				$minpledge = $('.edd_download_purchase_form .pledge-level').first(),				
 				$maxpledge;
 
+			if ( $minpledge.length === 0 ) {
+				return;
+			}
+
 			// The pledge has to equal or exceed the minimum pledge amount
 			if ( $minpledge.data('price') > pledge ) {
 

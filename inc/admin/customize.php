@@ -676,7 +676,7 @@ input[type=submit], input[type=reset], button, .button, .active-campaign .campai
 .campaign-support .button:hover { box-shadow: 0 0 0 3px <?php echo $button_text ?>; }
 
 /* Widget background colour */
-input[type=text], input[type=password], input[type=number], input[type=email], .chrome input[type=file], .safari input[type=file], textarea, select, .featured-image, th, .entry blockquote, hr, pre, .meta, .audiojs .scrubber, .widget, .sidebar-block, .accordion h3 { background-color: <?php echo $widget_background ?>; }
+input[type=text], input[type=password], input[type=number], input[type=email], .chrome input[type=file], .safari input[type=file], textarea, select, .featured-image, th, .entry blockquote, hr, pre, .meta, .audiojs .scrubber, .widget, .sidebar-block, .accordion h3, .atcf-multi-select { background-color: <?php echo $widget_background ?>; }
 input:focus, textarea:focus, select:focus, input:active, textarea:active, select:active { background-color: <?php echo $this->rgb( $widget_rgb, 0.7 ) ?>; }
 
 /* Meta text colour */

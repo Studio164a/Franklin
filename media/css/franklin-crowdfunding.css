@@ -584,22 +584,28 @@ span.description {
 .atcf-submit-campaign-goal, 
 .atcf-submit-campaign-length, 
 .atcf-submit-campaign-reward-price, 
-.atcf-submit-campaign-reward-limit {
+.atcf-submit-campaign-reward-limit, 
+.atcf-submit-campaign-category, 
+.atcf-submit-campaign-tags, 
+.atcf-submit-campaign-tag {
 	width: 49%;
 	float: left;
 }
 
+.atcf-submit-campaign-physical,
 .atcf-submit-campaign-shipping {
 	clear: both;
 }
 
 .atcf-submit-campaign-goal, 
-.atcf-submit-campaign-reward-price {
+.atcf-submit-campaign-reward-price, 
+.atcf-submit-campaign-category {
 	margin-right: 2%;
 }
 
 .atcf-submit-campaign-description {
 	margin-bottom: 12px; margin-bottom: 1.2rem;
+	clear: both;
 }
 
 .atcf-submit-campaign-reward {
@@ -618,6 +624,31 @@ span.description {
 
 .atcf-submit-campaign-submit .button-secondary {
 	float: left;
+}
+
+.atcf-multi-select {
+	padding: 12px 10px; padding: 1.2rem 1rem;
+	list-style: none;	
+}
+
+.atcf-multi-select li {
+	float: left;
+	width: 50%;
+}
+
+.atcf-multi-select label {
+	padding: 0;
+}
+
+.atcf-multi-select input[type=checkbox] {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.atcf-submit-campaign-category, 
+.atcf-submit-campaign-tags, 
+.atcf-submit-campaign-tag {
+	margin-bottom: 12px; margin-bottom: 1.2rem;
 }
 
 /* 11.0 - Projects page

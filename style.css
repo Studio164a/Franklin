@@ -4,7 +4,7 @@ Theme URI: http://164a.com
 Author: Studio164a
 Author URI: http://164a.com
 Description: A responsive, retina ready Wordpress crowdfunding theme.
-Version: 1.4
+Version: 1.4.2
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: 
@@ -645,7 +645,6 @@ pre, code, kbd, tt { font-family: Monaco, Consolas, "Lucida Console", monospace;
 pre { 	
 	padding: 12px 6px; padding: 1.2rem 0.6rem; 
 	margin-bottom: 12px; margin-bottom: 1.2rem;
-	white-space: normal; 	
 }
 
 /* 1.10 -- Reusable classes **/
@@ -791,34 +790,6 @@ body {
 	cursor: pointer;
 	width: auto;
 	padding: 0;
-}
-
-/* Active campaign and nav are off-screen when inactive */
-.active-campaign.flyout {	
-	position: fixed;
-	top: 0;		
-	z-index: 50;
-
-	/* Transition */
-	-ms-transition: left 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
-	-moz-transition: left 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
-	-o-transition: left 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
-	-webkit-transition: left 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
-	transition: left 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
-}
-
-.active-campaign.flyout {
-	right: -100%;
-	width: 96%;
-}
-
-.active-campaign.flyout .campaign-button {
-	right: 2%;
-}
-
-/* Active state */
-.active-campaign.flyout.is-active {
-	right: 0;
 }
 
 /* 2.2 -- Admin bar ***/

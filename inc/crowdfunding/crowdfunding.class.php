@@ -32,6 +32,7 @@ class Sofa_Crowdfunding_Helper {
         
         include_once('helpers.php');
         include_once('template.php');
+        include_once('shortcode-submit.php');
         include_once('widgets/campaign-pledge-levels.php');
         include_once('widgets/campaign-updates.php');
         include_once('widgets/campaign-backers.php');
@@ -89,7 +90,11 @@ class Sofa_Crowdfunding_Helper {
     		'campaign-featured-image' => true, 
     		'campaign-video'          => true, 
     		'anonymous-backers'       => true, 
-            'campaign-edit'           => true
+            'campaign-edit'           => true, 
+            'campaign-categories'     => true, 
+            'campaign-tags'           => true, 
+            'campaign-category'       => true, 
+            'campaign-tag'            => true
     	)));
     }
 
@@ -114,7 +119,7 @@ class Sofa_Crowdfunding_Helper {
 
             $req[] = 'jquery-masonry';
 
-            if ( get_post_type() == 'download' ) {
+            if ( get_post_type() == 'download' || is_page_template('page-single-campaign.php') ) {
                 wp_register_script('countdown', sprintf( "%s/media/js/jquery.countdown.min.js", $theme_dir ), array('jquery'), 0.1, true);
                 $req[] = 'countdown';
             }
@@ -434,6 +439,7 @@ class Sofa_Crowdfunding_Helper {
      * @since Franklin 1.0
      */
     public function edd_add_to_cart_item_filter($item) {
+
         // If post_data is not set, return. Not sure this would ever happen, but saves any notices occuring.
         if ( !isset($_POST['post_data']))
             return $item;
@@ -441,8 +447,8 @@ class Sofa_Crowdfunding_Helper {
         // Parse the post_data array 
         parse_str( urldecode( $_POST['post_data'] ), $query_args );
 
-        if ( isset( $query_args['franklin_custom_price'] ) ) {
-            $item['options']['custom_price'] = $query_args['franklin_custom_price'];
+        if ( isset( $query_args['atcf_custom_price'] ) ) {
+            $item['options']['custom_price'] = $query_args['atcf_custom_price'];
         }
         
         return $item;
