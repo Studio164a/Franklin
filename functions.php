@@ -168,13 +168,7 @@ class Franklin_Theme {
             'hours' => __( 'Hours', 'franklin' ), 
             'minutes' => __( 'Minutes', 'franklin' ), 
             'seconds' => __( 'Seconds', 'franklin' )
-        ) );        
-
-        // If Symple Shortcodes is installed, dequeue its stylesheet
-        // if (function_exists('symple_shortcodes_scripts')) {
-        //     wp_register_style('franklin-symple-shortcodes', sprintf( "%s/media/css/symple-shortcodes.css", $theme_dir ) );
-        //     wp_enqueue_style('franklin-symple-shortcodes');
-        // }
+        ) ); 
     } 
 
     /**

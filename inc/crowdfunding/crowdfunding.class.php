@@ -50,6 +50,7 @@ class Sofa_Crowdfunding_Helper {
 
         add_action('atcf_found_widget', array(&$this, 'atcf_found_widget'));
 
+        add_filter('body_class', array(&$this, 'body_class_filter'));
         add_filter('page_template', array(&$this, 'page_template_filter'));
         add_filter('edd_purchase_link_defaults', array(&$this, 'edd_purchase_link_defaults_filter'));
         add_filter('edd_templates_dir', array(&$this, 'edd_templates_dir_filter'));
@@ -150,19 +151,14 @@ class Sofa_Crowdfunding_Helper {
      */
     public function wp_footer() {
         if ( $this->viewing_widget === false ) : 
-        ?>                     
-        <div id="login-form" class="reveal-modal block multi-block">            
-            <a class="close-reveal-modal icon"><i class="icon-remove-sign"></i></a>
-            <div class="content-block login-block">
-                <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Login', 'franklin') ?></h3></div> 
-                <?php echo atcf_shortcode_login() ?>
+            ?>                     
+            <div id="login-form" class="reveal-modal block multi-block">            
+                <a class="close-reveal-modal icon" data-icon="&#xf057;"></a>
+
+                <?php do_action( 'franklin_login_register_modal' ) ?>
+
             </div>
-            <div class="register-block  block last">
-                <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Register', 'franklin') ?></h3></div> 
-                <?php echo atcf_shortcode_register() ?>
-            </div>
-        </div>
-        <?php
+            <?php
         endif;
     }
 
@@ -374,6 +370,44 @@ class Sofa_Crowdfunding_Helper {
     }
 
     /**
+     * Adds a campaign-preview class when previewing a campaign. 
+     * 
+     * @param array $classes
+     * @return array
+     * @since Franklin 1.4.3
+     */
+    public function body_class_filter($classes) {
+        global $post;
+
+        if ( get_post_type() == 'download' && isset( $_GET['preview'] ) && $_GET['preview'] ) {
+            $classes[] = 'campaign-preview';
+        }
+        return $classes;
+    }
+
+    /**
+     * Checks whether this is an app template. 
+     * 
+     * @param int $post_id
+     * @return bool
+     * @access private
+     * @since Franklin 1.4.3
+     */
+    private function is_app_page($post_id, $edd_options) {
+        foreach ( array( 'submit_page', 'profile_page', 'purchase_page', 
+            'success_page', 'failure_page', 'submit_success_page' ) as $edd_key ) {
+            if ( $post_id == $edd_options[$edd_key] ) {
+                return true;
+            }
+        }
+
+        // Test for WPML duplicates
+        $language_copy = get_post_meta($post->ID, '_icl_lang_duplicate_of', true);
+
+        return strlen( $language_copy ) ? $this->is_app_page( $language_copy, $edd_options ) : false;
+    }
+
+    /**
      * Filter the template file loaded for profile and campain submission pages. 
      * 
      * @uses sofa_application_page_template     Child themes can use this to use a different page template, or restore default behaviour.
@@ -387,23 +421,10 @@ class Sofa_Crowdfunding_Helper {
     public function page_template_filter($page_template) {
         global $post, $edd_options;
 
-        // If we're using WPML, we need to apply the same templates to the other language versions
-        $language_copy = get_post_meta($post->ID, '_icl_lang_duplicate_of', true);
-
-        if ( $post->ID == $edd_options['submit_page'] 
-            || $post->ID == $edd_options['profile_page']
-            || $post->ID == $edd_options['purchase_page'] 
-            || $post->ID == $edd_options['success_page']
-            || $post->ID == $edd_options['failure_page']
-            || $language_copy == $edd_options['submit_page']
-            || $language_copy == $edd_options['profile_page']
-            || $language_copy == $edd_options['purchase_page'] 
-            || $language_copy == $edd_options['success_page']
-            || $language_copy == $edd_options['failure_page']
-        ) {
+        if ( $this->is_app_page( $post->ID, $edd_options ) ) {
             $page_template = apply_filters( 'sofa_application_page_template', get_template_directory() . '/page-app.php', $page_template );
         }        
-        
+
         return $page_template;
     }
 

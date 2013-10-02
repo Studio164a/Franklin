@@ -9,7 +9,7 @@
 $crowdfunding = crowdfunding();
 
 // The old way
-if ( $crowdfunding->version < 1.7 ) {
+if ( $crowdfunding->version < 1.7 ) {	
 
 	// Length
 	remove_action( 'atcf_shortcode_submit_fields', 'atcf_shortcode_submit_field_length', 30, 2 );
@@ -42,7 +42,7 @@ else {
 	 * @see atcf_submit_campaign()
 	 * @return void
 	 */
-	function franklin_atcf_submit_campaign() {
+	function franklin_atcf_submit_campaign() {		
 		remove_action( 'atcf_shortcode_submit_field_number', 'atcf_shortcode_submit_field_number', 10, 4 );
 		add_action( 'atcf_shortcode_submit_field_number', 'franklin_atcf_shortcode_submit_field_number', 10, 4 );
 
@@ -51,9 +51,6 @@ else {
 
 		remove_action( 'atcf_shortcode_submit_field_rewards', 'atcf_shortcode_submit_field_rewards', 10, 4 );
 		add_action( 'atcf_shortcode_submit_field_rewards', 'franklin_atcf_shortcode_submit_field_rewards_action', 10, 4 );
-
-		remove_action( 'atcf_shortcode_submit_field_checkbox', 'atcf_shortcode_submit_field_checkbox', 10, 4 );
-		add_action( 'atcf_shortcode_submit_field_checkbox', 'franklin_atcf_shortcode_submit_field_checkbox', 10, 4 );	
 	}
 
 	add_action( 'init', 'franklin_atcf_submit_campaign', 11 );		
@@ -77,26 +74,6 @@ function franklin_atcf_shortcode_submit_field_number( $key, $field, $atts, $camp
 		atcf_shortcode_submit_field_number( $key, $field, $atts, $campaign );
 	}	
 }
-
-/**
- * Checkbox field.
- * 
- * @param $key The key of the current field.
- * @param $field The array of field arguments.
- * @param $atts The shortcoe attribtues.
- * @param $campaign The current campaign (if editing/previewing).
- * @return void
- * @since Franklin 1.4.2
- */
-function franklin_atcf_shortcode_submit_field_checkbox( $key, $field, $atts, $campaign ) {
-	if ( $key == 'tos' ) {
-		franklin_atcf_shortcode_submit_field_terms( $atts, $campaign );
-	} 
-	else {
-		atcf_shortcode_submit_field_checkbox( $key, $field, $atts, $campaign );
-	}	
-}
-
 
 /**
  * Rewards.
@@ -156,9 +133,9 @@ function franklin_atcf_shortcode_submit_field_term_checklist( $key, $field, $att
  * @since Franklin 1.1
  */
 function franklin_atcf_shortcode_submit_field_length( $atts, $campaign ) {
-	global $edd_options;
+	global $post, $edd_options;
 
-	if ( $atts[ 'editing' ] )
+	if ( $atts[ 'editing' ] && $post->post_status != 'draft' )
 		return;
 
 	$min = isset ( $edd_options[ 'atcf_campaign_length_min' ] ) ? $edd_options[ 'atcf_campaign_length_min' ] : 14;
@@ -216,8 +193,12 @@ function franklin_atcf_shortcode_submit_field_rewards( $atts, $campaign ) {
 	$rewards  = ( $atts[ 'previewing' ] || $atts[ 'editing' ] ) ? edd_get_variable_prices( $campaign->ID ) : array( 0 => array( 'amount' => null, 'name' => null, 'limit' => null ) );
 
 	$crowdfunding = crowdfunding();
+	$amount_key = 'amount';
+	$name_key = 'name';
 
 	if ( $crowdfunding->version < 1.7 ) :
+		$amount_key = 'price';
+		$name_key = 'description';
 		$shipping = $atts[ 'previewing' ] || $atts[ 'editing' ] ? $campaign->needs_shipping() : 0;
 		$norewards = $atts[ 'previewing' ] || $atts[ 'editing' ] ? $campaign->is_donations_only() : 0;
 ?>
@@ -244,8 +225,8 @@ function franklin_atcf_shortcode_submit_field_rewards( $atts, $campaign ) {
 			<?php do_action( 'atcf_shortcode_submit_field_rewards_before' ); ?>
 
 			<p class="atcf-submit-campaign-reward-price">
-				<label for="rewards[<?php echo esc_attr( $key ); ?>][price]"><?php printf( __( 'Amount (%s)', 'franklin' ), edd_currency_filter( '' ) ); ?></label>
-				<input class="name" type="text" name="rewards[<?php echo esc_attr( $key ); ?>][price]" id="rewards[<?php echo esc_attr( $key ); ?>][price]" value="<?php echo esc_attr( $reward[ 'amount' ] ); ?>" <?php disabled(true, $disabled); ?> />
+				<label for="rewards[<?php echo esc_attr( $key ); ?>][<?php echo $amount_key ?>]"><?php printf( __( 'Amount (%s)', 'franklin' ), edd_currency_filter( '' ) ); ?></label>
+				<input class="name" type="text" name="rewards[<?php echo esc_attr( $key ); ?>][<?php echo $amount_key ?>]" id="rewards[<?php echo esc_attr( $key ); ?>][<?php echo $amount_key ?>]" value="<?php echo esc_attr( $reward[$amount_key] ); ?>" <?php disabled(true, $disabled); ?> />
 			</p>
 
 			<p class="atcf-submit-campaign-reward-limit">
@@ -254,8 +235,8 @@ function franklin_atcf_shortcode_submit_field_rewards( $atts, $campaign ) {
 			</p>
 
 			<p class="atcf-submit-campaign-reward-description">
-				<label for="rewards[<?php echo esc_attr( $key ); ?>][description]"><?php _e( 'Reward', 'franklin' ); ?></label>
-				<textarea class="description" name="rewards[<?php echo esc_attr( $key ); ?>][description]" id="rewards[<?php echo esc_attr( $key ); ?>][description]" rows="3" <?php disabled(true, $disabled); ?>><?php echo esc_attr( $reward[ 'name' ] ); ?></textarea>
+				<label for="rewards[<?php echo esc_attr( $key ); ?>][<?php echo $name_key ?>]"><?php _e( 'Reward', 'franklin' ); ?></label>
+				<textarea class="<?php echo $name_key ?>" name="rewards[<?php echo esc_attr( $key ); ?>][<?php echo $name_key ?>]" id="rewards[<?php echo esc_attr( $key ); ?>][<?php echo $name_key ?>]" rows="3" <?php disabled(true, $disabled); ?>><?php echo esc_attr( $reward[$name_key] ); ?></textarea>
 			</p>			
 
 			<?php do_action( 'atcf_shortcode_submit_field_rewards_after' ); ?>
@@ -324,8 +305,8 @@ function franklin_edd_terms_agreement() {
 					<a href="#" class="edd_terms_links"><?php _e( 'Show Terms', 'edd' ); ?></a>
 					<a href="#" class="edd_terms_links" style="display:none;"><?php _e( 'Hide Terms', 'edd' ); ?></a>
 				</div>
-				<label for="edd_agree_to_terms">
-					<input name="edd_agree_to_terms" class="required" type="checkbox" id="edd_agree_to_terms" value="1"/>
+				<label for="tos">
+					<input name="tos" class="required" type="checkbox" id="edd_agree_to_terms" value="1"/>
 					<?php echo isset( $edd_options['agree_label'] ) ? $edd_options['agree_label'] : __( 'Agree to Terms?', 'edd' ); ?>
 				</label>				
 		</fieldset>

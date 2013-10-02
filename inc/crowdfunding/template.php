@@ -228,7 +228,9 @@ add_action( 'atcf_shortcode_register', 'franklin_atcf_shortcode_register_form' )
 if ( !function_exists('franklin_pledge_levels') ) {
 
 	function franklin_pledge_levels( $campaign_id ) {
-			
+		
+		$campaign = new ATCF_Campaign( $campaign_id );
+
 		// Start the buffer
 		ob_start();
 
@@ -259,7 +261,7 @@ if ( !function_exists('franklin_pledge_levels') ) {
 
 						<p class="pledge-description"><?php echo $price['name'] ?></p>
 
-						<?php if ( !$has_limit || $remaining > 0) : ?>
+						<?php if ( $campaign->is_active() && ( !$has_limit || $remaining > 0 ) ) : ?>
 							<a class="pledge-button button button-alt button-small accent" data-reveal-id="campaign-form-<?php echo $campaign_id ?>" data-price="<?php echo $price['amount'] ?>" href="#"><?php printf( _x( 'Pledge %s', 'pledge amount', 'franklin' ), edd_currency_filter( edd_format_amount( $price['amount'] ) ) ) ?></a>
 						<?php endif ?>
 					</div>
@@ -499,3 +501,28 @@ if ( !function_exists( 'franklin_campaign_comment' ) ) {
 }
 
 remove_filter( 'the_title', 'edd_microdata_title', 10, 2 );
+
+/**
+ * Add the login & register blocks to the modal page.
+ *
+ * @return void
+ * @since Franklin 1.4.2
+ */
+if ( !function_exists('franklin_login_register_modal') ) {
+
+	function franklin_login_register_modal() {
+		?>
+		<div class="content-block login-block">
+		    <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Login', 'franklin') ?></h3></div> 
+		    <?php echo atcf_shortcode_login() ?>
+		</div>
+		<div class="register-block  block last">
+		    <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Register', 'franklin') ?></h3></div> 
+		    <?php echo atcf_shortcode_register() ?>
+		</div>
+		<?php 
+	}
+
+}
+
+add_action( 'franklin_login_register_modal', 'franklin_login_register_modal' );

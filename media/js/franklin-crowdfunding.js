@@ -125,9 +125,8 @@
 
 	Sofa.Countdown = ( function() {
 
-		var 
 		// Start the countdown script
-		startCountdown = function() {
+		var startCountdown = function() {
 			var $countdown = $('.countdown'), 
 				enddate;
 
@@ -158,7 +157,7 @@
 
 		var $grids = $('.masonry-grid');
 
-		initGrid = function($grid) {
+		var initGrid = function($grid) {
 			$grid.masonry();
 		};
 
@@ -187,6 +186,77 @@
 
 	})();
 
+	// Pledge
+
+	Sofa.Pledging = ( function() {
+
+		var $form = $('.edd_download_purchase_form'),
+			$price = $('input[name=atcf_custom_price]'),
+			$pledges = $('.edd_download_purchase_form .pledge-level').sort( function( a, b ) {
+				return parseInt( $(a).data('price') ) 
+					> parseInt( $(b).data('price') );
+			}), 
+			$button = $('.pledge-button'),
+			$minpledge = $pledges.first(), 
+			$maxpledge;
+
+		var priceChange = function() {
+			var new_pledge = parseInt( $price.val() );
+
+			if ( $minpledge.length === 0 ) {
+				return;
+			}
+
+			// The pledge has to equal or exceed the minimum pledge amount
+			if ( parseInt( $minpledge.data('price') ) > new_pledge ) {
+
+				// Explain that the pledge has to be at least the minimum
+				alert( Sofa_Localized.need_minimum_pledge );
+
+				// Select the minimum pledge amount
+				$minpledge.find('input').prop('checked', true);
+				$minpledge.change();
+
+				// Exit
+				return;
+			}			
+
+			$pledges.each( function() {
+
+				if ( $(this).data('price') <= new_pledge && $(this).hasClass('not-available') === false ) {
+					$maxpledge = $(this);
+				} 
+				// This pledge's amount is greater than the amount set
+				else {										
+					return false;
+				}
+			});
+
+			// Select the maximum pledge
+			$maxpledge.find('input').prop('checked', true);
+		}
+
+		return {
+
+			init : function() {
+
+				// Set up event handlers
+				$button.on( 'click', function() {
+					var price = $(this).data('price');				
+					$form.find('[data-price='+$(this).data('price')+'] input').prop('checked', true).trigger('change');
+				});
+
+				$form.on( 'change', '.pledge-level', function() {
+					$price.val( $(this).data().price );
+				})
+				.on( 'change', 'input[name=atcf_custom_price]', function() {
+					priceChange();
+				});
+			}
+		}
+
+	})();
+
 	// Set up Raphael on window load event
 	$(window).load(function() {
 		Sofa.Grid.init();
@@ -201,56 +271,11 @@
 
 		Sofa.Countdown.init();		
 
+		Sofa.Pledging.init();
+
 		$('.campaign-button').on( 'click', function() {
 			$(this).toggleClass('icon-remove');
 			$(this).parent().toggleClass('is-active');
-		});
-
-		$('.pledge-button').on( 'click', function() {
-			var price = $(this).data('price');
-			
-			$('.edd_download_purchase_form').find('[data-price='+$(this).data('price')+'] input').prop('checked', true).trigger('change');
-		});
-
-		$('.edd_download_purchase_form').on('change', '.pledge-level', function() {
-			$('input[name=atcf_custom_price]').val( $(this).data().price );
-		})
-		.on('change', 'input[name=atcf_custom_price]', function() {
-			var pledge = $(this).val(), 
-				$minpledge = $('.edd_download_purchase_form .pledge-level').first(),				
-				$maxpledge;
-
-			if ( $minpledge.length === 0 ) {
-				return;
-			}
-
-			// The pledge has to equal or exceed the minimum pledge amount
-			if ( $minpledge.data('price') > pledge ) {
-
-				// Explain that the pledge has to be at least the minimum
-				alert( Sofa_Localized.need_minimum_pledge );
-
-				// Select the minimum pledge amount
-				$minpledge.find('input').prop('checked', true);
-				$minpledge.change();
-
-				// Exit
-				return;
-			}			
-
-			$('.edd_download_purchase_form .pledge-level').each( function() {
-
-				if ( $(this).data('price') <= pledge && $(this).hasClass('not-available') === false ) {
-					$maxpledge = $(this);
-				} 
-				// This pledge's amount is greater than the amount set
-				else {										
-					return false;
-				}
-			});
-
-			// Select the maximum pledge
-			$maxpledge.find('input').prop('checked', true);
 		});
 	});	
 

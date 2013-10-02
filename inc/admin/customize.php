@@ -667,7 +667,7 @@ body, .icon, input[type=submit]:hover, input[type=reset]:hover, input[type=submi
 <?php endif ?>
 .campaign-excerpt, .active-campaign .share .icon:before { text-shadow: 0 1px 1px <?php echo $body_text ?>; text-shadow: 0 1px 1px <?php echo $this->rgb($body_text_rgb, 0.7) ?>;}
 .button.button-alt, .button.button-alt:hover, .account-links .button.button-alt, .button.button-secondary, .button.button-secondary:hover, .shadow-wrapper:before, .shadow-wrapper:after { border-color: <?php echo $body_text ?>; }
-input[type=submit], input[type=reset], button, .button, .button.button-alt:hover, .button.button-secondary:hover, .audiojs, .campaign-pledge-levels.accordion h3, .account-links .button.button-alt:hover:before { background-color: <?php echo $body_text ?>; }
+input[type=submit], input[type=reset], button, .button, .button.button-alt:hover, .button.button-secondary:hover, .audiojs, .campaign-pledge-levels.accordion h3, .account-links .button.button-alt:hover:before, .campaign-preview .edd_errors { background-color: <?php echo $body_text ?>; }
 input[type=submit], input[type=reset], button, .button { box-shadow: 0 0 0 3px <?php echo $body_text ?>; }
 .active-campaign .campaign-image .wp-post-image { box-shadow: 0 0 3px 1px <?php echo $this->rgb($body_text_rgb, 0.3) ?>;}
 

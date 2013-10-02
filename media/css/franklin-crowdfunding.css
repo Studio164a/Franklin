@@ -17,6 +17,13 @@
 	text-align: center;
 }
 
+.campaign-preview .edd_errors {
+	padding: 24px 0; padding: 2.4rem 0;
+	font-size: 16px; 
+	font-style: italic;
+	text-align: center;
+}
+
 /* 2.0 - Active campaign 
 ================================================== */
 .active-campaign {		
@@ -41,7 +48,6 @@
 
 	overflow: hidden;
 }
-
 
 .active-campaign .wp-post-image {
 	width: 100%;
