@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Franklin Wordpress Theme\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-04 19:34+0930\n"
-"PO-Revision-Date: 2013-10-04 19:34+0930\n"
+"POT-Creation-Date: 2013-10-04 20:07+0930\n"
+"PO-Revision-Date: 2013-10-04 20:07+0930\n"
 "Last-Translator: Eric Daams <eric@164a.com>\n"
 "Language-Team: Studio164a <eric@164a.com>\n"
 "MIME-Version: 1.0\n"
@@ -251,52 +251,76 @@ msgstr ""
 msgid "Seconds"
 msgstr ""
 
-#: ../functions.php:239
+#: ../functions.php:171
+msgid "Year"
+msgstr ""
+
+#: ../functions.php:172
+msgid "Month"
+msgstr ""
+
+#: ../functions.php:173
+msgid "Day"
+msgstr ""
+
+#: ../functions.php:174
+msgid "Hour"
+msgstr ""
+
+#: ../functions.php:175
+msgid "Minute"
+msgstr ""
+
+#: ../functions.php:176
+msgid "Second"
+msgstr ""
+
+#: ../functions.php:245
 msgid "Default sidebar"
 msgstr ""
 
-#: ../functions.php:240
+#: ../functions.php:246
 msgid "The default sidebar."
 msgstr ""
 
-#: ../functions.php:249
+#: ../functions.php:255
 msgid "Campaign sidebar"
 msgstr ""
 
-#: ../functions.php:250
+#: ../functions.php:256
 msgid "The campaign sidebar."
 msgstr ""
 
-#: ../functions.php:259
+#: ../functions.php:265
 msgid "Campaign below content"
 msgstr ""
 
-#: ../functions.php:260
+#: ../functions.php:266
 msgid "Displayed below the campaign's content, but above the comment section."
 msgstr ""
 
-#: ../functions.php:269
+#: ../functions.php:275
 msgid "Footer left"
 msgstr ""
 
-#: ../functions.php:278
+#: ../functions.php:284
 msgid "Footer right"
 msgstr ""
 
-#: ../functions.php:295 ../functions.php:296
+#: ../functions.php:301 ../functions.php:302
 msgid "Hide post/page meta"
 msgstr ""
 
-#: ../functions.php:312
+#: ../functions.php:318
 msgid "Hide post/page meta?"
 msgstr ""
 
-#: ../functions.php:384
+#: ../functions.php:390
 #, php-format
 msgid "Keep reading %s"
 msgstr ""
 
-#: ../functions.php:384
+#: ../functions.php:390
 msgid "Continue Reading"
 msgstr ""
 
