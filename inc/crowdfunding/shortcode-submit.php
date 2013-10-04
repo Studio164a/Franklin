@@ -43,14 +43,14 @@ else {
 	 * @return void
 	 */
 	function franklin_atcf_submit_campaign() {		
-		remove_action( 'atcf_shortcode_submit_field_number', 'atcf_shortcode_submit_field_number', 10, 4 );
-		add_action( 'atcf_shortcode_submit_field_number', 'franklin_atcf_shortcode_submit_field_number', 10, 4 );
+		remove_action( 'atcf_shortcode_submit_field_number', 'atcf_shortcode_submit_field_number', 10, 3 );
+		add_action( 'atcf_shortcode_submit_field_number', 'franklin_atcf_shortcode_submit_field_number', 10, 3 );
 
-		remove_action( 'atcf_shortcode_submit_field_term_checklist', 'atcf_shortcode_submit_field_term_checklist', 10, 4 );
-		add_action( 'atcf_shortcode_submit_field_term_checklist', 'franklin_atcf_shortcode_submit_field_term_checklist', 10, 4 );
+		remove_action( 'atcf_shortcode_submit_field_term_checklist', 'atcf_shortcode_submit_field_term_checklist', 10, 3 );
+		add_action( 'atcf_shortcode_submit_field_term_checklist', 'franklin_atcf_shortcode_submit_field_term_checklist', 10, 3 );
 
-		remove_action( 'atcf_shortcode_submit_field_rewards', 'atcf_shortcode_submit_field_rewards', 10, 4 );
-		add_action( 'atcf_shortcode_submit_field_rewards', 'franklin_atcf_shortcode_submit_field_rewards_action', 10, 4 );
+		remove_action( 'atcf_shortcode_submit_field_rewards', 'atcf_shortcode_submit_field_rewards', 10, 3 );
+		add_action( 'atcf_shortcode_submit_field_rewards', 'franklin_atcf_shortcode_submit_field_rewards_action', 10, 3 );
 	}
 
 	add_action( 'init', 'franklin_atcf_submit_campaign', 11 );		
@@ -61,17 +61,16 @@ else {
  * 
  * @param $key The key of the current field.
  * @param $field The array of field arguments.
- * @param $atts The shortcoe attribtues.
- * @param $campaign The current campaign (if editing/previewing).
+ * @param $args The array of arguments relating to the current state of the campaign
  * @return void
  * @since Franklin 1.4.2
  */
-function franklin_atcf_shortcode_submit_field_number( $key, $field, $atts, $campaign ) {
+function franklin_atcf_shortcode_submit_field_number( $key, $field, $args ) {
 	if ( $key == 'length' ) {
-		franklin_atcf_shortcode_submit_field_length( $atts, $campaign );
+		franklin_atcf_shortcode_submit_field_length( $args, $args['campaign'] );
 	} 
 	else {
-		atcf_shortcode_submit_field_number( $key, $field, $atts, $campaign );
+		atcf_shortcode_submit_field_number( $key, $field, $args );
 	}	
 }
 
@@ -80,13 +79,12 @@ function franklin_atcf_shortcode_submit_field_number( $key, $field, $atts, $camp
  * 
  * @param $key The key of the current field.
  * @param $field The array of field arguments.
- * @param $atts The shortcoe attribtues.
- * @param $campaign The current campaign (if editing/previewing).
+ * @param $args The array of arguments relating to the current state of the campaign
  * @return void
  * @since Franklin 1.4.2
  */
-function franklin_atcf_shortcode_submit_field_rewards_action( $key, $field, $atts, $campaign ) {
-	franklin_atcf_shortcode_submit_field_rewards( $atts, $campaign );
+function franklin_atcf_shortcode_submit_field_rewards_action( $key, $field, $args ) {
+	franklin_atcf_shortcode_submit_field_rewards( $args, $args['campaign'] );
 }
 
 
@@ -95,12 +93,11 @@ function franklin_atcf_shortcode_submit_field_rewards_action( $key, $field, $att
  * 
  * @param $key The key of the current field.
  * @param $field The array of field arguments.
- * @param $atts The shortcoe attribtues.
- * @param $campaign The current campaign (if editing/previewing).
+ * @param $args The array of arguments relating to the current state of the campaign
  * @return void
  * @since Franklin 1.4.2
  */
-function franklin_atcf_shortcode_submit_field_term_checklist( $key, $field, $atts, $campaign ) {
+function franklin_atcf_shortcode_submit_field_term_checklist( $key, $field, $args ) {
 	if ( ! atcf_theme_supports( 'campaign-' . $key ) ) {
 		return;
 	}
@@ -114,7 +111,7 @@ function franklin_atcf_shortcode_submit_field_term_checklist( $key, $field, $att
 
 		<ul class="atcf-multi-select cf">			
 		<?php 
-			wp_terms_checklist( isset ( $campaign->ID ) ? $campaign->ID : 0, array( 
+			wp_terms_checklist( is_null( $args['campaign'] ) ? 0 : $args['campaign']->ID, array( 
 				'taxonomy'   => 'download_' . $key,
 				'walker'     => new ATCF_Walker_Terms_Checklist
 			) );
@@ -127,15 +124,15 @@ function franklin_atcf_shortcode_submit_field_term_checklist( $key, $field, $att
 /**
  * Campaign Length 
  *
- * @param array $atts
- * @param ATCF_Campaign $campaign
+ * @param array $args
+ * @param null|ATCF_Campaign $campaign
  * @return void
  * @since Franklin 1.1
  */
-function franklin_atcf_shortcode_submit_field_length( $atts, $campaign ) {
+function franklin_atcf_shortcode_submit_field_length( $args, $campaign ) {
 	global $post, $edd_options;
 
-	if ( $atts[ 'editing' ] && $post->post_status != 'draft' )
+	if ( $args[ 'editing' ] )
 		return;
 
 	$min = isset ( $edd_options[ 'atcf_campaign_length_min' ] ) ? $edd_options[ 'atcf_campaign_length_min' ] : 14;
@@ -145,7 +142,7 @@ function franklin_atcf_shortcode_submit_field_length( $atts, $campaign ) {
 
 	$start = apply_filters( 'atcf_shortcode_submit_field_length_start', round( ( $min + $max ) / 2 ) );
 
-	$length = $atts[ 'previewing' ] ? $campaign->days_remaining() : null;
+	$length = is_null( $campaign ) ? null : $campaign->days_remaining();
 ?>
 	<p class="atcf-submit-campaign-length">
 		<label for="length"><?php _e( 'Length (Days)', 'franklin' ); ?></label>
@@ -324,3 +321,20 @@ function franklin_atcf_shortcode_submit_field_terms( $atts, $campaign ) {
 	edd_agree_to_terms_js();
 	franklin_edd_terms_agreement();
 }
+
+
+function franklin_atcf_campaign_submit_validate() {
+	// if ( defined('ICL_SITEPRESS_VERSION') ) {
+	// 	require ICL_PLUGIN_PATH . '/lib/icl_api.php';
+	// 	require ICL_PLUGIN_PATH . '/lib/xml2array.php';
+	// 	require ICL_PLUGIN_PATH . '/lib/Snoopy.class.php';
+	// 	require ICL_PLUGIN_PATH . '/inc/translation-management/translation-management.class.php';
+	// 	require ICL_PLUGIN_PATH . '/inc/translation-management/pro-translation.class.php';        
+	// 	require ICL_PLUGIN_PATH . '/inc/pointers.php';        
+
+ //    	global $iclTranslationManagement, $ICL_Pro_Translation;
+ //        $iclTranslationManagement = new TranslationManagement;
+ //        $ICL_Pro_Translation = new ICL_Pro_Translation();   
+	// }
+}
+add_action( 'atcf_campaign_submit_validate', 'franklin_atcf_campaign_submit_validate' );
