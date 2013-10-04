@@ -21,7 +21,10 @@ get_header(); ?>
 						<?php endif ?>
 						
 						<div class="entry cf">				
-							<?php echo atcf_shortcode_submit() ?>
+							<?php echo atcf_shortcode_submit( array(
+							    'editing'    => is_preview() ? false : true, 
+    							'previewing' => is_preview() ? true : false  
+    						) ) ?>
 						</div>						
 
 					</article>	
