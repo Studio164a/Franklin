@@ -167,7 +167,13 @@ class Franklin_Theme {
             'days' => __( 'Days', 'franklin' ), 
             'hours' => __( 'Hours', 'franklin' ), 
             'minutes' => __( 'Minutes', 'franklin' ), 
-            'seconds' => __( 'Seconds', 'franklin' )
+            'seconds' => __( 'Seconds', 'franklin' ), 
+            'year' => __( 'Year', 'franklin' ), 
+            'month' => __( 'Month', 'franklin' ), 
+            'day' => __( 'Day', 'franklin' ), 
+            'hour' => __( 'Hour', 'franklin' ), 
+            'minute' => __( 'Minute', 'franklin' ), 
+            'second' => __( 'Second', 'franklin' )
         ) ); 
     } 
 

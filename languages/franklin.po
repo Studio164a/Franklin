@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Franklin Wordpress Theme\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-30 10:41+0930\n"
-"PO-Revision-Date: 2013-08-30 10:41+0930\n"
+"POT-Creation-Date: 2013-10-04 19:34+0930\n"
+"PO-Revision-Date: 2013-10-04 19:34+0930\n"
 "Last-Translator: Eric Daams <eric@164a.com>\n"
 "Language-Team: Studio164a <eric@164a.com>\n"
 "MIME-Version: 1.0\n"
@@ -251,52 +251,52 @@ msgstr ""
 msgid "Seconds"
 msgstr ""
 
-#: ../functions.php:245
+#: ../functions.php:239
 msgid "Default sidebar"
 msgstr ""
 
-#: ../functions.php:246
+#: ../functions.php:240
 msgid "The default sidebar."
 msgstr ""
 
-#: ../functions.php:255
+#: ../functions.php:249
 msgid "Campaign sidebar"
 msgstr ""
 
-#: ../functions.php:256
+#: ../functions.php:250
 msgid "The campaign sidebar."
 msgstr ""
 
-#: ../functions.php:265
+#: ../functions.php:259
 msgid "Campaign below content"
 msgstr ""
 
-#: ../functions.php:266
+#: ../functions.php:260
 msgid "Displayed below the campaign's content, but above the comment section."
 msgstr ""
 
-#: ../functions.php:275
+#: ../functions.php:269
 msgid "Footer left"
 msgstr ""
 
-#: ../functions.php:284
+#: ../functions.php:278
 msgid "Footer right"
 msgstr ""
 
-#: ../functions.php:301 ../functions.php:302
+#: ../functions.php:295 ../functions.php:296
 msgid "Hide post/page meta"
 msgstr ""
 
-#: ../functions.php:318
+#: ../functions.php:312
 msgid "Hide post/page meta?"
 msgstr ""
 
-#: ../functions.php:390
+#: ../functions.php:384
 #, php-format
 msgid "Keep reading %s"
 msgstr ""
 
-#: ../functions.php:390
+#: ../functions.php:384
 msgid "Continue Reading"
 msgstr ""
 
@@ -365,15 +365,15 @@ msgstr ""
 msgid "Leave your comment"
 msgstr ""
 
-#: ../inc/comments.php:80 ../inc/crowdfunding/template.php:468
+#: ../inc/comments.php:80 ../inc/crowdfunding/template.php:470
 msgid "Pingback:"
 msgstr ""
 
-#: ../inc/comments.php:81 ../inc/crowdfunding/template.php:469
+#: ../inc/comments.php:81 ../inc/crowdfunding/template.php:471
 msgid "Edit"
 msgstr ""
 
-#: ../inc/comments.php:94 ../inc/crowdfunding/template.php:482
+#: ../inc/comments.php:94 ../inc/crowdfunding/template.php:484
 msgid "Author"
 msgstr ""
 
@@ -382,7 +382,7 @@ msgctxt "comment post on date at time"
 msgid "at"
 msgstr ""
 
-#: ../inc/comments.php:99 ../inc/crowdfunding/template.php:489
+#: ../inc/comments.php:99 ../inc/crowdfunding/template.php:491
 msgctxt "reply to comment"
 msgid "Reply"
 msgstr ""
@@ -647,63 +647,54 @@ msgstr ""
 msgid "Default"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:157
-msgid "Login"
-msgstr ""
-
-#: ../inc/crowdfunding/crowdfunding.class.php:161
-#: ../inc/crowdfunding/template.php:211
-msgid "Register"
-msgstr ""
-
-#: ../inc/crowdfunding/crowdfunding.class.php:193
+#: ../inc/crowdfunding/crowdfunding.class.php:189
 msgid "Page Options"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:197
-#: ../inc/crowdfunding/template.php:431
+#: ../inc/crowdfunding/crowdfunding.class.php:193
+#: ../inc/crowdfunding/template.php:433
 msgid "Campaign"
 msgid_plural "Campaigns"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:216
+#: ../inc/crowdfunding/crowdfunding.class.php:212
 msgid "Featured Campaigns"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:219
+#: ../inc/crowdfunding/crowdfunding.class.php:215
 msgid "Campaign(s) to show:"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:221
+#: ../inc/crowdfunding/crowdfunding.class.php:217
 msgid "Ending soonest"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:222
+#: ../inc/crowdfunding/crowdfunding.class.php:218
 msgid "Most recent"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:223
+#: ../inc/crowdfunding/crowdfunding.class.php:219
 msgid "Random"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:225
+#: ../inc/crowdfunding/crowdfunding.class.php:221
 msgid "Specific campaign"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:254
+#: ../inc/crowdfunding/crowdfunding.class.php:250
 msgid "Link to featured campaigns page"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:256
+#: ../inc/crowdfunding/crowdfunding.class.php:252
 msgid "- Select -"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:267
+#: ../inc/crowdfunding/crowdfunding.class.php:263
 msgid "Featured campaigns page link text"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:297
+#: ../inc/crowdfunding/crowdfunding.class.php:293
 msgid "Select a campaign:"
 msgstr ""
 
@@ -719,71 +710,71 @@ msgstr ""
 msgid "ago"
 msgstr ""
 
-#: ../inc/crowdfunding/shortcode-submit.php:167
+#: ../inc/crowdfunding/shortcode-submit.php:144
 #, php-format
 msgid "Your campaign's length can be between %d and %d days"
 msgstr ""
 
-#: ../inc/crowdfunding/shortcode-submit.php:174
+#: ../inc/crowdfunding/shortcode-submit.php:151
 msgid "Length (Days)"
 msgstr ""
 
-#: ../inc/crowdfunding/shortcode-submit.php:191
+#: ../inc/crowdfunding/shortcode-submit.php:168
 msgid "Category"
 msgstr ""
 
-#: ../inc/crowdfunding/shortcode-submit.php:203
+#: ../inc/crowdfunding/shortcode-submit.php:180
 msgid "Tags"
 msgstr ""
 
-#: ../inc/crowdfunding/shortcode-submit.php:224
+#: ../inc/crowdfunding/shortcode-submit.php:205
 msgid "Backer Rewards"
 msgstr ""
 
-#: ../inc/crowdfunding/shortcode-submit.php:227
+#: ../inc/crowdfunding/shortcode-submit.php:208
 msgid "Collect shipping information on checkout."
 msgstr ""
 
-#: ../inc/crowdfunding/shortcode-submit.php:231
+#: ../inc/crowdfunding/shortcode-submit.php:212
 msgid "No rewards, donations only."
 msgstr ""
 
-#: ../inc/crowdfunding/shortcode-submit.php:247
+#: ../inc/crowdfunding/shortcode-submit.php:228
 #, php-format
 msgid "Amount (%s)"
 msgstr ""
 
-#: ../inc/crowdfunding/shortcode-submit.php:252
+#: ../inc/crowdfunding/shortcode-submit.php:233
 msgid "Limit"
 msgstr ""
 
-#: ../inc/crowdfunding/shortcode-submit.php:257
+#: ../inc/crowdfunding/shortcode-submit.php:238
 msgid "Reward"
 msgstr ""
 
-#: ../inc/crowdfunding/shortcode-submit.php:265
+#: ../inc/crowdfunding/shortcode-submit.php:246
 msgid "Remove"
 msgstr ""
 
-#: ../inc/crowdfunding/shortcode-submit.php:272
+#: ../inc/crowdfunding/shortcode-submit.php:253
 msgid "+ <em>Add Reward</em>"
 msgstr ""
 
-#: ../inc/crowdfunding/shortcode-submit.php:286
+#: ../inc/crowdfunding/shortcode-submit.php:267
 msgid "Your Information"
 msgstr ""
 
-#: ../inc/crowdfunding/shortcode-submit.php:291
+#: ../inc/crowdfunding/shortcode-submit.php:272
 msgid "Contact Email"
 msgstr ""
 
-#: ../inc/crowdfunding/shortcode-submit.php:292
+#: ../inc/crowdfunding/shortcode-submit.php:273
 msgid ""
 "An account will be created for you with this email address. It must be "
 "active."
 msgstr ""
 
-#: ../inc/crowdfunding/shortcode-submit.php:295
+#: ../inc/crowdfunding/shortcode-submit.php:276
 #, php-format
 msgid ""
 "<strong>Note</strong>: You are currently logged in as %1$s. This %2$s will "
@@ -791,15 +782,15 @@ msgid ""
 "would like to make a %2$s under a new account."
 msgstr ""
 
-#: ../inc/crowdfunding/shortcode-submit.php:324
+#: ../inc/crowdfunding/shortcode-submit.php:305
 msgid "Show Terms"
 msgstr ""
 
-#: ../inc/crowdfunding/shortcode-submit.php:325
+#: ../inc/crowdfunding/shortcode-submit.php:306
 msgid "Hide Terms"
 msgstr ""
 
-#: ../inc/crowdfunding/shortcode-submit.php:329
+#: ../inc/crowdfunding/shortcode-submit.php:310
 msgid "Agree to Terms?"
 msgstr ""
 
@@ -808,17 +799,17 @@ msgid "Enter Pledge Amount"
 msgstr ""
 
 #: ../inc/crowdfunding/template.php:79 ../inc/crowdfunding/template.php:89
-#: ../inc/crowdfunding/template.php:251 ../inc/crowdfunding/template.php:263
+#: ../inc/crowdfunding/template.php:253 ../inc/crowdfunding/template.php:265
 #, php-format
 msgctxt "pledge amount"
 msgid "Pledge %s"
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:80 ../inc/crowdfunding/template.php:257
+#: ../inc/crowdfunding/template.php:80 ../inc/crowdfunding/template.php:259
 msgid "Unlimited backers"
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:90 ../inc/crowdfunding/template.php:255
+#: ../inc/crowdfunding/template.php:90 ../inc/crowdfunding/template.php:257
 #, php-format
 msgid "%d of %d remaining"
 msgstr ""
@@ -839,24 +830,32 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:315
+#: ../inc/crowdfunding/template.php:211 ../inc/crowdfunding/template.php:520
+msgid "Register"
+msgstr ""
+
+#: ../inc/crowdfunding/template.php:317
 msgid "No backers yet. Be the first!"
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:434
+#: ../inc/crowdfunding/template.php:436
 #, php-format
 msgid "%s Funded"
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:438
+#: ../inc/crowdfunding/template.php:440
 msgid "Backer"
 msgid_plural "Backers"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../inc/crowdfunding/template.php:488
+#: ../inc/crowdfunding/template.php:490
 #, php-format
 msgid "%s ago"
+msgstr ""
+
+#: ../inc/crowdfunding/template.php:516
+msgid "Login"
 msgstr ""
 
 #: ../inc/crowdfunding/widgets/campaign-backers.php:17
@@ -868,7 +867,7 @@ msgid "Display a campaign's backers."
 msgstr ""
 
 #: ../inc/crowdfunding/widgets/campaign-backers.php:66
-#: ../inc/crowdfunding/widgets/campaign-pledge-levels.php:54
+#: ../inc/crowdfunding/widgets/campaign-pledge-levels.php:53
 #: ../inc/crowdfunding/widgets/campaign-updates.php:62
 #: ../inc/crowdfunding/widgets/campaign-video.php:54
 #: ../inc/crowdfunding/widgets/stats.php:44 ../inc/widgets/sofa-posts.php:40
@@ -876,21 +875,21 @@ msgid "Title:"
 msgstr ""
 
 #: ../inc/crowdfunding/widgets/campaign-backers.php:72
-#: ../inc/crowdfunding/widgets/campaign-pledge-levels.php:59
+#: ../inc/crowdfunding/widgets/campaign-pledge-levels.php:58
 #: ../inc/crowdfunding/widgets/campaign-updates.php:67
 #: ../inc/crowdfunding/widgets/campaign-video.php:59
 msgid "Campaign:"
 msgstr ""
 
 #: ../inc/crowdfunding/widgets/campaign-backers.php:74
-#: ../inc/crowdfunding/widgets/campaign-pledge-levels.php:61
+#: ../inc/crowdfunding/widgets/campaign-pledge-levels.php:60
 #: ../inc/crowdfunding/widgets/campaign-updates.php:69
 #: ../inc/crowdfunding/widgets/campaign-video.php:61
 msgid "Campaign currently viewed"
 msgstr ""
 
 #: ../inc/crowdfunding/widgets/campaign-backers.php:75
-#: ../inc/crowdfunding/widgets/campaign-pledge-levels.php:62
+#: ../inc/crowdfunding/widgets/campaign-pledge-levels.php:61
 #: ../inc/crowdfunding/widgets/campaign-updates.php:70
 #: ../inc/crowdfunding/widgets/campaign-video.php:62
 msgid "Specific campaigns"
@@ -916,11 +915,11 @@ msgstr ""
 msgid "Hide if there are no backers:"
 msgstr ""
 
-#: ../inc/crowdfunding/widgets/campaign-pledge-levels.php:17
+#: ../inc/crowdfunding/widgets/campaign-pledge-levels.php:16
 msgid "Campaign Pledge Levels"
 msgstr ""
 
-#: ../inc/crowdfunding/widgets/campaign-pledge-levels.php:18
+#: ../inc/crowdfunding/widgets/campaign-pledge-levels.php:17
 msgid "Display a campaign's pledge levels."
 msgstr ""
 
