@@ -2,7 +2,6 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 /**
  * A widget to display your campaign's pledge levels.
  * 
