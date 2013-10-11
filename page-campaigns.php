@@ -16,9 +16,11 @@ get_header() ?>
 			<div class="content-wrapper">
 				
 				<?php if ( strlen( get_the_content() ) ) : ?>
+
 					<div <?php post_class('home-content') ?>>
 						<?php the_content() ?>
 					</div>
+
 				<?php endif ?>
 
 				<div class="campaigns-grid-wrapper">								
@@ -32,7 +34,8 @@ get_header() ?>
 
 					<div class="content campaigns-grid masonry-grid">					
 
-						<?php $campaigns = new ATCF_Campaign_Query() ?>
+						<?php						
+						$campaigns = new ATCF_Campaign_Query() ?>
 
 						<?php if ( $campaigns->have_posts() ) : ?>
 
@@ -42,11 +45,17 @@ get_header() ?>
 
 								<?php get_template_part( 'campaign' ) ?>					
 
-							<?php endwhile ?>						
+							<?php endwhile ?>													
 
-						<?php endif ?>
+						<?php endif ?>						
 
-					</div>
+					</div>					
+
+					<p class="center">
+						<a class="button button-alt" href="<?php echo site_url( apply_filters( 'sofa_previous_campaigns_link', '/campaigns/page/2/' ) ) ?>">
+							<?php echo apply_filters( 'sofa_previous_campaigns_text', __( 'Previous Campaigns', 'franklin' ) ) ?>
+						</a>
+					</p>
 
 				</div>
 			

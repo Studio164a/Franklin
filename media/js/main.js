@@ -73,6 +73,25 @@ var Sofa = ( function( $ ) {
 	responsiveHide = function() {
 		// IE8 and below are dished up the mobile version, so this is always applied to them		
 		$('body').toggleClass('is-tiny', $(window).width() < 600 || $('html').hasClass('lt-ie9') );
+	}, 
+
+	// Wraps select elements in a wrapper class
+	fancySelect = function() {
+		var $select = $('select'), 
+			toggleWrapper = function($el) {
+				$el.parent().css('display', $el.css('display'))
+			};
+
+		$select.wrap('<div class="select-wrapper" />')
+		.on('change', function() {
+			toggleWrapper($(this))
+		});
+
+		$select.each( function() {
+			toggleWrapper($(this)); 
+		});
+
+		return toggleWrapper;
 	};		
 
 	return {			
@@ -91,11 +110,18 @@ var Sofa = ( function( $ ) {
 			imageHovers();
 
 			responsiveHide();
+
+			// Fancy select
+			fancySelect();
 		}, 
 
 		responsiveHide : function() {
 			responsiveHide();
-		}
+		}, 
+
+		toggleSelectWrapper: function($el) {
+			fancySelect($el)
+		} 
 	};	
 })( jQuery );
 
@@ -119,9 +145,7 @@ var Sofa = ( function( $ ) {
 		$('.accordion').accordion({
 			heightStyle: "content"
 		});
-
-		$('select').wrap('<div class="select-wrapper" />');
-
+		
 		// Load up lightbox
 		if ( typeof sofa_ie_lt9 === 'undefined' ) {
 			$(".entry a").not(".attachment,.tiled-gallery-item a").has('img').attr('data-rel', 'lightbox[]');

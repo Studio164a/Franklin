@@ -136,7 +136,7 @@
 				$countdown.countdown({
 					until: new Date( enddate.year, enddate.month-1, enddate.day ), 
 					format: 'dHMs', 
-					labels : [Sofa_Localized.years, Sofa_Localized.months, Sofa_Localized.weeks, Sofa_Localized.days, Sofa_Localized.hours, Sofa_Localized.minutes, Sofa_Localized.seconds]
+					labels : [Sofa_Localized.years, Sofa_Localized.months, Sofa_Localized.weeks, Sofa_Localized.days, Sofa_Localized.hours, Sofa_Localized.minutes, Sofa_Localized.seconds],
 					labels1 : [Sofa_Localized.year, Sofa_Localized.month, Sofa_Localized.week, Sofa_Localized.day, Sofa_Localized.hour, Sofa_Localized.minute, Sofa_Localized.second]
 				});
 			}		
@@ -278,6 +278,8 @@
 			$(this).toggleClass('icon-remove');
 			$(this).parent().toggleClass('is-active');
 		});
+
+		$('[name=shipping_country], [name=shipping_state_ca], [name=shipping_state_us]').on( 'change', Sofa.toggleSelectWrapper($(this)))
 	});	
 
 })(jQuery);

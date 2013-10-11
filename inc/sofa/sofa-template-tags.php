@@ -109,22 +109,28 @@ if ( !function_exists( 'sofa_header_class' ) ) {
  * Displays navigation to next/previous pages when applicable.
  *
  * @param string $html_id
+ * @param WP_Query $wp_query
  * @return void
  * @since Sofa 0.1
  */
 if ( ! function_exists( 'sofa_content_nav' ) ) {
 
-	function sofa_content_nav( $html_id ) {
-		global $wp_query;
+	function sofa_content_nav( $html_id, $wp_query = null ) {		
+
+		if ( is_null( $wp_query ) ) {
+			global $wp_query;
+		}		
 
 		$html_id = esc_attr( $html_id );
 
-		$current_page = get_query_var('paged');
+		if ( is_null( $current_page ) ) {
+			$current_page = get_query_var('paged');
+		}
 
 		if ( $wp_query->max_num_pages > 1 ) :
 
-			$next_posts_link = get_next_posts_link( __('Older Posts', 'franklin') );
-			$previous_posts_link = get_previous_posts_link( __('Newer Posts', 'franklin') );
+			$next_posts_link = get_next_posts_link( apply_filters( 'sofa_older_posts_text', __('Older Posts', 'franklin'), $wp_query ), $wp_query->max_num_pages );
+			$previous_posts_link = get_previous_posts_link( apply_filters( 'sofa_newer_posts_text', __('Newer Posts', 'franklin'), $wp_query ) );
 			?>
 
 			<nav id="<?php echo $html_id; ?>" class="pagination nav-after" role="navigation">

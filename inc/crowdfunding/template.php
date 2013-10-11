@@ -320,7 +320,7 @@ if ( !function_exists('franklin_campaign_backers') ) {
 
 			$number = count($backers) > $number ? $number : count($backers);		
 			?>
-			<ul>
+			<ul class="masonry-grid">
 
 			<?php for( $i = 0; $i <= $number; $i++ ) : ?>
 

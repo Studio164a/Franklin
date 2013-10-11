@@ -9,7 +9,7 @@ get_header() ?>
 
 	<div class="content-wrapper">
 		
-		<div class="content campaigns-grid masonry-grid">
+		<div class="content campaigns-grid masonry-grid">			
 
 			<?php if ( have_posts() ) : ?>
 
@@ -19,11 +19,13 @@ get_header() ?>
 
 					<?php get_template_part( 'campaign' ) ?>					
 
-				<?php endwhile ?>
+				<?php endwhile ?>				
 
-			<?php endif ?>
+			<?php endif ?>			
 
 		</div>
+
+		<?php sofa_content_nav( 'nav_below' ) ?>
 	
 	</div>
 

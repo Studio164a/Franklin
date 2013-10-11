@@ -62,6 +62,8 @@ class Sofa_Crowdfunding_Helper {
         add_filter('atcf_submit_field_description_editor_args', array(&$this, 'atcf_submit_field_updates_editor_args_filter'));
         add_filter('atcf_submit_field_updates_editor_args', array(&$this, 'atcf_submit_field_updates_editor_args_filter'));
         add_filter('the_content', array(&$this, 'the_content_filter'));
+        add_filter('sofa_older_posts_text', array(&$this, 'sofa_older_posts_text_filter'), 10, 2);
+        add_filter('sofa_newer_posts_text', array(&$this, 'sofa_newer_posts_text_filter'), 10, 2);
 
         add_shortcode('campaign_pledge_levels', array(&$this, 'campaign_pledge_levels_shortcode'));
     }
@@ -690,6 +692,34 @@ class Sofa_Crowdfunding_Helper {
     public function is_viewing_widget() {
         return $this->viewing_widget;
     }
+
+    /**
+     * Change the text of the previous posts pagination link.
+     * 
+     * @param string $default
+     * @param WP_Query $wp_query
+     * @return string
+     * @since Franklin 1.4.5
+     */
+    public function sofa_older_posts_text_filter($default, $wp_query) {
+        if ( $wp_query->get('post_type') == 'download' ) {
+            return __( 'Older Campaigns', 'franklin' );
+        }
+    }
+
+    /**
+     * Change the text of the next posts pagination link.
+     * 
+     * @param string $default
+     * @param WP_Query $wp_query
+     * @return string
+     * @since Franklin 1.4.5
+     */
+    public function sofa_newer_posts_text_filter($default, $wp_query) {
+        if ( $wp_query->get('post_type') == 'download' ) {
+            return __( 'Newer Campaigns', 'franklin' );
+        }    
+    }    
 }
 
 // Use this function to retrieve the one true instance of the Sofa_Crowdfunding_Helper class.
