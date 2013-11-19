@@ -4,7 +4,7 @@ Theme URI: http://164a.com
 Author: Studio164a
 Author URI: http://164a.com
 Description: A responsive, retina ready Wordpress crowdfunding theme.
-Version: 1.4.5
+Version: 1.5
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: 
@@ -197,7 +197,8 @@ p:focus {
 
 .entry, 
 .comment, 
-.widget {
+.widget, 
+pre {
 	overflow: hidden;
 	text-overflow: ellipsis;
 
@@ -207,6 +208,13 @@ p:focus {
 	-webkit-hyphens: auto;
    	-moz-hyphens: auto;
     hyphens: auto;
+}
+
+pre {
+	white-space: pre-wrap;
+	white-space: -moz-pre-wrap;
+	white-space: -pre-pre-wrap;
+	white-space: -o-pre-wrap;
 }
 
 /* 1.3 -- Links ***/
@@ -753,7 +761,7 @@ pre {
 
 /* 2.1 -- Default ***/
 
-body {		
+.site-container {		
 	position: relative;
 	max-width: 600px; max-width: 60rem; /* This will be our fallback for any browser that does not support media queries */
 	margin: 0 auto;
@@ -1044,6 +1052,19 @@ body {
 
 .post-password-required label {
 	margin-bottom: 6px; margin-bottom: 0.6rem;
+}
+
+.feature-block {		
+	width: 100%;
+	padding: 0 0 36px; padding-bottom: 3.6rem;
+	background-repeat: repeat;
+
+	/* Transition */
+	-ms-transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-moz-transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-o-transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	-webkit-transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
+	transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
 }
 
 /* 5.1 --- Entry Header ***/
@@ -1461,6 +1482,22 @@ h2.post-title {
 	font-size: 20px; font-size: 2rem;
 }
 
+/* 5.13 --- Alternative Homepage Template ***/
+
+.feature-block.page {
+	padding-top: 36px; padding-top: 3.6rem;
+}
+
+.feature-block.page .page-title {
+	padding-bottom: 36px; padding-bottom: 3.6rem;
+	border-color: rgba(255, 255, 255, 0.3);
+}
+
+.feature-block.page .entry {
+	font-size: 18px; font-size: 1.8rem;
+	line-height: 28px; line-height: 2.8rem;
+}
+
 /* 6.0 -- Sidebar
 ================================================== */
 
@@ -1719,7 +1756,7 @@ h2.post-title {
 	}
 
 	/* Site structure */
-	body {
+	.site-container {
 		max-width: 100%;
 	}
 
@@ -2057,6 +2094,10 @@ h2.post-title {
 	.gallery-columns-10 .gallery-caption {
 		display: none;
 	}
+
+	.feature-block {
+		padding-bottom: 36px; padding-bottom: 3.6rem;
+	}		
 }
 
 /* 8.3 --- Greater than 880px ***/
@@ -2076,7 +2117,7 @@ h2.post-title {
 
 @media all and (min-width: 74.375em) {
 
-	body {			
+	.site-container {			
 		width: 119rem;
 	}
 
@@ -2089,6 +2130,13 @@ h2.post-title {
 		left: -0.9rem;
 		padding-left: 0.9rem;
 		padding-right: 0.9rem;		
+	}
+
+	.feature-block {
+		width: 100%;
+		padding-right: 0.9rem; padding-left: 0.9rem;
+		position: relative;
+		left: -0.9rem;	
 	}
 
 	.shadow-wrapper::before,

@@ -184,7 +184,7 @@ class Franklin_Theme {
      * @since Franklin 1.0
      */
     public function wp_head () {
-        echo apply_filters( 'franklin_font_link', "<link href='http://fonts.googleapis.com/css?family=Merriweather:400,400italic,700italic,700,300italic,300|Oswald:400,300' rel='stylesheet' type='text/css'>" );
+        echo apply_filters( 'franklin_font_link', "<link href='//fonts.googleapis.com/css?family=Merriweather:400,400italic,700italic,700,300italic,300|Oswald:400,300' rel='stylesheet' type='text/css'>" );
 
         ?>
         <!--<script src="<?php echo $this->sofa->plugin_dir_url ?>/js/respond.min.js" type="text/javascript"></script>-->        
@@ -193,7 +193,7 @@ class Franklin_Theme {
         if ( is_page_template('page-contact.php') ) {
             remove_filter( 'the_content', 'ninja_forms_append_to_page', 9999 );
         }
-    }
+    }    
 
     /**
      * Executes on the after_setup_theme hook

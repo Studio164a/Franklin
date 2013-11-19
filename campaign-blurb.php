@@ -5,7 +5,7 @@
 <?php if ( $campaign === false ) return ?>
 
 <!-- Active campaign -->
-<section class="active-campaign current-campaign cf <?php if ( !$campaign->is_active() ) : ?>ended<?php endif ?>">
+<section class="active-campaign current-campaign feature-block cf <?php if ( !$campaign->is_active() ) : ?>ended<?php endif ?>">
 
 	<div class="shadow-wrapper">
 

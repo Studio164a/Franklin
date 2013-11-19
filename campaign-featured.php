@@ -7,7 +7,7 @@
 <?php if ( $campaigns->have_posts() ) : ?>
 
 	<!-- Featured campaigns -->
-	<section class="active-campaign featured-campaigns cf">
+	<section class="active-campaign featured-campaigns feature-block cf">
 
 		<div class="shadow-wrapper">
 

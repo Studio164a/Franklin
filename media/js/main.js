@@ -148,7 +148,8 @@ var Sofa = ( function( $ ) {
 		
 		// Load up lightbox
 		if ( typeof sofa_ie_lt9 === 'undefined' ) {
-			$(".entry a").not(".attachment,.tiled-gallery-item a").has('img').attr('data-rel', 'lightbox[]');
+			// $(".entry a").not(".attachment,.tiled-gallery-item a").has('img').attr('data-rel', 'lightbox[]');
+			$('.lightbox').attr('data-rel', 'lightbox[]');
 			$("[data-rel^='lightbox']").prettyPhoto({ theme: 'pp_sofa', hook: 'data-rel' });
 		}				
 

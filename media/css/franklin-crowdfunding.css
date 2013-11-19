@@ -26,20 +26,7 @@
 
 /* 2.0 - Active campaign 
 ================================================== */
-.active-campaign {		
-	width: 100%;
-	padding: 0 0 36px; padding-bottom: 3.6rem;
-	background-repeat: repeat;
-
-	/* Transition */
-	-ms-transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
-	-moz-transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
-	-o-transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
-	-webkit-transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
-	transition: right 0.5s cubic-bezier(0.250, 0.250, 0.750, 0.750);
-}
-
-.active-campaign .campaign-image {
+.feature-block .campaign-image {
 	position: relative;
 	float: left;
 	width: 92%;
@@ -49,7 +36,7 @@
 	overflow: hidden;
 }
 
-.active-campaign .wp-post-image {
+.feature-block .wp-post-image {
 	width: 100%;
 }
 
@@ -84,7 +71,7 @@
 	background-color: #cc181e; 
 }
 
-.active-campaign .campaign-summary {
+.feature-block .campaign-summary {
 	padding: 36px 4% 0; padding-top: 3.6rem;
 	margin: 0 auto;	
 	max-width: 92%;
@@ -94,7 +81,7 @@
 	width: 380px; width: 38rem;	
 }
 
-.active-campaign.is-active .campaign-button {
+.feature-block.is-active .campaign-button {
 	width: 6px; width: 0.6rem;
 	height: 12px; height: 1.2rem;
 	overflow: hidden;
@@ -208,29 +195,29 @@
 	text-align: center;
 }
 
-.active-campaign .share {
+.feature-block .share {
 	padding: 0;
 	margin: 20px 4% 0 4%; margin-top: 2rem;
 	max-width: 92%;	
 	text-align: center;		
 }
 
-.active-campaign .share h6 {
+.feature-block .share h6 {
 	margin: 0 10px; margin-right: 1rem; margin-left: 1rem;
 	line-height: 22px; line-height: 2.2rem;
 }
 
-.active-campaign .share .box {
+.feature-block .share .box {
 	display: none;
 }
 
-.active-campaign .share .icon {
+.feature-block .share .icon {
 	padding: 0 10px; padding: 0 1rem;
 	font-size: 22px; font-size: 2.2rem;
 	cursor: pointer;
 }
 
-.active-campaign .share li {
+.feature-block .share li {
 	margin-bottom: 0;
 	vertical-align: top;
 }
@@ -821,6 +808,23 @@ span.description {
 	list-style-type: disc;
 }
 
+/* 13.0 - Campaign categories block
+================================================== */
+.campaign-categories {
+	padding-bottom: 36px; padding-bottom: 3.6rem;
+	font-size: 18px; font-size: 1.8rem; 
+	text-align: center;
+}
+
+.campaign-categories .block-title {
+	padding-bottom: 24px; padding-bottom: 2.4rem;
+	margin-bottom: 24px; margin-bottom: 2.4rem;
+}
+
+.campaign-categories li {
+	margin: 0 24px 12px 0; margin: 0 2.4rem 1.2rem 0;	
+}
+
 /* 12.0 - Media Queries
 ================================================== */
 
@@ -881,7 +885,7 @@ span.description {
 		margin-right: 0;
 	}	
 
-	.active-campaign .featured-campaign .campaign-status li {
+	.feature-block .featured-campaign .campaign-status li {
 		width: 18%;
 	}
 
@@ -1025,15 +1029,15 @@ span.description {
 	}
 
 	/* Featured campaign */
-	.active-campaign .featured-campaign {
+	.feature-block .featured-campaign {
 		float: left;
 		width: 92%;
 		margin: 0 4%;
 	}
 
-	.active-campaign .featured-campaign .campaign-image, 
-	.active-campaign .featured-campaign .campaign-summary, 
-	.active-campaign .featured-campaign .share {		
+	.feature-block .featured-campaign .campaign-image, 
+	.feature-block .featured-campaign .campaign-summary, 
+	.feature-block .featured-campaign .share {		
 		width: 48%;
 		width: -webkit-calc(50% - 2rem);	
 		width: -moz-calc(50% - 2rem);	
@@ -1042,16 +1046,16 @@ span.description {
 		padding: 0;	
 	}
 
-	.active-campaign .featured-campaign .campaign-image {
+	.feature-block .featured-campaign .campaign-image {
 		float: left;
 	}	
 
-	.active-campaign .featured-campaign .campaign-summary, 
-	.active-campaign .featured-campaign .share {
+	.feature-block .featured-campaign .campaign-summary, 
+	.feature-block .featured-campaign .share {
 		float: right; 			
 	}	
 
-	.active-campaign .featured-campaign .share {
+	.feature-block .featured-campaign .share {
 		clear: right;
 	}
 
@@ -1107,18 +1111,14 @@ span.description {
 		width: 14rem;
 		padding-right: 0.6rem;
 		text-align: right;		
-	}
+	}	
 }
 
 /* 10.5 --- Greater than 880px ***/
 @media all and (min-width: 55em) {
 
-	/* Campaign */
-	.active-campaign {
-		padding-bottom: 36px; padding-bottom: 3.6rem;
-	}	
-
-	.active-campaign .campaign-image {
+	/* Campaign */	
+	.feature-block .campaign-image {
 		width: 50%;
 		width: -moz-calc(92% - 43rem);
 		width: -webkit-calc(92% - 43rem);
@@ -1127,7 +1127,7 @@ span.description {
 		margin-right: 0;		
 	}
 
-	.active-campaign .campaign-image .wp-post-image {
+	.feature-block .campaign-image .wp-post-image {
 		border: 0.5rem solid;
 		border-radius: 0.4rem;
 		width: 95.3%;
@@ -1180,13 +1180,20 @@ span.description {
 	.campaigns-grid .campaign:nth-child(3n+4) {
 		clear: left;
 	}
+
+	/* Campaign categories block ***/
+	.campaign-categories ul {
+		max-width: 66rem;
+		margin: 0 auto;
+		padding: 0;
+	}
 }
 
 /* 10.6 --- Greater than 1190px ***/
 
 @media all and (min-width: 74.375em) {
 
-	.active-campaign {
+	.featured-block {
 		width: 100%;
 		padding-right: 0.9rem; padding-left: 0.9rem;
 		position: relative;

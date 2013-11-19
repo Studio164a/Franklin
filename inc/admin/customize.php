@@ -630,7 +630,7 @@ body { background-image: url(<?php echo $body_texture_use ?>); }
 
 <?php if ( $campaign_texture_use !== false ) : ?>
 /* Campaign background */
-.active-campaign { background-image: url(<?php echo $campaign_texture_use ?>); }
+.feature-block, .feature-block.page { background-image: url(<?php echo $campaign_texture_use ?>); }
 <?php endif ?>
 
 <?php if ( $blog_banner_texture_use !== false ) : ?>
@@ -640,8 +640,8 @@ body { background-image: url(<?php echo $body_texture_use ?>); }
 
 /* Accent colour */
 a, .menu-button, .menu-site a:hover, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, body .button.accent:hover, .button.accent.button-alt, .social a:hover, .menu-site .current-menu-item > a, .campaign .campaign-status .campaign-raised span, .campaign .campaign-status .campaign-pledged span, .campaign .campaign-status .campaign-time-left span, #lang_sel ul ul a, #lang_sel ul ul a:visited, #campaign-widget-sharing h2 { color: <?php echo $accent_colour ?>; }
-.campaign-button, .active-campaign, .sticky.block, .button.accent, .button.accent.button-alt:hover, .banner, .gallery-icon, .featured-image a, .edd_success { background-color: <?php echo $accent_colour ?>; color: <?php echo $accent_text ?>; }
-.active-campaign .share, .active-campaign .more-link, .featured-campaign .button.button-alt:hover, .active-campaign .share .icon:before { color: <?php echo $accent_text ?>; }
+.campaign-button, .feature-block.page, .feature-block, .feature-block.page .page-title, .sticky.block, .button.accent, .button.accent.button-alt:hover, .banner, .gallery-icon, .featured-image a, .edd_success { background-color: <?php echo $accent_colour ?>; color: <?php echo $accent_text ?>; }
+.feature-block .share, .feature-block .more-link, .featured-campaign .button.button-alt:hover, .feature-block .share .icon:before { color: <?php echo $accent_text ?>; }
 .button.accent, .campaign-support .button.accent:hover { box-shadow: 0 0 0 0.3rem <?php echo $accent_colour ?>; }
 .menu-site .hovering > a { border-color: <?php echo $accent_colour ?>; border-color: <?php echo $this->rgb($accent_rgb, 0.7) ?>; }
 .page-template-default #header, .is-active > .menu-site { border-color: <?php echo $accent_colour ?>; }
@@ -649,7 +649,7 @@ input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, in
 
 /* Accent hover */
 a:hover { color: <?php echo $accent_hover ?>;}
-.sticky .post-title, .barometer .filled, .button.accent, .active-campaign .campaign-image .wp-post-image, .site-navigation ul { border-color: <?php echo $accent_hover ?>; }
+.sticky .post-title, .barometer .filled, .button.accent, .feature-block .campaign-image .wp-post-image, .site-navigation ul { border-color: <?php echo $accent_hover ?>; }
 
 /* Secondary accent text */
 .featured-campaign .campaign-summary h3 a, .featured-campaign .button.button-alt, .campaign-ended .time-ago { color: <?php echo $accent_text_secondary ?>; }
@@ -661,7 +661,7 @@ body, .audiojs .loaded, .edd_errors { background-color: <?php echo $body_backgro
 .audiojs .play-pause { border-right-color: <?php echo $body_background ?>; }
 
 /* Body copy */
-body, .icon, input[type=submit]:hover, input[type=reset]:hover, input[type=submit]:focus, input[type=reset]:focus, input[type=submit]:active, input[type=reset]:active, button:hover, .button:hover, .button.accent:hover, .button.button-alt, .button.button-secondary, .menu-site a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title, .with-icon:before, .widget_search #searchsubmit:before, #lang_sel a.lang_sel_sel, #campaign-widget-sharing { color: <?php echo $body_text ?>; }
+body, .icon, input[type=submit]:hover, input[type=reset]:hover, input[type=submit]:focus, input[type=reset]:focus, input[type=submit]:active, input[type=reset]:active, button:hover, .button:hover, .button.accent:hover, .button.button-alt, .button.button-secondary, .menu-site a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title, .with-icon:before, .widget_search #searchsubmit:before, #lang_sel a.lang_sel_sel, #campaign-widget-sharing, .campaign-categories .block-title { color: <?php echo $body_text ?>; }
 <?php if ( $body_text != $footer_titles ) : ?>
 .footer-widget .widget-title { text-shadow: 0 1px 0 <?php echo $body_text ?>; }
 <?php endif ?>

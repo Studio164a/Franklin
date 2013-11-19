@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Franklin Wordpress Theme\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-04 20:07+0930\n"
-"PO-Revision-Date: 2013-10-04 20:07+0930\n"
+"POT-Creation-Date: 2013-10-11 19:43+0930\n"
+"PO-Revision-Date: 2013-10-11 19:43+0930\n"
 "Last-Translator: Eric Daams <eric@164a.com>\n"
 "Language-Team: Studio164a <eric@164a.com>\n"
 "MIME-Version: 1.0\n"
@@ -156,7 +156,7 @@ msgstr ""
 msgid "Campaign Updates"
 msgstr ""
 
-#: ../campaign.php:33 ../inc/sofa/sofa-template-tags.php:182
+#: ../campaign.php:33 ../inc/sofa/sofa-template-tags.php:188
 #, php-format
 msgid "Link to %s"
 msgstr ""
@@ -343,8 +343,12 @@ msgid_plural "With %s comments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../page-campaigns.php:31
+#: ../page-campaigns.php:33
 msgid "Latest Projects"
+msgstr ""
+
+#: ../page-campaigns.php:56
+msgid "Previous Campaigns"
 msgstr ""
 
 #: ../search.php:14
@@ -671,55 +675,63 @@ msgstr ""
 msgid "Default"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:189
+#: ../inc/crowdfunding/crowdfunding.class.php:191
 msgid "Page Options"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:193
+#: ../inc/crowdfunding/crowdfunding.class.php:195
 #: ../inc/crowdfunding/template.php:433
 msgid "Campaign"
 msgid_plural "Campaigns"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:212
+#: ../inc/crowdfunding/crowdfunding.class.php:214
 msgid "Featured Campaigns"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:215
+#: ../inc/crowdfunding/crowdfunding.class.php:217
 msgid "Campaign(s) to show:"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:217
+#: ../inc/crowdfunding/crowdfunding.class.php:219
 msgid "Ending soonest"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:218
+#: ../inc/crowdfunding/crowdfunding.class.php:220
 msgid "Most recent"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:219
+#: ../inc/crowdfunding/crowdfunding.class.php:221
 msgid "Random"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:221
+#: ../inc/crowdfunding/crowdfunding.class.php:223
 msgid "Specific campaign"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:250
+#: ../inc/crowdfunding/crowdfunding.class.php:252
 msgid "Link to featured campaigns page"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:252
+#: ../inc/crowdfunding/crowdfunding.class.php:254
 msgid "- Select -"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:263
+#: ../inc/crowdfunding/crowdfunding.class.php:265
 msgid "Featured campaigns page link text"
 msgstr ""
 
-#: ../inc/crowdfunding/crowdfunding.class.php:293
+#: ../inc/crowdfunding/crowdfunding.class.php:295
 msgid "Select a campaign:"
+msgstr ""
+
+#: ../inc/crowdfunding/crowdfunding.class.php:706
+msgid "Older Campaigns"
+msgstr ""
+
+#: ../inc/crowdfunding/crowdfunding.class.php:720
+msgid "Newer Campaigns"
 msgstr ""
 
 #: ../inc/crowdfunding/helpers.php:32
@@ -971,15 +983,15 @@ msgstr ""
 msgid "Go to homepage"
 msgstr ""
 
-#: ../inc/sofa/sofa-template-tags.php:126
+#: ../inc/sofa/sofa-template-tags.php:132
 msgid "Older Posts"
 msgstr ""
 
-#: ../inc/sofa/sofa-template-tags.php:127
+#: ../inc/sofa/sofa-template-tags.php:133
 msgid "Newer Posts"
 msgstr ""
 
-#: ../inc/sofa/sofa-template-tags.php:131
+#: ../inc/sofa/sofa-template-tags.php:137
 msgid "Post navigation"
 msgstr ""
 

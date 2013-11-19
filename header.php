@@ -14,50 +14,53 @@
 </head>
 <body <?php body_class() ?>>
 
-	<!-- Sharing -->
-	<?php sofa_social_links() ?>	
-	<!-- End sharing -->
+	<!-- Wraps the entire site content -->
+	<div class="site-container">
 
-	<!-- Login/register -->
-	<?php get_template_part('account-links') ?>	
-	<!-- End login/register -->
+		<!-- Sharing -->
+		<?php sofa_social_links() ?>	
+		<!-- End sharing -->
 
-	<!-- Body wrapper -->
-	<div class="body-wrapper">
-	
-		<!-- Header -->
-		<header id="header" class="cf wrapper <?php sofa_header_class() ?>">			
+		<!-- Login/register -->
+		<?php get_template_part('account-links') ?>	
+		<!-- End login/register -->
 
-			<div class="site-identity">				
+		<!-- Body wrapper -->
+		<div class="body-wrapper">
+		
+			<!-- Header -->
+			<header id="header" class="cf wrapper <?php sofa_header_class() ?>">			
 
-				<a class="home-link" href="<?php echo sofa_site_url() ?>"></a>
+				<div class="site-identity">				
 
-				<!-- Site title -->
-				<?php sofa_site_title() ?>	
-				<!-- End site title -->		
+					<a class="home-link" href="<?php echo sofa_site_url() ?>"></a>
 
-				<!-- Site tagline -->
-				<?php sofa_site_tagline() ?>				
-				<!-- End site tagline -->				
+					<!-- Site title -->
+					<?php sofa_site_title() ?>	
+					<!-- End site title -->		
 
-			</div>			
+					<!-- Site tagline -->
+					<?php sofa_site_tagline() ?>				
+					<!-- End site tagline -->				
 
-			<!-- Navigation -->
-			<div class="site-navigation wrapper">		
-				
-				<nav role="navigation">
-		            <a class="menu-button toggle-button"><i class="icon-th-list"></i></a>
-		            <?php wp_nav_menu( array(   
-		                'theme_location' => 'primary_navigation',
-		                'container' => false,
-		                'menu_class' => 'menu menu-site responsive_menu' ) ) ?>
-		        </nav>
-		    </div>
-		    <!-- End navigation -->
+				</div>			
 
-		</header>
-		<!-- End header -->
+				<!-- Navigation -->
+				<div class="site-navigation wrapper">		
+					
+					<nav role="navigation">
+			            <a class="menu-button toggle-button"><i class="icon-th-list"></i></a>
+			            <?php wp_nav_menu( array(   
+			                'theme_location' => 'primary_navigation',
+			                'container' => false,
+			                'menu_class' => 'menu menu-site responsive_menu' ) ) ?>
+			        </nav>
+			    </div>
+			    <!-- End navigation -->
 
-		<!-- Main content section. Everything between the header and the footer -->
-		<div id="main" class="cf" role="main"> 	
+			</header>
+			<!-- End header -->
+
+			<!-- Main content section. Everything between the header and the footer -->
+			<div id="main" class="cf" role="main"> 	
 
