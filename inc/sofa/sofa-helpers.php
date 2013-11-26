@@ -257,3 +257,15 @@ add_filter('post_gallery', 'sofa_gallery_shortcode', 1003, 2);
 function sofa_site_url() {
 	return function_exists('wpml_get_home_url') ? wpml_get_home_url() : site_url();
 }
+
+/**
+ * Returns the given URL minus the 
+ *
+ * @param string $url
+ * @return string
+ * @since Franklin 1.5
+ */
+function sofa_condensed_url($url) {
+	$parts = parse_url($url);
+	return implode( '', array( $parts['host'], $parts['path'] ) );
+}

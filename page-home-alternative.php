@@ -13,7 +13,9 @@ get_header() ?>
 
 			<article <?php post_class("feature-block center") ?>>
 
-				<div class="shadow-wrapper">
+				<div class="shadow-wrapper">	
+
+					<?php get_template_part('layer-slider') ?>				
 
 					<h1 class="page-title"><?php the_title() ?></h1>
 
@@ -27,9 +29,17 @@ get_header() ?>
 
 			<div class="content-wrapper">
 
-				<?php get_template_part('campaign', 'categories') ?>
+				<?php if ( get_post_meta( get_the_ID(), '_franklin_homepage_2_show_campaigns', true ) ) : ?>
 
-				<?php //get_template_part('campaign', 'grid') ?>
+					<?php get_template_part('campaign', 'grid') ?>
+
+				<?php endif ?>				
+
+				<?php if ( get_post_meta( get_the_ID(), '_franklin_homepage_2_show_categories', true ) ) : ?>
+
+					<?php get_template_part('campaign', 'categories') ?>
+
+				<?php endif ?>
 
 			</div>
 

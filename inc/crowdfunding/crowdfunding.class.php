@@ -37,6 +37,7 @@ class Sofa_Crowdfunding_Helper {
         include_once('widgets/campaign-updates.php');
         include_once('widgets/campaign-backers.php');
         include_once('widgets/campaign-video.php');
+        include_once('widgets/campaign-author.php');
         include_once('widgets/stats.php');
 
     	add_action('after_setup_theme', array(&$this, 'after_setup_theme'));
@@ -176,6 +177,7 @@ class Sofa_Crowdfunding_Helper {
         register_widget( 'Sofa_Crowdfunding_Updates_Widget' );
         register_widget( 'Sofa_Crowdfunding_Video_Widget' );
         register_widget( 'Sofa_Crowdfunding_Stats_Widget' );
+        register_widget( 'Sofa_Crowdfunding_Author_Widget' );
     }
 
     /**
@@ -194,6 +196,10 @@ class Sofa_Crowdfunding_Helper {
         if ( get_page_template_slug( $post->ID ) == 'page-single-campaign.php' ) {
             add_meta_box('franklin_campaign_single_options', __( 'Campaign', 'franklin' ), array( &$this, 'single_campaign_options' ), 'page' );
         }        
+
+        if ( get_page_template_slug( $post->ID ) == 'page-home-alternative.php' ) {
+            add_meta_box('franklin_campaign_homepage_2_options', __( 'Page Options', 'franklin' ), array( &$this, 'homepage_2_options' ), 'page' );
+        }
     }
 
     /**
@@ -274,6 +280,50 @@ class Sofa_Crowdfunding_Helper {
     }
 
     /**
+     * Homepage 2 options.
+     *
+     * @return void
+     * @since Franklin 1.5
+     */
+    public function homepage_2_options($post) {        
+
+        // Use nonce for verification
+        wp_nonce_field( 'franklin_campaign', '_franklin_campaign_nonce' );
+        
+        $show_campaigns = get_post_meta( $post->ID, '_franklin_homepage_2_show_campaigns', true );
+        $show_categories = get_post_meta( $post->ID, '_franklin_homepage_2_show_categories', true );                
+        ?>        
+        <p>
+            <label for="_franklin_homepage_2_show_campaigns" id="franklin_homepage_2_show_campaigns">
+                <input type="checkbox" name="_franklin_homepage_2_show_campaigns" <?php checked($show_campaigns) ?> />
+                <?php _e( 'Display grid of most recent campaigns', 'franklin' ) ?>                
+            </label>
+        </p>
+        <p>
+            <label for="_franklin_homepage_2_show_categories" id="franklin_homepage_2_show_categories">
+                <input type="checkbox" name="_franklin_homepage_2_show_categories" <?php checked($show_categories) ?> />
+                <?php _e( 'Display list of campaign categories', 'franklin' ) ?>                
+            </label>
+        </p>
+        <?php if (defined('LS_PLUGIN_VERSION')) : 
+            $selected = get_post_meta( $post->ID, '_franklin_layer_slider', true );
+            //echo '<pre>'; print_r( lsSliders() ); echo '</pre>';
+            ?>
+            <h4><?php _e('Layer Slider', 'franklin') ?></h4>
+            <p>
+                <label for="_franklin_layer_slider" id="franklin_layer_slider">
+                    <select name="_franklin_layer_slider">
+                        <option value=""><?php _e( 'Select a slider to display', 'franklin' ) ?></option>
+                        <?php foreach ( lsSliders() as $slider ) : ?>
+                            <option value="<?php echo $slider['id'] ?>" <?php selected($slider['id'], $selected) ?>><?php echo $slider['name'] ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </label>
+            </p>
+        <?php endif;
+    }    
+
+    /**
      * Hide post meta meta box
      *
      * @return void
@@ -342,6 +392,12 @@ class Sofa_Crowdfunding_Helper {
 
             if ( get_page_template_slug( $post->ID ) == 'page-single-campaign.php' ) {
                 update_post_meta( $post_id, '_franklin_single_campaign_id', $_POST['_franklin_single_campaign_id'] );
+            }
+
+            if ( get_page_template_slug( $post->ID ) == 'page-home-alternative.php' ) {
+                update_post_meta( $post_id, '_franklin_homepage_2_show_campaigns', $_POST['_franklin_homepage_2_show_campaigns'] == 'on' );                
+                update_post_meta( $post_id, '_franklin_homepage_2_show_categories', $_POST['_franklin_homepage_2_show_categories'] == 'on' );
+                update_post_meta( $post_id, '_franklin_layer_slider', $_POST['_franklin_layer_slider'] );
             }
         }
     }
@@ -535,7 +591,6 @@ class Sofa_Crowdfunding_Helper {
      */
     public function atcf_submit_field_updates_editor_args_filter($args) {
         $args['editor_css'] = '<style></style>';
-        $args['media_buttons'] = false;
         return $args;
     }
 

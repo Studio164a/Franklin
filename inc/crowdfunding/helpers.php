@@ -233,3 +233,25 @@ function sofa_crowdfunding_show_countdown($campaign) {
 
 	return $campaign->is_active() && ( ! method_exists($campaign, 'is_endless') || ! $campaign->is_endless() );
 } 
+
+/**
+ * Returns the campaigns that a specific user has created.
+ * 
+ * @global object $wpdb
+ * @param int $user_id
+ * @return WP_Query
+ * @since Franklin 1.5
+ */
+function sofa_crowdfunding_get_campaigns_by_user($user_id = null) {
+	global $wpdb; 
+
+	if (is_null($user_id)) {
+		$user_id = get_current_user_id();
+	}
+
+	return new ATCF_Campaign_Query( apply_filters( 'sofa_campaigns_by_user_args', array(
+		'post_author' => $user_id, 
+		'post_status' => 'publish', 
+		'posts_per_page' => -1
+	) ) );
+}

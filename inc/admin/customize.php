@@ -641,7 +641,7 @@ body { background-image: url(<?php echo $body_texture_use ?>); }
 /* Accent colour */
 a, .menu-button, .menu-site a:hover, .block-title, .widget-title, .page-title, .post-title, .pledge-level.not-available .pledge-limit, .post-author i, body .button.accent:hover, .button.accent.button-alt, .social a:hover, .menu-site .current-menu-item > a, .campaign .campaign-status .campaign-raised span, .campaign .campaign-status .campaign-pledged span, .campaign .campaign-status .campaign-time-left span, #lang_sel ul ul a, #lang_sel ul ul a:visited, #campaign-widget-sharing h2 { color: <?php echo $accent_colour ?>; }
 .campaign-button, .feature-block.page, .feature-block, .feature-block.page .page-title, .sticky.block, .button.accent, .button.accent.button-alt:hover, .banner, .gallery-icon, .featured-image a, .edd_success { background-color: <?php echo $accent_colour ?>; color: <?php echo $accent_text ?>; }
-.feature-block .share, .feature-block .more-link, .featured-campaign .button.button-alt:hover, .feature-block .share .icon:before { color: <?php echo $accent_text ?>; }
+.feature-block .share, .feature-block .more-link, .feature-block .button.button-alt:hover, .feature-block .share .icon:before { color: <?php echo $accent_text ?>; }
 .button.accent, .campaign-support .button.accent:hover { box-shadow: 0 0 0 0.3rem <?php echo $accent_colour ?>; }
 .menu-site .hovering > a { border-color: <?php echo $accent_colour ?>; border-color: <?php echo $this->rgb($accent_rgb, 0.7) ?>; }
 .page-template-default #header, .is-active > .menu-site { border-color: <?php echo $accent_colour ?>; }
@@ -652,16 +652,16 @@ a:hover { color: <?php echo $accent_hover ?>;}
 .sticky .post-title, .barometer .filled, .button.accent, .feature-block .campaign-image .wp-post-image, .site-navigation ul { border-color: <?php echo $accent_hover ?>; }
 
 /* Secondary accent text */
-.featured-campaign .campaign-summary h3 a, .featured-campaign .button.button-alt, .campaign-ended .time-ago { color: <?php echo $accent_text_secondary ?>; }
-.featured-campaign .button.button-alt, .featured-campaign .button.button-alt:hover { border-color: <?php echo $accent_text_secondary ?>; }
-.featured-campaign .button.button-alt:hover { background-color: <?php echo $accent_text_secondary ?>; }
+.feature-block .campaign-summary h3 a, .feature-block .button.button-alt, .campaign-ended .time-ago { color: <?php echo $accent_text_secondary ?>; }
+.feature-block .button.button-alt, .feature-block .button.button-alt:hover { border-color: <?php echo $accent_text_secondary ?>; }
+.feature-block .button.button-alt:hover { background-color: <?php echo $accent_text_secondary ?>; }
 
 /* Body background colour */
 body, .audiojs .loaded, .edd_errors { background-color: <?php echo $body_background ?>; }
 .audiojs .play-pause { border-right-color: <?php echo $body_background ?>; }
 
 /* Body copy */
-body, .icon, input[type=submit]:hover, input[type=reset]:hover, input[type=submit]:focus, input[type=reset]:focus, input[type=submit]:active, input[type=reset]:active, button:hover, .button:hover, .button.accent:hover, .button.button-alt, .button.button-secondary, .menu-site a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title, .with-icon:before, .widget_search #searchsubmit:before, #lang_sel a.lang_sel_sel, #campaign-widget-sharing, .campaign-categories .block-title { color: <?php echo $body_text ?>; }
+body, .icon, input[type=submit]:hover, input[type=reset]:hover, input[type=submit]:focus, input[type=reset]:focus, input[type=submit]:active, input[type=reset]:active, button:hover, .button:hover, .button.accent:hover, .button.button-alt, .button.button-secondary, .menu-site a, .block-title.with-icon i, .meta a, .format-status .post-title, .countdown_holding span, .widget-title, .with-icon:before, .widget_search #searchsubmit:before, #lang_sel a.lang_sel_sel, #campaign-widget-sharing, .campaign-categories .block-title, .wp-core-ui .wp-media-buttons .button { color: <?php echo $body_text ?>; }
 <?php if ( $body_text != $footer_titles ) : ?>
 .footer-widget .widget-title { text-shadow: 0 1px 0 <?php echo $body_text ?>; }
 <?php endif ?>
@@ -672,7 +672,7 @@ input[type=submit], input[type=reset], button, .button { box-shadow: 0 0 0 3px <
 .active-campaign .campaign-image .wp-post-image { box-shadow: 0 0 3px 1px <?php echo $this->rgb($body_text_rgb, 0.3) ?>;}
 
 /* Button text colour */
-input[type=submit], input[type=reset], button, .button, .active-campaign .campaign-button, .button.button-alt:hover, .button.button-secondary:hover, .sticky.block, .sticky.block a, .campaign-support .button:hover, .campaign-pledge-levels.accordion h3, .featured-campaign .button, .featured-campaigns .block-title, .account-links .button.button-alt:hover:before, .featured-campaigns .block-title:before { color: <?php echo $button_text ?>; }
+input[type=submit], input[type=reset], button, .button, .active-campaign .campaign-button, .button.button-alt:hover, .button.button-secondary:hover, .sticky.block, .sticky.block a, .campaign-support .button:hover, .campaign-pledge-levels.accordion h3, .feature-block .button, .feature-block .block-title, .account-links .button.button-alt:hover:before, .feature-block .block-title:before { color: <?php echo $button_text ?>; }
 .campaign-support .button:hover { box-shadow: 0 0 0 3px <?php echo $button_text ?>; }
 
 /* Widget background colour */
@@ -683,7 +683,7 @@ input:focus, textarea:focus, select:focus, input:active, textarea:active, select
 .meta, .comment-meta, .pledge-limit { color: <?php echo $meta_colour ?>; }
 
 /* Primary border colour */
-.widget_search #s, .menu-site li, .is-active > .menu-site ul, .block, .page-title, .block-title, .post-title, .meta, .meta .author, .meta .comment-count, .meta .tags, .comment, .pingback, .widget, .campaign-pledge-levels.accordion h3, .campaign-pledge-levels.accordion .pledge-level, #edd_checkout_form_wrap legend, table, td, th, .contact-page .ninja-forms-form-wrap, .atcf-submit-campaign-reward, .campaign .campaign-status, .campaign .campaign-status .campaign-raised, .campaign .campaign-status .campaign-pledged, .campaign .campaign-status .campaign-time-left, .atcf-profile-section, .atcf-submit-section, #lang_sel ul ul, #lang_sel ul ul a, #campaign-widget-sharing h2 { border-color: <?php echo $primary_border ?>; }
+.widget_search #s, .menu-site li, .is-active > .menu-site ul, .block, .page-title, .block-title, .post-title, .meta, .meta .author, .meta .comment-count, .meta .tags, .comment, .pingback, .widget, .campaign-pledge-levels.accordion h3, .campaign-pledge-levels.accordion .pledge-level, #edd_checkout_form_wrap legend, table, td, th, .contact-page .ninja-forms-form-wrap, .atcf-submit-campaign-reward, .campaign .campaign-status, .campaign .campaign-status .campaign-raised, .campaign .campaign-status .campaign-pledged, .campaign .campaign-status .campaign-time-left, .atcf-profile-section, .atcf-submit-section, #lang_sel ul ul, #lang_sel ul ul a, #campaign-widget-sharing h2, .author-links, .author-campaigns-block.block, .author-bio { border-color: <?php echo $primary_border ?>; }
 .multi-block .content-block:nth-of-type(1n+2) { border-color: <?php echo $primary_border ?>; }
 .campaigns-grid .campaign { box-shadow: 0 0 0 1px <?php echo $primary_border ?>; }
 
@@ -737,6 +737,11 @@ th { border-right-color: <?php echo $secondary_border ?>; }
     <?php endif ?>
 <?php endif ?>
                 
+/* Greater than 600px width */
+@media all and (min-width: 37.5em) {
+.author-bio { background-color: <?php echo $posts_background ?>; }
+}
+
 /* Retina stuff */
 <?php 
 // Echoing this just to preserve proper colorization in sublime 

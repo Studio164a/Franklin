@@ -13,13 +13,13 @@
 				// Campaign ended, fully funded
 				if ( $campaign->is_funded() ) : ?>
 
-					<span class="campaign-successful"><?php _e( 'Successful' ) ?></span>
+					<span class="campaign-successful"><?php _e( 'Successful', 'franklin' ) ?></span>
 
 				<?php 
 				// Campaign ended, not funded
 				elseif ( ! $campaign->is_active() && ! $campaign->is_funded() ) : ?>
 
-					<span class="campaign-unsuccessful"><?php _e( 'Unsuccessful' ) ?></span>
+					<span class="campaign-unsuccessful"><?php _e( 'Unsuccessful', 'franklin' ) ?></span>
 
 				<?php endif ?>
 

@@ -644,6 +644,13 @@ span.description {
 	margin-bottom: 12px; margin-bottom: 1.2rem;
 }
 
+.wp-core-ui .wp-media-buttons .button {
+	padding: 0 12px; padding: 0 1.2rem;
+	box-shadow: none; 
+	background: transparent;  
+	font-weight: 300; 
+}
+
 /* 11.0 - Projects page
 ================================================== */
 
@@ -797,7 +804,7 @@ span.description {
 }*/
 
 
-/* 12.0 - Profile page
+/* 12.0 - Author profiles
 ================================================== */
 .atcf-profile-campaigns {
 	padding-left: 0;
@@ -807,6 +814,43 @@ span.description {
 .atcf-profile-campaign-overview ul {
 	list-style-type: disc;
 }
+
+/* 12.1 --- Widget ***/
+.widget_campaign_author_widget .author-stats {
+	width: auto;
+}
+
+.widget_campaign_author_widget .author-stats h6 {
+	margin: 36px 0 0; margin-top: 3.6rem;
+}
+
+.widget_campaign_author_widget .author-bio {
+	width: 100%;
+}
+
+.widget_campaign_author_widget .author-links {
+	float: left;
+	clear: left;
+	border-top: 0;
+	padding-bottom: 12px; padding-bottom: 1.2rem; 
+	margin-bottom: 12px; margin-bottom: 1.2rem;
+	width: 100%;
+}
+
+.widget_campaign_author_widget .author-bio {
+	width: 100%;
+	padding: 0;
+	margin: 0 0 12px 0; margin-bottom: 1.2rem;
+	min-height: 0;
+	background-color: transparent;
+	border: none;
+}
+
+.widget_campaign_author_widget .author-profile-link {
+	float: left;
+	width: 100%;
+}
+
 
 /* 13.0 - Campaign categories block
 ================================================== */
@@ -908,7 +952,7 @@ span.description {
 	.campaigns-grid .campaign {
 		width: 48%;
 		margin-right: 1.9%;
-		float: left;
+		/*float: left;*/
 		border: none !important;
 		padding: 0 !important;
 	}

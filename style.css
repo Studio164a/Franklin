@@ -261,6 +261,7 @@ ol ol ol { list-style: lower-roman; }
 dt { font-weight: 600; }
 dd { margin-bottom: 12px; margin-bottom: 1.2rem; }
 
+.horizontal { padding-left: 0; }
 .horizontal li { display: inline-block; list-style: none; }
 
 /* 1.5 -- Forms ***/
@@ -1071,10 +1072,9 @@ pre {
 
 h1.page-title, 
 h1.block-title, 
-h1.post-title, 
 h2.page-title, 
 h2.block-title, 
-h2.post-title {	
+.post-title {	
 	border-bottom-width: 2px; border-bottom-width: 0.2rem;
 	border-bottom-style: solid;
 	margin-bottom: 12px; margin-bottom: 1.2rem;
@@ -1325,15 +1325,69 @@ h2.post-title {
 
 /* 5.8 --- Author Bio ***/
 
-.author-description .avatar {
+.author .content-wrapper.fullwidth {
+	padding-top: 36px; padding-top: 3.6rem;
+}
+
+.author-avatar, 
+.author-stats, 
+.author-bio {
+	float: left;
+}
+
+.author-avatar {
+	margin: 0 10px 0 0; margin-right: 1rem;
+} 
+
+.author-avatar .avatar {
+	margin: 0;
+}
+
+.author-stats {
+	max-width: 140px; max-width: 14rem;
+	list-style: none;		
+}
+
+.author-bio {
+	clear: left;
+}
+
+.avatar {
 	margin: 12px 10px 0 0; margin-top: 1.2rem; margin-right: 1rem;
 	float: left;
 }
 
-.author-description p {
-	margin-top: 12px; margin-top: 1.2rem;
-	font-size: 14px; font-size: 1.4rem; 
-	line-height: 22px; line-height: 2.2rem;
+.author-links {
+	padding: 6px 0 0; padding-top: 0.6rem;
+	border-top-width: 2px; border-top-width: 0.2rem;
+	border-bottom-width: 2px; border-bottom-width: 0.2rem;
+	border-style: solid; 
+}
+
+.author-links li {
+	text-align: left;	
+	display: block;
+}
+
+.author-campaigns-block.block,
+.author-posts-block.block {	
+	float: left;
+	width: 100%;
+	border: none;	
+}
+
+.author-campaigns-block.block {
+	padding-top: 24px; padding-top: 2.4rem;
+	border-bottom: 2px solid; border-bottom-width: 0.2rem;
+	border-radius: 0;
+}
+
+.author-posts-block.block {
+}
+
+.author-posts-block ul {
+	padding: 0;
+	list-style: none;
 }
 
 /* 5.9 --- Archives ***/
@@ -1485,17 +1539,39 @@ h2.post-title {
 /* 5.13 --- Alternative Homepage Template ***/
 
 .feature-block.page {
-	padding-top: 36px; padding-top: 3.6rem;
+	padding-top: 12px; padding-top: 1.2rem;
+	box-shadow: none;
+	border: none;
+}
+
+.feature-block.page .ls-wp-container {
+	margin-top: 1.2rem !important;
+	width: 92% !important;
+	max-width: 92% !important;
+}
+
+.feature-block.page .featured-image {
+	margin: -32px auto 0; margin-top: -3.2rem;
+	background-color: transparent;	
+	border-radius: 0;	
+}
+
+.feature-block.page .featured-image img {
+	border-radius: 0;	
 }
 
 .feature-block.page .page-title {
-	padding-bottom: 36px; padding-bottom: 3.6rem;
+	padding: 24px 0 36px; padding: 2.4rem 0 3.6rem;
 	border-color: rgba(255, 255, 255, 0.3);
 }
 
 .feature-block.page .entry {
 	font-size: 18px; font-size: 1.8rem;
 	line-height: 28px; line-height: 2.8rem;
+}
+
+.feature-block.page .button {
+	margin: 12px 3px 0; margin: 1.2rem 0.3rem 0;
 }
 
 /* 6.0 -- Sidebar
@@ -1748,11 +1824,18 @@ h2.post-title {
 	.column-half {
 		float: left;
 		width: 49%;
-		margin-right: 2%;
+		margin-right: 2%;		
 	}
 
+	.column-half:nth-child(2n+2), 
 	.column-half.last {
-		margin: 0;
+		margin-right: 0;		
+	}
+
+	.block.column-half {
+		width: -webkit-calc(49% - 0.2rem);
+		width: -moz-calc(49% - 0.2rem);
+		width: calc(49% - 0.2rem);
 	}
 
 	/* Site structure */
@@ -1817,6 +1900,38 @@ h2.post-title {
 	.meta {
 		font-size: 1.1rem;
 		line-height: 4rem;
+	}
+
+	/* Author page */
+	.author-bio {		
+		float: left;
+		min-height: 12.6rem;
+		padding: 0 20px 12px 20px; padding: 0 2rem 1.2rem 2rem;
+		margin: 0 0 2.4rem 4rem;
+		width: -webkit-calc(100% - 32.7rem);
+		width: -moz-calc(100% - 32.7rem);
+		width: calc(100% - 32.7rem);
+		border: 0.1rem solid;
+		clear: none;
+	}
+
+	.author-links li {
+		display: inline-block;
+		margin-right: 2rem;
+	}
+
+	.author-posts-block .masonry-grid {
+		width: 102%;
+	}
+
+	.author-posts-block .masonry-grid li {
+		width: -webkit-calc(49% - 1.3rem);
+		width: -moz-calc(49% - 1.3rem);
+		width: calc(49% - 1.3rem);
+	}
+
+	.author-posts-block .block.column-half:nth-child(2n+2) {
+		float: right;
 	}
 }
 
@@ -2097,7 +2212,7 @@ h2.post-title {
 
 	.feature-block {
 		padding-bottom: 36px; padding-bottom: 3.6rem;
-	}		
+	}	
 }
 
 /* 8.3 --- Greater than 880px ***/
@@ -2171,5 +2286,29 @@ h2.post-title {
 		width: 522px;		
 		padding-right: 3.4rem;
 		padding-left: 3.4rem;
+	}
+
+	.feature-block.page .featured-image {
+		position: relative;
+		left: -0.5rem;
+		max-width: -moz-calc(100% + 1rem);
+		max-width: calc(100% + 1rem);
+		width: -webkit-calc(100% + 1rem);
+		width: -moz-calc(100% + 1rem);
+		width: calc(100% + 1rem);
+	}
+
+	.feature-block.page .ls-wp-container {
+		margin-top: 2.4rem !important;
+		width: 105rem !important;
+	}
+
+	.feature-block.page .page-title {
+		max-width: -webkit-calc(100% - 6rem);
+		max-width: -moz-calc(100% - 6rem);	
+		max-width: calc(100% - 6rem);
+		width: -webkit-calc(100% - 6rem);
+		width: -moz-calc(100% - 6rem);	
+		width: calc(100% - 6rem);
 	}
 }
