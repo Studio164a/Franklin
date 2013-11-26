@@ -739,6 +739,7 @@ span.description {
 
 .campaigns-grid-wrapper {
 	position: relative;
+	margin-bottom: 48px; margin-bottom: 4.8rem;
 }
 
 .content.campaigns-grid {
