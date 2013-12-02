@@ -250,7 +250,7 @@ function sofa_crowdfunding_get_campaigns_by_user($user_id = null) {
 	}
 
 	return new ATCF_Campaign_Query( apply_filters( 'sofa_campaigns_by_user_args', array(
-		'post_author' => $user_id, 
+		'author' => $user_id, 
 		'post_status' => 'publish', 
 		'posts_per_page' => -1
 	) ) );

@@ -41,7 +41,6 @@ class Sofa_Crowdfunding_Helper {
         include_once('widgets/stats.php');
 
     	add_action('after_setup_theme', array(&$this, 'after_setup_theme'));
-        add_action('wp_footer', array(&$this, 'wp_footer'));
         add_action('widgets_init', array(&$this, 'widgets_init'));
         add_action('add_meta_boxes', array(&$this, 'add_meta_boxes'));
         add_action('save_post', array(&$this, 'save_post'), 10, 2);
@@ -155,7 +154,7 @@ class Sofa_Crowdfunding_Helper {
     public function wp_footer() {
         if ( $this->viewing_widget === false ) : 
             ?>                     
-            <div id="login-form" class="reveal-modal block multi-block">            
+            <div id="login-form" class="reveal-modal block multi-block">
                 <a class="close-reveal-modal icon" data-icon="&#xf057;"></a>
 
                 <?php do_action( 'franklin_login_register_modal' ) ?>
