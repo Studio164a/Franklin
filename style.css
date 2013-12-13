@@ -4,7 +4,7 @@ Theme URI: http://164a.com
 Author: Studio164a
 Author URI: http://164a.com
 Description: A responsive, retina ready Wordpress crowdfunding theme.
-Version: 1.5.1
+Version: 1.5.3
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: 
@@ -1344,7 +1344,7 @@ h2.block-title,
 }
 
 .author-stats {
-	max-width: 140px; max-width: 14rem;
+	max-width: 140px; max-width: 14rem;	
 	list-style: none;		
 }
 
@@ -1380,9 +1380,6 @@ h2.block-title,
 	padding-top: 24px; padding-top: 2.4rem;
 	border-bottom: 2px solid; border-bottom-width: 0.2rem;
 	border-radius: 0;
-}
-
-.author-posts-block.block {
 }
 
 .author-posts-block ul {
@@ -1733,13 +1730,6 @@ h2.block-title,
 .widget_categories li:nth-of-type(2n+2) {
 	margin-right: 0;
 }
-/*
-.widget.widget_nav_menu .menu-site {
-	position: static;
-	width: auto;
-	height: auto;
-	background-color: transparent;
-}*/
 
 /* 7.0 -- Footer
 ================================================== */
@@ -1906,13 +1896,14 @@ h2.block-title,
 
 	/* Author page */
 	.author-bio {		
-		float: left;
+		float: right;
 		min-height: 12.6rem;
 		padding: 0 2rem 1.2rem 2rem;
-		margin: 0 0 2.4rem 4rem;
-		width: -webkit-calc(100% - 32.8rem);
-		width: -moz-calc(100% - 32.8rem);
-		width: calc(100% - 32.8rem);
+		margin: 0 0 2.4rem 0;
+		
+		width: -webkit-calc(100% - 35rem);
+		width: -moz-calc(100% - 35rem);
+		width: calc(100% - 35rem);
 		border: 0.1rem solid;
 		clear: none;
 	}
@@ -2232,7 +2223,7 @@ h2.block-title,
 	/* Feature block ***/
 	.feature-block {
 		padding-bottom: 36px; padding-bottom: 3.6rem;
-	}	
+	}		
 }
 
 /* 8.3 --- Greater than 1190px ***/

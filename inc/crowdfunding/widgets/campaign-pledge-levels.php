@@ -30,9 +30,11 @@ class Sofa_Crowdfunding_Pledge_Levels_Widget extends WP_Widget {
 
 		$campaign_id = $instance['campaign_id'] == 'current' ? get_the_ID() : $instance['campaign_id'];
 
+		$campaign = new ATCF_Campaign( $campaign_id );
+
 		echo $before_widget;
 
-		if ( !empty($title) )
+		if ( !empty($title) && !$campaign->is_donations_only() )
 			echo $before_title . $title . $after_title;
 
 		echo franklin_pledge_levels( $campaign_id );

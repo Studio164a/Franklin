@@ -23,10 +23,7 @@ get_header() ?>
 
 			<div class="author-stats">
 				<h6><?php _e( 'Details', 'franklin' ) ?></h6>
-				<p><?php /*printf( __( "Joined %s / Backed %d / Created %d", 'franklin' ), 
-						date('F Y', strtotime($author->user_registered) ), 
-						edd_count_purchases_of_customer($author->ID), 
-						$campaigns->post_count ) */?>
+				<p>
 					<?php printf( __( 'Joined %s', 'franklin' ), date('F Y', strtotime($author->user_registered) ) ) ?><br />
 					<?php printf( __( 'Backed %d', 'franklin' ), edd_count_purchases_of_customer($author->ID) ) ?><br />
 					<?php printf( __( 'Created %d', 'franklin' ), $campaigns->post_count ) ?>

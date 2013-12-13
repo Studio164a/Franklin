@@ -5,8 +5,6 @@
 
 get_header() ?>	
 
-	<?php //echo '<pre>'; print_r( $wp_query ); echo '</pre>'; ?>
-
 	<?php if ( have_posts() ) : ?>
 
 		<?php while( have_posts() ) : ?>
@@ -45,11 +43,6 @@ get_header() ?>
 
 	<?php endif ?>
 
-	<!-- Support modal -->
-	<div id="campaign-form-<?php echo $campaign->ID ?>" class="campaign-form reveal-modal content-block block">
-        <a class="close-reveal-modal icon"><i class="icon-remove-sign"></i></a>
-        <?php echo edd_get_purchase_link( array( 'download_id' => $campaign->ID ) ); ?>
-    </div>
-    <!-- End support modal -->
+	<?php get_template_part('campaign', 'modals') ?>	
 
 <?php get_footer() ?>

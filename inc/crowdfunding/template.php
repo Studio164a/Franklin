@@ -242,31 +242,38 @@ if ( !function_exists('franklin_pledge_levels') ) {
 
 			<div id="campaign-pledge-levels-<?php echo $campaign_id ?>" <?php echo $wrapper_atts ?>>
 
-				<?php foreach ( $prices as $i => $price ) : ?>
+				<?php if ($campaign->is_donations_only()) : ?>
 
-					<?php 
-					$has_limit = strlen( $price['limit'] ) > 0;
-					$remaining = isset( $price['bought'] ) ? $price['limit'] - count($price['bought']) + 1 : $price['limit'];
-					$class = !$has_limit ? 'limitless' : ( $remaining == 0 ? 'not-available' : 'available' );
-					?>
+					<p><a class="pledge-button button button-alt button-large accent" data-reveal-id="campaign-form-<?php echo $campaign_id ?>" data-price="<?php echo $price['amount'] ?>" href="#"><?php _e( 'Pledge', 'franklin' ) ?></a></p>
 
-					<h3 class="pledge-title" data-icon="&#xf0d7;"><?php printf( _x( 'Pledge %s', 'pledge amount', 'franklin' ), '<strong>'.edd_currency_filter( edd_format_amount( $price['amount'] ) ).'</strong>' ) ?></h3>
-					<div class="pledge-level cf<?php if ($has_limit && $remaining == 0) echo ' not-available' ?>">
+				<?php else : 
 
-						<?php if ( $has_limit ) : ?>
-							<span class="pledge-limit"><?php printf( __( '%d of %d remaining', 'franklin' ), $remaining, $price['limit'] ) ?></span>
-						<?php else : ?>
-							<span class="pledge-limit"><?php _e( 'Unlimited backers', 'franklin' ) ?></span>
-						<?php endif ?>
+					foreach ( $prices as $i => $price ) :			
+						
+						$has_limit = strlen( $price['limit'] ) > 0;
+						$remaining = isset( $price['bought'] ) ? $price['limit'] - count($price['bought']) + 1 : $price['limit'];
+						$class = !$has_limit ? 'limitless' : ( $remaining == 0 ? 'not-available' : 'available' );
+						?>
 
-						<p class="pledge-description"><?php echo $price['name'] ?></p>
+						<h3 class="pledge-title" data-icon="&#xf0d7;"><?php printf( _x( 'Pledge %s', 'pledge amount', 'franklin' ), '<strong>'.edd_currency_filter( edd_format_amount( $price['amount'] ) ).'</strong>' ) ?></h3>
+						<div class="pledge-level cf<?php if ($has_limit && $remaining == 0) echo ' not-available' ?>">
 
-						<?php if ( $campaign->is_active() && ( !$has_limit || $remaining > 0 ) ) : ?>
-							<a class="pledge-button button button-alt button-small accent" data-reveal-id="campaign-form-<?php echo $campaign_id ?>" data-price="<?php echo $price['amount'] ?>" href="#"><?php printf( _x( 'Pledge %s', 'pledge amount', 'franklin' ), edd_currency_filter( edd_format_amount( $price['amount'] ) ) ) ?></a>
-						<?php endif ?>
-					</div>
+							<?php if ( $has_limit ) : ?>
+								<span class="pledge-limit"><?php printf( __( '%d of %d remaining', 'franklin' ), $remaining, $price['limit'] ) ?></span>
+							<?php else : ?>
+								<span class="pledge-limit"><?php _e( 'Unlimited backers', 'franklin' ) ?></span>
+							<?php endif ?>
 
-				<?php endforeach ?>
+							<p class="pledge-description"><?php echo $price['name'] ?></p>
+
+							<?php if ( $campaign->is_active() && ( !$has_limit || $remaining > 0 ) ) : ?>
+								<a class="pledge-button button button-alt button-small accent" data-reveal-id="campaign-form-<?php echo $campaign_id ?>" data-price="<?php echo $price['amount'] ?>" href="#"><?php printf( _x( 'Pledge %s', 'pledge amount', 'franklin' ), edd_currency_filter( edd_format_amount( $price['amount'] ) ) ) ?></a>
+							<?php endif ?>
+						</div>					
+
+					<?php endforeach;
+
+				endif ?>
 
 			</div>
 

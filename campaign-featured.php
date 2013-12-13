@@ -58,8 +58,13 @@
 								<?php _e( 'Backers', 'franklin' ) ?>
 							</li>		
 							<li class="campaign-time-left">
-								<span><?php echo $campaign->days_remaining() ?></span>
-								<?php _e( 'Days to go', 'franklin' ) ?>
+								<?php if ($campaign->is_endless()) : ?>
+									<span><?php _e('Campaign', 'franklin' ) ?></span>
+									<?php _e( 'does not end', 'franklin' ) ?>
+								<?php else : ?>
+									<span><?php echo $campaign->days_remaining() ?></span>
+									<?php _e( 'Days to go', 'franklin' ) ?>
+								<?php endif ?>
 							</li>		
 						</ul>
 
@@ -75,19 +80,16 @@
 
 	</section>
 	<!-- End featured campaigns -->
+	
+	<?php 
+	while ( $campaigns->have_posts() ) : 
 
-	<?php while ( $campaigns->have_posts() ) : ?>
+		$campaigns->the_post();
 
-		<?php $campaigns->the_post() ?>
-		<!-- Support modal -->
-		<div id="campaign-form-<?php the_ID() ?>" class="campaign-form reveal-modal content-block block">
-	        <a class="close-reveal-modal icon"><i class="icon-remove-sign"></i></a>
-	        <?php echo edd_get_purchase_link( array( 'download_id' => get_the_ID() ) ); ?>
-	    </div>
-	    <!-- End support modal -->	
+		get_template_part('campaign', 'modals');
 
-	<?php endwhile ?>
+	endwhile;
 
-<?php endif ?>
+endif;
 
-<?php wp_reset_postdata() ?>
+wp_reset_postdata();

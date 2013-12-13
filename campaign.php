@@ -49,8 +49,13 @@
 				<?php _e( 'Pledged', 'franklin' ) ?>				
 			</li>
 			<li class="campaign-time-left">
-				<span><?php echo $campaign->days_remaining() ?></span>
-				<?php _e( 'Days to go', 'franklin' ) ?>
+				<?php if ($campaign->is_endless()) : ?>
+					<span><?php _e('Campaign', 'franklin' ) ?></span>
+					<?php _e( 'does not end', 'franklin' ) ?>
+				<?php else : ?>
+					<span><?php echo $campaign->days_remaining() ?></span>
+					<?php _e( 'Days to go', 'franklin' ) ?>
+				<?php endif ?>
 			</li>				
 		</ul>
 

@@ -819,6 +819,7 @@ span.description {
 /* 12.1 --- Widget ***/
 .widget_campaign_author_widget .author-stats {
 	width: auto;
+	max-width: 100%;
 }
 
 .widget_campaign_author_widget .author-stats h6 {
@@ -1231,6 +1232,13 @@ span.description {
 		max-width: 66rem;
 		margin: 0 auto;
 		padding: 0;
+	}
+
+	/* Campaign author widget ***/	
+	.widget_campaign_author_widget .author-stats {
+		width: -webkit-calc(100% - 13rem);
+		width: -moz-calc(100% - 13rem);
+		width: calc(100% - 13rem);
 	}
 }
 

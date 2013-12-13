@@ -606,8 +606,6 @@ class Sofa_Crowdfunding_Helper {
         if ( $post->ID == $edd_options['submit_page'] ) {
             ob_start();
 
-            do_action('atcf_campaign_before', new ATCF_Campaign( $post->ID ) );
-
             $content = ob_get_clean() . $content;
         }
 

@@ -49,21 +49,16 @@ get_header() ?>
 					
 					</div>
 
+					<?php get_template_part('campaign', 'modals') ?>
+
 				<?php endwhile ?>
 
-			<?php endif ?>
+			<?php endif ?>						
 
-			<?php wp_reset_postdata() ?>
-
-			<!-- Support modal -->
-			<div id="campaign-form-<?php echo $campaign_id ?>" class="campaign-form reveal-modal content-block block">
-		        <a class="close-reveal-modal icon"><i class="icon-remove-sign"></i></a>
-		        <?php echo edd_get_purchase_link( array( 'download_id' => $campaign_id ) ); ?>
-		    </div>
-		    <!-- End support modal -->
+			<?php wp_reset_postdata() ?>			
 
 		<?php endwhile ?>
 
-	<?php endif ?>
+	<?php endif ?>	
 
 <?php get_footer() ?>
