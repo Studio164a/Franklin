@@ -143,13 +143,24 @@ function franklin_atcf_shortcode_submit_field_length( $atts, $campaign ) {
 
 	$description = sprintf( __( "Your campaign's length can be between %d and %d days", 'franklin' ), $min, $max );
 
-	$start = apply_filters( 'atcf_shortcode_submit_field_length_start', round( ( $min + $max ) / 2 ) );
-
-	$length = $atts[ 'previewing' ] ? $campaign->days_remaining() : null;
+	if ( $atts['previewing'] ) {
+		$value = $campaign->days_remaining();
+		$placeholder = $value;
+	}
+	else {
+		$value = apply_filters( 'atcf_shortcode_submit_field_length_start', round( ( $min + $max ) / 2 ) );
+		$placeholder = null;	
+	}
 ?>
 	<p class="atcf-submit-campaign-length">
 		<label for="length"><?php _e( 'Length (Days)', 'franklin' ); ?></label>
-		<input type="number" min="<?php echo esc_attr( $min ); ?>" max="<?php echo esc_attr( $max ); ?>" step="1" name="length" id="length" value="<?php echo esc_attr( $start ); ?>" placeholder="<?php echo esc_attr( $length ); ?>">
+		<input type="number" 
+			min="<?php echo esc_attr( $min ); ?>" 
+			max="<?php echo esc_attr( $max ); ?>" 
+			step="1" 
+			name="length" 
+			id="length" 
+			value="<?php echo esc_attr( $value ) ?>" placeholder="<?php echo esc_attr( $placeholder ); ?>">
 		<span class="description"><?php echo $description ?></span>
 	</p>
 <?php
@@ -190,8 +201,16 @@ function franklin_atcf_shortcode_submit_field_tags( $atts, $campaign ) {
  * @since Franklin 1.1
  */
 function franklin_atcf_shortcode_submit_field_rewards( $atts, $campaign ) {
-	$rewards  = ( $atts[ 'previewing' ] || $atts[ 'editing' ] ) ? edd_get_variable_prices( $campaign->ID ) : array( 0 => array( 'amount' => null, 'name' => null, 'limit' => null ) );
-
+	if ( ! $atts['previewing'] && ! $atts['editing'] ) {
+		$rewards = array( 0 => array( 'amount' => null, 'name' => null, 'limit' => null ) );	
+	}
+	else {
+		$rewards = edd_get_variable_prices( $campaign->ID );
+		if ( empty( $rewards ) ) {
+			$rewards = array( 0 => array( 'amount' => null, 'name' => null, 'limit' => null ) );	
+		}		
+	}
+	
 	$crowdfunding = crowdfunding();
 	$amount_key = 'amount';
 	$name_key = 'name';

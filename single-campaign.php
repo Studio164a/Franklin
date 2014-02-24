@@ -3,19 +3,20 @@
  * Single campaign template.
  */
 
-get_header() ?>	
+get_header();
 
-	<?php if ( have_posts() ) : ?>
+	if ( have_posts() ) :
 
-		<?php while( have_posts() ) : ?>
+		while( have_posts() ) :
 
-			<?php the_post() ?>
+			the_post();
 
-			<?php $campaign = new ATCF_Campaign( get_the_ID() ) ?>
+			$campaign = new ATCF_Campaign( get_the_ID() );
 
-			<?php do_action( 'atcf_campaign_before', $campaign ) ?>
+			do_action( 'atcf_campaign_before', $campaign );
 
-			<?php get_template_part('campaign', 'blurb') ?>			
+			get_template_part('campaign', 'blurb') 
+			?>			
 
 			<div class="content-wrapper">
 
@@ -39,10 +40,10 @@ get_header() ?>
 			
 			</div>
 
-		<?php endwhile ?>
+		<?php endwhile;
 
-	<?php endif ?>
+	endif;
 
-	<?php get_template_part('campaign', 'modals') ?>	
+	get_template_part('campaign', 'modals');
 
-<?php get_footer() ?>
+get_footer();

@@ -255,3 +255,20 @@ function sofa_crowdfunding_get_campaigns_by_user($user_id = null) {
 		'posts_per_page' => -1
 	) ) );
 }
+
+/**
+ * Returns the number of purchases a user has made. 
+ *
+ * @param int $user_id
+ * @return int
+ * @since Franklin 1.5.4
+ */
+function sofa_crowdfunding_get_user_purchase_count($user_id) {
+	if ( empty( $user_id ) )
+		$user_id = get_current_user_id();
+
+	$stats = edd_get_purchase_stats_by_user( $user_id );
+
+	return isset( $stats['purchases'] ) ? $stats['purchases'] : 0;
+}
+

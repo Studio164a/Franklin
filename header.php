@@ -63,4 +63,3 @@
 
 			<!-- Main content section. Everything between the header and the footer -->
 			<div id="main" class="cf" role="main"> 	
-

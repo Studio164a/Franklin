@@ -166,27 +166,55 @@
 	font-weight: 300;
 }
 
-.campaign-countdown {
-	float: left;
-	width: 100%;
-	padding-bottom: 10px;
-	margin-bottom: 0; 
-	border-bottom: 1px solid #fff; border-color: rgba(255, 255, 255, 0.3);
-}
+/*<div class="campaign-countdown">
+	<span class="countdown is-countdown" data-enddate="{&quot;year&quot;:&quot;2014&quot;,&quot;day&quot;:&quot;31&quot;,&quot;month&quot;:&quot;7&quot;,&quot;hour&quot;:&quot;1&quot;,&quot;minute&quot;:&quot;30&quot;,&quot;second&quot;:&quot;12&quot;}">
+		<span class="countdown-row countdown-show4">
+			<span class="countdown-section">
+				<span class="countdown-amount">164</span>
+				<span class="countdown-period">Days</span>
+			</span>
+			<span class="countdown-section">
+				<span class="countdown-amount">15</span>
+				<span class="countdown-period">Hours</span>
+			</span>
+			<span class="countdown-section">
+				<span class="countdown-amount">29</span>
+				<span class="countdown-period">Minutes</span>
+			</span>
+			<span class="countdown-section">
+				<span class="countdown-amount">47</span>
+				<span class="countdown-period">Seconds</span>
+			</span>
+		</span>
+	</span>
+	<span>Time left to donate</span>
+</div>
 
-.campaign-countdown .countdown {
-	float: left; 
-	width: 68%;
-	font-style: normal;
-}
+<div class="campaign-countdown">
+	<span class="countdown is-countdown" data-enddate="{&quot;year&quot;:&quot;2016&quot;,&quot;day&quot;:&quot;10&quot;,&quot;month&quot;:&quot;1&quot;,&quot;hour&quot;:&quot;7&quot;,&quot;minute&quot;:&quot;23&quot;,&quot;second&quot;:&quot;02&quot;}">
+		<span class="countdown-row countdown-show4">
+			<span class="countdown-section">
+				<span class="countdown-amount">684</span>
+				<span class="countdown-period">Days</span>
+			</span>
+			<span class="countdown-section">
+				<span class="countdown-amount">14</span>
+				<span class="countdown-period">Hours</span>
+			</span>
+			<span class="countdown-section">
+				<span class="countdown-amount">39</span>
+				<span class="countdown-period">Minutes</span>
+			</span>
+			<span class="countdown-section">
+				<span class="countdown-amount">15</span>
+				<span class="countdown-period">Seconds</span>
+			</span>
+		</span>
+	</span>				
+	<span>Time left to donate</span>
+</div>*/
 
-.campaign-countdown > span {
-	font-size: 16px; font-size: 1.6rem;
-	float: right;
-	text-align: right;
-	font-style: italic;
-	width: 30%;
-}
+
 
 .campaign-support {
 	float: left;
@@ -229,50 +257,75 @@
 /* 2.1 --- Countdown */
 .hasCountdown {	
 }
-.countdown_rtl {
+.countdown-rtl {
 	direction: rtl;
 }
-.countdown_row {
+.countdown-row {
 	clear: both;
 	width: 100%;
 	padding: 0px 2px;
 	text-align: center;
 }
-.countdown_show1 .countdown_section {
+.countdown-show1 .countdown-section {
 	width: 98%;
 }
-.countdown_show2 .countdown_section {
+.countdown-show2 .countdown-section {
 	width: 48%;
 }
-.countdown_show3 .countdown_section {
+.countdown-show3 .countdown-section {
 	width: 32.5%;
 }
-.countdown_show4 .countdown_section {
+.countdown-show4 .countdown-section {
 	width: 24.5%;
 }
-.countdown_show5 .countdown_section {
+.countdown-show5 .countdown-section {
 	width: 19.5%;
 }
-.countdown_show6 .countdown_section {
+.countdown-show6 .countdown-section {
 	width: 16.25%;
 }
-.countdown_show7 .countdown_section {
+.countdown-show7 .countdown-section {
 	width: 14%;
 }
-.countdown_section {
+.countdown-section {
 	display: block;
 	float: left;	
 	text-align: center;
 	font-size: 12px; font-size: 1.2rem;
 	font-weight: 300;
 }
-.countdown_amount {	
+.countdown-amount {	
 	font-size: 20px; font-size: 2rem;
 	line-height: 1em;
 }
-.countdown_descr {
+.countdown-period {
 	display: block;
 	width: 100%;
+}
+.campaign-countdown {
+	float: left;
+	width: 100%;
+	padding-bottom: 10px;
+	margin-bottom: 0; 
+	border-bottom: 1px solid #fff; border-color: rgba(255, 255, 255, 0.3);
+}
+
+.campaign-countdown .countdown {
+	float: left; 
+	width: 68%;
+	font-style: normal;	
+}
+
+.campaign-countdown .countdown-period {
+	display: block;
+}
+
+.campaign-countdown > span:last-child {
+	font-size: 16px; font-size: 1.6rem;
+	float: right;
+	text-align: right;
+	font-style: italic;
+	width: 30%;
 }
 
 /* 2.2 --- Sharing widget */

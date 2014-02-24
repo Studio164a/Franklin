@@ -267,5 +267,9 @@ function sofa_site_url() {
  */
 function sofa_condensed_url($url) {
 	$parts = parse_url($url);
-	return implode( '', array( $parts['host'], $parts['path'] ) );
+	$output = $parts['host'];
+	if ( isset( $parts['path'] ) ) {
+		$output .= $parts['path'];
+	}
+	return $output;
 }

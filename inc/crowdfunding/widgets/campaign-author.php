@@ -62,15 +62,15 @@ class Sofa_Crowdfunding_Author_Widget extends WP_Widget {
 
 			<p class="author-links">
 				<?php if ($author->user_url) : ?>
-					<a href="<?php echo $website ?>" title="<?php printf( __("Visit %s's website", 'franklin'), $author->nickname ) ?>" class="with-icon" data-icon="&#xf0c1;"><?php echo sofa_condensed_url($author->user_url) ?></a><br />
+					<a href="<?php echo $author->user_url ?>" title="<?php printf( __("Visit %s's website", 'franklin'), $author->nickname ) ?>" class="with-icon" data-icon="&#xf0c1;"><?php echo sofa_condensed_url($author->user_url) ?></a><br />
 				<?php endif ?>
 
 				<?php if ($author->twitter) : ?>
-					<a href="<?php echo $twitter ?>" title="<?php printf( __("Visit %s's Twitter profile", 'franklin'), $author->nickname ) ?>" class="with-icon" data-icon="&#xf099;"><?php echo sofa_condensed_url($author->twitter) ?></a><br />
+					<a href="<?php echo $author->twitter ?>" title="<?php printf( __("Visit %s's Twitter profile", 'franklin'), $author->nickname ) ?>" class="with-icon" data-icon="&#xf099;"><?php echo sofa_condensed_url($author->twitter) ?></a><br />
 				<?php endif ?>
 
 				<?php if ($author->facebook) : ?>
-					<a href="<?php echo $facebook ?>" title="<?php printf( __("Visit %s's Facebook profile", 'franklin'), $author->nickname ) ?>" class="with-icon" data-icon="&#xf09a;"><?php echo sofa_condensed_url($author->facebook) ?></a>
+					<a href="<?php echo $author->facebook ?>" title="<?php printf( __("Visit %s's Facebook profile", 'franklin'), $author->nickname ) ?>" class="with-icon" data-icon="&#xf09a;"><?php echo sofa_condensed_url($author->facebook) ?></a>
 				<?php endif ?>	
 			</p>
 

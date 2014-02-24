@@ -459,7 +459,7 @@ class Sofa_Crowdfunding_Helper {
         }
 
         // Test for WPML duplicates
-        $language_copy = get_post_meta($post->ID, '_icl_lang_duplicate_of', true);
+        $language_copy = get_post_meta($post_id, '_icl_lang_duplicate_of', true);
 
         return strlen( $language_copy ) ? $this->is_app_page( $language_copy, $edd_options ) : false;
     }
