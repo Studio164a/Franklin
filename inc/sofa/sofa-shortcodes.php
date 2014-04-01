@@ -27,5 +27,4 @@ if ( !function_exists('sofa_button_shortcode') ) {
     }
 
     add_shortcode( 'sofa_button', 'sofa_button_shortcode' );
-
 }

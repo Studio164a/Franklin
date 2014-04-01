@@ -42,9 +42,6 @@ function sofa_crowdfunding_campaign_nav($echo = true) {
 		return $html;
 	
 	echo $html;
-
-	//wp_list_categories();
-
 }
 
 /**
@@ -57,9 +54,10 @@ function sofa_crowdfunding_campaign_nav($echo = true) {
  */
 function sofa_crowdfunding_get_enddate( $campaign, $json_format = false ) {
 	if ( false === ( $campaign instanceof ATCF_Campaign ) )
-		return;
-		
-	$end_date = strtotime( $campaign->__get( 'campaign_end_date' ) );
+		return;		
+
+	$end_date = strtotime( $campaign->end_date() );
+
 	$end_date_array = array( 
 		'year' => date('Y', $end_date), // Year
 		'day' => date('d', $end_date), // Day
@@ -69,7 +67,26 @@ function sofa_crowdfunding_get_enddate( $campaign, $json_format = false ) {
 		'second' => date('s', $end_date)  // Second
 	);
 
-	return $json_format ? json_encode($end_date_array) : $end_date_array;
+	return sprintf( date( "j F Y H:i:s", $end_date ), get_option( 'timezone_string', date_default_timezone_get() ) );
+
+
+	// echo '<pre>'; print_r( $end_date_array ); 
+
+	// $date_timezone = new DateTimeZone( get_option( 'timezone_string', date_default_timezone_get() ) );
+	// $date_time = new DateTime($campaign->end_date(), $date_timezone);
+
+	// $date_time2 = new DateTime('now', $date_timezone);
+
+	// echo $date_time->format('O');
+	// echo PHP_EOL;
+	// echo $date_time2->format('O');
+	// echo PHP_EOL;
+
+	// // echo $date_time->getOffset();
+
+	// die;
+
+	// return $json_format ? json_encode($end_date_array) : $end_date_array;
 }
 
 /**
@@ -84,7 +101,7 @@ function sofa_crowdfunding_get_time_since_ended( $campaign, $readable = true ) {
 	if ( false === ( $campaign instanceof ATCF_Campaign ) )
 		return;
 
-	$end_date = strtotime( $campaign->__get( 'campaign_end_date' ) );
+	$end_date = strtotime( $campaign->end_date() );
 
 	// Return it as a readable string
 	if ( $readable ) {
@@ -93,6 +110,108 @@ function sofa_crowdfunding_get_time_since_ended( $campaign, $readable = true ) {
 
 	// Return as an int representing the seconds elapsed
 	return $end_date - current_time('timestamp');
+}
+
+/**
+ * Get the amount of time left in the campaign. 
+ *
+ * @param ATCF_Campaign $campaign
+ * @return string
+ * @since Franklin 1.5.5
+ */
+function sofa_crowdfunding_get_time_left( ATCF_Campaign $campaign ) {
+	$transient = sprintf( 'campaign-time-left-%d', $campaign->ID );
+
+	$value = get_transient($transient);
+
+	$value = false;
+
+	if ( ! $value ) {
+
+		$set_transient = true;
+
+		if ( $campaign->is_endless() ) {
+
+			$value = sprintf( "<span>%s</span>%s", 
+				__('Campaign', 'franklin'),
+				__('does not end', 'franklin')
+			);
+
+			// Cache as long as possible
+			$expiration = 0;
+		}
+		elseif ( !$campaign->is_active() ) {
+
+			$value = sprintf( "<span>%s</span>%s", 
+				__('Campaign', 'franklin'),
+				__('is finished', 'franklin')
+			);
+
+			// Cache as long as possible
+			$expiration = 0;
+		}
+		else {
+			$expires = strtotime( $campaign->end_date() );
+			$now = current_time('timestamp');
+
+			// Exact amount of seconds left
+			$diff = $expires - $now;
+
+			// Days left, rounded down
+			$days_remaining = floor( $diff / 86400 );
+			
+			// At least a day left
+			if ( $days_remaining >= 1 ) {
+
+				$value = sprintf("<span>%s</span>%s", 
+					_n('1', $days_remaining, $days_remaining, 'franklin'), 
+					_n('day left', 'days left', $days_remaining, 'franklin')
+				);
+
+				// Cache until this day is over
+				$expiration = $diff - ( $days_remaining * 86400 );
+
+			}
+			// Less than a day left
+			else {
+
+				// Hours left, rounded down
+				$hours_remaining = floor( $diff / 3600 );
+
+				// At least an hour left
+				if ( $hours_remaining >= 1 ) {
+
+					$value = sprintf("<span>%s</span>%s", 
+						_n('1', $hours_remaining, $hours_remaining, 'franklin'), 
+						_n('hour left', 'hours left', $hours_remaining, 'franklin')
+					);
+
+					// Cache until this hour is over				
+					$expiration = $diff - ( $hours_remaining * 3600 );								
+				}
+				// Less than an hour left
+				else {					
+					// Number of minutes left, rounded UP
+					$minutes_remaining = ceil( $diff / 60 );
+
+					$value = sprintf("<span>%s</span>%s", 
+						_n('One', $minutes_remaining, $minutes_remaining, 'franklin'), 
+						_n('minute left', 'minutes left', $minutes_remaining, 'franklin')
+					);
+
+					// No point caching this
+					$set_transient = false;						
+				}
+			}
+		} 
+
+		// Set transient if there is more than an hour remaining
+		if ( $set_transient ) {
+			set_transient( $transient, $value, $expiration );
+		}
+	}
+
+	return $value;
 }
 
 /**

@@ -757,6 +757,7 @@ class Sofa_Crowdfunding_Helper {
         if ( $wp_query->get('post_type') == 'download' ) {
             return __( 'Older Campaigns', 'franklin' );
         }
+        return $default;
     }
 
     /**
@@ -771,6 +772,7 @@ class Sofa_Crowdfunding_Helper {
         if ( $wp_query->get('post_type') == 'download' ) {
             return __( 'Newer Campaigns', 'franklin' );
         }    
+        return $default;
     }    
 }
 

@@ -21,7 +21,7 @@ get_header() ?>
 
 			<?php endif ?>
 
-			<?php sofa_content_nav('nav-below') ?>
+			<?php sofa_content_nav('nav_below') ?>
 
 		</div>		
 

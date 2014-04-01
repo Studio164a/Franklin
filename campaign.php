@@ -39,7 +39,7 @@
 		<ul class="campaign-status horizontal center">
 			<li class="barometer barometer-small" data-progress="<?php echo $campaign->percent_completed(false) ?>" data-width="42" data-height="42" data-strokewidth="8" data-stroke="<?php echo get_theme_mod('secondary_border', '#dbd5d1') ?>" data-progress-stroke="<?php echo get_theme_mod('accent_colour', '#d95b43') ?>">
 			</li>
-			<!-- <li class="barometer barometer-small">hello</li> -->
+			
 			<li class="campaign-raised">
 				<span><?php echo $campaign->percent_completed(false) ?><sup>%</sup></span>
 				<?php _e( 'Funded', 'franklin' ) ?>		
@@ -49,13 +49,7 @@
 				<?php _e( 'Pledged', 'franklin' ) ?>				
 			</li>
 			<li class="campaign-time-left">
-				<?php if ($campaign->is_endless()) : ?>
-					<span><?php _e('Campaign', 'franklin' ) ?></span>
-					<?php _e( 'does not end', 'franklin' ) ?>
-				<?php else : ?>
-					<span><?php echo $campaign->days_remaining() ?></span>
-					<?php _e( 'Days to go', 'franklin' ) ?>
-				<?php endif ?>
+				<?php echo sofa_crowdfunding_get_time_left( $campaign ) ?>				
 			</li>				
 		</ul>
 

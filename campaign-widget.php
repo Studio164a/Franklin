@@ -1,8 +1,11 @@
 <?php get_header('widget') ?>
 
 <?php if ( have_posts() ) : ?>
+
 	<?php while ( have_posts() ) : ?>
+
 		<?php the_post() ?>
+
 		<div class="widget-wrapper" style="width: 275px;">
 
 		<?php if ( sofa_using_crowdfunding() === false ) return ?>
@@ -58,8 +61,7 @@
 						<?php _e( 'Pledged', 'franklin' ) ?>				
 					</li>
 					<li class="campaign-time-left">
-						<span><?php echo $campaign->days_remaining() ?></span>
-						<?php _e( 'Days to go', 'franklin' ) ?>
+						<?php echo sofa_crowdfunding_get_time_left( $campaign ) ?>
 					</li>				
 				</ul>
 
@@ -70,6 +72,7 @@
 		</div>
 
 	<?php endwhile ?>
+
 <?php endif ?>
 
 <?php get_footer('widget') ?>
