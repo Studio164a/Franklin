@@ -9,6 +9,8 @@
  * @package franklin
  */
 
+
+
 /**
  * Remove output of variable pricing, and add our own system.
  *
@@ -54,7 +56,7 @@ function franklin_atcf_campaign_contribute_options( $prices, $type, $campaign_id
 
 	$campaign = new ATCF_Campaign( $campaign_id );	
 
-	if ( $campaign->is_donations_only() ) : ?>
+	if ( $campaign->is_donations_only() || ! count( $prices ) ) : ?>
 		
 		<input type="radio" name="edd_options[price_id][]" id="edd_price_option_<?php echo $campaign_id ?>_<?php echo $i ?>" class="edd_price_option_<?php echo $campaign_id ?> hidden" value="<?php echo $i ?>" checked />
 
@@ -126,9 +128,31 @@ if ( !function_exists('franklin_edd_after_price_options') ) {
 
 }
 
+add_action('edd_after_price_options', 'franklin_edd_after_price_options', 10, 2);
+
+/**
+ * 
+ * 
+ */
+if ( !function_exists('franklin_edd_purchase_link_top') ) {
+
+	function franklin_edd_purchase_link_top($campaign_id) {
+		$campaign = new ATCF_Campaign( $campaign_id );	
+
+		// If it's donations only, add custom price input field
+		if ( $campaign->is_donations_only() || ! count( edd_get_variable_prices( $campaign_id ) ) ) {
+
+			// Display the modal title
+			franklin_edd_before_price_options();
+
+			// Then display the custom input field
+			franklin_edd_after_price_options();
+		}
+	}
+}
 remove_action( 'edd_purchase_link_top', 'atcf_purchase_variable_pricing' );
 remove_action( 'edd_purchase_link_top', 'atcf_campaign_contribute_custom_price', 5 );
-add_action('edd_after_price_options', 'franklin_edd_after_price_options', 10, 2);
+add_action('edd_purchase_link_top', 'franklin_edd_purchase_link_top');
 
 /**
  * Display the list of pledge options. 
@@ -140,7 +164,7 @@ add_action('edd_after_price_options', 'franklin_edd_after_price_options', 10, 2)
  */
 if ( !function_exists('franklin_edd_purchase_link_end') ) {
 
-	function franklin_edd_purchase_link_end() {		
+	function franklin_edd_purchase_link_end($campaign_id) {		
 		// Close the .campaign-price-input div, which wraps around the text field & pledge button 
 		?>
 		</div>
@@ -149,7 +173,28 @@ if ( !function_exists('franklin_edd_purchase_link_end') ) {
 	}
 }
 
-add_action('edd_purchase_link_end', 'franklin_edd_purchase_link_end', 10, 2);
+add_action('edd_purchase_link_end', 'franklin_edd_purchase_link_end');
+
+/**
+ * Filter the title displayed for the pledge button. 
+ *
+ * @see edd_purchase_link_args
+ * @param array $args
+ * @return array
+ * @since Franklin 1.5.5
+ */
+if ( !function_exists('franklin_edd_purchase_link_args') ) {
+
+	function franklin_edd_purchase_link_args($args) {
+		$args['text'] = ! empty( $edd_options[ 'add_to_cart_text' ] ) 
+			? $edd_options[ 'add_to_cart_text' ] 
+			: __( 'Pledge', 'franklin' );
+
+		return $args;
+	}
+}
+
+add_filter('edd_purchase_link_args', 'franklin_edd_purchase_link_args');
 
 /**
  * Displays a pledge button at the bottom of the campaign content. 

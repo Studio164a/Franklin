@@ -25,9 +25,11 @@
 				<div class="featured-campaign">					
 
 					<?php if ( has_post_thumbnail() ) : ?>
-						<div class="campaign-image">
-							<?php echo get_the_post_thumbnail() ?>
-						</div>
+						<a href="<?php the_permalink() ?>" title="<?php printf( __( 'Go to %s', 'franklin' ), get_the_title() ) ?>">
+							<div class="campaign-image">
+								<?php echo get_the_post_thumbnail() ?>
+							</div>
+						</a>
 					<?php endif ?>
 
 					<div class="campaign-summary cf">		

@@ -52,41 +52,8 @@ function sofa_crowdfunding_campaign_nav($echo = true) {
  * @return mixed
  * @since Franklin 1.0
  */
-function sofa_crowdfunding_get_enddate( $campaign, $json_format = false ) {
-	if ( false === ( $campaign instanceof ATCF_Campaign ) )
-		return;		
-
-	$end_date = strtotime( $campaign->end_date() );
-
-	$end_date_array = array( 
-		'year' => date('Y', $end_date), // Year
-		'day' => date('d', $end_date), // Day
-		'month' => date('n', $end_date), // Month
-		'hour' => date('G', $end_date), // Hour
-		'minute' => date('i', $end_date), // Minute
-		'second' => date('s', $end_date)  // Second
-	);
-
-	return sprintf( date( "j F Y H:i:s", $end_date ), get_option( 'timezone_string', date_default_timezone_get() ) );
-
-
-	// echo '<pre>'; print_r( $end_date_array ); 
-
-	// $date_timezone = new DateTimeZone( get_option( 'timezone_string', date_default_timezone_get() ) );
-	// $date_time = new DateTime($campaign->end_date(), $date_timezone);
-
-	// $date_time2 = new DateTime('now', $date_timezone);
-
-	// echo $date_time->format('O');
-	// echo PHP_EOL;
-	// echo $date_time2->format('O');
-	// echo PHP_EOL;
-
-	// // echo $date_time->getOffset();
-
-	// die;
-
-	// return $json_format ? json_encode($end_date_array) : $end_date_array;
+function sofa_crowdfunding_get_enddate( ATCF_Campaign $campaign, $json_format = false ) {
+	return date( "j F Y H:i:s", strtotime( $campaign->end_date() ) );
 }
 
 /**
@@ -97,10 +64,7 @@ function sofa_crowdfunding_get_enddate( $campaign, $json_format = false ) {
  * @return string|int
  * @since Franklin 1.3
  */
-function sofa_crowdfunding_get_time_since_ended( $campaign, $readable = true ) {
-	if ( false === ( $campaign instanceof ATCF_Campaign ) )
-		return;
-
+function sofa_crowdfunding_get_time_since_ended( ATCF_Campaign $campaign, $readable = true ) {	
 	$end_date = strtotime( $campaign->end_date() );
 
 	// Return it as a readable string

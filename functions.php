@@ -93,7 +93,6 @@ class Franklin_Theme {
         add_filter('sofa_enabled_modules', array(&$this, 'sofa_enabled_modules'));
         add_filter('sofa_load_lt_ie9', array(&$this, 'sofa_load_lt_ie9'));
         add_filter('sofa_link_format_title', array(&$this, 'sofa_link_format_title_filter'));
-        add_filter('option_theme_mods_'.$this->stylesheet, array(&$this, 'update_theme_mods_filter'), 11);
   	}
 
     /**
@@ -173,7 +172,8 @@ class Franklin_Theme {
             'day' => __( 'Day', 'franklin' ), 
             'hour' => __( 'Hour', 'franklin' ), 
             'minute' => __( 'Minute', 'franklin' ), 
-            'second' => __( 'Second', 'franklin' )
+            'second' => __( 'Second', 'franklin' ), 
+            'timezone_offset' => $this->get_timezone_offset()
         ) ); 
     } 
 
@@ -467,17 +467,15 @@ class Franklin_Theme {
     }
 
     /**
+     * Gets the timezone offset. 
      * 
-     *
-     * 
-     * @since Franklin 1.3
+     * @return string
+     * @since Franklin 1.5.5
      */
-    public function update_theme_mods_filter($value) {
-        // echo '<pre>'; var_dump( $__icl_st_cache ); echo '</pre>';
-
-        // die;
-
-        return $value;
+    public function get_timezone_offset() {
+        $date_timezone = new DateTimeZone( get_option( 'timezone_string', date_default_timezone_get() ) );
+        $date_time = new DateTime('now', $date_timezone);
+        return $date_time->format('O');
     }
 }
 
@@ -491,50 +489,3 @@ get_franklin_theme();
 
 // Set the content_width global
 $content_width = 1077;
-
-
-
-
-// foreach ( array( 'mods1', 'mods2', 'mods3', 'mods4', 'mods5' ) as $key ) {
-//     set_theme_mod( $key, 'this has again been changed' );
-// }   
-
-// global $wpdb;
-
-// $row = $wpdb->get_row( $wpdb->prepare( "SELECT option_value FROM $wpdb->options WHERE option_name = %s LIMIT 1", 'theme_mods_franklin-child' ) );
-
-// echo '<pre>'; print_r( unserialize( $row->option_value ) ); echo '</pre>';
-
-// die;
-
-// foreach ( array( 'mods1', 'mods2', 'mods3', 'mods4', 'mods5', 'mods6', 'mods7', 'mods8', 'mods9', 'mods10', 'mods11', 'mods12', 'mods13', 'mods14' ) as $key ) {
-//     set_theme_mod( $key.'_a', 'this has been now changed again' );
-//     set_theme_mod( $key.'_b', 'this has been now changed again' );
-//     set_theme_mod( $key.'_c', 'this has been now changed again' );
-//     set_theme_mod( $key.'_d', 'this has been now changed again' );
-//     set_theme_mod( $key.'_e', 'this has been now changed again' );
-//     set_theme_mod( $key.'_f', 'this has been now changed again' );
-//     set_theme_mod( $key.'_g', 'this has been now changed again' );
-//     set_theme_mod( $key.'_h', 'this has been now changed again' );
-//     set_theme_mod( $key.'_i', 'this has been now changed again' );    
-
-    
-
-//     // remove_theme_mod($key.'_a');
-//     // remove_theme_mod($key.'_b');
-//     // remove_theme_mod($key.'_c');
-//     // remove_theme_mod($key.'_d');
-//     // remove_theme_mod($key.'_e');
-//     // remove_theme_mod($key.'_f');
-//     // remove_theme_mod($key.'_g');
-//     // remove_theme_mod($key.'_h');
-//     // remove_theme_mod($key.'_i');
-// }
-
-// global $wpdb;
-
-// $row = $wpdb->get_row( $wpdb->prepare( "SELECT option_value FROM $wpdb->options WHERE option_name = %s LIMIT 1", 'theme_mods_franklin-child' ) );
-
-// echo '<pre>'; print_r( unserialize( $row->option_value ) ); echo '</pre>';
-
-// die;

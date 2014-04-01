@@ -133,6 +133,7 @@
 				
 				$countdown.countdown({
 					until: new Date( $countdown.data().enddate ), 
+					timezone: +4,
 					format: 'dHMS', 
 					labels : [Sofa_Localized.years, Sofa_Localized.months, Sofa_Localized.weeks, Sofa_Localized.days, Sofa_Localized.hours, Sofa_Localized.minutes, Sofa_Localized.seconds],
 					labels1 : [Sofa_Localized.year, Sofa_Localized.month, Sofa_Localized.week, Sofa_Localized.day, Sofa_Localized.hour, Sofa_Localized.minute, Sofa_Localized.second]
@@ -203,6 +204,10 @@
 			var new_pledge = parseInt( $price.val() );
 
 			if ( $minpledge.length === 0 ) {
+				return;
+			}	
+
+			if ( $pledges.length === 0 ) {
 				return;
 			}
 
