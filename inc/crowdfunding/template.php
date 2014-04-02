@@ -9,8 +9,6 @@
  * @package franklin
  */
 
-
-
 /**
  * Remove output of variable pricing, and add our own system.
  *
@@ -54,11 +52,9 @@ add_action('edd_before_price_options', 'franklin_edd_before_price_options');
 function franklin_atcf_campaign_contribute_options( $prices, $type, $campaign_id ) {
 	global $edd_options;
 
-	$campaign = new ATCF_Campaign( $campaign_id );	
-
-	if ( $campaign->is_donations_only() || ! count( $prices ) ) : ?>
+	if ( franklin_is_rewardless_campaign( $campaign_id ) ) : ?>
 		
-		<input type="radio" name="edd_options[price_id][]" id="edd_price_option_<?php echo $campaign_id ?>_<?php echo $i ?>" class="edd_price_option_<?php echo $campaign_id ?> hidden" value="<?php echo $i ?>" checked />
+		<input type="radio" name="edd_options[price_id][]" id="edd_price_option_<?php echo $campaign_id ?>_0" class="edd_price_option_<?php echo $campaign_id ?> hidden" value="0" checked />
 
 	<?php
 	elseif ( count( $prices )) : ?>
@@ -137,10 +133,9 @@ add_action('edd_after_price_options', 'franklin_edd_after_price_options', 10, 2)
 if ( !function_exists('franklin_edd_purchase_link_top') ) {
 
 	function franklin_edd_purchase_link_top($campaign_id) {
-		$campaign = new ATCF_Campaign( $campaign_id );	
-
+	
 		// If it's donations only, add custom price input field
-		if ( $campaign->is_donations_only() || ! count( edd_get_variable_prices( $campaign_id ) ) ) {
+		if ( franklin_is_rewardless_campaign( $campaign_id ) && get_post_meta( $campaign_id, '_variable_pricing', true ) != 1 ) {
 
 			// Display the modal title
 			franklin_edd_before_price_options();
@@ -164,7 +159,7 @@ add_action('edd_purchase_link_top', 'franklin_edd_purchase_link_top');
  */
 if ( !function_exists('franklin_edd_purchase_link_end') ) {
 
-	function franklin_edd_purchase_link_end($campaign_id) {		
+	function franklin_edd_purchase_link_end($campaign_id) {				
 		// Close the .campaign-price-input div, which wraps around the text field & pledge button 
 		?>
 		</div>
@@ -195,6 +190,24 @@ if ( !function_exists('franklin_edd_purchase_link_args') ) {
 }
 
 add_filter('edd_purchase_link_args', 'franklin_edd_purchase_link_args');
+
+/**
+ * Determines whether this is a no rewards campaign. 
+ * 
+ * @param int $campaign_id
+ * @return bool
+ */
+function franklin_is_rewardless_campaign($campaign_id) {
+
+	if ( get_post_meta( $campaign_id, 'campaign_norewards', true ) == 1  // Donation-only is ticked
+		|| get_post_meta( $campaign_id, '_variable_pricing', true ) != 1  // Variable pricing is not ticked
+		|| count( edd_get_variable_prices( $campaign_id ) ) === 0  // There are no rewards specified
+	) {
+		return true;	
+	}
+
+	return false;
+}
 
 /**
  * Displays a pledge button at the bottom of the campaign content. 
