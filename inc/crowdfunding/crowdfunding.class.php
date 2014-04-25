@@ -49,6 +49,7 @@ class Sofa_Crowdfunding_Helper {
             add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'), 11);
 
         add_action('atcf_found_widget', array(&$this, 'atcf_found_widget'));
+        add_action('edd_purchase_form_before_submit', array(&$this, 'edd_purchase_form_before_submit'), 100 );
 
         add_filter('body_class', array(&$this, 'body_class_filter'));
         add_filter('page_template', array(&$this, 'page_template_filter'));
@@ -410,6 +411,29 @@ class Sofa_Crowdfunding_Helper {
         $this->viewing_widget = true;
 
         add_action('wp_head', array(&$this, 'wp_head_widget'));
+    }
+
+    /**
+     * Executed on the edd_load_gateway AJAX hook. 
+     *
+     * @since Franklin 1.5.7
+     */
+    public function edd_purchase_form_before_submit() {
+        if ( ! atcf_shipping_cart_shipping() )
+            return;
+
+        ob_start(); ?>  
+        <script>
+            if ( typeof Sofa !== 'undefined' ) {
+                // Make the selects pretty
+                Sofa.fancySelect(); 
+            }            
+
+            // Don't hide the Canada block
+            jQuery('#atcf_shipping_address .select-wrapper').css('display', 'inline-block');
+        </script>
+        <?php 
+        echo ob_get_clean();            
     }
 
     /**

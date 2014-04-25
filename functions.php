@@ -32,6 +32,11 @@ class Franklin_Theme {
 
     /**
      * @var string
+     */
+    private $theme_version;
+
+    /**
+     * @var string
      */ 
     private $stylesheet;
 
@@ -66,6 +71,7 @@ class Franklin_Theme {
         }
 
         // Check for theme update
+        $this->theme_version = '1.5.7';
         $this->theme_db_version = mktime(15,30,0,8,6,2013);
         $this->version_update();
         $this->stylesheet = get_option('stylesheet');
@@ -148,13 +154,18 @@ class Franklin_Theme {
         }
         
         // Scripts    
-        wp_register_script('audio-js', sprintf( "%s/media/js/audiojs/audio.min.js", $theme_dir ), array(), 0.1, true);
-        wp_register_script('foundation', sprintf( "%s/media/js/foundation.min.js", $theme_dir ), array(), 0.1, true);
-        wp_register_script('foundation-reveal', sprintf( "%s/media/js/foundation.reveal.js", $theme_dir ), array('foundation'), 0.1, true);        
-        wp_register_script('sharrre', sprintf( "%s/media/js/jquery.sharrre-1.3.5.js", $theme_dir ), array('jquery'), 0.1, true );
-        wp_register_script('franklin', sprintf( "%s/media/js/main.js", $theme_dir ), array( 'prettyPhoto', 'jquery-ui-accordion', 'audio-js', 'sharrre', 'hoverIntent', 'foundation-reveal', 'jquery-ui-accordion', 'jquery'), 0.1, true);
+        $in_footer = function_exists('edd_is_checkout') && edd_is_checkout() ? false : true;
+
+        wp_register_script('sofa', sprintf( "%s/media/js/sofa.js", $theme_dir ), array('jquery'), $this->theme_version, $in_footer);
+
+        wp_register_script('audio-js', sprintf( "%s/media/js/audiojs/audio.min.js", $theme_dir ), array(), $this->theme_version, true);
+        wp_register_script('foundation', sprintf( "%s/media/js/foundation.min.js", $theme_dir ), array(), $this->theme_version, true);
+        wp_register_script('foundation-reveal', sprintf( "%s/media/js/foundation.reveal.js", $theme_dir ), array('foundation'), $this->theme_version, true);        
+        wp_register_script('sharrre', sprintf( "%s/media/js/jquery.sharrre-1.3.5.js", $theme_dir ), array('jquery'), $this->theme_version, true );        
+        wp_register_script('franklin', sprintf( "%s/media/js/main.js", $theme_dir ), array( 'sofa', 'prettyPhoto', 'jquery-ui-accordion', 'audio-js', 'sharrre', 'hoverIntent', 'foundation-reveal', 'jquery'), $this->theme_version, true);
 
         wp_enqueue_script('jquery');
+        wp_enqueue_script('sofa');
 	    wp_enqueue_script('franklin');
 
         wp_localize_script('franklin', 'Sofa_Localized', array(
