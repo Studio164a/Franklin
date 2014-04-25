@@ -78,6 +78,7 @@
 #edd_checkout_form_wrap span.card-type.americanexpress { background: url( ../assets/images/icons/americanexpress.png ) no-repeat; }
 #edd_checkout_form_wrap #edd-discount-loader, #edd_checkeout_form_wrap .edd-cart-ajax { -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; }
 
+#edd_agree_to_terms { margin-top: 6px !important; margin-top: 0.6rem !important; }
 #edd_purchase_final_total #edd_final_total_wrap, 
 #edd_purchase_submit #edd_final_total_wrap { margin-bottom: 24px; margin-bottom: 2.4rem; font-size: 20px; font-size: 2rem; text-align: center; }
 #edd-purchase-button { width: 100%; }

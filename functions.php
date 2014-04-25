@@ -473,9 +473,16 @@ class Franklin_Theme {
      * @since Franklin 1.5.5
      */
     public function get_timezone_offset() {
-        $date_timezone = new DateTimeZone( get_option( 'timezone_string', date_default_timezone_get() ) );
+        $timezone = edd_get_timezone_id();
+        $date_timezone = new DateTimeZone($timezone);
         $date_time = new DateTime('now', $date_timezone);
-        return $date_time->format('O');
+        $offset_secs = $date_time->format('Z');
+        $offset = $date_time->format('O');
+
+        if ( $offset_secs >= 0 ) {
+            return $offset;
+        }
+        return str_replace('+', '-', $offset);
     }
 }
 

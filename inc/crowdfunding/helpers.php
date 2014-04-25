@@ -88,8 +88,6 @@ function sofa_crowdfunding_get_time_left( ATCF_Campaign $campaign ) {
 
 	$value = get_transient($transient);
 
-	$value = false;
-
 	if ( ! $value ) {
 
 		$set_transient = true;

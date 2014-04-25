@@ -1,3 +1,5 @@
+<?php if ( sofa_using_crowdfunding() === false ) return ?>
+	
 				<div class="campaigns-grid-wrapper">								
 
 					<nav class="campaigns-navigation" role="navigation">

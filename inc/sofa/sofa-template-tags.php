@@ -125,8 +125,6 @@ if ( ! function_exists( 'sofa_content_nav' ) ) {
 		
 		if ( $wp_query->max_num_pages > 1 ) :
 
-			echo apply_filters( 'sofa_older_posts_text', __('Older Posts', 'franklin'), $wp_query );
-
 			$older_posts_link = get_next_posts_link( apply_filters( 'sofa_older_posts_text', __('Older Posts', 'franklin'), $wp_query ), $wp_query->max_num_pages );
 			$newer_posts_link = get_previous_posts_link( apply_filters( 'sofa_newer_posts_text', __('Newer Posts', 'franklin'), $wp_query ) );
 			?>
