@@ -704,6 +704,10 @@ span.description {
 	font-weight: 300; 
 }
 
+.mce-btn button {
+	box-shadow: none;
+}
+
 /* 11.0 - Projects page
 ================================================== */
 

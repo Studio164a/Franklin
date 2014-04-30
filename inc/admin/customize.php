@@ -693,7 +693,7 @@ th { border-right-color: <?php echo $secondary_border ?>; }
 .widget-title { border-color: <?php echo $secondary_border ?>;}
 
 /* Main content area background colour */
-#main, #header, .menu-site, .menu-site ul, .even td, .widget td, .widget input[type=text], .widget input[type=password], .widget input[type=email], .widget input[type=number] { background-color: <?php echo $wrapper_background ?>; }
+#main, #header, .menu-site, .menu-site ul, .even td, .widget td, .widget input[type=text], .widget input[type=password], .widget input[type=email], .widget input[type=number], .entry-block.contact-page { background-color: <?php echo $wrapper_background ?>; }
 /*.menu-site ul { box-shadow: 0 -2px 0 <?php echo $wrapper_background ?>; }*/
 
 /* Posts background colour */
