@@ -89,7 +89,6 @@ function franklin_atcf_shortcode_submit_field_rewards_action( $key, $field, $att
 	franklin_atcf_shortcode_submit_field_rewards( $atts, $campaign );
 }
 
-
 /**
  * Term checklist field.
  * 

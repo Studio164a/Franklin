@@ -638,8 +638,7 @@ span.description {
 	float: left;
 }
 
-.atcf-submit-campaign-physical,
-.atcf-submit-campaign-shipping {
+.atcf-submit-section + p {
 	clear: both;
 }
 
