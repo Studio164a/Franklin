@@ -166,6 +166,11 @@
 	font-weight: 300;
 }
 
+.campaign-summary li:last-child{
+	padding-bottom:0px;
+	border-bottom:none;
+}
+
 /*<div class="campaign-countdown">
 	<span class="countdown is-countdown" data-enddate="{&quot;year&quot;:&quot;2014&quot;,&quot;day&quot;:&quot;31&quot;,&quot;month&quot;:&quot;7&quot;,&quot;hour&quot;:&quot;1&quot;,&quot;minute&quot;:&quot;30&quot;,&quot;second&quot;:&quot;12&quot;}">
 		<span class="countdown-row countdown-show4">
@@ -305,9 +310,9 @@
 .campaign-countdown {
 	float: left;
 	width: 100%;
-	padding-bottom: 10px;
+	padding-top: 10px; padding-bottom: 10px;
 	margin-bottom: 0; 
-	border-bottom: 1px solid #fff; border-color: rgba(255, 255, 255, 0.3);
+	border-top: 1px solid #fff; border-bottom: 1px solid #fff; border-color: rgba(255, 255, 255, 0.3);
 }
 
 .campaign-countdown .countdown {
@@ -325,6 +330,7 @@
 	float: right;
 	text-align: right;
 	font-style: italic;
+	font-weight: 300;
 	width: 30%;
 }
 
@@ -491,8 +497,13 @@
 	margin-right: 0;
 }
 
+.campaign-backer .if-tiny-hide {
+	float:left;
+}
+
 .campaign-backer h6 {
 	margin: 6px 0; margin-top: 0.6rem; margin-bottom: 0.6rem;
+	line-height:16px;
 }
 
 .content .widget_campaign_backers_widget ul {
@@ -986,6 +997,9 @@ span.description {
 	.block .campaign-backer:nth-child(5n+5) {
 		margin-right: 0;
 	}	
+	.block .campaign-backer:nth-child(5n+6){
+		clear: left;
+	}
 
 	.feature-block .featured-campaign .campaign-status li {
 		width: 18%;
@@ -1103,7 +1117,7 @@ span.description {
 
 /* 10.4 -- Greater than 800px ***/
 @media all and (min-width: 50em) {
-	.block .campaign-backer {
+	/*.block .campaign-backer {
 		width: 23.5%;
 	}
 
@@ -1113,7 +1127,7 @@ span.description {
 
 	.block .campaign-backer:nth-child(5n+5) {
 		margin-right: 2%;
-	}
+	}*/
 
 	/* Login & Registration forms */
 	#login-form .login-block, 
@@ -1319,5 +1333,9 @@ span.description {
 
 	.block .campaign-backer:nth-child(5n+5) {
 		margin-right: 0;
+	}
+
+	.block .campaign-backer:nth-child(5n+6) {
+		clear: left;
 	}
 }
