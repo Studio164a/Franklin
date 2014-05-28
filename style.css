@@ -944,6 +944,7 @@ pre {
 
 .site-navigation .menu-button {
 	position: absolute;
+	z-index: 600;
 	right: 4%;
 	top: 36px; top: 3.6rem;
 	line-height: 38px; line-height: 3.8rem;	
