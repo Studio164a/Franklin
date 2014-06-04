@@ -735,9 +735,10 @@ pre {
 }
 
 .with-icon::before {
-	display: inline;	
+	display: inline-block;	
 	margin-right: 6px; margin-right: 0.6rem;
 	font-size: 120%;
+	width:14px;
 }
 
 .icon:hover {	
@@ -1115,6 +1116,7 @@ h2.block-title,
 .meta-below {
 	border-top: 1px solid;	
 	border-radius: 0 0 0.4rem 0.4rem;
+	/*margin: -1px;*/
 }
 
 .meta p {
@@ -1130,7 +1132,7 @@ h2.block-title,
 .meta .tags {
 	border-left: 1px solid;
 	margin-left: 6px; margin-left: 0.6rem;
-	padding-left: 6px; padding-left: 0.6rem;
+	padding-left: 10px; padding-left: 1rem;
 }
 
 /* 5.3 --- Entry Content ***/
@@ -1352,6 +1354,7 @@ h2.block-title,
 
 .author-bio {
 	clear: left;
+	border-radius: 0.4rem;
 }
 
 .avatar {
@@ -1361,8 +1364,8 @@ h2.block-title,
 
 .author-links {
 	padding: 6px 0 0; padding-top: 0.6rem;
-	border-top-width: 2px; border-top-width: 0.2rem;
-	border-bottom-width: 2px; border-bottom-width: 0.2rem;
+	border-top-width: 1px; border-top-width: 0.1rem;
+	border-bottom-width: 1px; border-bottom-width: 0.1rem;
 	border-style: solid; 
 }
 
@@ -1370,6 +1373,7 @@ h2.block-title,
 	text-align: left;	
 	display: block;
 }
+
 
 .author-campaigns-block.block,
 .author-posts-block.block {	
@@ -1380,7 +1384,7 @@ h2.block-title,
 
 .author-campaigns-block.block {
 	padding-top: 24px; padding-top: 2.4rem;
-	border-bottom: 2px solid; border-bottom-width: 0.2rem;
+	border-bottom: 1px solid; border-bottom-width: 0.1rem;
 	border-radius: 0;
 }
 
@@ -1402,10 +1406,10 @@ h2.block-title,
 	padding-top: 0;		
 }
 
-.content-wrapper.fullwidth .entry-block {
+/*.content-wrapper.fullwidth .entry-block {
 	border-top: none;
 	border-radius: 0 0 0.4rem 0.4rem;
-}
+}*/
 
 /* 5.11 --- 404 ***/
 
@@ -1913,6 +1917,10 @@ h2.block-title,
 	.author-links li {
 		display: inline-block;
 		margin-right: 2rem;
+	}
+
+	.author-links .with-icon::before{
+		width:auto;
 	}
 
 	.author-posts-block .masonry-grid {
