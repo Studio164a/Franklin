@@ -494,6 +494,9 @@ class Franklin_Theme {
      * @since Franklin 1.5.5
      */
     public function get_timezone_offset() {
+        if ( sofa_using_crowdfunding() === false ){
+            return;
+        }
         $timezone = edd_get_timezone_id();
         $date_timezone = new DateTimeZone($timezone);
         $date_time = new DateTime('now', $date_timezone);

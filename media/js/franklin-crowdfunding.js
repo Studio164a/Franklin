@@ -12,7 +12,7 @@
 			jQuery(this).parent().parent().find('input[type="checkbox"]').prop('checked',false);
 		}
 	});
-
+ 
 
 
 	//--------Campaign page js---------
