@@ -139,7 +139,7 @@ function franklin_atcf_shortcode_submit_field_length( $args, $campaign ) {
 
 	$description = sprintf( __( "Your campaign's length can be between %d and %d days", 'franklin' ), $min, $max );
 
-	if ( $atts['previewing'] ) {
+	if ( $args['previewing'] ) {
 		$value = $campaign->days_remaining();
 		$placeholder = $value;
 	}

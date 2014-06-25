@@ -4,7 +4,7 @@ Theme URI: http://164a.com
 Author: Studio164a
 Author URI: http://164a.com
 Description: A responsive, retina ready Wordpress crowdfunding theme.
-Version: 1.5.7
+Version: 1.5.9
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: 
@@ -735,10 +735,9 @@ pre {
 }
 
 .with-icon::before {
-	display: inline-block;	
+	display: inline;	
 	margin-right: 6px; margin-right: 0.6rem;
-	font-size: 120%;
-	width:14px;
+	font-size: 120%;	
 }
 
 .icon:hover {	
@@ -768,7 +767,7 @@ pre {
 	position: relative;
 	max-width: 600px; max-width: 60rem; /* This will be our fallback for any browser that does not support media queries */
 	margin: 0 auto;
-	overflow-x: hidden;	
+	/*overflow-x: hidden;	*/
 }
 
 .body-wrapper {
@@ -945,6 +944,7 @@ pre {
 
 .site-navigation .menu-button {
 	position: absolute;
+	z-index: 600;
 	right: 4%;
 	top: 36px; top: 3.6rem;
 	line-height: 38px; line-height: 3.8rem;	
@@ -1352,8 +1352,7 @@ h2.block-title,
 }
 
 .author-bio {
-	clear: left;
-	border-radius: 0.4rem;
+	clear: left;	
 }
 
 .avatar {
@@ -1373,6 +1372,10 @@ h2.block-title,
 	display: block;
 }
 
+.author-links .with-icon::before {
+	display: inline-block;
+	width: 14px; width: 1.4rem;
+}
 
 .author-campaigns-block.block,
 .author-posts-block.block {	
@@ -1392,6 +1395,10 @@ h2.block-title,
 	list-style: none;
 }
 
+.author-posts-block .block {
+	margin-bottom: 24px; margin-bottom: 2.4rem;
+}
+
 /* 5.9 --- Archives ***/
 
 .archive-title {
@@ -1405,10 +1412,10 @@ h2.block-title,
 	padding-top: 0;		
 }
 
-/*.content-wrapper.fullwidth .entry-block {
+.content-wrapper.fullwidth > .entry-block {
 	border-top: none;
 	border-radius: 0 0 0.4rem 0.4rem;
-}*/
+}
 
 /* 5.11 --- 404 ***/
 
@@ -1910,6 +1917,7 @@ h2.block-title,
 		width: -moz-calc(100% - 35rem);
 		width: calc(100% - 35rem);
 		border: 0.1rem solid;
+		border-radius: 0.4rem;
 		clear: none;
 	}
 
@@ -1918,7 +1926,7 @@ h2.block-title,
 		margin-right: 2rem;
 	}
 
-	.author-links .with-icon::before{
+	.author .author-links .with-icon::before {
 		width:auto;
 	}
 
@@ -2140,14 +2148,22 @@ h2.block-title,
 	}
 
 	.site-navigation .menu-site ul {
-		margin-top: 0.9rem;
 		padding-top: 0;
 		border-top: 0;
 		border-radius: 0 0 0.4rem 0.4rem;			
 	}
 
+	.site-navigation .menu-site ul {
+		margin-top: 0.9rem;
+	}	
+
 	.no-tagline.no-title .site-navigation .menu-site ul {
 		margin-top: 0.8rem;
+	}
+
+	.site-navigation .menu-site ul ul, 
+	.no-tagline.no-title .site-navigation .menu-site ul ul {
+		margin-top: 0;
 	}
 
 	.no-title .site-navigation .menu-site {

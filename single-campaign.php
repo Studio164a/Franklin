@@ -11,7 +11,7 @@ get_header();
 
 			the_post();
 
-			$campaign = new ATCF_Campaign( get_the_ID() );
+			$campaign = atcf_get_campaign( get_the_ID() );
 
 			do_action( 'atcf_campaign_before', $campaign );
 
