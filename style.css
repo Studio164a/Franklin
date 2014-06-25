@@ -1115,6 +1115,7 @@ h2.block-title,
 .meta-below {
 	border-top: 1px solid;	
 	border-radius: 0 0 0.4rem 0.4rem;
+	/*margin: -1px;*/
 }
 
 .meta p {
@@ -1382,7 +1383,7 @@ h2.block-title,
 
 .author-campaigns-block.block {
 	padding-top: 24px; padding-top: 2.4rem;
-	border-bottom: 2px solid; border-bottom-width: 0.2rem;
+	border-bottom: 1px solid; border-bottom-width: 0.1rem;
 	border-radius: 0;
 }
 
