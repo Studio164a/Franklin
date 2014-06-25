@@ -116,7 +116,7 @@ class Sofa_Crowdfunding_Helper {
         // Array of required scripts
         $req = array('raphael', 'franklin');
 
-        wp_register_script('raphael', sprintf( "%s/media/js/raphael-min.js", $theme_dir ), array('jquery'), 0.1, true);
+        wp_register_script('raphael', sprintf( "%s/media/js/raphael-min.js", $theme_dir ), array('jquery'), get_franklin_theme()->get_theme_version(), true);
 
         // Add scripts that are only applied if we're not looking at a widget
         if ( $this->viewing_widget === false ) {    
@@ -124,17 +124,17 @@ class Sofa_Crowdfunding_Helper {
             $req[] = 'jquery-masonry';
 
             if ( get_post_type() == 'download' || is_page_template('page-single-campaign.php') ) {
-                wp_register_script('countdown', sprintf( "%s/media/js/jquery.countdown.min.js", $theme_dir ), array('jquery'), 0.1, true);
+                wp_register_script('countdown', sprintf( "%s/media/js/jquery.countdown.min.js", $theme_dir ), array('jquery'), get_franklin_theme()->get_theme_version(), true);
                 $req[] = 'countdown';
             }
         }
 
-        wp_register_script('franklin-crowdfunding', sprintf( "%s/media/js/franklin-crowdfunding.js", $theme_dir ), $req, 0.1, true);    
+        wp_register_script('franklin-crowdfunding', sprintf( "%s/media/js/franklin-crowdfunding.js", $theme_dir ), $req, get_franklin_theme()->get_theme_version(), true);    
 
         // Load the Franklin crowdfunding script
         wp_enqueue_script('franklin-crowdfunding');
     
-        wp_register_style('franklin-crowdfunding', sprintf( "%s/media/css/franklin-crowdfunding.css", $theme_dir ));
+        wp_register_style('franklin-crowdfunding', sprintf( "%s/media/css/franklin-crowdfunding.css", $theme_dir ), array('franklin-main'), get_franklin_theme()->get_theme_version() );
         wp_enqueue_style('franklin-crowdfunding');
 
         // We're viewing the widget, so there are a bunch of scripts that we don't need to load

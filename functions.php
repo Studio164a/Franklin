@@ -71,12 +71,13 @@ class Franklin_Theme {
         }
 
         // Check for theme update
-        $this->theme_version = '1.5.7';
+        $this->theme_version = '1.5.8.0';
         $this->theme_db_version = mktime(15,30,0,8,6,2013);
         $this->version_update();
         $this->stylesheet = get_option('stylesheet');
 
         add_action('wp_head', array(&$this, 'wp_head'), 20);
+        add_action('wp_footer', array(&$this, 'wp_footer'));
         // add_action('wp_head', array(&$this, 'wp_head_late'), 20);
         add_action('widgets_init', array(&$this, 'widgets_init'));
         add_action('after_setup_theme', array(&$this, 'after_setup_theme'));        
@@ -141,15 +142,15 @@ class Franklin_Theme {
         $theme_dir = get_template_directory_uri();        
 
         // Stylesheets
-        wp_register_style('main', get_bloginfo('stylesheet_url'));
-        wp_enqueue_style('main');
+        wp_register_style('franklin-main', $theme_dir . "/style.css", array(), $this->theme_version);
+        wp_enqueue_style('franklin-main');
 
-        wp_register_style( 'foundation', sprintf( "%s/media/css/foundation.css", $theme_dir));
+        wp_register_style( 'foundation', sprintf( "%s/media/css/foundation.css", $theme_dir), array(), $this->theme_version);
         wp_enqueue_style( 'foundation' );
 
         // Load up Ninja Forms CSS if the plugin is on
         if ( defined( 'NINJA_FORMS_VERSION' ) ) {
-            wp_register_style( 'franklin-ninja-forms', sprintf( "%s/media/css/franklin-ninja-forms.css", $theme_dir ) );
+            wp_register_style( 'franklin-ninja-forms', sprintf( "%s/media/css/franklin-ninja-forms.css", $theme_dir ), array('franklin-main'), $this->theme_version );
             wp_enqueue_style( 'franklin-ninja-forms' );
         }
         
@@ -195,8 +196,6 @@ class Franklin_Theme {
      * @since Franklin 1.0
      */
     public function wp_head () {
-        echo apply_filters( 'franklin_font_link', "<link href='//fonts.googleapis.com/css?family=Merriweather:400,400italic,700italic,700,300italic,300|Oswald:400,300' rel='stylesheet' type='text/css'>" );
-
         ?>
         <!--<script src="<?php echo $this->sofa->plugin_dir_url ?>/js/respond.min.js" type="text/javascript"></script>-->        
         <?php
@@ -204,7 +203,17 @@ class Franklin_Theme {
         if ( is_page_template('page-contact.php') ) {
             remove_filter( 'the_content', 'ninja_forms_append_to_page', 9999 );
         }
-    }    
+    }  
+
+    /**
+     * Loading the fonts in the footer instead of the header to improve loading times. 
+     * 
+     * @return void
+     * @since Franklin 1.5.8
+     */
+    public function wp_footer() {
+        echo apply_filters( 'franklin_font_link', "<link href='//fonts.googleapis.com/css?family=Merriweather:400,400italic,700italic,700,300italic,300|Oswald:400,300' rel='stylesheet' type='text/css'>" );
+    }  
 
     /**
      * Executes on the after_setup_theme hook
@@ -355,7 +364,8 @@ class Franklin_Theme {
                 return;
 
             // Save custom fields found in our $settings variable
-            update_post_meta( $post_id, '_franklin_hide_post_meta', ( $_POST['_franklin_hide_post_meta'] == 'on' ? 1 : 0 ) );
+            $hide_post_meta = isset( $_POST['_franklin_hide_post_meta'] ) && $_POST['_franklin_hide_post_meta'] == 'on';
+            update_post_meta( $post_id, '_franklin_hide_post_meta', $hide_post_meta );
         }
     }
 
@@ -494,6 +504,16 @@ class Franklin_Theme {
             return $offset;
         }
         return str_replace('+', '-', $offset);
+    }
+
+    /**
+     * Returns the current version number. 
+     * 
+     * @return int
+     * @since Franklin 1.5.8
+     */
+    public function get_theme_version() {
+        return $this->theme_version;
     }
 }
 
