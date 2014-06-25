@@ -1,5 +1,22 @@
 ( function( $ ){	 
 
+	//-------Campaign category js-------
+	jQuery(document).ready(function(){
+		jQuery('.children').hide();
+	});
+	jQuery('.popular-category input[type="checkbox"]').change(function(){
+		if(jQuery(this).attr("checked")){
+			jQuery(this).parent().parent().children('.children').show();
+		}else{
+			jQuery(this).parent().parent().children('.children').hide();
+			jQuery(this).parent().parent().find('input[type="checkbox"]').prop('checked',false);
+		}
+	});
+
+
+
+	//--------Campaign page js---------
+
 	Sofa.Barometer = ( function() {
 
 		// Barometers collection

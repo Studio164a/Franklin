@@ -95,6 +95,6 @@
 
   	$(window).resize( function() {
   		Sofa.responsiveHide();
-  	})
+  	});
 
 })( jQuery );
