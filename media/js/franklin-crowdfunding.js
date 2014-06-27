@@ -11,7 +11,9 @@
 		var child = topCategory.children('.children');
 		if(jQuery(this).attr("checked")){
 			child.show();
-			topCategory.addClass("selected");
+			if(child.length > 0){
+				topCategory.addClass("selected");
+			}
 		}else{
 			child.hide();
 			topCategory.removeClass("selected");
