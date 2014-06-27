@@ -497,6 +497,7 @@ class Franklin_Theme {
         if ( sofa_using_crowdfunding() === false ){
             return;
         }
+        
         $timezone = edd_get_timezone_id();
         $date_timezone = new DateTimeZone($timezone);
         $date_time = new DateTime('now', $date_timezone);

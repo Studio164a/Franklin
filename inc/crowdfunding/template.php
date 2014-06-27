@@ -583,7 +583,7 @@ if ( !function_exists('franklin_login_register_modal') ) {
 		</div>
 		<div class="register-block  block last">
 		    <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Register', 'franklin') ?></h3></div> 
-		    <?php echo atcf_shortcode_register() ?>
+		    <?php echo sofa_shortcode_register() ?>
 		</div>
 		<?php 
 	}

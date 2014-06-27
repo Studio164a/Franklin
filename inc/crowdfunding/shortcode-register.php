@@ -31,5 +31,19 @@ function sofa_shortcode_register_form() {
 <?php
 }
 
-remove_all_actions( 'atcf_shortcode_register' );
-add_action( 'atcf_shortcode_register', 'sofa_shortcode_register_form' );
+function sofa_shortcode_register() {
+	ob_start();
+	?> 
+	<div class="atcf-register">
+		<form name="registerform" id="registerform" action="" method="post">
+			<?php sofa_shortcode_register_form() ?>
+		</form>
+	</div>
+	<?php 
+	$form = ob_get_clean();
+
+	return $form;
+}
+
+remove_shortcode( 'appthemer_crowdfunding_register', 'atcf_shortcode_register' );
+add_shortcode( 'appthemer_crowdfunding_register', 'sofa_shortcode_register' );
