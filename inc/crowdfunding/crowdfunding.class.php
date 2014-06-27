@@ -32,6 +32,7 @@ class Sofa_Crowdfunding_Helper {
         
         include_once('helpers.php');
         include_once('template.php');
+        include_once('shortcode-register.php');
         include_once('shortcode-submit.php');
         include_once('widgets/campaign-pledge-levels.php');
         include_once('widgets/campaign-updates.php');

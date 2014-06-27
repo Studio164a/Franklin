@@ -715,7 +715,7 @@ th { border-right-color: <?php echo $secondary_border ?>; }
 
 @media all and (min-width: 50em) {
     #login-form .register-block { background-color: <?php echo $widget_background ?>; }
-    #login-form .register-block input[type=text], #login-form .register-block input[type=password] { background-color: <?php echo $wrapper_background ?>; }
+    #login-form .register-block input[type=text], #login-form .register-block input[type=password], #login-form .register-block input[type=email] { background-color: <?php echo $wrapper_background ?>; }
 }
 
 /* Text selection */
