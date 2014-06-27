@@ -702,15 +702,29 @@ span.description {
 }
 
 .atcf-multi-select .children{
-	background-color: #DDD;
-	display: inline-block;
-	padding: 5px 10px; padding:0.5rem 1rem;
+	display:inline-block;
+	padding: 4px 10px 0px 10px; padding:0.4rem 1rem 0rem 1rem;
 	margin-right:20px; margin-right:2rem;
 	margin-left:0;
 }
 
 .atcf-multi-select li{
 	list-style: none;
+}
+
+.atcf-multi-select .selected {
+	width:96%;
+	float: none;
+	clear: left;
+}
+
+.atcf-multi-select .selected > .children{
+	width: 96%;
+	border-left: 3px #FFF solid;
+}
+
+.atcf-multi-select .selected li{
+	margin-bottom:0px;
 }
 
 .atcf-submit-campaign-category, 

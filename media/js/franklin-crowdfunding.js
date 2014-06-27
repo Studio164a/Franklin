@@ -7,11 +7,15 @@
 		jQuery('.children').hide();
 	});
 	jQuery('.popular-category input[type="checkbox"]').change(function(){
+		var topCategory = jQuery(this).parent().parent('li');
+		var child = topCategory.children('.children');
 		if(jQuery(this).attr("checked")){
-			jQuery(this).parent().parent().children('.children').show();
+			child.show();
+			topCategory.addClass("selected");
 		}else{
-			jQuery(this).parent().parent().children('.children').hide();
-			jQuery(this).parent().parent().find('input[type="checkbox"]').prop('checked',false);
+			child.hide();
+			topCategory.removeClass("selected");
+			topCategory.find('input[type="checkbox"]').prop('checked',false);
 		}
 	});
  
