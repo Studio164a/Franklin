@@ -71,7 +71,7 @@ class Franklin_Theme {
         }
 
         // Check for theme update
-        $this->theme_version = '1.5.8.0';
+        $this->theme_version = '1.5.10.0';
         $this->theme_db_version = mktime(15,30,0,8,6,2013);
         $this->version_update();
         $this->stylesheet = get_option('stylesheet');
