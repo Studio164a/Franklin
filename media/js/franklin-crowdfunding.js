@@ -1,6 +1,8 @@
 ( function( $ ){	 
 
 	//-------Campaign category js-------
+
+	//hides sub-categories and expands them when their parent category is clicked
 	jQuery(document).ready(function(){
 		jQuery('.children').hide();
 	});

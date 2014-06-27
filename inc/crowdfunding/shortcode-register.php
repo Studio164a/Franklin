@@ -1,5 +1,11 @@
 <?php
-
+/** 
+ * A replacement for the default register form, using html validation
+ * 
+ * @since Franklin 1.5.10
+ *
+ * @return void
+ */
 function sofa_shortcode_register_form() {
 	global $edd_options;
 ?>
@@ -31,6 +37,13 @@ function sofa_shortcode_register_form() {
 <?php
 }
 
+/** 
+ * Shortcode body function for the above form
+ * 
+ * @since Franklin 1.5.10
+ *
+ * @return void
+ */
 function sofa_shortcode_register() {
 	ob_start();
 	?> 
