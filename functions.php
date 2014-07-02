@@ -90,6 +90,7 @@ class Franklin_Theme {
         if ( !is_admin() )
             add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'), 11);
 
+
         add_filter('get_pages',  array(&$this, 'get_pages_filter'));    
         add_filter('post_class', array(&$this, 'post_class_filter'));
         add_filter('the_content_more_link', array(&$this, 'the_content_more_link_filter'), 10, 2);
@@ -100,7 +101,35 @@ class Franklin_Theme {
         add_filter('sofa_enabled_modules', array(&$this, 'sofa_enabled_modules'));
         add_filter('sofa_load_lt_ie9', array(&$this, 'sofa_load_lt_ie9'));
         add_filter('sofa_link_format_title', array(&$this, 'sofa_link_format_title_filter'));
+
+
+        remove_action('wp_enqueue_scripts', 'layerslider_enqueue_content_res');
+        // add_action('wp_print_styles',array(&$this, 'dequeue_layerslider_styles'),1111);
+        // add_action('wp_print_scripts',array(&$this, 'dequeue_layerslider_scripts'),1111);
   	}
+
+    // public function dequeue_layerslider_styles(){
+
+    //     $styles = array('layerslider');
+
+    //     foreach ($styles as $style){
+    //         wp_dequeue_style($style);
+    //     }
+    // }
+
+    // public function dequeue_layerslider_scripts(){
+
+    //     $scripts = array(
+    //         'layerslider',
+    //         'greensock',
+    //         'layerslider-transitions',
+    //         'ls-user-transitions'
+    //         );
+
+    //     foreach ($scripts as $script){
+    //         wp_dequeue_script($script);
+    //     }
+    // }
 
     /**
      * Get class instance.
@@ -204,6 +233,14 @@ class Franklin_Theme {
             remove_filter( 'the_content', 'ninja_forms_append_to_page', 9999 );
         }
     }  
+
+
+
+
+
+
+
+
 
     /**
      * Loading the fonts in the footer instead of the header to improve loading times. 

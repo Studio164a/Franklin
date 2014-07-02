@@ -1,3 +1,4 @@
+
 <?php get_header('widget') ?>
 
 <?php if ( have_posts() ) : ?>

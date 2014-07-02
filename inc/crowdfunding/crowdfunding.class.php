@@ -411,6 +411,8 @@ class Sofa_Crowdfunding_Helper {
     public function atcf_found_widget() {
         $this->viewing_widget = true;
 
+        include_once('campaign-widget-filter.php');
+
         add_action('wp_head', array(&$this, 'wp_head_widget'));
     }
 
