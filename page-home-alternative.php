@@ -3,7 +3,12 @@
  * Template name: Homepage Alternative
  */
 
-get_header() ?>
+
+add_action('wp_enqueue_scripts', 'layerslider_enqueue_content_res');
+
+get_header(); 
+
+?>
 
 	<?php if ( have_posts() ) : ?>
 
