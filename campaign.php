@@ -4,6 +4,15 @@
 
 <?php if ( $campaign === false ) return ?>
 
+<?php if ( ( $cached_html = get_transient("campaign-".$campaign->ID ) ) !== false )
+{
+	echo "\n\n\ncached\n\n\n";
+	echo $cached_html;
+}
+else
+{
+	ob_start();
+	?>
 	<div class="campaign block entry-block cf">
 
 		<?php if ( has_post_thumbnail( $campaign->ID ) ) : ?>
@@ -56,3 +65,9 @@
 		<?php get_template_part( 'meta', 'campaign' ) ?>
 
 	</div>
+
+<?php
+	//end buffering, save & print
+	set_transient("campaign-".$campaign->ID,ob_get_contents());
+	ob_end_flush();
+}

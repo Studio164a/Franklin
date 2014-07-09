@@ -1,6 +1,5 @@
 
 <?php get_header('widget') ?>
-
 <?php if ( have_posts() ) : ?>
 
 	<?php while ( have_posts() ) : ?>
@@ -14,6 +13,15 @@
 		<?php $campaign = new ATCF_Campaign( get_the_ID() ) ?>
 
 		<?php if ( $campaign === false ) return ?>
+
+		<?php if ( ( $cached_html = get_transient("campaign-widget-".$campaign->ID) ) !== false )
+			{
+				echo $cached_html;
+			}
+			else
+			{
+				ob_start();
+		?>
 
 			<div class="campaign block entry-block cf">
 
@@ -70,10 +78,17 @@
 
 			</div>		
 
+		<?php
+			//end buffering, save & print
+			set_transient("campaign-widget-".$campaign->ID,ob_get_contents());
+			ob_end_flush();
+		}
+		?>
+
 		</div>
+
 
 	<?php endwhile ?>
 
 <?php endif ?>
-
 <?php get_footer('widget') ?>
