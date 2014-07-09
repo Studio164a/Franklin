@@ -1,17 +1,16 @@
-<?php if ( sofa_using_crowdfunding() === false ) return ?>
+<?php if ( sofa_using_crowdfunding() === false ) return;
 
-<?php $campaign = new ATCF_Campaign( get_the_ID() ) ?>
+$campaign = new ATCF_Campaign( get_the_ID() );
 
-<?php if ( $campaign === false ) return ?>
+if ( $campaign === false ) return;
 
-<?php if ( ( $cached_html = get_transient("campaign-".$campaign->ID ) ) !== false )
-{
-	echo "\n\n\ncached\n\n\n";
-	echo $cached_html;
-}
-else
-{
+$transient_key = "campaign-".$campaign->ID;
+
+$output = get_transient($transient_key);
+
+if ($output === false ) :
 	ob_start();
+
 	?>
 	<div class="campaign block entry-block cf">
 
@@ -67,7 +66,7 @@ else
 	</div>
 
 <?php
-	//end buffering, save & print
-	set_transient("campaign-".$campaign->ID,ob_get_contents());
-	ob_end_flush();
-}
+	set_transient($transient_key,ob_get_clean());
+	echo "\n\ndone caching\n\n";
+endif;
+echo $output;

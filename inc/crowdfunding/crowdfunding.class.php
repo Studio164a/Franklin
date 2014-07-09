@@ -401,6 +401,16 @@ class Sofa_Crowdfunding_Helper {
                 update_post_meta( $post_id, '_franklin_layer_slider', $_POST['_franklin_layer_slider'] );
             }
         }
+
+        //delete invalidated transients
+        $old_transients = array(
+            "campaign-",
+            "campaign-time-left-",
+            "campaign-widget-"
+        );
+        foreach($old_transients as $transient){
+            delete_transient($transient . $post->ID);
+        }
     }
 
     /**

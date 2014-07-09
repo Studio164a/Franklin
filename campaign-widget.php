@@ -20,7 +20,7 @@
 			$output = get_transient( $transient_key );
 
 			if ( $output === false ) :
-
+				echo "wasn't cached\n\n<br/>";
 				ob_start();
 				?>
 				<div class="campaign block entry-block cf">
@@ -77,7 +77,6 @@
 					<?php get_template_part( 'meta', 'campaign' ) ?>
 				</div>		
 				<?php
-				// End buffering, save & print
 				$output = ob_get_clean();
 				set_transient( $transient_key, $output );		
 			
