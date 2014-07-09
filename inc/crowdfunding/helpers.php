@@ -84,7 +84,7 @@ function sofa_crowdfunding_get_time_since_ended( ATCF_Campaign $campaign, $reada
  * @since Franklin 1.5.5
  */
 function sofa_crowdfunding_get_time_left( ATCF_Campaign $campaign ) {
-	$transient = sprintf( 'campaign-time-left-%d', $campaign->ID );
+	$transient = "campaign-time-left-" . $campaign->ID;
 
 	$value = get_transient($transient);
 
