@@ -4,17 +4,16 @@ $campaign = new ATCF_Campaign( get_the_ID() );
 
 if ( $campaign === false ) return;
 
-$transient_key = "campaign-".$campaign->ID;
+$transient_key = "campaign-" . $campaign->ID;
 
 $output = get_transient($transient_key);
 
 if ($output === false ) :
 	ob_start();
-
 	?>
 	<div class="campaign block entry-block cf">
 
-		<?php if ( has_post_thumbnail( $campaign->ID ) ) : ?>
+		<?php if ( has_post_thumbnail( $campaign->ID ) ) : ?>			
 			<div class="campaign-image">
 
 				<?php 
@@ -46,8 +45,7 @@ if ($output === false ) :
 
 		<ul class="campaign-status horizontal center">
 			<li class="barometer barometer-small" data-progress="<?php echo $campaign->percent_completed(false) ?>" data-width="42" data-height="42" data-strokewidth="8" data-stroke="<?php echo get_theme_mod('secondary_border', '#dbd5d1') ?>" data-progress-stroke="<?php echo get_theme_mod('accent_colour', '#d95b43') ?>">
-			</li>
-			
+			</li>			
 			<li class="campaign-raised">
 				<span><?php echo $campaign->percent_completed(false) ?><sup>%</sup></span>
 				<?php _e( 'Funded', 'franklin' ) ?>		
@@ -62,11 +60,14 @@ if ($output === false ) :
 		</ul>
 
 		<?php get_template_part( 'meta', 'campaign' ) ?>
-
 	</div>
 
-<?php
-	set_transient($transient_key,ob_get_clean());
-	echo "\n\ndone caching\n\n";
+	<?php
+	$output = ob_get_clean();
+	
+	$expiration = sofa_crowdfunding_get_transient_expiration( $campaign );
+	set_transient($transient_key, $output, $expiration);
+
 endif;
+
 echo $output;

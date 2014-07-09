@@ -385,28 +385,27 @@ class Sofa_Crowdfunding_Helper {
                 return;
 
             // Save custom fields found in our $settings variable
-            if ( get_page_template_slug( $post->ID ) == 'page-campaigns.php' ) {
+            if ( get_page_template_slug( $post_id ) == 'page-campaigns.php' ) {
                 update_post_meta( $post_id, '_franklin_featured_campaigns_option', $_POST['_franklin_featured_campaigns_option'] );
                 update_post_meta( $post_id, '_franklin_featured_campaigns_page', $_POST['_franklin_featured_campaigns_page'] );
                 update_post_meta( $post_id, '_franklin_featured_campaigns_page_text', $_POST['_franklin_featured_campaigns_page_text'] );
             }            
 
-            if ( get_page_template_slug( $post->ID ) == 'page-single-campaign.php' ) {
+            if ( get_page_template_slug( $post_id ) == 'page-single-campaign.php' ) {
                 update_post_meta( $post_id, '_franklin_single_campaign_id', $_POST['_franklin_single_campaign_id'] );
             }
 
-            if ( get_page_template_slug( $post->ID ) == 'page-home-alternative.php' ) {
+            if ( get_page_template_slug( $post_id ) == 'page-home-alternative.php' ) {
                 update_post_meta( $post_id, '_franklin_homepage_2_show_campaigns', $_POST['_franklin_homepage_2_show_campaigns'] == 'on' );                
                 update_post_meta( $post_id, '_franklin_homepage_2_show_categories', $_POST['_franklin_homepage_2_show_categories'] == 'on' );
                 update_post_meta( $post_id, '_franklin_layer_slider', $_POST['_franklin_layer_slider'] );
             }
         }
 
-        //delete invalidated transients
+        // Delete invalidated transients
         $old_transients = array(
             "campaign-",
-            "campaign-time-left-",
-            "campaign-widget-"
+            "campaign-time-left-"
         );
         foreach($old_transients as $transient){
             delete_transient($transient . $post->ID);

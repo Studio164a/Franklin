@@ -77,6 +77,43 @@ function sofa_crowdfunding_get_time_since_ended( ATCF_Campaign $campaign, $reada
 }
 
 /**
+ * Get the number of days remaining.
+ *
+ * @param ATCF_Campaign $campaign
+ * @return int
+ * @since Franklin 1.5.10
+ */
+function sofa_crowdfunding_get_days_remaining( ATCF_Campaign $campaign ) {
+
+}
+
+/**
+ * Get the transient expiration time for the campaign. 
+ *
+ * @param ATCF_Campaign $campaign
+ * @return int
+ * @since Franklin 1.5.10
+ */
+function sofa_crowdfunding_get_transient_expiration( ATCF_Campaign $campaign ) {
+	
+	if ( $campaign->is_endless() || !$campaign->is_active() ) {
+		$expiration = 0;
+	}		
+	else {
+		$expires = strtotime( $campaign->end_date() );
+		$now = current_time('timestamp');
+
+		// Exact amount of seconds left
+		$diff = $expires - $now;
+
+		// Days left, rounded down
+		$days_remaining = floor( $diff / 86400 );
+	}
+
+	return $expiration;
+}
+
+/**
  * Get the amount of time left in the campaign. 
  *
  * @param ATCF_Campaign $campaign
@@ -98,9 +135,6 @@ function sofa_crowdfunding_get_time_left( ATCF_Campaign $campaign ) {
 				__('Campaign', 'franklin'),
 				__('does not end', 'franklin')
 			);
-
-			// Cache as long as possible
-			$expiration = 0;
 		}
 		elseif ( !$campaign->is_active() ) {
 
@@ -108,9 +142,6 @@ function sofa_crowdfunding_get_time_left( ATCF_Campaign $campaign ) {
 				__('Campaign', 'franklin'),
 				__('is finished', 'franklin')
 			);
-
-			// Cache as long as possible
-			$expiration = 0;
 		}
 		else {
 			$expires = strtotime( $campaign->end_date() );
@@ -169,6 +200,7 @@ function sofa_crowdfunding_get_time_left( ATCF_Campaign $campaign ) {
 
 		// Set transient if there is more than an hour remaining
 		if ( $set_transient ) {
+			$expiration = sofa_crowdfunding_get_transient_expiration( $campaign );
 			set_transient( $transient, $value, $expiration );
 		}
 	}
