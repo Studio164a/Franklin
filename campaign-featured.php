@@ -4,7 +4,12 @@
 <?php $campaigns = get_sofa_crowdfunding()->get_featured_campaign( $post_id ) ?>
 <?php $featured_page = get_post_meta( $post_id, '_franklin_featured_campaigns_page', true ) ?>
 
-<?php if ( $campaigns->have_posts() ) : ?>
+<?php if ( $campaigns->have_posts() ) : 
+
+// TODO: 
+// Implement transient caching. 
+// Use sofa_crowdfunding_get_transient_expiration() to set the expiration time.
+?>
 
 	<!-- Featured campaigns -->
 	<section class="active-campaign featured-campaigns feature-block cf">
