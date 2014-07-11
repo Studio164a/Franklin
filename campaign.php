@@ -9,7 +9,9 @@ $transient_key = "campaign-" . $campaign->ID;
 $output = get_transient($transient_key);
 
 if ($output === false ) :
+
 	ob_start();
+
 	?>
 	<div class="campaign block entry-block cf">
 
@@ -66,6 +68,7 @@ if ($output === false ) :
 	$output = ob_get_clean();
 	
 	$expiration = sofa_crowdfunding_get_transient_expiration( $campaign );
+	
 	set_transient($transient_key, $output, $expiration);
 
 endif;

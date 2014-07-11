@@ -88,6 +88,21 @@ function sofa_crowdfunding_get_days_remaining( ATCF_Campaign $campaign ) {
 }
 
 /**
+ * Get the number of seconds left in the campaign. 
+ *
+ * @
+ *
+ * 
+ */
+function sofa_crowdfunding_campaign_get_seconds_left( ATCF_Campaign $campaign ) {
+	// TODO: 
+	// Implement caching use wp_cache_set and wp_cache_get
+	$expires = strtotime( $campaign->end_date() );
+	$now = current_time('timestamp');
+	return $expires - $now;
+}
+
+/**
  * Get the transient expiration time for the campaign. 
  *
  * @param ATCF_Campaign $campaign
@@ -96,114 +111,106 @@ function sofa_crowdfunding_get_days_remaining( ATCF_Campaign $campaign ) {
  */
 function sofa_crowdfunding_get_transient_expiration( ATCF_Campaign $campaign ) {
 	
-	if ( $campaign->is_endless() || !$campaign->is_active() ) {
+	if ( $campaign->is_endless() || ! $campaign->is_active() ) {
 		$expiration = 0;
 	}		
 	else {
-		$expires = strtotime( $campaign->end_date() );
-		$now = current_time('timestamp');
 
-		// Exact amount of seconds left
-		$diff = $expires - $now;
-
+		$seconds_left = sofa_crowdfunding_get_seconds_left( $campaign );
+	
 		// Days left, rounded down
-		$days_remaining = floor( $diff / 86400 );
+		$days_remaining = floor( $seconds_left / 86400 );
+
+		if ( $days_remaining >= 1 ) {
+
+			// Cache until this day is over
+			$expiration = $seconds_left - ( $days_remaining * 86400 );
+		}
+		else {
+
+			// Hours left, rounded down
+			$hours_remaining = floor( $seconds_left / 3600 );
+
+			// At least an hour left
+			if ( $hours_remaining >= 1 ) {
+
+				// Cache until this hour is over				
+				$expiration = $seconds_left - ( $hours_remaining * 3600 );								
+			}
+			else {
+
+				$expiration = 1;
+			}
+		}
 	}
 
 	return $expiration;
 }
 
 /**
- * Get the amount of time left in the campaign. 
+ * Get the amount of time left in the campaign as a string of text.
  *
  * @param ATCF_Campaign $campaign
  * @return string
  * @since Franklin 1.5.5
  */
 function sofa_crowdfunding_get_time_left( ATCF_Campaign $campaign ) {
-	$transient = "campaign-time-left-" . $campaign->ID;
 
-	$value = get_transient($transient);
+	if ( $campaign->is_endless() ) {
 
-	if ( ! $value ) {
+		$value = sprintf( "<span>%s</span>%s", 
+			__('Campaign', 'franklin'),
+			__('does not end', 'franklin')
+		);
+	}
+	elseif ( !$campaign->is_active() ) {
 
-		$set_transient = true;
+		$value = sprintf( "<span>%s</span>%s", 
+			__('Campaign', 'franklin'),
+			__('is finished', 'franklin')
+		);
+	}
+	else {
 
-		if ( $campaign->is_endless() ) {
+		$seconds_left = sofa_crowdfunding_get_seconds_left( $campaign );
 
-			$value = sprintf( "<span>%s</span>%s", 
-				__('Campaign', 'franklin'),
-				__('does not end', 'franklin')
+		// Days left, rounded down
+		$days_remaining = floor( $seconds_left / 86400 );
+		
+		// At least a day left
+		if ( $days_remaining >= 1 ) {
+
+			$value = sprintf("<span>%s</span>%s", 
+				_n('1', $days_remaining, $days_remaining, 'franklin'), 
+				_n('day left', 'days left', $days_remaining, 'franklin')
 			);
 		}
-		elseif ( !$campaign->is_active() ) {
-
-			$value = sprintf( "<span>%s</span>%s", 
-				__('Campaign', 'franklin'),
-				__('is finished', 'franklin')
-			);
-		}
+		// Less than a day left
 		else {
-			$expires = strtotime( $campaign->end_date() );
-			$now = current_time('timestamp');
 
-			// Exact amount of seconds left
-			$diff = $expires - $now;
+			// Hours left, rounded down
+			$hours_remaining = floor( $seconds_left / 3600 );
 
-			// Days left, rounded down
-			$days_remaining = floor( $diff / 86400 );
-			
-			// At least a day left
-			if ( $days_remaining >= 1 ) {
+			// At least an hour left
+			if ( $hours_remaining >= 1 ) {
 
 				$value = sprintf("<span>%s</span>%s", 
-					_n('1', $days_remaining, $days_remaining, 'franklin'), 
-					_n('day left', 'days left', $days_remaining, 'franklin')
+					_n('1', $hours_remaining, $hours_remaining, 'franklin'), 
+					_n('hour left', 'hours left', $hours_remaining, 'franklin')
 				);
-
-				// Cache until this day is over
-				$expiration = $diff - ( $days_remaining * 86400 );
-
 			}
-			// Less than a day left
-			else {
+			// Less than an hour left
+			else {					
+				// Number of minutes left, rounded UP
+				$minutes_remaining = ceil( $seconds_left / 60 );
 
-				// Hours left, rounded down
-				$hours_remaining = floor( $diff / 3600 );
-
-				// At least an hour left
-				if ( $hours_remaining >= 1 ) {
-
-					$value = sprintf("<span>%s</span>%s", 
-						_n('1', $hours_remaining, $hours_remaining, 'franklin'), 
-						_n('hour left', 'hours left', $hours_remaining, 'franklin')
-					);
-
-					// Cache until this hour is over				
-					$expiration = $diff - ( $hours_remaining * 3600 );								
-				}
-				// Less than an hour left
-				else {					
-					// Number of minutes left, rounded UP
-					$minutes_remaining = ceil( $diff / 60 );
-
-					$value = sprintf("<span>%s</span>%s", 
-						_n('One', $minutes_remaining, $minutes_remaining, 'franklin'), 
-						_n('minute left', 'minutes left', $minutes_remaining, 'franklin')
-					);
-
-					// No point caching this
-					$set_transient = false;						
-				}
+				$value = sprintf("<span>%s</span>%s", 
+					_n('One', $minutes_remaining, $minutes_remaining, 'franklin'), 
+					_n('minute left', 'minutes left', $minutes_remaining, 'franklin')
+				);
 			}
-		} 
-
-		// Set transient if there is more than an hour remaining
-		if ( $set_transient ) {
-			$expiration = sofa_crowdfunding_get_transient_expiration( $campaign );
-			set_transient( $transient, $value, $expiration );
 		}
-	}
+	} 
 
 	return $value;
 }
