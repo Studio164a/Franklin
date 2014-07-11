@@ -53,7 +53,8 @@ else {
 		add_action( 'atcf_shortcode_submit_field_rewards', 'franklin_atcf_shortcode_submit_field_rewards_action', 10, 3 );
 	}
 
-	add_action( 'init', 'franklin_atcf_submit_campaign', 11 );		
+	add_action( 'init', 'franklin_atcf_submit_campaign', 11 );	
+	add_action( 'atcf_submit_process_after', array(new Sofa_Crowdfunding_Helper(),'delete_transients'), 10, 1 );	
 }
 
 /**

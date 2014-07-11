@@ -51,6 +51,7 @@ class Sofa_Crowdfunding_Helper {
 
         add_action('atcf_found_widget', array(&$this, 'atcf_found_widget'));
         add_action('edd_purchase_form_before_submit', array(&$this, 'edd_purchase_form_before_submit'), 100 );
+        add_action('edd_complete_purchase', array(&$this, 'delete_transients_from_item'),10 ,1 );
 
         add_filter('body_class', array(&$this, 'body_class_filter'));
         add_filter('page_template', array(&$this, 'page_template_filter'));
@@ -401,15 +402,7 @@ class Sofa_Crowdfunding_Helper {
                 update_post_meta( $post_id, '_franklin_layer_slider', $_POST['_franklin_layer_slider'] );
             }
         }
-
-        // Delete invalidated transients
-        $old_transients = array(
-            "campaign-",
-            "campaign-time-left-"
-        );
-        foreach($old_transients as $transient){
-            delete_transient($transient . $post->ID);
-        }
+        $this->delete_transients($post);
     }
 
     /**
@@ -423,6 +416,44 @@ class Sofa_Crowdfunding_Helper {
         include_once('campaign-widget-filter.php');
 
         add_action('wp_head', array(&$this, 'wp_head_widget'));
+    }
+
+
+    /**
+     * Deletes Transients when a campaign is updated
+     * 
+     * @since Franklin 1.5.10
+     */
+    public function delete_transients($post){
+        $campaign = new ATCF_Campaign($post->ID);
+        if( isset($campaign) ){
+            $old_transients = array(
+                "campaign-",
+                "campaign-time-left-"
+            );
+            foreach($old_transients as $transient){
+                delete_transient($transient . $post->ID);
+            }
+        }
+    }
+    /**
+    *temporary function - delete soon
+    */
+
+    public function delete_transients_from_item($item){
+        $old_transients = array(
+            "campaign-",
+            "campaign-time-left-"
+        );
+
+        $edd_cart = edd_get_payment_meta_cart_details($item);
+        $id = $edd_cart[0]['id'];
+        // echo "<pre>";
+        // print_r($edd_cart);
+
+        foreach($old_transients as $transient){
+            delete_transient($transient . $id);
+        }
     }
 
     /**
