@@ -90,16 +90,24 @@ function sofa_crowdfunding_get_days_remaining( ATCF_Campaign $campaign ) {
 /**
  * Get the number of seconds left in the campaign. 
  *
- * @
- *
- * 
+ * @param ATCF_Campaign $campaign
+ * @return int
+ * @since Franklin 1.5.10
  */
-function sofa_crowdfunding_campaign_get_seconds_left( ATCF_Campaign $campaign ) {
+function sofa_crowdfunding_get_seconds_left( ATCF_Campaign $campaign ) {
 	// TODO: 
 	// Implement caching use wp_cache_set and wp_cache_get
-	$expires = strtotime( $campaign->end_date() );
-	$now = current_time('timestamp');
-	return $expires - $now;
+	$cache_key = 'campaign-seconds-left-' . $campaign->ID;
+	$seconds_left = wp_cache_get($cache_key);
+
+	if($seconds_left === false){
+		$expires = strtotime( $campaign->end_date() );
+		$now = current_time('timestamp');
+		$seconds_left = $expires - $now;
+		wp_cache_set($cache_key,$seconds_left);
+	}
+
+	return $seconds_left;
 }
 
 /**

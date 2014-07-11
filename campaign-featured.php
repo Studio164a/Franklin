@@ -4,12 +4,7 @@
 <?php $campaigns = get_sofa_crowdfunding()->get_featured_campaign( $post_id ) ?>
 <?php $featured_page = get_post_meta( $post_id, '_franklin_featured_campaigns_page', true ) ?>
 
-<?php if ( $campaigns->have_posts() ) : 
-
-// TODO: 
-// Implement transient caching. 
-// Use sofa_crowdfunding_get_transient_expiration() to set the expiration time.
-?>
+<?php if ( $campaigns->have_posts() ) : ?>
 
 	<!-- Featured campaigns -->
 	<section class="active-campaign featured-campaigns feature-block cf">
@@ -25,7 +20,17 @@
 
 				<?php $campaigns->the_post() ?>
 
-				<?php $campaign = new ATCF_Campaign( get_the_ID() ) ?>
+				<?php $campaign = new ATCF_Campaign( get_the_ID() );
+
+				$transient_key = "campaign-featured-" . $campaign->ID;
+
+				$output = get_transient($transient_key);
+
+				if ($output === false ) :
+
+					ob_start();
+
+				?>
 
 				<div class="featured-campaign">					
 
@@ -74,6 +79,17 @@
 					<?php get_template_part( 'sharing' ) ?>	
 
 				</div>					
+
+
+				<?php
+					$output = ob_get_clean();
+					$expiration = sofa_crowdfunding_get_transient_expiration( $campaign );
+					set_transient($transient_key, $output, $expiration);
+					// echo "\n\n<pre> wasn't cached </pre>\n\n";
+					endif;
+
+					echo $output;
+				?>
 
 			<?php endwhile ?>
 

@@ -402,7 +402,7 @@ class Sofa_Crowdfunding_Helper {
                 update_post_meta( $post_id, '_franklin_layer_slider', $_POST['_franklin_layer_slider'] );
             }
         }
-        $this->delete_transients($post);
+        $this->delete_transients($post_id);
     }
 
     /**
@@ -424,35 +424,29 @@ class Sofa_Crowdfunding_Helper {
      * 
      * @since Franklin 1.5.10
      */
-    public function delete_transients($post){
-        $campaign = new ATCF_Campaign($post->ID);
-        if( isset($campaign) ){
-            $old_transients = array(
-                "campaign-",
-                "campaign-time-left-"
-            );
+    public function delete_transients($post_id){
+        $old_transients = array(
+            "campaign-",
+            "campaign-time-left-",
+            "campaign-featured-"
+        );   
+        if(get_post_type($post_id) == "download"){
             foreach($old_transients as $transient){
-                delete_transient($transient . $post->ID);
+                delete_transient($transient . $post_id);
             }
         }
+            
     }
     /**
     *temporary function - delete soon
     */
 
-    public function delete_transients_from_item($item){
-        $old_transients = array(
-            "campaign-",
-            "campaign-time-left-"
-        );
+    public function delete_transients_from_item($cart){
 
-        $edd_cart = edd_get_payment_meta_cart_details($item);
-        $id = $edd_cart[0]['id'];
-        // echo "<pre>";
-        // print_r($edd_cart);
+        $edd_cart_items = edd_get_payment_meta_cart_details($cart);
 
-        foreach($old_transients as $transient){
-            delete_transient($transient . $id);
+        foreach($edd_cart_items as $cart_item){
+            $this->delete_transients($cart_item['id']);
         }
     }
 
