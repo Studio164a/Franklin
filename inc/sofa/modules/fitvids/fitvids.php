@@ -38,15 +38,14 @@ class Sofa_Fitvids {
 		$this->plugin_dir = $this->sofa->get_directory_url();
 
 		add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'));
-        add_action('wp_footer', array(&$this, 'wp_footer'), 11);
 
     	add_filter('video_embed_html', array(&$this, 'video_embed_html_filter'));
         add_filter('oembed_dataparse', array(&$this, 'oembed_dataparse_filter'), 10, 3);
 
 	}
-
+    
 	public function wp_enqueue_scripts() {	
-		wp_register_script('fitvids', sprintf( "%s/modules/fitvids/jquery.fitvids.min.js", $this->plugin_dir ), array( 'jquery' ), 0.1, true );
+		wp_register_script('fitvids', sprintf( "%s/modules/fitvids/jquery.fitvids.min.js", $this->plugin_dir ), array( 'jquery' ), 0.2, true );
 		wp_enqueue_script('fitvids');
 	}
 
@@ -75,18 +74,6 @@ class Sofa_Fitvids {
      */
     public function video_embed_html_filter($html) {
         return '<div class="fit-video">'.$html.'</div>';
-    }
-
-    /**
-     * Set up fitvids script on wp_footer hook. 
-     * 
-     * @return void
-     * @since Sofa 0.1
-     */
-    public function wp_footer() {
-        ?>
-        <script>(function($){ $(document).ready(function(){ $('.fit-video, .video-player').fitVids(); }); })(jQuery);</script>
-        <?php 
     }
 }
 

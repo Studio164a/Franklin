@@ -10,22 +10,22 @@ function sofa_shortcode_register_form() {
 	global $edd_options;
 ?>
 	<p class="atcf-register-name">
-		<label for="user_nicename"><?php _e( 'Your Name', 'atcf' ); ?></label>
+		<label for="displayname"><?php _e( 'Your Name', 'franklin' ); ?></label>
 		<input type="text" name="displayname" id="displayname" class="input" value="" required />
 	</p>
 
 	<p class="atcf-register-email">
-		<label for="user_login"><?php _e( 'Email Address', 'atcf' ); ?></label>
+		<label for="user_email"><?php _e( 'Email Address', 'franklin' ); ?></label>
 		<input type="email" name="user_email" id="user_email" class="input" value="" required />
 	</p>
 
 	<p class="atcf-register-username">
-		<label for="user_login"><?php _e( 'Username', 'atcf' ); ?></label>
+		<label for="user_login"><?php _e( 'Username', 'franklin' ); ?></label>
 		<input type="text" name="user_login" id="user_login" class="input" value="" required />
 	</p>
 
 	<p class="atcf-register-password">
-		<label for="user_pass"><?php _e( 'Password', 'atcf' ); ?></label>
+		<label for="user_pass"><?php _e( 'Password', 'franklin' ); ?></label>
 		<input type="password" name="user_pass" id="user_pass" class="input" value="" required />
 	</p>
 

@@ -33,14 +33,15 @@ add_action( 'init', 'franklin_atcf_theme_variable_pricing' );
  * @return void
  * @since Franklin 1.4
  */
-function franklin_edd_before_price_options() {
-	?>
-	<div class="title-wrapper"><h2 class="block-title"><?php _e( 'Enter Pledge Amount', 'franklin' ) ?></h2></div>
-	<?php
+if ( ! function_exists('franklin_edd_before_price_options') ) {	
+
+	function franklin_edd_before_price_options() {
+		?>
+		<div class="title-wrapper"><h2 class="block-title"><?php _e( 'Enter Pledge Amount', 'franklin' ) ?></h2></div>
+		<?php
+	}
 }
-
 add_action('edd_before_price_options', 'franklin_edd_before_price_options');
-
 
 /**
  * Displays the contribution options. 
@@ -74,7 +75,7 @@ function franklin_atcf_campaign_contribute_options( $prices, $type, $campaign_id
 					<?php if ( ! $has_limit ) : ?>
 
 						<input type="radio" name="edd_options[price_id][]" id="edd_price_option_<?php echo $campaign_id ?>_<?php echo $i ?>" class="edd_price_option_<?php echo $campaign_id ?> edd_price_options_input" value="<?php echo $i ?>" />
-						<h3 class="pledge-title"><?php printf( _x( 'Pledge %s', 'pledge amount', 'franklin' ), '<strong>'.edd_currency_filter( edd_format_amount( $price['amount'] ) ).'</strong>' ) ?></h3>
+						<h3 class="pledge-title"><?php echo sofa_crowdfunding_get_pledge_amount_text( $price['amount'] ) ?></h3>
 						<span class="pledge-limit"><?php _e( 'Unlimited backers', 'franklin' ) ?></span>
 						<p class="pledge-description"><?php echo $price['name'] ?></p>
 
@@ -84,7 +85,7 @@ function franklin_atcf_campaign_contribute_options( $prices, $type, $campaign_id
 							<input type="radio" name="edd_options[price_id][]" id="edd_price_option_<?php echo $campaign_id ?>_<?php echo $i ?>" class="edd_price_option_<?php echo $campaign_id ?> edd_price_options_input" value="<?php echo $i ?>" />
 						<?php endif ?>
 
-						<h3 class="pledge-title"><?php printf( _x( 'Pledge %s', 'pledge amount', 'franklin' ), '<strong>'.edd_currency_filter( edd_format_amount( $price['amount'] ) ).'</strong>' ) ?></h3>
+						<h3 class="pledge-title"><?php echo sofa_crowdfunding_get_pledge_amount_text( $price['amount'] ) ?></h3>
 						<span class="pledge-limit"><?php printf( __( '%d of %d remaining', 'franklin' ), $remaining, $price['limit'] ) ?></span>
 						<p class="pledge-description"><?php echo $price['name'] ?></p>
 
@@ -181,10 +182,7 @@ add_action('edd_purchase_link_end', 'franklin_edd_purchase_link_end');
 if ( !function_exists('franklin_edd_purchase_link_args') ) {
 
 	function franklin_edd_purchase_link_args($args) {
-		$args['text'] = ! empty( $edd_options[ 'add_to_cart_text' ] ) 
-			? $edd_options[ 'add_to_cart_text' ] 
-			: __( 'Pledge', 'franklin' );
-
+		$args['text'] = sofa_crowdfunding_get_pledge_text();
 		return $args;
 	}
 }
@@ -223,11 +221,10 @@ if ( !function_exists('franklin_edd_append_purchase_link') ) {
 
 		$campaign = new ATCF_Campaign( $post->ID );
 
-		if ( $campaign->is_active() ) : ?>
-
-			<p class="campaign-support campaign-support-small"><a class="button accent" data-reveal-id="campaign-form-<?php echo $post->ID ?>" href="#"><?php _e( 'Support', 'franklin' ) ?></a></p>
-		
-		<?php 
+		if ( $campaign->is_active() ) : 
+			?>
+			<p class="campaign-support campaign-support-small"><a class="button accent" data-reveal-id="campaign-form-<?php echo $post->ID ?>" href="#"><?php echo sofa_crowdfunding_get_pledge_text() ?></a></p>
+			<?php 
 		endif;
 	}
 }
@@ -313,7 +310,7 @@ if ( !function_exists('franklin_pledge_levels') ) {
 						$class = !$has_limit ? 'limitless' : ( $remaining == 0 ? 'not-available' : 'available' );
 						?>
 
-						<h3 class="pledge-title" data-icon="&#xf0d7;"><?php printf( _x( 'Pledge %s', 'pledge amount', 'franklin' ), '<strong>'.edd_currency_filter( edd_format_amount( $price['amount'] ) ).'</strong>' ) ?></h3>
+						<h3 class="pledge-title" data-icon="&#xf0d7;"><?php echo sofa_crowdfunding_get_pledge_amount_text( $price['amount'] ) ?></h3>
 						<div class="pledge-level cf<?php if ($has_limit && $remaining == 0) echo ' not-available' ?>">
 
 							<?php if ( $has_limit ) : ?>
@@ -325,7 +322,7 @@ if ( !function_exists('franklin_pledge_levels') ) {
 							<p class="pledge-description"><?php echo $price['name'] ?></p>
 
 							<?php if ( $campaign->is_active() && ( !$has_limit || $remaining > 0 ) ) : ?>
-								<a class="pledge-button button button-alt button-small accent" data-reveal-id="campaign-form-<?php echo $campaign_id ?>" data-price="<?php echo $price['amount'] ?>" href="#"><?php printf( _x( 'Pledge %s', 'pledge amount', 'franklin' ), edd_currency_filter( edd_format_amount( $price['amount'] ) ) ) ?></a>
+								<a class="pledge-button button button-alt button-small accent" data-reveal-id="campaign-form-<?php echo $campaign_id ?>" data-price="<?php echo $price['amount'] ?>" href="#"><?php echo sofa_crowdfunding_get_pledge_amount_text( $price['amount'] ) ?></a>
 							<?php endif ?>
 						</div>					
 
@@ -492,24 +489,23 @@ if ( !function_exists( 'franklin_crowdfunding_stats' ) ) {
 
 		ob_start();
 		?>
-
 		<ul>
-			<li><span><?php echo $post_count->publish ?></span>
-				<?php echo _n('Campaign', 'Campaigns', $post_count->publish, 'franklin') ?>
+			<li>
+				<?php printf( _n('%s Campaign', '%s Campaigns', $post_count->publish, 'franklin'), 
+					'<span>'. $post_count->publish . '</span>' ) ?>
 			</li>
 			<li>				
-				<?php printf( __( '%s Funded', 'franklin' ), '<span>' . edd_currency_filter( edd_format_amount( edd_get_total_earnings() ) ) . '</span>' ) ?>
+				<?php printf( __( '%s Funded', 'franklin' ), 
+					'<span>' . edd_currency_filter( edd_format_amount( edd_get_total_earnings() ) ) . '</span>' ) ?>
 			</li>
-			<li>
-				<span><?php echo edd_count_total_customers() ?></span>				
-				<?php echo _n('Backer', 'Backers', edd_count_total_customers(), 'franklin') ?>
+			<li>			
+				<?php printf( _n('%s Backer', '%s Backers', edd_count_total_customers(), 'franklin'),
+					'<span>' . edd_count_total_customers() . '</span>' ) ?>
 			</li>
 		</ul>
-
 		<?php
 		return apply_filters( 'franklin_crowdfunding_stats', ob_get_clean(), $post_count );
 	}
-
 }
 
 /**

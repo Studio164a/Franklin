@@ -340,20 +340,3 @@ function franklin_atcf_shortcode_submit_field_terms( $atts, $campaign ) {
 	edd_agree_to_terms_js();
 	franklin_edd_terms_agreement();
 }
-
-
-function franklin_atcf_campaign_submit_validate() {
-	// if ( defined('ICL_SITEPRESS_VERSION') ) {
-	// 	require ICL_PLUGIN_PATH . '/lib/icl_api.php';
-	// 	require ICL_PLUGIN_PATH . '/lib/xml2array.php';
-	// 	require ICL_PLUGIN_PATH . '/lib/Snoopy.class.php';
-	// 	require ICL_PLUGIN_PATH . '/inc/translation-management/translation-management.class.php';
-	// 	require ICL_PLUGIN_PATH . '/inc/translation-management/pro-translation.class.php';        
-	// 	require ICL_PLUGIN_PATH . '/inc/pointers.php';        
-
- //    	global $iclTranslationManagement, $ICL_Pro_Translation;
- //        $iclTranslationManagement = new TranslationManagement;
- //        $ICL_Pro_Translation = new ICL_Pro_Translation();   
-	// }
-}
-add_action( 'atcf_campaign_submit_validate', 'franklin_atcf_campaign_submit_validate' );

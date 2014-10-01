@@ -1,28 +1,5 @@
 ( function( $ ){	 
 
-	//-------Campaign category js-------
-
-	//hides sub-categories and expands them when their parent category is clicked
-	jQuery(document).ready(function(){
-		jQuery('.children').hide();
-	});
-	jQuery('.popular-category input[type="checkbox"]').change(function(){
-		var topCategory = jQuery(this).parent().parent('li');
-		var child = topCategory.children('.children');
-		if(jQuery(this).attr("checked")){
-			child.show();
-			if(child.length > 0){
-				topCategory.addClass("selected");
-			}
-		}else{
-			child.hide();
-			topCategory.removeClass("selected");
-			topCategory.find('input[type="checkbox"]').prop('checked',false);
-		}
-	});
- 
-
-
 	//--------Campaign page js---------
 
 	Sofa.Barometer = ( function() {
@@ -218,8 +195,7 @@
 		var $form = $('.edd_download_purchase_form'),
 			$price = $('input[name=atcf_custom_price]'),
 			$pledges = $('.edd_download_purchase_form .pledge-level').sort( function( a, b ) {
-				return parseInt( $(a).data('price') ) 
-					> parseInt( $(b).data('price') );
+				return parseInt( $(a).data('price') ) - parseInt( $(b).data('price') );
 			}), 
 			$button = $('.pledge-button'),
 			$minpledge = $pledges.first(), 
@@ -272,7 +248,7 @@
 				// Set up event handlers
 				$button.on( 'click', function() {
 					var price = $(this).data('price');				
-					$form.find('[data-price='+$(this).data('price')+'] input').prop('checked', true).trigger('change');
+					$form.find('[data-price="' + price + '"] input').prop('checked', true).trigger('change');
 				});
 
 				$form.on( 'change', '.pledge-level', function() {
@@ -308,6 +284,22 @@
 		});
 
 		$('[name=shipping_country], [name=shipping_state_ca], [name=shipping_state_us]').on( 'change', Sofa.toggleSelectWrapper($(this)))
+
+		$('.atcf-multi-select .children').hide();
+		$('.atcf-multi-select input[type="checkbox"]').on( 'change', function() {
+			var parent_category = $(this).parent().parent('li'), 
+				child = parent_category.children('.children');
+			if ( $(this).attr("checked") ) {
+				child.show();
+				if( child.length > 0 ) {
+					parent_category.addClass("selected");
+				}
+			} else {
+				child.hide();
+				parent_category.removeClass("selected");
+				parent_category.find('input[type="checkbox"]').prop('checked', false);
+			}
+		});
 	});	
 
 })(jQuery);

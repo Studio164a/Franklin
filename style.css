@@ -4,7 +4,7 @@ Theme URI: http://164a.com
 Author: Studio164a
 Author URI: http://164a.com
 Description: A responsive, retina ready Wordpress crowdfunding theme.
-Version: 1.5.10
+Version: 1.5.11
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: 
@@ -271,6 +271,7 @@ input[type=password],
 input[type=number], 
 input[type=email],
 input[type=file],
+input[type=url],
 textarea {	
 	max-width: 300px; max-width: 30rem;
 	width: 100%;

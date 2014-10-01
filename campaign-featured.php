@@ -29,9 +29,7 @@
 				if ($output === false ) :
 
 					ob_start();
-
-				?>
-
+					?>
 				<div class="featured-campaign">					
 
 					<?php if ( has_post_thumbnail() ) : ?>
@@ -50,7 +48,7 @@
 
 						<?php the_excerpt() ?>
 
-						<p class="campaign-support center"><a class="button button-alt" data-reveal-id="campaign-form-<?php the_ID() ?>" href="#"><?php _e( 'Support', 'franklin' ) ?></a></p>
+						<p class="campaign-support center"><a class="button button-alt" data-reveal-id="campaign-form-<?php the_ID() ?>" href="#"><?php echo sofa_crowdfunding_get_pledge_text() ?></a></p>
 
 						<ul class="campaign-status horizontal center">
 							<li class="campaign-funded">
@@ -80,15 +78,15 @@
 
 				</div>					
 
-
 				<?php
+				
 					$output = ob_get_clean();
 					$expiration = sofa_crowdfunding_get_transient_expiration( $campaign );
 					set_transient($transient_key, $output, $expiration);
-					// echo "\n\n<pre> wasn't cached </pre>\n\n";
-					endif;
 
-					echo $output;
+				endif;
+
+				echo $output;
 				?>
 
 			<?php endwhile ?>
