@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Franklin Wordpress Theme\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-23 16:49+0930\n"
-"PO-Revision-Date: 2014-09-23 16:49+0930\n"
+"POT-Creation-Date: 2014-10-01 11:39+0930\n"
+"PO-Revision-Date: 2014-10-01 11:39+0930\n"
 "Last-Translator: Eric Daams <eric@164a.com>\n"
 "Language-Team: Studio164a <eric@164a.com>\n"
 "Language: en_AU\n"
@@ -147,11 +147,6 @@ msgstr ""
 
 #: ../campaign-blurb.php:29 ../campaign.php:26
 msgid "Unsuccessful"
-msgstr ""
-
-#: ../campaign-blurb.php:41 ../campaign-featured.php:51
-#: ../inc/crowdfunding/template.php:228
-msgid "Support"
 msgstr ""
 
 #: ../campaign-blurb.php:46
@@ -661,15 +656,15 @@ msgstr ""
 msgid "Leave your comment"
 msgstr ""
 
-#: ../inc/comments.php:80 ../inc/crowdfunding/template.php:534
+#: ../inc/comments.php:80 ../inc/crowdfunding/template.php:531
 msgid "Pingback:"
 msgstr ""
 
-#: ../inc/comments.php:81 ../inc/crowdfunding/template.php:535
+#: ../inc/comments.php:81 ../inc/crowdfunding/template.php:532
 msgid "Edit"
 msgstr ""
 
-#: ../inc/comments.php:94 ../inc/crowdfunding/template.php:548
+#: ../inc/comments.php:94 ../inc/crowdfunding/template.php:545
 msgid "Author"
 msgstr ""
 
@@ -678,7 +673,7 @@ msgctxt "comment post on date at time"
 msgid "at"
 msgstr ""
 
-#: ../inc/comments.php:99 ../inc/crowdfunding/template.php:555
+#: ../inc/comments.php:99 ../inc/crowdfunding/template.php:552
 msgctxt "reply to comment"
 msgid "Reply"
 msgstr ""
@@ -795,6 +790,10 @@ msgid_plural "minutes left"
 msgstr[0] ""
 msgstr[1] ""
 
+#: ../inc/crowdfunding/helpers.php:411 ../inc/crowdfunding/template.php:302
+msgid "Pledge"
+msgstr ""
+
 #: ../inc/crowdfunding/shortcode-profile.php:21
 msgid "Your Contributions"
 msgstr ""
@@ -806,27 +805,27 @@ msgid "%s pledge to %s"
 msgstr ""
 
 #: ../inc/crowdfunding/shortcode-register.php:13
-#: ../inc/crowdfunding/template.php:249
+#: ../inc/crowdfunding/template.php:246
 msgid "Your Name"
 msgstr ""
 
 #: ../inc/crowdfunding/shortcode-register.php:18
-#: ../inc/crowdfunding/template.php:254
+#: ../inc/crowdfunding/template.php:251
 msgid "Email Address"
 msgstr ""
 
 #: ../inc/crowdfunding/shortcode-register.php:23
-#: ../inc/crowdfunding/template.php:259
+#: ../inc/crowdfunding/template.php:256
 msgid "Username"
 msgstr ""
 
 #: ../inc/crowdfunding/shortcode-register.php:28
-#: ../inc/crowdfunding/template.php:264
+#: ../inc/crowdfunding/template.php:261
 msgid "Password"
 msgstr ""
 
 #: ../inc/crowdfunding/shortcode-register.php:33
-#: ../inc/crowdfunding/template.php:269 ../inc/crowdfunding/template.php:584
+#: ../inc/crowdfunding/template.php:266 ../inc/crowdfunding/template.php:581
 msgid "Register"
 msgstr ""
 
@@ -914,59 +913,48 @@ msgstr ""
 msgid "Agree to Terms?"
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:38
+#: ../inc/crowdfunding/template.php:40
 msgid "Enter Pledge Amount"
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:77 ../inc/crowdfunding/template.php:87
-#: ../inc/crowdfunding/template.php:316 ../inc/crowdfunding/template.php:328
-#, php-format
-msgctxt "pledge amount"
-msgid "Pledge %s"
-msgstr ""
-
-#: ../inc/crowdfunding/template.php:78 ../inc/crowdfunding/template.php:322
+#: ../inc/crowdfunding/template.php:79 ../inc/crowdfunding/template.php:319
 msgid "Unlimited backers"
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:88 ../inc/crowdfunding/template.php:320
+#: ../inc/crowdfunding/template.php:89 ../inc/crowdfunding/template.php:317
 #, php-format
 msgid "%d of %d remaining"
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:186 ../inc/crowdfunding/template.php:305
-msgid "Pledge"
-msgstr ""
-
-#: ../inc/crowdfunding/template.php:382
+#: ../inc/crowdfunding/template.php:379
 msgid "No backers yet. Be the first!"
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:497
+#: ../inc/crowdfunding/template.php:494
 #, php-format
 msgid "%s Campaign"
 msgid_plural "%s Campaigns"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../inc/crowdfunding/template.php:501
+#: ../inc/crowdfunding/template.php:498
 #, php-format
 msgid "%s Funded"
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:505
+#: ../inc/crowdfunding/template.php:502
 #, php-format
 msgid "%s Backer"
 msgid_plural "%s Backers"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../inc/crowdfunding/template.php:554
+#: ../inc/crowdfunding/template.php:551
 #, php-format
 msgid "%s ago"
 msgstr ""
 
-#: ../inc/crowdfunding/template.php:580
+#: ../inc/crowdfunding/template.php:577
 msgid "Login"
 msgstr ""
 
