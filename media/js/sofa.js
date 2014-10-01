@@ -15,11 +15,14 @@ var Sofa = ( function( $ ) {
 				var active = document.activeElement;
 
 				$form_elements.focus( function() {
-					if ( $(this).attr('placeholder') !== '' && $(this).val() === $(this).attr('placeholder') ) {
-						$(this).val('').removeClass('hasPlaceholder');
+					if ( $(this).attr('placeholder') != null ) {
+						$(this).val('');
+						if ( $(this).val() !== $(this).attr('placeholder') ) {
+							$(this).removeClass('hasPlaceholder');
+						}
 					}
 				}).blur( function() {
-					if ( $(this).attr('placeholder') !== '' && ($(this).val() === '' || $(this).val() === $(this).attr('placeholder'))) {
+					if ( $(this).attr('placeholder') != null && ($(this).val() === '' || $(this).val() === $(this).attr('placeholder'))) {
 						$(this).val($(this).attr('placeholder')).addClass('hasPlaceholder');
 					}
 				});
