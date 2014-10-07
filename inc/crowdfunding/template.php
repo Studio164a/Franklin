@@ -586,4 +586,4 @@ if ( !function_exists('franklin_login_register_modal') ) {
 
 }
 
-add_action( 'franklin_login_register_modal', 'franklin_login_register_modal' ); 
+add_action( 'franklin_login_register_modal', 'franklin_login_register_modal' );
