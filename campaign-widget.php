@@ -4,13 +4,14 @@ if ( have_posts() ) :
 
 	while ( have_posts() ) :
 
-		the_post() ?>
-
+		the_post();
+		?>
 		<div class="widget-wrapper" style="width: 275px;">
 			<?php get_template_part( 'campaign' ) ?>
 		</div>
+		<?php 
 
-	<?php endwhile;
+	endwhile;
 
 endif;
 

@@ -322,7 +322,9 @@ if ( !function_exists('franklin_pledge_levels') ) {
 							<p class="pledge-description"><?php echo $price['name'] ?></p>
 
 							<?php if ( $campaign->is_active() && ( !$has_limit || $remaining > 0 ) ) : ?>
-								<a class="pledge-button button button-alt button-small accent" data-reveal-id="campaign-form-<?php echo $campaign_id ?>" data-price="<?php echo $price['amount'] ?>" href="#"><?php echo sofa_crowdfunding_get_pledge_amount_text( $price['amount'] ) ?></a>
+								<p class="pledge-button">
+									<a class="button button-alt button-small accent" data-reveal-id="campaign-form-<?php echo $campaign_id ?>" data-price="<?php echo $price['amount'] ?>" href="#"><?php echo sofa_crowdfunding_get_pledge_amount_text( $price['amount'] ) ?></a>
+								</p>
 							<?php endif ?>
 						</div>					
 

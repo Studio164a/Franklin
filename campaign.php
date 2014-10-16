@@ -25,13 +25,19 @@ if ($output === false ) :
 				elseif ( ! $campaign->is_active() && ! $campaign->is_funded() ) : 
 					?><span class="campaign-unsuccessful"><?php _e( 'Unsuccessful', 'franklin' ) ?></span><?php 
 				endif 
-				?><a href="<?php the_permalink() ?>" title="<?php printf( __( 'Go to %s', 'franklin' ), get_the_title() ) ?>"><?php 
+				?><a href="<?php the_permalink() ?>" title="<?php printf( __( 'Go to %s', 'franklin' ), get_the_title() ) ?>" target="_parent"><?php 
 					the_post_thumbnail() 
 				?></a>
 			</div>			
 		<?php endif 
 		?>	
-		<div class="title-wrapper"><h3 class="block-title"><a href="<?php the_permalink() ?>" title="<?php printf( __('Link to %s', 'franklin'), get_the_title() ) ?>"><?php the_title() ?></a></h3></div>
+		<div class="title-wrapper">
+			<h3 class="block-title">
+				<a href="<?php the_permalink() ?>" title="<?php printf( __('Link to %s', 'franklin'), get_the_title() ) ?>" target="_parent"><?php 
+					the_title() 
+				?></a>
+			</h3>
+		</div>
 		<div class="entry">
 			<?php the_excerpt() ?>
 		</div>
