@@ -104,32 +104,7 @@ class Franklin_Theme {
 
 
         remove_action('wp_enqueue_scripts', 'layerslider_enqueue_content_res');
-        // add_action('wp_print_styles',array(&$this, 'dequeue_layerslider_styles'),1111);
-        // add_action('wp_print_scripts',array(&$this, 'dequeue_layerslider_scripts'),1111);
   	}
-
-    // public function dequeue_layerslider_styles(){
-
-    //     $styles = array('layerslider');
-
-    //     foreach ($styles as $style){
-    //         wp_dequeue_style($style);
-    //     }
-    // }
-
-    // public function dequeue_layerslider_scripts(){
-
-    //     $scripts = array(
-    //         'layerslider',
-    //         'greensock',
-    //         'layerslider-transitions',
-    //         'ls-user-transitions'
-    //         );
-
-    //     foreach ($scripts as $script){
-    //         wp_dequeue_script($script);
-    //     }
-    // }
 
     /**
      * Get class instance.
