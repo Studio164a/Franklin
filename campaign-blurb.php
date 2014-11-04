@@ -38,7 +38,7 @@
 
 			<?php if ( $campaign->is_active() ) : ?>
 
-				<p class="campaign-support"><a class="button button-large" data-reveal-id="campaign-form-<?php echo $campaign->ID ?>" href="#"><?php _e( 'Support', 'franklin' ) ?></a></p>
+				<p class="campaign-support"><a class="button button-large" data-reveal-id="campaign-form-<?php echo $campaign->ID ?>" href="#"><?php echo sofa_crowdfunding_get_pledge_text() ?></a></p>
 
 			<?php else : ?>
 

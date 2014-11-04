@@ -71,7 +71,7 @@ class Franklin_Theme {
         }
 
         // Check for theme update
-        $this->theme_version = '1.5.10.0';
+        $this->theme_version = '1.5.11';
         $this->theme_db_version = mktime(15,30,0,8,6,2013);
         $this->version_update();
         $this->stylesheet = get_option('stylesheet');
@@ -102,8 +102,8 @@ class Franklin_Theme {
         add_filter('sofa_load_lt_ie9', array(&$this, 'sofa_load_lt_ie9'));
         add_filter('sofa_link_format_title', array(&$this, 'sofa_link_format_title_filter'));
 
-
-        remove_action('wp_enqueue_scripts', 'layerslider_enqueue_content_res');
+        // Stop LayerSlider's scripts from being added to every page.
+        remove_action('wp_enqueue_scripts', 'layerslider_enqueue_content_res');        
   	}
 
     /**
@@ -208,14 +208,6 @@ class Franklin_Theme {
             remove_filter( 'the_content', 'ninja_forms_append_to_page', 9999 );
         }
     }  
-
-
-
-
-
-
-
-
 
     /**
      * Loading the fonts in the footer instead of the header to improve loading times. 

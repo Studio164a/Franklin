@@ -474,6 +474,11 @@
 	text-align: center;
 }
 
+.campaign-pledge-levels.accordion .pledge-button .button {
+	display: inline-block;
+	max-width: 100%;
+}
+
 /* 5.0 - Campaign video 
 ================================================== */
 .campaign-video {

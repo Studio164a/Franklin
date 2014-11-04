@@ -34,6 +34,7 @@ class Sofa_Crowdfunding_Helper {
         include_once('template.php');
         include_once('shortcode-register.php');
         include_once('shortcode-submit.php');
+        include_once('shortcode-profile.php');
         include_once('widgets/campaign-pledge-levels.php');
         include_once('widgets/campaign-updates.php');
         include_once('widgets/campaign-backers.php');
@@ -51,7 +52,7 @@ class Sofa_Crowdfunding_Helper {
 
         add_action('atcf_found_widget', array(&$this, 'atcf_found_widget'));
         add_action('edd_purchase_form_before_submit', array(&$this, 'edd_purchase_form_before_submit'), 100 );
-        add_action('edd_complete_purchase', array(&$this, 'delete_transients_from_item'),10 ,1 );
+        add_action('edd_complete_purchase', array(&$this, 'delete_transients_after_purchase'));
 
         add_filter('body_class', array(&$this, 'body_class_filter'));
         add_filter('page_template', array(&$this, 'page_template_filter'));
@@ -309,7 +310,6 @@ class Sofa_Crowdfunding_Helper {
         </p>
         <?php if (defined('LS_PLUGIN_VERSION')) : 
             $selected = get_post_meta( $post->ID, '_franklin_layer_slider', true );
-            //echo '<pre>'; print_r( lsSliders() ); echo '</pre>';
             ?>
             <h4><?php _e('Layer Slider', 'franklin') ?></h4>
             <p>
@@ -402,6 +402,8 @@ class Sofa_Crowdfunding_Helper {
                 update_post_meta( $post_id, '_franklin_layer_slider', $_POST['_franklin_layer_slider'] );
             }
         }
+
+        // Clears out all of the transients related to this campaign. 
         $this->delete_transients($post_id);
     }
 
@@ -414,39 +416,33 @@ class Sofa_Crowdfunding_Helper {
         $this->viewing_widget = true;
 
         include_once('campaign-widget-filter.php');
-
-        add_action('wp_head', array(&$this, 'wp_head_widget'));
     }
 
 
     /**
-     * Deletes Transients when a campaign is updated
+     * Deletes Transients when a campaign is updated. 
      * 
-     * @since Franklin 1.5.10
+     * @param int $post_id
+     * @since Franklin 1.5.11
      */
     public function delete_transients($post_id){
-        $old_transients = array(
-            "campaign-",
-            "campaign-time-left-",
-            "campaign-featured-"
-        );   
-        if(get_post_type($post_id) == "download"){
-            foreach($old_transients as $transient){
-                delete_transient($transient . $post_id);
-            }
-        }
-            
+        if ( 'download' == get_post_type( $post_id ) ) {
+            delete_transient( 'campaign-' . $post_id );
+            delete_transient( 'campaign-featured-' . $post_id );
+        }   
     }
+
     /**
-    *temporary function - delete soon
-    */
-
-    public function delete_transients_from_item($cart){
-
+     * Delete the transients relating to the item purchased. 
+     *
+     * @return void
+     * @since Franklin 1.5.11
+     */
+    public function delete_transients_after_purchase($cart){
         $edd_cart_items = edd_get_payment_meta_cart_details($cart);
 
-        foreach($edd_cart_items as $cart_item){
-            $this->delete_transients($cart_item['id']);
+        foreach ($edd_cart_items as $cart_item) {
+            $this->delete_transients( $cart_item['id'] );
         }
     }
 
@@ -471,20 +467,6 @@ class Sofa_Crowdfunding_Helper {
         </script>
         <?php 
         echo ob_get_clean();            
-    }
-
-    /**
-     * Called on wp_head on the widget template. 
-     * 
-     * @since Franklin 1.3
-     */
-    public function wp_head_widget() {
-        ?>
-        <style>
-        body { background: transparent !important; position: absolute; top: 0; left: 0;} 
-        #wpadminbar { display: none; }
-        </style>
-        <?php
     }
 
     /**

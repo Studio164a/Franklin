@@ -95,16 +95,16 @@ function sofa_crowdfunding_get_days_remaining( ATCF_Campaign $campaign ) {
  * @since Franklin 1.5.10
  */
 function sofa_crowdfunding_get_seconds_left( ATCF_Campaign $campaign ) {
-	// TODO: 
-	// Implement caching use wp_cache_set and wp_cache_get
 	$cache_key = 'campaign-seconds-left-' . $campaign->ID;
-	$seconds_left = wp_cache_get($cache_key);
+	$seconds_left = wp_cache_get( $cache_key );
 
-	if($seconds_left === false){
+	if ( $seconds_left === false ) {
+
 		$expires = strtotime( $campaign->end_date() );
 		$now = current_time('timestamp');
 		$seconds_left = $expires - $now;
-		wp_cache_set($cache_key,$seconds_left);
+
+		wp_cache_set( $cache_key,$seconds_left );
 	}
 
 	return $seconds_left;
@@ -400,3 +400,27 @@ function sofa_crowdfunding_get_user_purchase_count($user_id) {
 	return isset( $stats['purchases'] ) ? $stats['purchases'] : 0;
 }
 
+/**
+ * Returns the text used for making a pledge / supporting a campaign. 
+ *
+ * @return string
+ * @since Franklin 1.5.12
+ */
+function sofa_crowdfunding_get_pledge_text() {
+	global $edd_options;
+	return ! empty( $edd_options['add_to_cart_text'] ) ? $edd_options['add_to_cart_text'] : __( 'Pledge', 'franklin' );
+}
+
+/**
+ * Returns the text used when displaying a statement like "Pledge $10.00". i.e. Pledge amount
+ *
+ * @param amount
+ * @return string
+ * @since Franklin 1.5.12
+ */
+function sofa_crowdfunding_get_pledge_amount_text( $amount ) {
+	return sprintf( '%s %s', 
+		sofa_crowdfunding_get_pledge_text(),
+		'<strong>'.edd_currency_filter( edd_format_amount( $amount ) ).'</strong>' 
+	);
+} 

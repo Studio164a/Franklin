@@ -97,7 +97,7 @@ class Sofa_Framework {
 	private function __construct() {
 		// Don't do anything until init. This allows themes to declare support 
 		// for Sofa with add_theme_support on the after_setup_theme hook.
-		add_action('init', array(&$this, 'init'));
+		add_action('init', array(&$this, 'init'), 1);
 	}	
 
 	/**
