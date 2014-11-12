@@ -23,8 +23,8 @@ if ( !function_exists('franklin_atcf_theme_variable_pricing')) {
 	}
 }
 
-remove_action( 'after_setup_theme', 'atcf_theme_custom_variable_pricing', 100 );
-add_action( 'init', 'franklin_atcf_theme_variable_pricing' );
+//remove_action( 'after_setup_theme', 'atcf_theme_custom_variable_pricing', 100 );
+//add_action( 'init', 'franklin_atcf_theme_variable_pricing' );
 
 /**
  * Displays the title 
@@ -100,8 +100,8 @@ function franklin_atcf_campaign_contribute_options( $prices, $type, $campaign_id
 	<?php endif;
 }
 
-remove_action('atcf_campaign_contribute_options', 'atcf_campaign_contribute_options', 10, 3);
-add_action('atcf_campaign_contribute_options', 'franklin_atcf_campaign_contribute_options', 10, 3);
+//remove_action('atcf_campaign_contribute_options', 'atcf_campaign_contribute_options', 10, 3);
+//add_action('atcf_campaign_contribute_options', 'franklin_atcf_campaign_contribute_options', 10, 3);
 
 /**
  * Display the list of pledge options. 
@@ -125,7 +125,7 @@ if ( !function_exists('franklin_edd_after_price_options') ) {
 
 }
 
-add_action('edd_after_price_options', 'franklin_edd_after_price_options', 10, 2);
+//add_action('edd_after_price_options', 'franklin_edd_after_price_options', 10, 2);
 
 /**
  * 
@@ -169,7 +169,7 @@ if ( !function_exists('franklin_edd_purchase_link_end') ) {
 	}
 }
 
-add_action('edd_purchase_link_end', 'franklin_edd_purchase_link_end');
+//add_action('edd_purchase_link_end', 'franklin_edd_purchase_link_end');
 
 /**
  * Filter the title displayed for the pledge button. 
@@ -589,3 +589,23 @@ if ( !function_exists('franklin_login_register_modal') ) {
 }
 
 add_action( 'franklin_login_register_modal', 'franklin_login_register_modal' );
+
+/**
+ * 
+ */
+function franklin_social_login_modal() {	
+	?>
+	<div class="content-block login-block">
+		<!-- <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Login', 'franklin') ?></h3></div> --> 
+	    <?php 
+	    $class = new EDD_Slg_Shortcodes(); 
+	    echo $class->edd_slg_social_login( array( 'title' => __( 'Login', 'franklin' ) ), '' ); 
+	   	?>
+	</div>
+	<?php
+}
+
+if ( class_exists( 'EDD_Slg_Shortcodes' ) ) {
+	remove_action( 'franklin_login_register_modal', 'franklin_login_register_modal', 10 );
+	add_action( 'franklin_login_register_modal', 'franklin_social_login_modal' );
+}

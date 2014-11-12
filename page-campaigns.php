@@ -13,7 +13,7 @@ get_header() ?>
 
 			<?php get_template_part( 'campaign', 'featured' ) ?>
 
-			<div class="content-wrapper">
+			<div class="content-wrapper cf">
 				
 				<?php if ( strlen( get_the_content() ) ) : ?>
 

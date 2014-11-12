@@ -52,7 +52,7 @@ function sofa_crowdfunding_campaign_nav($echo = true) {
  * @return mixed
  * @since Franklin 1.0
  */
-function sofa_crowdfunding_get_enddate( ATCF_Campaign $campaign, $json_format = false ) {
+function sofa_crowdfunding_get_enddate( EDDCF_Campaign $campaign, $json_format = false ) {
 	return date( "j F Y H:i:s", strtotime( $campaign->end_date() ) );
 }
 
@@ -64,7 +64,7 @@ function sofa_crowdfunding_get_enddate( ATCF_Campaign $campaign, $json_format = 
  * @return string|int
  * @since Franklin 1.3
  */
-function sofa_crowdfunding_get_time_since_ended( ATCF_Campaign $campaign, $readable = true ) {	
+function sofa_crowdfunding_get_time_since_ended( EDDCF_Campaign $campaign, $readable = true ) {	
 	$end_date = strtotime( $campaign->end_date() );
 
 	// Return it as a readable string
@@ -83,7 +83,7 @@ function sofa_crowdfunding_get_time_since_ended( ATCF_Campaign $campaign, $reada
  * @return int
  * @since Franklin 1.5.10
  */
-function sofa_crowdfunding_get_days_remaining( ATCF_Campaign $campaign ) {
+function sofa_crowdfunding_get_days_remaining( EDDCF_Campaign $campaign ) {
 
 }
 
@@ -94,7 +94,7 @@ function sofa_crowdfunding_get_days_remaining( ATCF_Campaign $campaign ) {
  * @return int
  * @since Franklin 1.5.10
  */
-function sofa_crowdfunding_get_seconds_left( ATCF_Campaign $campaign ) {
+function sofa_crowdfunding_get_seconds_left( EDDCF_Campaign $campaign ) {
 	$cache_key = 'campaign-seconds-left-' . $campaign->ID;
 	$seconds_left = wp_cache_get( $cache_key );
 
@@ -117,7 +117,7 @@ function sofa_crowdfunding_get_seconds_left( ATCF_Campaign $campaign ) {
  * @return int
  * @since Franklin 1.5.10
  */
-function sofa_crowdfunding_get_transient_expiration( ATCF_Campaign $campaign ) {
+function sofa_crowdfunding_get_transient_expiration( EDDCF_Campaign $campaign ) {
 	
 	if ( $campaign->is_endless() || ! $campaign->is_active() ) {
 		$expiration = 0;
@@ -162,7 +162,7 @@ function sofa_crowdfunding_get_transient_expiration( ATCF_Campaign $campaign ) {
  * @return string
  * @since Franklin 1.5.5
  */
-function sofa_crowdfunding_get_time_left( ATCF_Campaign $campaign ) {
+function sofa_crowdfunding_get_time_left( EDDCF_Campaign $campaign ) {
 
 	if ( $campaign->is_endless() ) {
 

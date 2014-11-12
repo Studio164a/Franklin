@@ -8,54 +8,25 @@
 // Due to the way ATCF changed between version 1.6 and 1.7, we need to provide a fallback for the older version.
 $crowdfunding = crowdfunding();
 
-// The old way
-if ( $crowdfunding->version < 1.7 ) {	
+/**
+ * This basically has the job of overriding default functions used by ATCF. 
+ * 
+ * @see atcf_submit_campaign()
+ * @return void
+ */
+function franklin_atcf_submit_campaign() {		
+	remove_action( 'atcf_shortcode_submit_field_number', 'atcf_shortcode_submit_field_number', 10, 3 );
+	add_action( 'atcf_shortcode_submit_field_number', 'franklin_atcf_shortcode_submit_field_number', 10, 3 );
 
-	// Length
-	remove_action( 'atcf_shortcode_submit_fields', 'atcf_shortcode_submit_field_length', 30, 2 );
-	add_action( 'atcf_shortcode_submit_fields', 'franklin_atcf_shortcode_submit_field_length', 30, 2 );
+	remove_action( 'atcf_shortcode_submit_field_term_checklist', 'atcf_shortcode_submit_field_term_checklist', 10, 3 );
+	add_action( 'atcf_shortcode_submit_field_term_checklist', 'franklin_atcf_shortcode_submit_field_term_checklist', 10, 3 );
 
-	// Category
-	remove_action( 'atcf_shortcode_submit_fields', 'atcf_shortcode_submit_field_category', 40, 2 );
-	add_action( 'atcf_shortcode_submit_fields', 'franklin_atcf_shortcode_submit_field_category', 40, 2 );
-
-	// Tags
-	remove_action( 'atcf_shortcode_submit_fields', 'atcf_shortcode_submit_field_tags', 45, 2 );
-	add_action( 'atcf_shortcode_submit_fields', 'franklin_atcf_shortcode_submit_field_tags', 45, 2 );
-
-	// Rewards
-	remove_action( 'atcf_shortcode_submit_fields', 'atcf_shortcode_submit_field_rewards', 90, 2 );
-	add_action( 'atcf_shortcode_submit_fields', 'franklin_atcf_shortcode_submit_field_rewards', 90, 2 );
-
-	remove_action( 'atcf_shortcode_submit_fields', 'atcf_shortcode_submit_field_contact_email', 100, 2 );
-	add_action( 'atcf_shortcode_submit_fields', 'franklin_atcf_shortcode_submit_field_contact_email', 100, 2 );
-
-	remove_action( 'edd_purchase_form_after_cc_form', 'edd_terms_agreement', 999 );
-	add_action( 'edd_purchase_form_after_cc_form', 'franklin_edd_terms_agreement', 999 );
+	remove_action( 'atcf_shortcode_submit_field_rewards', 'atcf_shortcode_submit_field_rewards', 10, 3 );
+	add_action( 'atcf_shortcode_submit_field_rewards', 'franklin_atcf_shortcode_submit_field_rewards_action', 10, 3 );
 }
-// The new way
-else {
 
-	/**
-	 * This basically has the job of overriding default functions used by ATCF. 
-	 * 
-	 * @see atcf_submit_campaign()
-	 * @return void
-	 */
-	function franklin_atcf_submit_campaign() {		
-		remove_action( 'atcf_shortcode_submit_field_number', 'atcf_shortcode_submit_field_number', 10, 3 );
-		add_action( 'atcf_shortcode_submit_field_number', 'franklin_atcf_shortcode_submit_field_number', 10, 3 );
-
-		remove_action( 'atcf_shortcode_submit_field_term_checklist', 'atcf_shortcode_submit_field_term_checklist', 10, 3 );
-		add_action( 'atcf_shortcode_submit_field_term_checklist', 'franklin_atcf_shortcode_submit_field_term_checklist', 10, 3 );
-
-		remove_action( 'atcf_shortcode_submit_field_rewards', 'atcf_shortcode_submit_field_rewards', 10, 3 );
-		add_action( 'atcf_shortcode_submit_field_rewards', 'franklin_atcf_shortcode_submit_field_rewards_action', 10, 3 );
-	}
-
-	add_action( 'init', 'franklin_atcf_submit_campaign', 11 );	
-	add_action( 'atcf_submit_process_after', array(new Sofa_Crowdfunding_Helper(),'delete_transients'), 10, 1 );	
-}
+add_action( 'init', 'franklin_atcf_submit_campaign', 11 );	
+add_action( 'atcf_submit_process_after', array( new Sofa_Crowdfunding_Helper(), 'delete_transients' ), 10, 1 );	
 
 /**
  * Number field.
@@ -172,9 +143,9 @@ function franklin_atcf_shortcode_submit_field_length( $args, $campaign ) {
  * @return void
  * @since Franklin 1.4.2
  */
-function franklin_atcf_shortcode_submit_field_category( $atts, $campaign ) {
-	franklin_atcf_shortcode_submit_field_term_checklist( 'category', array( 'label' => __( 'Category', 'franklin' ) ), $atts, $campaign );	
-}
+// function franklin_atcf_shortcode_submit_field_category( $atts, $campaign ) {
+// 	franklin_atcf_shortcode_submit_field_term_checklist( 'category', array( 'label' => __( 'Category', 'franklin' ) ), $atts, $campaign );	
+// }
 
 /**
  * Campaign Tags
@@ -184,9 +155,9 @@ function franklin_atcf_shortcode_submit_field_category( $atts, $campaign ) {
  * @return void
  * @since Franklin 1.4.2
  */
-function franklin_atcf_shortcode_submit_field_tags( $atts, $campaign ) {
-	franklin_atcf_shortcode_submit_field_term_checklist( 'tag', array( 'label' => __( 'Tags', 'franklin' ) ), $atts, $campaign );
-}
+// function franklin_atcf_shortcode_submit_field_tags( $atts, $campaign ) {
+// 	franklin_atcf_shortcode_submit_field_term_checklist( 'tag', array( 'label' => __( 'Tags', 'franklin' ) ), $atts, $campaign );
+// }
 
 /**
  * Campaign Backer Rewards
@@ -269,30 +240,6 @@ function franklin_atcf_shortcode_submit_field_rewards( $atts, $campaign ) {
 			<a href="#" class="atcf-submit-campaign-add-reward-button"><?php _e( '+ <em>Add Reward</em>', 'franklin' ); ?></a>
 		</p>
 	</div>
-<?php
-}
-
-/**
- * Campaign Contact Email
- *
- * @return void
- * @since Franklin 1.1
- */
-function franklin_atcf_shortcode_submit_field_contact_email( $atts, $campaign ) {
-?>
-	<h3 class="atcf-submit-section payment-information"><?php _e( 'Your Information', 'franklin' ); ?></h3>
-
-	<?php if ( ! $atts[ 'editing' ] ) : ?>
-		<p class="atcf-submit-campaign-contact-email">
-		<?php if ( ! is_user_logged_in() ) : ?>
-			<label for="email"><?php _e( 'Contact Email', 'franklin' ); ?></label>
-			<input type="text" name="contact-email" id="contact-email" value="<?php echo $atts[ 'editing' ] ? $campaign->contact_email() : null; ?>" placeholder="<?php if ( ! $atts[ 'editing' ] ) : ?><?php _e( 'An account will be created for you with this email address. It must be active.', 'franklin' ); ?><?php endif; ?>" />			
-		<?php else : ?>
-			<?php $current_user = wp_get_current_user(); ?>
-			<?php printf( __( '<strong>Note</strong>: You are currently logged in as %1$s. This %2$s will be associated with that account. Please <a href="%3$s">log out</a> if you would like to make a %2$s under a new account.', 'franklin' ), $current_user->user_email, strtolower( edd_get_label_singular() ), wp_logout_url( get_permalink() ) ); ?>
-		<?php endif; ?>
-		</p>
-	<?php endif; ?>
 <?php
 }
 
