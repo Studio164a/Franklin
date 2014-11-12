@@ -44,6 +44,7 @@ class Sofa_Crowdfunding_Helper {
 
     	add_action('after_setup_theme', array(&$this, 'after_setup_theme'));
         add_action('widgets_init', array(&$this, 'widgets_init'));
+        // add_action('wp_footer', array(&$this, 'wp_footer'));
         add_action('add_meta_boxes', array(&$this, 'add_meta_boxes'));
         add_action('save_post', array(&$this, 'save_post'), 10, 2);
 
@@ -137,7 +138,7 @@ class Sofa_Crowdfunding_Helper {
         // Load the Franklin crowdfunding script
         wp_enqueue_script('franklin-crowdfunding');
     
-        wp_register_style('franklin-crowdfunding', sprintf( "%s/media/css/franklin-crowdfunding.css", $theme_dir ), array('franklin-main'), get_franklin_theme()->get_theme_version() );
+        wp_register_style('franklin-crowdfunding', sprintf( "%s/media/css/franklin-crowdfunding.css", $theme_dir ), array('franklin-main', 'foundation'), get_franklin_theme()->get_theme_version() );
         wp_enqueue_style('franklin-crowdfunding');
 
         // We're viewing the widget, so there are a bunch of scripts that we don't need to load
@@ -156,11 +157,11 @@ class Sofa_Crowdfunding_Helper {
      * @since Franklin 1.0
      */
     public function wp_footer() {
+        // die("works");
         if ( $this->viewing_widget === false ) : 
             ?>                     
             <div id="login-form" class="reveal-modal block multi-block">
                 <a class="close-reveal-modal icon" data-icon="&#xf057;"></a>
-
                 <?php do_action( 'franklin_login_register_modal' ) ?>
 
             </div>
