@@ -575,13 +575,16 @@ if ( !function_exists('franklin_login_register_modal') ) {
 
 	function franklin_login_register_modal() {
 		?>
-		<div class="content-block login-block">
-		    <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Login', 'franklin') ?></h3></div> 
-		    <?php echo atcf_shortcode_login() ?>
-		</div>
-		<div class="register-block  block last">
-		    <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Register', 'franklin') ?></h3></div> 
-		    <?php echo sofa_shortcode_register() ?>
+		<div id="login-form" class="reveal-modal block multi-block">
+            <a class="close-reveal-modal icon" data-icon="&#xf057;"></a>
+			<div class="content-block login-block">
+			    <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Login', 'franklin') ?></h3></div> 
+			    <?php echo atcf_shortcode_login() ?>
+			</div>
+			<div class="register-block  block last">
+			    <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Register', 'franklin') ?></h3></div> 
+			    <?php echo sofa_shortcode_register() ?>
+			</div>
 		</div>
 		<?php 
 	}
@@ -595,13 +598,17 @@ add_action( 'franklin_login_register_modal', 'franklin_login_register_modal' );
  */
 function franklin_social_login_modal() {	
 	?>
-	<div class="content-block login-block">
-		<!-- <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Login', 'franklin') ?></h3></div> --> 
-	    <?php 
-	    $class = new EDD_Slg_Shortcodes(); 
-	    echo $class->edd_slg_social_login( array( 'title' => __( 'Login', 'franklin' ) ), '' ); 
-	   	?>
-	</div>
+		<div id="login-form" class="reveal-modal block edd-slg">
+	        <a class="close-reveal-modal icon" data-icon="&#xf057;"></a>
+			<div class="content-block">
+				<!-- <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Login', 'franklin') ?></h3></div> --> 
+			    <?php 
+			    $class = new EDD_Slg_Shortcodes();
+			    echo $class->edd_slg_social_login( $edd_options['edd_slg_login_heading'] ); 
+			    // echo $class->edd_slg_social_login( array( 'title' => __( 'Login', 'franklin' ) ), '' ); 
+			   	?>
+			</div>
+		</div>	
 	<?php
 }
 
