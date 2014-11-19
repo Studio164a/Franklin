@@ -23,8 +23,8 @@ if ( !function_exists('franklin_atcf_theme_variable_pricing')) {
 	}
 }
 
-//remove_action( 'after_setup_theme', 'atcf_theme_custom_variable_pricing', 100 );
-//add_action( 'init', 'franklin_atcf_theme_variable_pricing' );
+remove_action( 'after_setup_theme', 'atcf_theme_custom_variable_pricing', 100 );
+add_action( 'init', 'franklin_atcf_theme_variable_pricing' );
 
 /**
  * Displays the title 
@@ -100,8 +100,8 @@ function franklin_atcf_campaign_contribute_options( $prices, $type, $campaign_id
 	<?php endif;
 }
 
-//remove_action('atcf_campaign_contribute_options', 'atcf_campaign_contribute_options', 10, 3);
-//add_action('atcf_campaign_contribute_options', 'franklin_atcf_campaign_contribute_options', 10, 3);
+remove_action('atcf_campaign_contribute_options', 'atcf_campaign_contribute_options', 10, 3);
+add_action('atcf_campaign_contribute_options', 'franklin_atcf_campaign_contribute_options', 10, 3);
 
 /**
  * Display the list of pledge options. 
@@ -125,7 +125,7 @@ if ( !function_exists('franklin_edd_after_price_options') ) {
 
 }
 
-//add_action('edd_after_price_options', 'franklin_edd_after_price_options', 10, 2);
+add_action('edd_after_price_options', 'franklin_edd_after_price_options', 10, 2);
 
 /**
  * 
@@ -566,53 +566,84 @@ if ( !function_exists( 'franklin_campaign_comment' ) ) {
 remove_filter( 'the_title', 'edd_microdata_title', 10, 2 );
 
 /**
- * Add the login & register blocks to the modal page.
- *
- * @return void
- * @since Franklin 1.4.2
+ * Set up the login form inside the modal window.
+ * 
+ * @return 	void
+ * @since 	1.6
  */
-if ( !function_exists('franklin_login_register_modal') ) {
+if ( ! function_exists( 'franklin_modal_login' ) ) {
 
-	function franklin_login_register_modal() {
+	function franklin_modal_login() {
 		?>
-		<div id="login-form" class="reveal-modal block multi-block">
-            <a class="close-reveal-modal icon" data-icon="&#xf057;"></a>
-			<div class="content-block login-block">
-			    <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Login', 'franklin') ?></h3></div> 
-			    <?php echo atcf_shortcode_login() ?>
-			</div>
-			<div class="register-block  block last">
-			    <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Register', 'franklin') ?></h3></div> 
-			    <?php echo sofa_shortcode_register() ?>
-			</div>
+		<div class="content-block login-block">
+		    <div class="title-wrapper">
+		    	<h3 class="block-title accent"><?php _e( 'Login', 'franklin') ?></h3>
+		    </div> 
+		    <?php echo atcf_shortcode_login() ?>
 		</div>
-		<?php 
+		<?php
 	}
-
 }
 
-add_action( 'franklin_login_register_modal', 'franklin_login_register_modal' );
+add_action( 'franklin_login_register_modal', 'franklin_modal_login', 10 );
 
 /**
+ * Add the registration form inside the modal window.
  * 
+ * @return 	void
+ * @since 	1.6
  */
-function franklin_social_login_modal() {	
-	?>
-		<div id="login-form" class="reveal-modal block edd-slg">
-	        <a class="close-reveal-modal icon" data-icon="&#xf057;"></a>
-			<div class="content-block">
-				<!-- <div class="title-wrapper"><h3 class="block-title accent"><?php _e( 'Login', 'franklin') ?></h3></div> --> 
-			    <?php 
-			    $class = new EDD_Slg_Shortcodes();
-			    echo $class->edd_slg_social_login( $edd_options['edd_slg_login_heading'] ); 
-			    // echo $class->edd_slg_social_login( array( 'title' => __( 'Login', 'franklin' ) ), '' ); 
-			   	?>
-			</div>
-		</div>	
-	<?php
+if ( ! function_exists( 'franklin_modal_register' ) ) {
+
+	function franklin_modal_register() {
+		?>
+		<div class="register-block content-block block last">
+		    <div class="title-wrapper">
+		    	<h3 class="block-title accent"><?php _e( 'Register', 'franklin') ?></h3>
+		    </div> 
+		    <?php echo sofa_shortcode_register() ?>
+		</div>
+		<?php
+	}
 }
 
-if ( class_exists( 'EDD_Slg_Shortcodes' ) ) {
-	remove_action( 'franklin_login_register_modal', 'franklin_login_register_modal', 10 );
-	add_action( 'franklin_login_register_modal', 'franklin_social_login_modal' );
+add_action( 'franklin_login_register_modal', 'franklin_modal_register', 15 );
+
+/**
+ * Add the social login form inside the modal window.
+ * 
+ * @return 	void
+ * @since 	1.6
+ */
+if ( ! function_exists( 'franklin_modal_social_login' ) ) {
+
+	function franklin_modal_social_login() {
+		if ( ! class_exists( 'EDD_Slg_Shortcodes' ) ) {
+			return;
+		}
+
+		$class = new EDD_Slg_Shortcodes();
+		$login_form = $class->edd_slg_social_login( array( 
+			'title' => __( 'Login with Social Media', 'franklin' ) 
+		) );
+		if ( strlen( $login_form ) ) : 
+		?>
+			<div class="content-block">
+				<?php echo $login_form ?>
+			</div>
+		<?php
+		endif;
+	}
+}
+
+add_action( 'franklin_login_register_modal', 'franklin_modal_social_login', 5 );
+
+/**
+ * @deprecated 
+ */
+if ( ! function_exists('franklin_login_register_modal') ) {
+
+	function franklin_login_register_modal() {
+		_deprecated_function( 'franklin_login_register_modal', '1.6.0', 'franklin_modal_login, franklin_modal_register, franklin_modal_social_login' );	
+	}
 }

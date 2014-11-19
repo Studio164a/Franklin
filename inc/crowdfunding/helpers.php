@@ -77,17 +77,6 @@ function sofa_crowdfunding_get_time_since_ended( ATCF_Campaign $campaign, $reada
 }
 
 /**
- * Get the number of days remaining.
- *
- * @param ATCF_Campaign $campaign
- * @return int
- * @since Franklin 1.5.10
- */
-function sofa_crowdfunding_get_days_remaining( ATCF_Campaign $campaign ) {
-
-}
-
-/**
  * Get the number of seconds left in the campaign. 
  *
  * @param ATCF_Campaign $campaign

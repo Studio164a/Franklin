@@ -171,56 +171,6 @@
 	border-bottom:none;
 }
 
-/*<div class="campaign-countdown">
-	<span class="countdown is-countdown" data-enddate="{&quot;year&quot;:&quot;2014&quot;,&quot;day&quot;:&quot;31&quot;,&quot;month&quot;:&quot;7&quot;,&quot;hour&quot;:&quot;1&quot;,&quot;minute&quot;:&quot;30&quot;,&quot;second&quot;:&quot;12&quot;}">
-		<span class="countdown-row countdown-show4">
-			<span class="countdown-section">
-				<span class="countdown-amount">164</span>
-				<span class="countdown-period">Days</span>
-			</span>
-			<span class="countdown-section">
-				<span class="countdown-amount">15</span>
-				<span class="countdown-period">Hours</span>
-			</span>
-			<span class="countdown-section">
-				<span class="countdown-amount">29</span>
-				<span class="countdown-period">Minutes</span>
-			</span>
-			<span class="countdown-section">
-				<span class="countdown-amount">47</span>
-				<span class="countdown-period">Seconds</span>
-			</span>
-		</span>
-	</span>
-	<span>Time left to donate</span>
-</div>
-
-<div class="campaign-countdown">
-	<span class="countdown is-countdown" data-enddate="{&quot;year&quot;:&quot;2016&quot;,&quot;day&quot;:&quot;10&quot;,&quot;month&quot;:&quot;1&quot;,&quot;hour&quot;:&quot;7&quot;,&quot;minute&quot;:&quot;23&quot;,&quot;second&quot;:&quot;02&quot;}">
-		<span class="countdown-row countdown-show4">
-			<span class="countdown-section">
-				<span class="countdown-amount">684</span>
-				<span class="countdown-period">Days</span>
-			</span>
-			<span class="countdown-section">
-				<span class="countdown-amount">14</span>
-				<span class="countdown-period">Hours</span>
-			</span>
-			<span class="countdown-section">
-				<span class="countdown-amount">39</span>
-				<span class="countdown-period">Minutes</span>
-			</span>
-			<span class="countdown-section">
-				<span class="countdown-amount">15</span>
-				<span class="countdown-period">Seconds</span>
-			</span>
-		</span>
-	</span>				
-	<span>Time left to donate</span>
-</div>*/
-
-
-
 .campaign-support {
 	float: left;
 	width: 100%;
@@ -570,9 +520,14 @@ NOTE: As of version 1.2.1, this has been moved to style.css
 
 /* 9.0 - Login & registration forms 
 ================================================== */
-.atcf-login, 
-.atcf-register {
-	padding-top: 12px; padding-top: 1.2rem;
+#login-form {
+	width: 98%;
+	max-width: 505px; max-width: 50.5rem;
+}
+
+#login-form .block-title, 
+#login-form .edd-slg-social-container legend {
+	margin-bottom: 24px; margin-bottom: 2.4rem;
 }
 
 .atcf-login form, 
@@ -609,35 +564,41 @@ NOTE: As of version 1.2.1, this has been moved to style.css
 
 /* 9.1 - Social Media login forms
 ================================================== */
-#login-wrapper{
-	width:100%;
+.edd-slg-social-container {
+	padding: 0;
+	margin: 0;
+	border: none;
 }
 
 .edd-slg {
-	width: 400px;
+	/*width: 400px;
 	left: 50%;
-	margin-left: -20%;
+	margin-left: -20%;*/
 }
 
 .edd-slg .login-block {
-	width: auto;
-}
-
-.edd-slg-social-container{
-	border: none;
+	/*width: auto;*/
 }
 
 .edd-slg-social-container legend {
 	border-bottom: none;
+	font-size: 20px;
+	font-weight: normal;
 	color: #D95B43;
 	text-align: center;
-	font-size: 20px;
-	margin-bottom: 44px;
 }
 
+#login-form .edd-slg-social-container {
+				
+}
 
-.edd-slg-social-container .edd-slg-login-wrapper{
-	margin-left: 88px;
+#login-form .edd-slg-social-wrap {
+	text-align: center;
+}
+
+#login-form .edd-slg-login-wrapper {
+	float: none;
+	display: inline-block;
 }
 
 
@@ -1183,31 +1144,15 @@ span.description {
 
 /* 10.4 -- Greater than 800px ***/
 @media all and (min-width: 50em) {
-	/*.block .campaign-backer {
-		width: 23.5%;
-	}
-
-	.block .campaign-backer:nth-child(4n+4) {
-		margin-right: 0;
-	}
-
-	.block .campaign-backer:nth-child(5n+5) {
-		margin-right: 2%;
-	}*/
 
 	/* Login & Registration forms */
-	#login-form .login-block, 
-	#login-form .register-block {
-		width: 43%;
+	#login-form .content-block {
 		padding-left: 2%;
 		padding-right: 2%;
-		margin-right: 2%;
-		float: left;
 	}
 
 	#login-form .register-block {
-		float: right;
-		border-radius: 4px; border-radius: 0.4rem;
+		border-radius: 0.4rem;
 	}
 
 	/* Featured campaign */
