@@ -676,7 +676,7 @@ input[type=submit], input[type=reset], button, .button, .active-campaign .campai
 .campaign-support .button:hover { box-shadow: 0 0 0 3px <?php echo $button_text ?>; }
 
 /* Widget background colour */
-input[type=text], input[type=password], input[type=number], input[type=email], .chrome input[type=file], .safari input[type=file], textarea, select, .featured-image, th, .entry blockquote, hr, pre, .meta, .audiojs .scrubber, .widget, .sidebar-block, .accordion h3, .atcf-multi-select { background-color: <?php echo $widget_background ?>; }
+input[type=text], input[type=password], input[type=number], input[type=email], .chrome input[type=file], .safari input[type=file], textarea, select, .featured-image, th, .entry blockquote, hr, pre, .meta, .audiojs .scrubber, .widget, .sidebar-block, .accordion h3, .atcf-multi-select, #login-form .wrapper { background-color: <?php echo $widget_background ?>; }
 input:focus, textarea:focus, select:focus, input:active, textarea:active, select:active { background-color: <?php echo $this->rgb( $widget_rgb, 0.7 ) ?>; }
 
 /* Meta text colour */
@@ -697,7 +697,7 @@ th { border-right-color: <?php echo $secondary_border ?>; }
 /*.menu-site ul { box-shadow: 0 -2px 0 <?php echo $wrapper_background ?>; }*/
 
 /* Posts background colour */
-.entry-block, .content-block, .reveal-modal.multi-block .content-block, .widget_search #s:focus, .widget input[type=text]:focus, .widget input[type=password]:focus, .widget input[type=email]:focus, .widget input[type=number]:focus, .widget textarea:focus, .widget input[type=text]:active, .widget input[type=password]:active, .widget input[type=email]:active, .widget input[type=number]:active, .widget textarea:active, .widget th, .widget tfoot td, .format-status .meta, .format-quote .entry blockquote, .audiojs .progress, .comments-section, .campaign-pledge-levels.accordion .pledge-level, .contact-page .ninja-forms-form-wrap { background-color: <?php echo $posts_background ?>; }
+.entry-block, .content-block, .reveal-modal.multi-block .content-block, .widget_search #s:focus, .widget input[type=text]:focus, .widget input[type=password]:focus, .widget input[type=email]:focus, .widget input[type=number]:focus, .widget textarea:focus, .widget input[type=text]:active, .widget input[type=password]:active, .widget input[type=email]:active, .widget input[type=number]:active, .widget textarea:active, .widget th, .widget tfoot td, .format-status .meta, .format-quote .entry blockquote, .audiojs .progress, .comments-section, .campaign-pledge-levels.accordion .pledge-level, .contact-page .ninja-forms-form-wrap, #login-form .active.tab-title { background-color: <?php echo $posts_background ?>; }
 .entry-block { box-shadow: 0 0 1px <?php echo $posts_background ?>; }
 .sticky.block { border-color: <?php echo $posts_background ?>; }
 
@@ -712,11 +712,11 @@ th { border-right-color: <?php echo $secondary_border ?>; }
 .social a, .account-links .button.button-alt, .account-links .button.button-alt:before, .logout, .logout:before, .logout:hover { color: <?php echo $header_buttons ?>; }
 .social a:hover:before { color: <?php echo $header_buttons_hover ?>; }
 .account-links .button.button-alt:hover, .account-links .button.button-alt:hover:before { background-color: <?php echo $header_buttons_hover ?>; border-color: <?php echo $header_buttons_hover ?>; }
-
+/*
 @media all and (min-width: 50em) {
-    #login-form .register-block { background-color: <?php echo $widget_background ?>; }
-    #login-form .register-block input[type=text], #login-form .register-block input[type=password], #login-form .register-block input[type=email] { background-color: <?php echo $wrapper_background ?>; }
-}
+#login-form .register-block { background-color: <?php echo $widget_background ?>; }
+#login-form .register-block input[type=text], #login-form .register-block input[type=password], #login-form .register-block input[type=email] { background-color: <?php echo $wrapper_background ?>; }
+}*/
 
 /* Text selection */
 *::selection { background-color:<?php echo $accent_colour ?>; color: <?php echo $accent_text ?>; } 

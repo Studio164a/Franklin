@@ -1,12 +1,13 @@
 // Enclose script in an anonymous function to prevent global namespace polution
 ( function( $ ){	
 
-	$(document)
-	// Initiate foundation
-	.foundation()
+	// Start Foundation.
+	Foundation.global.namespace = '';
 
+	$(document).foundation();
+	
 	// Perform other actions on ready event
-	.ready(function() {
+	$(document).ready( function() {
 
 		Sofa.init();
 
@@ -27,7 +28,7 @@
 		}				
 
 		$('.share-twitter').sharrre({
-			urlCurl: Sofa_Localized.sharrre_url,
+			urlCurl: Franklin.sharrre_url,
 			share: {				
 				twitter: true
 			},
@@ -40,7 +41,7 @@
 			}
 		});	
 		$('.share-facebook').sharrre({
-			urlCurl: Sofa_Localized.sharrre_url,
+			urlCurl: Franklin.sharrre_url,
 			share: {				
 				facebook: true
 			},
@@ -52,7 +53,7 @@
 			}
 		});	
 		$('.share-googleplus').sharrre({
-			urlCurl: Sofa_Localized.sharrre_url,
+			urlCurl: Franklin.sharrre_url,
 			share: {				
 				googlePlus: true
 			},
@@ -64,7 +65,7 @@
 			}
 		});		
 		$('.share-linkedin').sharrre({
-			urlCurl: Sofa_Localized.sharrre_url,
+			urlCurl: Franklin.sharrre_url,
 			share: {				
 				linkedin: true
 			},
@@ -76,7 +77,7 @@
 			}
 		});	
 		$('.share-pinterest').sharrre({
-			urlCurl: Sofa_Localized.sharrre_url,
+			urlCurl: Franklin.sharrre_url,
 			share: {				
 				pinterest: true
 			},
@@ -86,7 +87,37 @@
 				api.simulateClick();
 				api.openPopup('pinterest');
 			}
-		});		
+		});	
+
+		if ( Franklin.using_crowdfunding ) {
+
+			Franklin.Countdown.init();		
+
+			Franklin.Pledging.init();
+
+			$('.campaign-button').on( 'click', function() {
+				$(this).toggleClass('icon-remove');
+				$(this).parent().toggleClass('is-active');
+			});
+
+			$('[name=shipping_country], [name=shipping_state_ca], [name=shipping_state_us]').on( 'change', Sofa.toggleSelectWrapper($(this)))
+
+			$('.atcf-multi-select .children').hide();
+			$('.atcf-multi-select input[type="checkbox"]').on( 'change', function() {
+				var parent_category = $(this).parent().parent('li'), 
+					child = parent_category.children('.children');
+				if ( $(this).attr("checked") ) {
+					child.show();
+					if( child.length > 0 ) {
+						parent_category.addClass("selected");
+					}
+				} else {
+					child.hide();
+					parent_category.removeClass("selected");
+					parent_category.find('input[type="checkbox"]').prop('checked', false);
+				}
+			});
+		}	
 	});
 
 	audiojs.events.ready(function() {
@@ -95,6 +126,17 @@
 
   	$(window).resize( function() {
   		Sofa.responsiveHide();
+
+  		if ( Franklin.using_crowdfunding ) {
+  			Franklin.Grid.resizeGrid();
+  		}
   	});
+
+  	$(window).load( function() {
+  		if ( Franklin.using_crowdfunding ) {
+  			Franklin.Grid.init();
+			Franklin.Barometer.init();
+  		}
+  	})
 
 })( jQuery );

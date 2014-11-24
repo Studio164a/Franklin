@@ -30,8 +30,6 @@
 		</div>
 		<!-- End body-wrapper -->
 
-		<?php get_template_part('login', 'modal') ?>
-
 	</div>
 	<!-- End site-container -->
 

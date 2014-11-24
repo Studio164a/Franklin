@@ -11,6 +11,11 @@
 class Franklin_Theme {
 
     /**
+     * Version number.
+     */
+    const VERSION = '1.6.0';
+
+    /**
      * @var Franklin_Theme
      */
     private static $instance = null;
@@ -32,11 +37,6 @@ class Franklin_Theme {
 
     /**
      * @var string
-     */
-    private $theme_version;
-
-    /**
-     * @var string
      */ 
     private $stylesheet;
 
@@ -44,38 +44,161 @@ class Franklin_Theme {
      * Private constructor. Singleton pattern.
      */
 	private function __construct() {                 
+        $this->stylesheet = get_option('stylesheet');
 
-        // Include Sofa and get its instance
-        require_once('inc/sofa/sofa.php');
-        $this->sofa = get_sofa_framework();
+        $this->start();
+  	}
 
-        // Include other files
+    /**
+     * Get class instance.
+     *
+     * @static
+     * @return  Franklin_Theme
+     * @access  public
+     */
+    public static function get_instance() {
+        if ( is_null( self::$instance ) ) {
+          self::$instance = new Franklin_Theme();
+        }
+        return self::$instance;
+    }    
+
+    /**
+     * Start the plugin. 
+     *
+     * @return  void
+     */
+    private function start() {
+        // If the franklin_theme_start action has been run or the action 
+        // is currently running, it means that this is being called on a later 
+        // instantiation. Do not proceed.
+        if ( $this->started() ) {
+            return false;
+        }
+
+        $this->setup_sofa_framework();    
+
+        $this->load_dependencies();    
+        
+        $this->maybe_start_crowdfunding();
+
+        $this->maybe_start_wpml();
+
+        $this->maybe_update_version();
+
+        $this->attach_hooks_and_filters(); 
+
+        // Allow child themes to perform actions upon bootstrap.
+        // Use this hook to unset any of the event hooks attached in this method.
+        do_action('franklin_theme_start', $this);
+    }
+
+    /**
+     * Checks whether the theme has already started. 
+     *
+     * @return bool
+     * @access public
+     * @since 0.2
+     */
+    public function started() {
+        return did_action('franklin_theme_start') || current_filter() == 'franklin_theme_start';
+    }
+
+    /**
+     * Checks whether we are currently on the franklin_theme_start hook. 
+     *
+     * @return bool
+     * @access public
+     * @since 0.2
+     */
+    public function is_start() {
+        return current_filter() == 'franklin_theme_start';
+    }
+    /**
+     * Include required files. 
+     *
+     * @return  void
+     * @access  private
+     */
+    private function load_dependencies() {
         require_once('inc/comments.php');
         require_once('inc/helpers.php');
         require_once('inc/template-tags.php');    
         require_once('inc/widgets/sofa-posts.php');
-
-        // Admin classes
         require_once('inc/admin/customize.php');
+    }
 
+    /**
+     * Load up the Sofa Framework.
+     *
+     * @return  void
+     * @access  private
+     */
+    private function setup_sofa_framework() {
+        require_once('inc/sofa/sofa.php');
+
+        $this->sofa = get_sofa_framework();
+    }
+
+    /**
+     * Check if crowdfunding is ready, and if so, start it up.
+     *
+     * @return  void
+     * @access  private
+     */
+    private function maybe_start_crowdfunding() {
         if ( class_exists('Easy_Digital_Downloads') && class_exists('ATCF_CrowdFunding')) {
 
             $this->crowdfunding_enabled = true;
+
             include_once('inc/crowdfunding/crowdfunding.class.php');            
         }
+    }
 
+    /**
+     * Check if WPML is installed and if so, load the helper files.
+     *
+     * @return  void
+     * @access  private
+     */
+    private function maybe_start_wpml() {
         if ( defined('ICL_SITEPRESS_VERSION') ) {
+            
             $this->wpml_enabled = true;
+            
             include_once('inc/wpml/wpml.class.php');
             include_once('inc/wpml/helpers.php');
         }
+    }
 
-        // Check for theme update
-        $this->theme_version = '1.5.11';
+    /**
+     * Check for theme version update
+     * 
+     * @return  void
+     * @access  private
+     */
+    private function maybe_update_version() {
         $this->theme_db_version = mktime(15,30,0,8,6,2013);
-        $this->version_update();
-        $this->stylesheet = get_option('stylesheet');
+        
+        // Check whether we are updated to the most recent version
+        $db_version = get_option('franklin_db_version', false);
 
+        if ( $db_version === false || $db_version < $this->theme_db_version ) {
+            require_once('inc/upgrade.php');        
+
+            Sofa_Upgrade_Helper::do_upgrade($this->theme_db_version, $db_version);
+
+            update_option('franklin_db_version', $this->theme_db_version);
+        }    
+    }    
+
+    /**
+     * Set up hooks and filters. 
+     *
+     * @return  void
+     * @access  private
+     */
+    private function attach_hooks_and_filters() {
         add_action('wp_head', array(&$this, 'wp_head'), 20);
         add_action('wp_footer', array(&$this, 'wp_footer'));
         // add_action('wp_head', array(&$this, 'wp_head_late'), 20);
@@ -88,7 +211,7 @@ class Franklin_Theme {
         add_action('save_post', array(&$this, 'save_post'), 10, 2);
 
         if ( !is_admin() )
-            add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'), 11);
+            add_action('wp_enqueue_scripts', array(&$this, 'wp_enqueue_scripts'), 20);
 
 
         add_filter('get_pages',  array(&$this, 'get_pages_filter'));    
@@ -103,93 +226,76 @@ class Franklin_Theme {
         add_filter('sofa_link_format_title', array(&$this, 'sofa_link_format_title_filter'));
 
         // Stop LayerSlider's scripts from being added to every page.
-        remove_action('wp_enqueue_scripts', 'layerslider_enqueue_content_res');        
-  	}
+        remove_action('wp_enqueue_scripts', 'layerslider_enqueue_content_res');
+    }
 
     /**
-     * Get class instance.
+     * Enqueue stylesheets and scripts.
      *
-     * @static
-     * @return Franklin_Theme
-     */
-    public static function get_instance() {
-        if (is_null(self::$instance)) {
-          self::$instance = new Franklin_Theme();
-        }
-        return self::$instance;
-    }    
-
-    /**
-     * Check for theme version update
-     * 
-     * @return void
-     */
-    public function version_update() {
-        // Check whether we are updated to the most recent version
-        $db_version = get_option('franklin_db_version', false);
-
-        if ( $db_version === false || $db_version < $this->theme_db_version ) {
-            require_once('inc/upgrade.php');        
-
-            Sofa_Upgrade_Helper::do_upgrade($this->theme_db_version, $db_version);
-
-            update_option('franklin_db_version', $this->theme_db_version);
-        }    
-    }    
-
-    /**
-     * Enqueue stylesheets and scripts
-     * @return void
+     * @return  void
      */
     public function wp_enqueue_scripts() {      
     	// Theme directory
         $theme_dir = get_template_directory_uri();        
 
         // Stylesheets
-        wp_register_style('franklin-main', $theme_dir . "/style.css", array(), $this->theme_version);
+        wp_register_style('franklin-main', $theme_dir . "/style.css", array(), $this->get_theme_version());
         wp_enqueue_style('franklin-main');
 
-        wp_register_style( 'foundation', sprintf( "%s/media/css/foundation.css", $theme_dir), array(), $this->theme_version);
+        wp_register_style( 'foundation', sprintf( "%s/media/css/foundation.css", $theme_dir), array(), $this->get_theme_version());
         wp_enqueue_style( 'foundation' );
 
         // Load up Ninja Forms CSS if the plugin is on
         if ( defined( 'NINJA_FORMS_VERSION' ) ) {
-            wp_register_style( 'franklin-ninja-forms', sprintf( "%s/media/css/franklin-ninja-forms.css", $theme_dir ), array('franklin-main'), $this->theme_version );
+            wp_register_style( 'franklin-ninja-forms', sprintf( "%s/media/css/franklin-ninja-forms.css", $theme_dir ), array('franklin-main'), $this->get_theme_version() );
             wp_enqueue_style( 'franklin-ninja-forms' );
         }
         
         // Scripts    
         $in_footer = function_exists('edd_is_checkout') && edd_is_checkout() ? false : true;
 
-        wp_register_script('sofa', sprintf( "%s/media/js/sofa.js", $theme_dir ), array('jquery'), $this->theme_version, $in_footer);
+        wp_register_script('sofa', sprintf( "%s/media/js/sofa.js", $theme_dir ), array('jquery'), $this->get_theme_version(), $in_footer);
 
-        wp_register_script('audio-js', sprintf( "%s/media/js/audiojs/audio.min.js", $theme_dir ), array(), $this->theme_version, true);
-        wp_register_script('foundation', sprintf( "%s/media/js/foundation.min.js", $theme_dir ), array(), $this->theme_version, true);
-        wp_register_script('foundation-reveal', sprintf( "%s/media/js/foundation.reveal.js", $theme_dir ), array('foundation'), $this->theme_version, true);        
-        wp_register_script('sharrre', sprintf( "%s/media/js/jquery.sharrre-1.3.5.js", $theme_dir ), array('jquery'), $this->theme_version, true );        
-        wp_register_script('franklin', sprintf( "%s/media/js/main.js", $theme_dir ), array( 'sofa', 'prettyPhoto', 'jquery-ui-accordion', 'audio-js', 'sharrre', 'hoverIntent', 'foundation-reveal', 'jquery'), $this->theme_version, true);
+        wp_register_script('audio-js', sprintf( "%s/media/js/audiojs/audio.min.js", $theme_dir ), array(), $this->get_theme_version(), true);
+        wp_register_script('foundation', sprintf( "%s/media/js/foundation.min.js", $theme_dir ), array('jquery'), $this->get_theme_version(), true);
+        wp_register_script('sharrre', sprintf( "%s/media/js/jquery.sharrre-1.3.5.js", $theme_dir ), array('jquery'), $this->get_theme_version(), true );        
+        
+        // Allow other scripts to add their scripts to the dependencies.
+        $franklin_script_dependencies = apply_filters( 'franklin_script_dependencies', array( 
+            'sofa', 
+            'prettyPhoto', 
+            'jquery-ui-accordion', 
+            'audio-js', 
+            'sharrre', 
+            'hoverIntent', 
+            'foundation', 
+            'jquery' 
+        ) );
+
+        wp_register_script('franklin', sprintf( "%s/media/js/main.js", $theme_dir ), $franklin_script_dependencies, $this->get_theme_version(), true);
 
         wp_enqueue_script('jquery');
         wp_enqueue_script('sofa');
 	    wp_enqueue_script('franklin');
 
-        wp_localize_script('franklin', 'Sofa_Localized', array(
-            'sharrre_url' => get_template_directory_uri() . '/inc/sharrre/sharrre.php', 
-            'need_minimum_pledge' => __( 'Your pledge must be at least the minimum pledge amount.', 'franklin' ), 
-            'years' => __( 'Years', 'franklin' ), 
-            'months' => __( 'Months', 'franklin' ), 
-            'weeks' => __( 'Weeks', 'franklin' ), 
-            'days' => __( 'Days', 'franklin' ), 
-            'hours' => __( 'Hours', 'franklin' ), 
-            'minutes' => __( 'Minutes', 'franklin' ), 
-            'seconds' => __( 'Seconds', 'franklin' ), 
-            'year' => __( 'Year', 'franklin' ), 
-            'month' => __( 'Month', 'franklin' ), 
-            'day' => __( 'Day', 'franklin' ), 
-            'hour' => __( 'Hour', 'franklin' ), 
-            'minute' => __( 'Minute', 'franklin' ), 
-            'second' => __( 'Second', 'franklin' ), 
-            'timezone_offset' => $this->get_timezone_offset()
+        wp_localize_script('sofa', 'Franklin', array(
+            'sharrre_url'           => get_template_directory_uri() . '/inc/sharrre/sharrre.php', 
+            'need_minimum_pledge'   => __( 'Your pledge must be at least the minimum pledge amount.', 'franklin' ), 
+            'years'                 => __( 'Years', 'franklin' ), 
+            'months'                => __( 'Months', 'franklin' ), 
+            'weeks'                 => __( 'Weeks', 'franklin' ), 
+            'days'                  => __( 'Days', 'franklin' ), 
+            'hours'                 => __( 'Hours', 'franklin' ), 
+            'minutes'               => __( 'Minutes', 'franklin' ), 
+            'seconds'               => __( 'Seconds', 'franklin' ), 
+            'year'                  => __( 'Year', 'franklin' ), 
+            'month'                 => __( 'Month', 'franklin' ), 
+            'day'                   => __( 'Day', 'franklin' ), 
+            'hour'                  => __( 'Hour', 'franklin' ), 
+            'minute'                => __( 'Minute', 'franklin' ), 
+            'second'                => __( 'Second', 'franklin' ), 
+            'timezone_offset'       => $this->get_timezone_offset(),
+            'using_crowdfunding'    => $this->crowdfunding_enabled
         ) ); 
     } 
 
@@ -498,7 +604,7 @@ class Franklin_Theme {
      * @since Franklin 1.5.5
      */
     public function get_timezone_offset() {
-        if ( sofa_using_crowdfunding() === false ){
+        if ( franklin_using_crowdfunding() === false ){
             return;
         }
         
@@ -517,11 +623,16 @@ class Franklin_Theme {
     /**
      * Returns the current version number. 
      * 
-     * @return int
-     * @since Franklin 1.5.8
+     * @return  int
+     * @since   Franklin 1.5.8
      */
     public function get_theme_version() {
-        return $this->theme_version;
+
+        if ( defined('FRANKLIN_DEBUG') && FRANKLIN_DEBUG ) {
+            return time();
+        }
+
+        return self::VERSION;
     }
 }
 

@@ -110,7 +110,8 @@ th,
 .campaign-status .campaign-pledged span, 
 .campaign-status .campaign-time-left span,
 .widget_crowdfunding_stats_widget li span, 
-.campaign-image span {
+.campaign-image span, 
+.tabs .tab-title {
 	font-family: 'Oswald', 'Helvetica Neue', Helvetica, sans-serif;
 }
 

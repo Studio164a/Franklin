@@ -44,7 +44,6 @@ class Sofa_Crowdfunding_Helper {
 
     	add_action('after_setup_theme', array(&$this, 'after_setup_theme'));
         add_action('widgets_init', array(&$this, 'widgets_init'));
-        // add_action('wp_footer', array(&$this, 'wp_footer'));
         add_action('add_meta_boxes', array(&$this, 'add_meta_boxes'));
         add_action('save_post', array(&$this, 'save_post'), 10, 2);
 
@@ -55,6 +54,7 @@ class Sofa_Crowdfunding_Helper {
         add_action('edd_purchase_form_before_submit', array(&$this, 'edd_purchase_form_before_submit'), 100 );
         add_action('edd_complete_purchase', array(&$this, 'delete_transients_after_purchase'));
 
+        add_filter('franklin_script_dependencies', array( $this, 'franklin_script_dependencies_filter' ) );
         add_filter('body_class', array(&$this, 'body_class_filter'));
         add_filter('page_template', array(&$this, 'page_template_filter'));
         add_filter('edd_purchase_link_defaults', array(&$this, 'edd_purchase_link_defaults_filter'));
@@ -118,15 +118,12 @@ class Sofa_Crowdfunding_Helper {
         $theme_dir = get_template_directory_uri();   
 
         // Array of required scripts
-        $req = array('raphael', 'franklin');
-
         wp_register_script('raphael', sprintf( "%s/media/js/raphael-min.js", $theme_dir ), array('jquery'), get_franklin_theme()->get_theme_version(), true);
+        $req = array('raphael');
 
         // Add scripts that are only applied if we're not looking at a widget
-        if ( $this->viewing_widget === false ) {    
-
+        if ( false === $this->viewing_widget ) {    
             $req[] = 'jquery-masonry';
-
             if ( get_post_type() == 'download' || is_page_template('page-single-campaign.php') ) {
                 wp_register_script('countdown', sprintf( "%s/media/js/jquery.countdown.min.js", $theme_dir ), array('jquery'), get_franklin_theme()->get_theme_version(), true);
                 $req[] = 'countdown';
@@ -134,9 +131,6 @@ class Sofa_Crowdfunding_Helper {
         }
 
         wp_register_script('franklin-crowdfunding', sprintf( "%s/media/js/franklin-crowdfunding.js", $theme_dir ), $req, get_franklin_theme()->get_theme_version(), true);    
-
-        // Load the Franklin crowdfunding script
-        wp_enqueue_script('franklin-crowdfunding');
     
         wp_register_style('franklin-crowdfunding', sprintf( "%s/media/css/franklin-crowdfunding.css", $theme_dir ), array('franklin-main', 'foundation'), get_franklin_theme()->get_theme_version() );
         wp_enqueue_style('franklin-crowdfunding');
@@ -151,23 +145,17 @@ class Sofa_Crowdfunding_Helper {
     }
 
     /**
-     * Add pledge modal on wp_footer hook
-     * 
-     * @return void
-     * @since Franklin 1.0
+     * Add additional sripts to the dependency list.
+     *
+     * @param   array   $scripts
+     * @return  array
+     * @access  public
+     * @since   1.6.0
      */
-    public function wp_footer() {
-        // die("works");
-        if ( $this->viewing_widget === false ) : 
-            ?>                     
-            <div id="login-form" class="reveal-modal block multi-block">
-                <a class="close-reveal-modal icon" data-icon="&#xf057;"></a>
-                <?php do_action( 'franklin_login_register_modal' ) ?>
-
-            </div>
-            <?php
-        endif;
-    }
+    public function franklin_script_dependencies_filter( $scripts ) {
+        $scripts[] = 'franklin-crowdfunding';
+        return $scripts;
+    } 
 
     /**
      * Register widgets. 

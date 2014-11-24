@@ -169,7 +169,7 @@ if ( !function_exists('franklin_edd_purchase_link_end') ) {
 	}
 }
 
-//add_action('edd_purchase_link_end', 'franklin_edd_purchase_link_end');
+add_action('edd_purchase_link_end', 'franklin_edd_purchase_link_end');
 
 /**
  * Filter the title displayed for the pledge button. 
@@ -566,6 +566,34 @@ if ( !function_exists( 'franklin_campaign_comment' ) ) {
 remove_filter( 'the_title', 'edd_microdata_title', 10, 2 );
 
 /**
+ * Add tabs to the modal window.
+ *
+ * @return 	void
+ * @since 	1.6
+ */
+if ( ! function_exists( 'franklin_login_register_modal_tabs' ) ) {
+
+	function franklin_login_register_modal_tabs() {
+		?>
+		<ul class="tabs" data-tab role="tablist">
+			<li class="tab-title active" role="presentational">
+				<a href="#login-tab" role="tab" tabindex="0" aria-selected="true" controls="login-tab">
+					<?php _e( 'Login', 'franklin') ?>
+				</a>
+			</li>
+			<li class="tab-title" role="presentational">
+				<a href="#register-tab" role="tab" tabindex="0" aria-selected="false" controls="register-tab">
+					<?php _e( 'Register', 'franklin' ) ?>
+				</a>
+			</li>
+		</ul>
+		<?php
+	}
+}
+
+add_action( 'franklin_login_register_modal_tabs', 'franklin_login_register_modal_tabs' );
+
+/**
  * Set up the login form inside the modal window.
  * 
  * @return 	void
@@ -575,15 +603,12 @@ if ( ! function_exists( 'franklin_modal_login' ) ) {
 
 	function franklin_modal_login() {
 		?>
-		<div class="content-block login-block">
-		    <div class="title-wrapper">
-		    	<h3 class="block-title accent"><?php _e( 'Login', 'franklin') ?></h3>
-		    </div> 
+		<section id="login-tab" class="content active content-block login-block" role="tabpanel" aria-hidden="false"> 
 		    <?php echo atcf_shortcode_login() ?>
-		</div>
+		</section>
 		<?php
 	}
-}
+}	
 
 add_action( 'franklin_login_register_modal', 'franklin_modal_login', 10 );
 
@@ -597,12 +622,9 @@ if ( ! function_exists( 'franklin_modal_register' ) ) {
 
 	function franklin_modal_register() {
 		?>
-		<div class="register-block content-block block last">
-		    <div class="title-wrapper">
-		    	<h3 class="block-title accent"><?php _e( 'Register', 'franklin') ?></h3>
-		    </div> 
+		<section id="register-tab" class="content register-block content-block" role="tabpanel" aria-hidden="true">
 		    <?php echo sofa_shortcode_register() ?>
-		</div>
+		</section>
 		<?php
 	}
 }
@@ -636,7 +658,7 @@ if ( ! function_exists( 'franklin_modal_social_login' ) ) {
 	}
 }
 
-add_action( 'franklin_login_register_modal', 'franklin_modal_social_login', 5 );
+//add_action( 'franklin_login_register_modal', 'franklin_modal_social_login', 5 );
 
 /**
  * @deprecated 

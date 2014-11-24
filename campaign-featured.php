@@ -1,4 +1,4 @@
-<?php if ( sofa_using_crowdfunding() === false ) return ?>
+<?php if ( franklin_using_crowdfunding() === false ) return ?>
 
 <?php $post_id = get_the_ID() ?>
 <?php $campaigns = get_sofa_crowdfunding()->get_featured_campaign( $post_id ) ?>
@@ -12,8 +12,11 @@
 		<div class="shadow-wrapper">
 
 			<?php if ( $featured_page ) : ?>
-				<a href="<?php echo get_permalink($featured_page) ?>" class="more-link alignright"><?php echo get_post_meta( $post_id, '_franklin_featured_campaigns_page_text', true ) ?></a>
+				<a href="<?php echo get_permalink($featured_page) ?>" class="more-link alignright">
+					<?php echo get_post_meta( $post_id, '_franklin_featured_campaigns_page_text', true ) ?>
+				</a>
 			<?php endif ?>			
+			
 			<h6 class="block-title with-icon" data-icon="&#xf005;"><?php echo _n( 'Featured Project', 'Featured Projects', $campaigns->found_posts, 'franklin' ) ?></h6>
 
 			<?php while ( $campaigns->have_posts() ) : ?>
@@ -26,6 +29,8 @@
 
 				$output = get_transient($transient_key);
 
+				$output = false;
+				
 				if ($output === false ) :
 
 					ob_start();
@@ -76,7 +81,7 @@
 
 					<?php get_template_part( 'sharing' ) ?>	
 
-				</div>					
+				</div>				
 
 				<?php
 				

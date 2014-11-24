@@ -8,16 +8,6 @@
  */
 
 /**
- * Returns whether crowdfunding is enabled.
- * 
- * @return bool
- * @since Franklin 0.1
- */
-function sofa_using_crowdfunding() {
-	return get_franklin_theme()->crowdfunding_enabled;
-}
-
-/**
  * Strips the first anchor from the content.
  * 
  * @param string $content

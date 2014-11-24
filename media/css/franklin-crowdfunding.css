@@ -521,8 +521,55 @@ NOTE: As of version 1.2.1, this has been moved to style.css
 /* 9.0 - Login & registration forms 
 ================================================== */
 #login-form {
-	width: 98%;
-	max-width: 505px; max-width: 50.5rem;
+	width: 100%;
+	background-color: transparent;
+}
+
+#login-form .wrapper {
+	position: relative;
+	width: 320px; width: 32rem;
+	margin: 0 auto;
+	border-radius: 0.4rem;
+}
+
+#login-form .tabs {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#login-form .tab-title {
+	display: inline-block;
+	margin-bottom: 0;
+	border-radius: 0.4rem 0.4rem 0 0;
+}
+
+#login-form .tab-title a {
+	display: block;
+	padding: 12px 24px; padding: 1.2rem 2.4rem;
+	font-size: 13px; font-size: 1.3rem;
+	line-height: 1em;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.tabs-content {
+	position: relative;
+}
+
+.tabs-content .content {
+	display: none;
+	padding: 24px; padding: 2.4rem;
+}
+
+.tabs-content .active.content {
+	display: block;
+}
+
+#login-form .content {
+	width: 272px; width: 27.2rem;
+	margin-bottom: 0;
+	border-radius: 0 0.4rem 0.4rem 0.4rem;
 }
 
 #login-form .block-title, 
@@ -536,6 +583,15 @@ NOTE: As of version 1.2.1, this has been moved to style.css
 	margin: 0 auto;
 }
 
+.login-username input, 
+.login-password input, 
+.atcf-register-name input, 
+.atcf-register-email input, 
+.atcf-register-username input, 
+.atcf-register-password input {
+	width: 252px; width: 25.2rem;
+}
+/*
 .login-username, 
 .login-password, 
 .atcf-register-name, 
@@ -550,17 +606,12 @@ NOTE: As of version 1.2.1, this has been moved to style.css
 .atcf-register-name,
 .atcf-register-username {
 	margin-right: 2%;
-}
+}*/	
 
 .atcf-login label, 
 .atcf-register label {
 	padding-top: 0;
 }
-
-#login-form .register-block {
-	border-radius: 0;
-}
-
 
 /* 9.1 - Social Media login forms
 ================================================== */
@@ -1144,16 +1195,6 @@ span.description {
 
 /* 10.4 -- Greater than 800px ***/
 @media all and (min-width: 50em) {
-
-	/* Login & Registration forms */
-	#login-form .content-block {
-		padding-left: 2%;
-		padding-right: 2%;
-	}
-
-	#login-form .register-block {
-		border-radius: 0.4rem;
-	}
 
 	/* Featured campaign */
 	.feature-block .featured-campaign {

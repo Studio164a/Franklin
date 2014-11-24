@@ -1,4 +1,4 @@
-<?php if ( sofa_using_crowdfunding() === false ) return ?>
+<?php if ( franklin_using_crowdfunding() === false ) return ?>
 
 <?php $campaign = sofa_crowdfunding_get_campaign() ?>
 
