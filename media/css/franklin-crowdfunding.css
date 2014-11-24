@@ -523,6 +523,7 @@ NOTE: As of version 1.2.1, this has been moved to style.css
 #login-form {
 	width: 100%;
 	background-color: transparent;
+	box-shadow: none;
 }
 
 #login-form .wrapper {
@@ -572,9 +573,10 @@ NOTE: As of version 1.2.1, this has been moved to style.css
 	border-radius: 0 0.4rem 0.4rem 0.4rem;
 }
 
-#login-form .block-title, 
-#login-form .edd-slg-social-container legend {
-	margin-bottom: 24px; margin-bottom: 2.4rem;
+#login-form h5 {
+	margin: 0 0 24px; margin-bottom: 2.4rem;
+	text-transform: uppercase;
+	letter-spacing: 1px;	
 }
 
 .atcf-login form, 
@@ -591,22 +593,6 @@ NOTE: As of version 1.2.1, this has been moved to style.css
 .atcf-register-password input {
 	width: 252px; width: 25.2rem;
 }
-/*
-.login-username, 
-.login-password, 
-.atcf-register-name, 
-.atcf-register-email, 
-.atcf-register-username, 
-.atcf-register-password {
-	float: left;
-	width: 49%;
-}
-
-.login-username, 
-.atcf-register-name,
-.atcf-register-username {
-	margin-right: 2%;
-}*/	
 
 .atcf-login label, 
 .atcf-register label {
@@ -621,29 +607,16 @@ NOTE: As of version 1.2.1, this has been moved to style.css
 	border: none;
 }
 
-.edd-slg {
-	/*width: 400px;
-	left: 50%;
-	margin-left: -20%;*/
-}
-
-.edd-slg .login-block {
-	/*width: auto;*/
-}
-
 .edd-slg-social-container legend {
-	border-bottom: none;
-	font-size: 20px;
-	font-weight: normal;
-	color: #D95B43;
-	text-align: center;
-}
-
-#login-form .edd-slg-social-container {
-				
+	margin: 0;
+	border: none;
 }
 
 #login-form .edd-slg-social-wrap {
+	padding-bottom: 24px; padding-bottom: 2.4rem;
+	margin-bottom: 24px; margin-bottom: 2.4rem;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
 	text-align: center;
 }
 

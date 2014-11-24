@@ -2,7 +2,7 @@
 
 		<!-- Login form -->
 		<div id="login-form" class="reveal-modal block" data-reveal>
-            <div class="wrapper">
+            <div class="wrapper cf">
     			<?php do_action( 'franklin_login_register_modal_tabs' ) ?>		
     			<a class="close-reveal-modal icon" data-icon="&#xf057;"></a>
                 <div class="tabs-content">

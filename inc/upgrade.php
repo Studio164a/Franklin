@@ -1,18 +1,18 @@
 <?php
 /**
- * Handles version to version upgrading
+ * Handles version to version upgrading.
  * 
- * @author Eric Daams <eric@ericnicolaas.com>
- * @since Franklin 1.3
+ * @author  Eric Daams
+ * @since   1.3.0
  */
 
-class Sofa_Upgrade_Helper {
+class Franklin_Upgrade_Helper {
 
     /**
      * Perform upgrade
      *
-     * @param int $current
-     * @param int|false $db_version 
+     * @param   int $current
+     * @param   int|false $db_version 
      * @static
      */
     public static function do_upgrade($current, $db_version) {
@@ -22,9 +22,9 @@ class Sofa_Upgrade_Helper {
     }
 
     /**
-     * Upgrade to version 1.3
+     * Upgrade to version 1.3.0.
      *
-     * @since Franklin 1.3
+     * @since   1.3.0
      */
     protected static function upgrade_1_3() {
         $mods = get_theme_mods();
@@ -40,5 +40,30 @@ class Sofa_Upgrade_Helper {
 
         $theme = get_option( 'stylesheet' );
         update_option("theme_mods_$theme", $mods);
+    }
+
+    /**
+     * Upgrade to the new Hide Meta plugin. 
+     *
+     * The key thing that needs to happen is that the old meta key, `_franklin_hide_post_meta*` 
+     * has to be updated to become `_hide_meta`. 
+     * 
+     * @since   1.6.0
+     */
+    public static function do_hide_meta_upgrade() {
+        $to_update = new WP_Query( array(
+            'post_type'     => array( 'post', 'page' ),
+            'meta_key'      => '_franklin_hide_post_meta' 
+        ) );
+
+        if ( $to_update->have_posts() ) { 
+            while ( $to_update->have_posts() ) {
+                $to_update->the_post();
+
+                $value = get_post_meta( get_the_ID(), '_franklin_hide_post_meta', true );
+
+                update_post_meta( get_the_ID(), '_hide_meta', $value );
+            }
+        }
     }
 }

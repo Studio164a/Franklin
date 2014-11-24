@@ -12,8 +12,8 @@
 /**
  * Remove output of variable pricing, and add our own system.
  *
- * @since Franklin 1.4
- * @return void
+ * @return 	void
+ * @since 	1.4.0
  */
 if ( !function_exists('franklin_atcf_theme_variable_pricing')) {
 
@@ -27,11 +27,11 @@ remove_action( 'after_setup_theme', 'atcf_theme_custom_variable_pricing', 100 );
 add_action( 'init', 'franklin_atcf_theme_variable_pricing' );
 
 /**
- * Displays the title 
+ * Displays the title. 
  * 
- * @see edd_before_price_options
- * @return void
- * @since Franklin 1.4
+ * @see 	edd_before_price_options
+ * @return 	void
+ * @since  	1.4.0
  */
 if ( ! function_exists('franklin_edd_before_price_options') ) {	
 
@@ -41,14 +41,15 @@ if ( ! function_exists('franklin_edd_before_price_options') ) {
 		<?php
 	}
 }
+
 add_action('edd_before_price_options', 'franklin_edd_before_price_options');
 
 /**
  * Displays the contribution options. 
  * 
- * @see atcf_campaign_contribute_options
- * @return void
- * @since Franklin 1.4
+ * @see 	atcf_campaign_contribute_options
+ * @return 	void
+ * @since 	1.4.0
  */
 function franklin_atcf_campaign_contribute_options( $prices, $type, $campaign_id ) {
 	global $edd_options;
@@ -106,10 +107,10 @@ add_action('atcf_campaign_contribute_options', 'franklin_atcf_campaign_contribut
 /**
  * Display the list of pledge options. 
  * 
- * @see edd_purchase_link_end
- * @param int $campaign_id
- * @return void
- * @since Franklin 1.0
+ * @see 	edd_purchase_link_end
+ * @param 	int 	$campaign_id
+ * @return 	void
+ * @since 	1.0.0
  */
 if ( !function_exists('franklin_edd_after_price_options') ) {
 
@@ -153,10 +154,10 @@ add_action('edd_purchase_link_top', 'franklin_edd_purchase_link_top');
 /**
  * Display the list of pledge options. 
  * 
- * @see edd_purchase_link_end
- * @param int $campaign_id
- * @return void
- * @since Franklin 1.0
+ * @see 	edd_purchase_link_end
+ * @param 	int 	$campaign_id
+ * @return 	void
+ * @since 	1.0.0
  */
 if ( !function_exists('franklin_edd_purchase_link_end') ) {
 
@@ -174,10 +175,10 @@ add_action('edd_purchase_link_end', 'franklin_edd_purchase_link_end');
 /**
  * Filter the title displayed for the pledge button. 
  *
- * @see edd_purchase_link_args
- * @param array $args
- * @return array
- * @since Franklin 1.5.5
+ * @see 	edd_purchase_link_args
+ * @param 	array 	$args
+ * @return 	array
+ * @since 	1.5.5
  */
 if ( !function_exists('franklin_edd_purchase_link_args') ) {
 
@@ -192,8 +193,8 @@ add_filter('edd_purchase_link_args', 'franklin_edd_purchase_link_args');
 /**
  * Determines whether this is a no rewards campaign. 
  * 
- * @param int $campaign_id
- * @return bool
+ * @param 	int 	$campaign_id
+ * @return 	bool
  */
 function franklin_is_rewardless_campaign($campaign_id) {
 
@@ -210,9 +211,9 @@ function franklin_is_rewardless_campaign($campaign_id) {
 /**
  * Displays a pledge button at the bottom of the campaign content. 
  * 
- * @see edd_after_download_content
- * @return void
- * @since Franklin 1.0
+ * @see 	edd_after_download_content
+ * @return 	void
+ * @since 	1.0.0
  */
 if ( !function_exists('franklin_edd_append_purchase_link') ) {
 
@@ -233,11 +234,11 @@ remove_action('edd_after_download_content', 'edd_append_purchase_link');
 add_action('edd_after_download_content', 'franklin_edd_append_purchase_link');
 
 /**
- * Register form
+ * Register form.
  *
- * @global $edd_options
- * @since Franklin 1.0
- * @return $form
+ * @global 	array 	$edd_options
+ * @since 	1.0.0
+ * @return 	void
  */
 function franklin_atcf_shortcode_register_form() {
 	global $edd_options;
@@ -276,9 +277,9 @@ add_action( 'atcf_shortcode_register', 'franklin_atcf_shortcode_register_form' )
 /**
  * Display the pledge levels. 
  * 
- * @param int $campaign_id
- * @return string
- * @since Franklin 1.0
+ * @param 	int 	$campaign_id
+ * @return 	string
+ * @since 	1.0.0
  */
 if ( !function_exists('franklin_pledge_levels') ) {
 
@@ -354,9 +355,9 @@ if ( !function_exists('franklin_pledge_levels') ) {
 /**
  * Display a project's campaign backers. 
  * 
- * @param ATCF_Campaign $campaign
- * @return string
- * @since Franklin 1.0
+ * @param 	ATCF_Campaign $campaign
+ * @return 	string
+ * @since 	1.0.0
  */
 if ( !function_exists('franklin_campaign_backers') ) {
 
@@ -446,10 +447,10 @@ if ( !function_exists('franklin_campaign_backers') ) {
 /**
  * Show the campaign video.
  * 
- * @param ATCF_Campaign $campaign
- * @global $wp_embed
- * @return string
- * @since Franklin 1.0
+ * @global 	$wp_embed
+ * @param 	ATCF_Campaign $campaign
+ * @return 	string
+ * @since 	1.0.0
  */
 if ( !function_exists( 'franklin_campaign_video' ) ) {
 
@@ -478,10 +479,9 @@ if ( !function_exists( 'franklin_campaign_video' ) ) {
 /**
  * Displays the site's crowdfunding stats.
  * 
- * @uses franklin_crowdfunding_stats filter
- * 
- * @return string
- * @since Franklin 1.2
+ * @uses 	franklin_crowdfunding_stats filter
+ * @return 	string
+ * @since 	1.2.0
  */
 if ( !function_exists( 'franklin_crowdfunding_stats' ) ) {
 
@@ -513,11 +513,11 @@ if ( !function_exists( 'franklin_crowdfunding_stats' ) ) {
 /**
  * Customize comment output. 
  *
- * @param stdClass $comment
- * @param array $args
- * @param int $depth
- * @return string
- * @since Franklin 1.0
+ * @param 	stdClass $comment
+ * @param 	array 	$args
+ * @param 	int 	$depth
+ * @return 	string
+ * @since 	1.0.0
  */
 if ( !function_exists( 'franklin_campaign_comment' ) ) {
 
@@ -603,8 +603,14 @@ if ( ! function_exists( 'franklin_modal_login' ) ) {
 
 	function franklin_modal_login() {
 		?>
-		<section id="login-tab" class="content active content-block login-block" role="tabpanel" aria-hidden="false"> 
-		    <?php echo atcf_shortcode_login() ?>
+		<section id="login-tab" class="content active content-block login-block" role="tabpanel" aria-hidden="false">
+			<?php 
+			do_action( 'franklin_login_tab_before_form' );
+
+		    echo atcf_shortcode_login();
+
+		    do_action( 'franklin_login_tab_after_form' ); 
+		    ?>
 		</section>
 		<?php
 	}
@@ -623,7 +629,13 @@ if ( ! function_exists( 'franklin_modal_register' ) ) {
 	function franklin_modal_register() {
 		?>
 		<section id="register-tab" class="content register-block content-block" role="tabpanel" aria-hidden="true">
-		    <?php echo sofa_shortcode_register() ?>
+		    <?php 
+		    do_action( 'franklin_register_tab_before_form' );
+
+		    echo sofa_shortcode_register();
+
+		    do_action( 'franklin_register_tab_after_form' );
+		    ?>
 		</section>
 		<?php
 	}
@@ -640,25 +652,29 @@ add_action( 'franklin_login_register_modal', 'franklin_modal_register', 15 );
 if ( ! function_exists( 'franklin_modal_social_login' ) ) {
 
 	function franklin_modal_social_login() {
-		if ( ! class_exists( 'EDD_Slg_Shortcodes' ) ) {
-			return;
-		}
+		if ( get_franklin_theme()->is_using_social_login() ) {
+			$class = new EDD_Slg_Shortcodes();
+			
+			echo $class->edd_slg_social_login( array( 'title' => ' ' ) );
 
-		$class = new EDD_Slg_Shortcodes();
-		$login_form = $class->edd_slg_social_login( array( 
-			'title' => __( 'Login with Social Media', 'franklin' ) 
-		) );
-		if ( strlen( $login_form ) ) : 
-		?>
-			<div class="content-block">
-				<?php echo $login_form ?>
-			</div>
-		<?php
-		endif;
+			// Display a heading before the login / registration form.
+			if ( 'franklin_login_tab_before_form' == current_filter() ) {
+				$separator_heading = apply_filters( 'franklin_signin_with_email', __( 'Sign in with email', 'franklin' ) );  
+			}
+			elseif ( 'franklin_register_tab_before_form' == current_filter() ) {
+				$separator_heading = apply_filters( 'franklin_register_with_email', __( 'Register with email', 'franklin' ) );  
+			}
+
+			if ( isset( $separator_heading ) ) {
+				echo '<h5>' . $separator_heading . '</h5>';
+			}
+		}
 	}
 }
 
-//add_action( 'franklin_login_register_modal', 'franklin_modal_social_login', 5 );
+add_action( 'franklin_login_tab_before_form', 'franklin_modal_social_login', 5 );
+add_action( 'franklin_register_tab_before_form', 'franklin_modal_social_login', 5 );
+
 
 /**
  * @deprecated 
