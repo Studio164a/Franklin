@@ -97,6 +97,8 @@ class Franklin_Theme {
 
         $this->maybe_start_wpml();
 
+        $this->maybe_start_customizer();
+
         $this->maybe_update_version();
 
         $this->maybe_migrate_hide_meta();
@@ -111,9 +113,9 @@ class Franklin_Theme {
     /**
      * Checks whether the theme has already started. 
      *
-     * @return bool
-     * @access public
-     * @since 0.2
+     * @return  bool
+     * @access  public
+     * @since   1.6.0
      */
     public function started() {
         return did_action('franklin_theme_start') || current_filter() == 'franklin_theme_start';
@@ -122,9 +124,9 @@ class Franklin_Theme {
     /**
      * Checks whether we are currently on the franklin_theme_start hook. 
      *
-     * @return bool
-     * @access public
-     * @since 0.2
+     * @return  bool
+     * @access  public
+     * @since   1.6.0
      */
     public function is_start() {
         return current_filter() == 'franklin_theme_start';
@@ -136,11 +138,9 @@ class Franklin_Theme {
      * @access  private
      */
     private function load_dependencies() {
-        require_once( $this->theme_dir . 'inc/comments.php' );
-        require_once( $this->theme_dir . 'inc/helpers.php' );
-        require_once( $this->theme_dir . 'inc/template-tags.php' );    
+        require_once( $this->theme_dir . 'inc/class-franklin-customizer-styles.php' );
+        require_once( $this->theme_dir . 'inc/functions-franklin-comments.php' );
         require_once( $this->theme_dir . 'inc/widgets/sofa-posts.php' );
-        require_once( $this->theme_dir . 'inc/admin/customize.php' );
     }
 
     /**
@@ -204,19 +204,42 @@ class Franklin_Theme {
     }
 
     /**
+     * Set up the customizer's backend interface. 
+     *
+     * @global  $wp_customize
+     * 
+     * @return  void
+     * @access  private
+     * @since   1.6.0
+     */
+    private function maybe_start_customizer() {
+        global $wp_customize;
+
+        if ( $wp_customize ) {
+
+            $this->in_customizer = true;
+    
+            require_once( $this->theme_dir . 'inc/admin/class-franklin-customizer.php' );
+            require_once( $this->theme_dir . 'inc/admin/customize-controls/textarea.class.php' );
+
+            Franklin_Customizer::start( $this, $wp_customize );
+        }
+    }
+
+    /**
      * Check for theme version update.
      * 
      * @return  void
      * @access  private
      */
     private function maybe_update_version() {
-        $this->theme_db_version = mktime(15,30,0,8,6,2013);
+        $this->theme_db_version = mktime(0,0,0,11,24,2014);
         
         // Check whether we are updated to the most recent version
         $db_version = get_option('franklin_db_version', false);
 
         if ( $db_version === false || $db_version < $this->theme_db_version ) {
-            require_once( $this->theme_dir . 'inc/upgrade.php' );        
+            require_once( $this->theme_dir . 'inc/class-franklin-upgrade-helper.php' );        
 
             Franklin_Upgrade_Helper::do_upgrade($this->theme_db_version, $db_version);
 
@@ -242,9 +265,11 @@ class Franklin_Theme {
             return;
         }
 
-        require_once( $this->theme_dir . 'inc/upgrade.php' );
+        require_once( $this->theme_dir . 'inc/class-franklin-upgrade-helper.php' );
 
         Franklin_Upgrade_Helper::do_hide_meta_upgrade();
+
+        update_option( 'franklin_hide_meta_migrated', true );
     }
 
     /**
@@ -254,6 +279,8 @@ class Franklin_Theme {
      * @access  private
      */
     private function attach_hooks_and_filters() {
+        add_action('franklin_theme_start', array('Franklin_Customizer_Styles', 'franklin_theme_start'));        
+
         add_action('wp_head', array(&$this, 'wp_head'), 20);
         add_action('wp_footer', array(&$this, 'wp_footer'));
         add_action('widgets_init', array(&$this, 'widgets_init'));
@@ -392,9 +419,9 @@ class Franklin_Theme {
         add_theme_support( 'automatic-feed-links' );
 
         // Enable post thumbnail support 
-        add_theme_support('post-thumbnails');
-        set_post_thumbnail_size(706, 0, false);
-        add_image_size('widget-thumbnail', 294, 882, false);
+        add_theme_support( 'post-thumbnails' );
+        set_post_thumbnail_size( 706, 0, false );
+        add_image_size( 'widget-thumbnail', 294, 882, false );
 
         // Register menu
         register_nav_menus( array(

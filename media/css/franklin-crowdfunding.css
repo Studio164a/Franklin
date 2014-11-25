@@ -625,6 +625,12 @@ NOTE: As of version 1.2.1, this has been moved to style.css
 	display: inline-block;
 }
 
+#edd_purchase_form legend {
+	padding-bottom: 6px; padding-bottom: 0.6rem;
+	margin-bottom: 6px; margin-bottom: 0.6rem;
+}
+
+#edd_purchase_form 
 
 /* 10.0 - Campaign submission page
 ================================================== */

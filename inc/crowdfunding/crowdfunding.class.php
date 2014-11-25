@@ -131,17 +131,8 @@ class Sofa_Crowdfunding_Helper {
         }
 
         wp_register_script('franklin-crowdfunding', sprintf( "%s/media/js/franklin-crowdfunding.js", $theme_dir ), $req, get_franklin_theme()->get_theme_version(), true);    
-    
-        wp_register_style('franklin-crowdfunding', sprintf( "%s/media/css/franklin-crowdfunding.css", $theme_dir ), array('franklin-main', 'foundation'), get_franklin_theme()->get_theme_version() );
+        wp_register_style('franklin-crowdfunding', sprintf( "%s/media/css/franklin-crowdfunding.css", $theme_dir ), array('franklin-main'), get_franklin_theme()->get_theme_version() );
         wp_enqueue_style('franklin-crowdfunding');
-
-        // We're viewing the widget, so there are a bunch of scripts that we don't need to load
-        if ( $this->viewing_widget ) {
-            wp_dequeue_script('franklin');
-            wp_dequeue_script('prettyPhoto');
-            wp_dequeue_script('fitVids');
-            wp_dequeue_script('flexnav');
-        }
     }
 
     /**
@@ -399,7 +390,7 @@ class Sofa_Crowdfunding_Helper {
     /**
      * Hooked when we're on the campaign widget template.
      * 
-     * @since Franklin 1.3
+     * @since   1.3.0
      */
     public function atcf_found_widget() {
         $this->viewing_widget = true;
@@ -411,8 +402,8 @@ class Sofa_Crowdfunding_Helper {
     /**
      * Deletes Transients when a campaign is updated. 
      * 
-     * @param int $post_id
-     * @since Franklin 1.5.11
+     * @param   int     $post_id
+     * @since   1.5.11
      */
     public function delete_transients($post_id){
         if ( 'download' == get_post_type( $post_id ) ) {
@@ -424,8 +415,8 @@ class Sofa_Crowdfunding_Helper {
     /**
      * Delete the transients relating to the item purchased. 
      *
-     * @return void
-     * @since Franklin 1.5.11
+     * @return  void
+     * @since   1.5.11
      */
     public function delete_transients_after_purchase($cart){
         $edd_cart_items = edd_get_payment_meta_cart_details($cart);

@@ -251,30 +251,14 @@
 	} );
 
 	// Textures
-	wp.customize( 'body_texture', function( value ) {
-		value.bind( function( newval ) {
-			console.log( newval );
-			updateBodyTexture( newval );
-		});
-	} );
 	wp.customize( 'body_texture_custom', function( value ) {
 		value.bind( function( newval ) {
 			updateBodyTexture( newval );
 		});
 	} );
-	wp.customize( 'campaign_texture', function( value ) {
-		value.bind( function( newval ) {
-			updateCampaignTexture( newval );
-		});
-	} );
 	wp.customize( 'campaign_texture_custom', function( value ) {
 		value.bind( function( newval ) {
 			updateCampaignTexture( newval );
-		});
-	} );
-	wp.customize( 'blog_banner_texture', function( value ) {
-		value.bind( function( newval ) {
-			updateBannerTexture( newval );
 		});
 	} );
 	wp.customize( 'blog_banner_texture_custom', function( value ) {

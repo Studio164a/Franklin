@@ -16,8 +16,12 @@ class Franklin_Upgrade_Helper {
      * @static
      */
     public static function do_upgrade($current, $db_version) {
-    	if ($db_version === false) {            
+    	if ( $db_version === false ) {            
             self::upgrade_1_3();
+        }
+
+        if ( $db_version !== mktime(0,0,0,11,24,2014) ) {
+            self::upgrade_1_6();
         }
     }
 
@@ -40,6 +44,15 @@ class Franklin_Upgrade_Helper {
 
         $theme = get_option( 'stylesheet' );
         update_option("theme_mods_$theme", $mods);
+    }
+
+    /**
+     * Upgrade to version 1.6.0.
+     *
+     * @since   1.6.0
+     */
+    protected static function upgrade_1_6() {
+        franklin_delete_campaign_transients();
     }
 
     /**

@@ -22,6 +22,15 @@ function get_franklin_theme() {
     return Franklin_Theme::get_instance();
 }
 
+/**
+ * Returns whether crowdfunding is enabled.
+ * 
+ * @return  boolean
+ * @since   1.0.0
+ */
+function franklin_using_crowdfunding() {
+    return get_franklin_theme()->crowdfunding_enabled;
+}
 
 /**
  * A helper function to determine whether the current post should have the meta displayed.

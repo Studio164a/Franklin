@@ -3,14 +3,14 @@
  * A collection of miscellaneous helper functions used by the 
  * theme & child themes. 
  * 
- * @package cheers
+ * @package Franklin
  */
 
 /** 
  * Get the currently active campaign. 
  * 
- * @return false|ATCF_Campaign
- * @since Franklin 1.0
+ * @return 	false|ATCF_Campaign
+ * @since 	1.0.0
  */
 function sofa_crowdfunding_get_campaign() {
 	return get_sofa_crowdfunding()->get_active_campaign();	
@@ -19,9 +19,9 @@ function sofa_crowdfunding_get_campaign() {
 /**
  * The callback function for the campaigns navigation
  * 
- * @param bool $echo
- * @return string
- * @since Franklin 1.1
+ * @param 	bool 	$echo
+ * @return 	string
+ * @since 	1.1.0
  */
 function sofa_crowdfunding_campaign_nav($echo = true) {	
 	$categories = get_categories( array( 'taxonomy' => 'download_category', 'orderby' => 'name', 'order' => 'ASC' ) );
@@ -47,10 +47,10 @@ function sofa_crowdfunding_campaign_nav($echo = true) {
 /**
  * Get the end date of the given campaign. 
  * 
- * @param ATCF_Campaign $campaign
- * @param bool $json_format 	
- * @return mixed
- * @since Franklin 1.0
+ * @param 	ATCF_Campaign 	$campaign
+ * @param 	bool 			$json_format 	
+ * @return 	mixed
+ * @since 	1.0.0
  */
 function sofa_crowdfunding_get_enddate( ATCF_Campaign $campaign, $json_format = false ) {
 	return date( "j F Y H:i:s", strtotime( $campaign->end_date() ) );
@@ -59,10 +59,10 @@ function sofa_crowdfunding_get_enddate( ATCF_Campaign $campaign, $json_format = 
 /**
  * Get the time elapsed since the campaign ended. 
  * 
- * @param ATCF_Campaign $campaign
- * @param bool $readable 
- * @return string|int
- * @since Franklin 1.3
+ * @param 	ATCF_Campaign 	$campaign
+ * @param 	bool 			$readable 
+ * @return 	string|int
+ * @since 	1.3
  */
 function sofa_crowdfunding_get_time_since_ended( ATCF_Campaign $campaign, $readable = true ) {	
 	$end_date = strtotime( $campaign->end_date() );
@@ -79,9 +79,9 @@ function sofa_crowdfunding_get_time_since_ended( ATCF_Campaign $campaign, $reada
 /**
  * Get the number of seconds left in the campaign. 
  *
- * @param ATCF_Campaign $campaign
- * @return int
- * @since Franklin 1.5.10
+ * @param 	ATCF_Campaign 	$campaign
+ * @return 	int
+ * @since 	1.5.10
  */
 function sofa_crowdfunding_get_seconds_left( ATCF_Campaign $campaign ) {
 	$cache_key = 'campaign-seconds-left-' . $campaign->ID;
@@ -102,9 +102,9 @@ function sofa_crowdfunding_get_seconds_left( ATCF_Campaign $campaign ) {
 /**
  * Get the transient expiration time for the campaign. 
  *
- * @param ATCF_Campaign $campaign
- * @return int
- * @since Franklin 1.5.10
+ * @param 	ATCF_Campaign 	$campaign
+ * @return 	int
+ * @since 	1.5.10
  */
 function sofa_crowdfunding_get_transient_expiration( ATCF_Campaign $campaign ) {
 	
@@ -147,9 +147,9 @@ function sofa_crowdfunding_get_transient_expiration( ATCF_Campaign $campaign ) {
 /**
  * Get the amount of time left in the campaign as a string of text.
  *
- * @param ATCF_Campaign $campaign
- * @return string
- * @since Franklin 1.5.5
+ * @param 	ATCF_Campaign 	$campaign
+ * @return 	string
+ * @since 	1.5.5
  */
 function sofa_crowdfunding_get_time_left( ATCF_Campaign $campaign ) {
 
@@ -215,9 +215,9 @@ function sofa_crowdfunding_get_time_left( ATCF_Campaign $campaign ) {
 /**
  * Get the login page URL. 
  * 
- * @param string $page
- * @return string|false
- * @since Franklin 1.0
+ * @param 	string 	$page
+ * @return 	string|false
+ * @since 	1.0
  */
 function sofa_crowdfunding_get_page_url($page) {
 	global $edd_options;
@@ -231,8 +231,8 @@ function sofa_crowdfunding_get_page_url($page) {
 /**
  * Get currency symbol. 
  * 
- * @return string
- * @since Franklin 1.0
+ * @return 	string
+ * @since 	1.0
  */
 function sofa_crowdfunding_edd_get_currency_symbol() {
 	global $edd_options;
@@ -257,9 +257,9 @@ function sofa_crowdfunding_edd_get_currency_symbol() {
 /**
  * Get the payment ID for the log object.
  * 
- * @param WP_Post $log
- * @return int 
- * @since Franklin 1.0
+ * @param 	WP_Post $log
+ * @return 	int 
+ * @since 	1.0
  */
 function sofa_crowdfunding_get_payment($log) {
 	return get_post( get_post_meta( $log->ID, '_edd_log_payment_id', true ) ); 
@@ -268,9 +268,9 @@ function sofa_crowdfunding_get_payment($log) {
 /**
  * Return whether the backer is anonymous.
  * 
- * @param WP_Post $log
- * @return bool
- * @since Franklin 1.0
+ * @param 	WP_Post $log
+ * @return 	bool
+ * @since 	1.0
  */
 function sofa_crowdfunding_is_backer_anonymous($log) {
 	$payment_meta = edd_get_payment_meta( get_post_meta( $log->ID, '_edd_log_payment_id', true ) );
@@ -280,10 +280,10 @@ function sofa_crowdfunding_is_backer_anonymous($log) {
 /**
  * Get the avatar for the backer. 
  * 
- * @param WP_Post $backer
- * @param int $size
- * @return string
- * @since Franklin 1.0
+ * @param 	WP_Post $backer
+ * @param 	int 	$size
+ * @return 	string
+ * @since 	1.0
  */
 function sofa_crowdfunding_get_backer_avatar($backer, $size = 115) {
 	return get_avatar( edd_get_payment_user_email($backer->ID), $size, '', $backer->post_title );
@@ -292,9 +292,9 @@ function sofa_crowdfunding_get_backer_avatar($backer, $size = 115) {
 /**
  * Get the backer's location. 
  * 
- * @param WP_Post $backer
- * @return string|void
- * @since Franklin 1.0
+ * @param 	WP_Post $backer
+ * @return 	string|void
+ * @since 	1.0
  */
 function sofa_crowdfunding_get_backer_location($backer) {
 	$meta = get_post_meta( $backer->ID, '_edd_payment_meta', true );
@@ -307,10 +307,10 @@ function sofa_crowdfunding_get_backer_location($backer) {
 /**
  * Get the backer's pledge amount. 
  * 
- * @param WP_Post $backer
- * @param bool $formatted
- * @return string
- * @since Franklin 1.0
+ * @param 	WP_Post $backer
+ * @param 	bool 	$formatted
+ * @return 	string
+ * @since 	1.0
  */
 function sofa_crowdfunding_get_backer_pledge($backer, $formatted = true) {
 	if ( $formatted ) {
@@ -323,9 +323,9 @@ function sofa_crowdfunding_get_backer_pledge($backer, $formatted = true) {
 /**
  * Counts the total number of customers. 
  *  
- * @global object $wpdb
- * @return int
- * @since Franklin 1.2
+ * @global 	object 	$wpdb
+ * @return 	int
+ * @since 	1.2
  */
 if ( !function_exists( 'edd_count_total_customers' ) ) {
 	function edd_count_total_customers() {
@@ -340,9 +340,9 @@ if ( !function_exists( 'edd_count_total_customers' ) ) {
  * 
  * The countdown is only shown if the campaign is finite and still active.
  * 
- * @param ATCF_Campaign $campaign
- * @return bool
- * @since Franklin 1.3
+ * @param 	ATCF_Campaign $campaign
+ * @return 	bool
+ * @since 	1.3
  */
 function sofa_crowdfunding_show_countdown($campaign) {
 	if ( false === ( $campaign instanceof ATCF_Campaign ) )
@@ -354,10 +354,10 @@ function sofa_crowdfunding_show_countdown($campaign) {
 /**
  * Returns the campaigns that a specific user has created.
  * 
- * @global object $wpdb
- * @param int $user_id
- * @return WP_Query
- * @since Franklin 1.5
+ * @global 	object 		$wpdb
+ * @param 	int 		$user_id
+ * @return 	WP_Query
+ * @since 	1.5
  */
 function sofa_crowdfunding_get_campaigns_by_user($user_id = null) {
 	global $wpdb; 
@@ -376,9 +376,9 @@ function sofa_crowdfunding_get_campaigns_by_user($user_id = null) {
 /**
  * Returns the number of purchases a user has made. 
  *
- * @param int $user_id
- * @return int
- * @since Franklin 1.5.4
+ * @param 	int 	$user_id
+ * @return 	int
+ * @since 	1.5.4
  */
 function sofa_crowdfunding_get_user_purchase_count($user_id) {
 	if ( empty( $user_id ) )
@@ -392,8 +392,8 @@ function sofa_crowdfunding_get_user_purchase_count($user_id) {
 /**
  * Returns the text used for making a pledge / supporting a campaign. 
  *
- * @return string
- * @since Franklin 1.5.12
+ * @return 	string
+ * @since 	1.5.12
  */
 function sofa_crowdfunding_get_pledge_text() {
 	global $edd_options;
@@ -403,9 +403,9 @@ function sofa_crowdfunding_get_pledge_text() {
 /**
  * Returns the text used when displaying a statement like "Pledge $10.00". i.e. Pledge amount
  *
- * @param amount
- * @return string
- * @since Franklin 1.5.12
+ * @param 	amount
+ * @return 	string
+ * @since 	1.5.12
  */
 function sofa_crowdfunding_get_pledge_amount_text( $amount ) {
 	return sprintf( '%s %s', 
@@ -413,3 +413,26 @@ function sofa_crowdfunding_get_pledge_amount_text( $amount ) {
 		'<strong>'.edd_currency_filter( edd_format_amount( $amount ) ).'</strong>' 
 	);
 } 
+
+/**
+ * Delete every campaign transient. 
+ *
+ * @return  void
+ * @since   1.6.0
+ */
+function franklin_delete_campaign_transients() {
+    $campaigns = new WP_Query( array(
+        'post_type'     => 'download',
+        'post_status'   => 'publish'
+    ) );
+
+    if ( $campaigns->have_posts() ) {
+        while ( $campaigns->have_posts() ) {
+            $campaigns->the_post();
+
+            $campaign_id = get_the_ID();
+            delete_transient( 'campaign-' . $campaign_id );
+            delete_transient( 'campaign-featured-' . $campaign_id );
+        }
+    }
+}

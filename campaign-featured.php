@@ -53,8 +53,12 @@
 
 						<?php the_excerpt() ?>
 
-						<p class="campaign-support center"><a class="button button-alt" data-reveal-id="campaign-form-<?php the_ID() ?>" href="#"><?php echo sofa_crowdfunding_get_pledge_text() ?></a></p>
+						<?php if ( $campaign->is_active() ) : ?>
 
+							<p class="campaign-support center"><a class="button button-alt" data-reveal-id="campaign-form-<?php the_ID() ?>" href="#"><?php echo sofa_crowdfunding_get_pledge_text() ?></a></p>
+
+						<?php endif ?>
+						
 						<ul class="campaign-status horizontal center">
 							<li class="campaign-funded">
 								<span><?php echo $campaign->percent_completed() ?></span>

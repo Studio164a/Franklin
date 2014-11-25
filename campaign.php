@@ -8,7 +8,9 @@ if ( $campaign === false ) return;
  * Look for cached campaign blocks.
  */
 $transient_key = "campaign-" . $campaign->ID;
+
 $output = get_transient($transient_key);
+
 if ($output === false ) :
 
 	ob_start();

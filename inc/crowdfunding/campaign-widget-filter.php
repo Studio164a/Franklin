@@ -2,14 +2,14 @@
 /**
  * Filters out unnecessary scripts and stylesheets on the campaign widget. 
  *
- * @since 1.5.11
+ * @since   1.5.11
  */
 class Campaign_Widget_Filter {
 
     /**
      * Sets up callbacks for action hooks on the campaign widget.
      *
-     * @since Franklin 1.5.11
+     * @since   1.5.11
      */
     public function __construct() {
         remove_action( 'wp_enqueue_scripts', 'edd_load_scripts' );
@@ -23,13 +23,15 @@ class Campaign_Widget_Filter {
     /**
      * Dequeues unneccessary scripts.
      *
-     * @since Franklin 1.5.11
+     * @since   1.5.11
      */
     public function dequeue_scripts(){
         $scripts = array(
             'franklin',
             'franklin-crowdfunding',
-            'fitvids'
+            'fitvids', 
+            'prettyPhoto',
+            'flexnav'
         );
 
         $styles = array(
@@ -58,8 +60,9 @@ class Campaign_Widget_Filter {
      */
     public function requeue_barometer_script(){
         $theme_dir = get_template_directory_uri();
-        wp_register_script('franklin-crowdfunding', sprintf( "%s/media/js/franklin-crowdfunding.js", $theme_dir ), array('raphael','sofa'), get_franklin_theme()->get_theme_version(), true);    
-        wp_enqueue_script('franklin-crowdfunding');
+        wp_register_script('franklin-crowdfunding', sprintf( "%s/media/js/franklin-crowdfunding.js", $theme_dir ), array( 'raphael', 'sofa' ), get_franklin_theme()->get_theme_version(), true);    
+        wp_register_script('franklin', sprintf( "%s/media/js/main.js", $theme_dir ), array( 'franklin-crowdfunding' ), get_franklin_theme()->get_theme_version(), true );
+        wp_enqueue_script('franklin');
     }
 
     /**

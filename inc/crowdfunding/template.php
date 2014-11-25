@@ -675,6 +675,21 @@ if ( ! function_exists( 'franklin_modal_social_login' ) ) {
 add_action( 'franklin_login_tab_before_form', 'franklin_modal_social_login', 5 );
 add_action( 'franklin_register_tab_before_form', 'franklin_modal_social_login', 5 );
 
+/**
+ * Don't display decimals in amounts. 
+ *
+ * @see 	edd_format_amount()
+ * @return 	int
+ * @since 	1.6.0
+ */
+if ( ! function_exists( 'franklin_edd_format_amount_decimals' ) ) {
+
+	function franklin_edd_format_amount_decimals() {
+		return 0;
+	}
+}
+
+add_filter( 'edd_format_amount_decimals', 'franklin_edd_format_amount_decimals' );
 
 /**
  * @deprecated 

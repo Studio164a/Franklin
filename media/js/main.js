@@ -2,9 +2,11 @@
 ( function( $ ){	
 
 	// Start Foundation.
-	Foundation.global.namespace = '';
-
-	$(document).foundation();
+	if ( typeof Foundation !== 'undefined' ) {	
+		Foundation.global.namespace = '';
+		
+		$(document).foundation();
+	}
 	
 	// Perform other actions on ready event
 	$(document).ready( function() {
@@ -16,78 +18,85 @@
 			$(this).parent().toggleClass('is-active');			
 		});
 
-		$('.accordion').accordion({
-			heightStyle: "content"
-		});
-		
+		if ( $.fn.accordion ) {
+			$('.accordion').accordion({
+				heightStyle: "content"
+			});
+		}
+
 		// Load up lightbox
 		if ( typeof sofa_ie_lt9 === 'undefined' ) {
 			// $(".entry a").not(".attachment,.tiled-gallery-item a").has('img').attr('data-rel', 'lightbox[]');
 			$('.lightbox').attr('data-rel', 'lightbox[]');
-			$("[data-rel^='lightbox']").prettyPhoto({ theme: 'pp_sofa', hook: 'data-rel' });
+
+			if ( $.fn.prettyPhoto ) {
+				$("[data-rel^='lightbox']").prettyPhoto({ theme: 'pp_sofa', hook: 'data-rel' });				
+			}
 		}				
 
-		$('.share-twitter').sharrre({
-			urlCurl: Franklin.sharrre_url,
-			share: {				
-				twitter: true
-			},
-			enableHover : false, 
-			enabledTracking : true, 
-			buttons : { twitter: { via: '' } }, 
-			click : function(api, options) {
-				api.simulateClick();
-				api.openPopup('twitter');
-			}
-		});	
-		$('.share-facebook').sharrre({
-			urlCurl: Franklin.sharrre_url,
-			share: {				
-				facebook: true
-			},
-			enableHover : false, 
-			enabledTracking : true, 
-			click : function(api, options) {
-				api.simulateClick();
-				api.openPopup('facebook');
-			}
-		});	
-		$('.share-googleplus').sharrre({
-			urlCurl: Franklin.sharrre_url,
-			share: {				
-				googlePlus: true
-			},
-			enableHover : false, 
-			enabledTracking : true, 
-			click : function(api, options) {
-				api.simulateClick();
-				api.openPopup('googlePlus');
-			}
-		});		
-		$('.share-linkedin').sharrre({
-			urlCurl: Franklin.sharrre_url,
-			share: {				
-				linkedin: true
-			},
-			enableHover : false, 
-			enabledTracking : true, 
-			click : function(api, options) {
-				api.simulateClick();
-				api.openPopup('linkedin');
-			}
-		});	
-		$('.share-pinterest').sharrre({
-			urlCurl: Franklin.sharrre_url,
-			share: {				
-				pinterest: true
-			},
-			enableHover : false, 
-			enabledTracking : true, 
-			click : function(api, options) {
-				api.simulateClick();
-				api.openPopup('pinterest');
-			}
-		});	
+		if ( $.fn.sharrre ) { 
+			$('.share-twitter').sharrre({
+				urlCurl: Franklin.sharrre_url,
+				share: {				
+					twitter: true
+				},
+				enableHover : false, 
+				enabledTracking : true, 
+				buttons : { twitter: { via: '' } }, 
+				click : function(api, options) {
+					api.simulateClick();
+					api.openPopup('twitter');
+				}
+			});	
+			$('.share-facebook').sharrre({
+				urlCurl: Franklin.sharrre_url,
+				share: {				
+					facebook: true
+				},
+				enableHover : false, 
+				enabledTracking : true, 
+				click : function(api, options) {
+					api.simulateClick();
+					api.openPopup('facebook');
+				}
+			});	
+			$('.share-googleplus').sharrre({
+				urlCurl: Franklin.sharrre_url,
+				share: {				
+					googlePlus: true
+				},
+				enableHover : false, 
+				enabledTracking : true, 
+				click : function(api, options) {
+					api.simulateClick();
+					api.openPopup('googlePlus');
+				}
+			});		
+			$('.share-linkedin').sharrre({
+				urlCurl: Franklin.sharrre_url,
+				share: {				
+					linkedin: true
+				},
+				enableHover : false, 
+				enabledTracking : true, 
+				click : function(api, options) {
+					api.simulateClick();
+					api.openPopup('linkedin');
+				}
+			});	
+			$('.share-pinterest').sharrre({
+				urlCurl: Franklin.sharrre_url,
+				share: {				
+					pinterest: true
+				},
+				enableHover : false, 
+				enabledTracking : true, 
+				click : function(api, options) {
+					api.simulateClick();
+					api.openPopup('pinterest');
+				}
+			});	
+		}
 
 		if ( Franklin.using_crowdfunding ) {
 
@@ -119,10 +128,12 @@
 			});
 		}	
 	});
-
-	audiojs.events.ready(function() {
-    	var as = audiojs.createAll();
-  	});
+	
+	if ( typeof audiojs !== 'undefined' ) {
+		audiojs.events.ready(function() {
+	    	var as = audiojs.createAll();
+	  	});
+	}
 
   	$(window).resize( function() {
   		Sofa.responsiveHide();
