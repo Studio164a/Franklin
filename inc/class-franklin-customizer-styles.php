@@ -55,6 +55,8 @@ class Franklin_Customizer_Styles {
 		$this->theme = $theme;
 
 		add_action( 'wp_head', array( $this, 'wp_head' ) );
+
+        do_action( 'franklin_customizer_styles', $this );
 	}
 
 	/**
@@ -110,8 +112,6 @@ class Franklin_Customizer_Styles {
          */
         $styles = get_transient( self::get_transient_key() );      
             
-        $styles = false;
-
         if ( false === $styles ) {
 
             $template_directory = get_template_directory_uri();

@@ -131,8 +131,7 @@ Franklin.Countdown = ( function( $ ) {
 		if ($countdown.length) {
 			
 			$countdown.countdown({
-				until: new Date( $countdown.data().enddate ), 
-				timezone: Franklin.timezone_offset,
+				until: $.countdown.UTCDate( Franklin.timezone_offset, new Date( $countdown.data().enddate ) ), 
 				format: 'dHMS', 
 				labels : [Franklin.years, Franklin.months, Franklin.weeks, Franklin.days, Franklin.hours, Franklin.minutes, Franklin.seconds],
 				labels1 : [Franklin.year, Franklin.month, Franklin.week, Franklin.day, Franklin.hour, Franklin.minute, Franklin.second]
