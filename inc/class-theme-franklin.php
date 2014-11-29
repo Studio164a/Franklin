@@ -14,7 +14,7 @@ class Franklin_Theme {
     /**
      * Version number.
      */
-    const VERSION = '1.6.0';
+    const VERSION = '1.6.1';
 
     /**
      * @var Franklin_Theme
@@ -611,7 +611,7 @@ class Franklin_Theme {
      * @return  string
      * @since   1.5.5
      */
-    public function get_timezone_offset() {
+    public function get_timezone_offset() {        
         if ( franklin_using_crowdfunding() === false ){
             return;
         }
@@ -620,12 +620,13 @@ class Franklin_Theme {
         $date_timezone = new DateTimeZone($timezone);
         $date_time = new DateTime('now', $date_timezone);
         $offset_secs = $date_time->format('Z');
-        $offset = $date_time->format('O');
+        $offset = $date_time->format('P');
+        $offset = str_replace( ':', '.', $offset );
 
         if ( $offset_secs >= 0 ) {
             return $offset;
         }
-        return str_replace('+', '-', $offset);
+        return str_replace( '+', '-', $offset );
     }
 
     /**
