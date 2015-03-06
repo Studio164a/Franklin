@@ -201,6 +201,7 @@
 }
 
 .feature-block .share li {
+	width: auto !important;
 	margin-bottom: 0;
 	vertical-align: top;
 }

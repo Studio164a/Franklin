@@ -42,7 +42,7 @@ class Sofa_Crowdfunding_Updates_Widget extends WP_Widget {
 			if ( !empty($title) )
 				echo $before_title . $title . $after_title;
 
-			echo apply_filters( 'the_excerpt', $updates );
+			echo apply_filters( 'the_content', $updates );
 
 			echo $after_widget;
 

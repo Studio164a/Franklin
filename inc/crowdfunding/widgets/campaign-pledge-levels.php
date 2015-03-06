@@ -23,8 +23,9 @@ class Sofa_Crowdfunding_Pledge_Levels_Widget extends WP_Widget {
 		extract( $args );
 
 		// We have to have a campaign id
-		if ( !isset( $instance['campaign_id'] ) || $instance['campaign_id'] == '' )
+		if ( !isset( $instance['campaign_id'] ) || $instance['campaign_id'] == '' ) {
 			return;
+		}
 
 		$title = apply_filters( 'widget_title', $instance['title'] );
 

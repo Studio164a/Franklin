@@ -549,6 +549,7 @@ class Sofa_Crowdfunding_Helper {
         parse_str( urldecode( $_POST['post_data'] ), $query_args );
 
         if ( isset( $query_args['atcf_custom_price'] ) ) {
+            $item['options']['price_id'] = 0;
             $item['options']['custom_price'] = $query_args['atcf_custom_price'];
         }
         

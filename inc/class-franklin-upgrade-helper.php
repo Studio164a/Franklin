@@ -52,6 +52,10 @@ class Franklin_Upgrade_Helper {
      * @since   1.6.0
      */
     protected static function upgrade_1_6() {
+        if ( ! function_exists( 'franklin_delete_campaign_transients' ) ) {
+            require_once( trailingslashit( get_template_directory() ) . 'inc/crowdfunding/helpers.php' );
+        }
+        
         franklin_delete_campaign_transients();
     }
 

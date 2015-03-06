@@ -28,8 +28,6 @@
 				$transient_key = "campaign-featured-" . $campaign->ID;
 
 				$output = get_transient($transient_key);
-
-				$output = false;
 				
 				if ($output === false ) :
 

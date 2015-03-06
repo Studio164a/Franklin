@@ -191,7 +191,7 @@ Franklin.Pledging = ( function( $ ) {
 		$pledges = $('.edd_download_purchase_form .pledge-level').sort( function( a, b ) {
 			return parseInt( $(a).data('price') ) - parseInt( $(b).data('price') );
 		}), 
-		$button = $('.pledge-button'),
+		$button = $('.pledge-button a'),
 		$minpledge = $pledges.first(), 
 		$maxpledge;
 
@@ -242,6 +242,7 @@ Franklin.Pledging = ( function( $ ) {
 			// Set up event handlers
 			$button.on( 'click', function() {
 				var price = $(this).data('price');				
+				console.log( $(this) );
 				$form.find('[data-price="' + price + '"] input').prop('checked', true).trigger('change');
 			});
 
