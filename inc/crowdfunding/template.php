@@ -17,7 +17,9 @@
  */
 if ( !function_exists('franklin_atcf_theme_variable_pricing')) {
 
-	function franklin_atcf_theme_variable_pricing() {
+	function franklin_atcf_theme_variable_pricing() {				
+		remove_action( 'edd_after_price_option', 'edd_variable_price_quantity_field', 10, 3 );
+		remove_action( 'edd_purchase_link_top', 'edd_download_purchase_form_quantity_field', 10, 2 );
 		remove_action( 'edd_purchase_link_top', 'edd_purchase_variable_pricing' );
 		add_action( 'edd_purchase_link_top', 'franklin_campaign_purchase_pricing' );
 	}
@@ -25,20 +27,20 @@ if ( !function_exists('franklin_atcf_theme_variable_pricing')) {
 
 add_action( 'init', 'franklin_atcf_theme_variable_pricing' );
 
+
 /**
  * Display the pricing options for a campaign. 
  *
  * @return 	void
- * @since 	1.7
+ * @since 	1.7.0
  */
 if ( !function_exists('franklin_campaign_purchase_pricing') ) {
 
 	function franklin_campaign_purchase_pricing( $download_id ) {
-		$prices = edd_get_variable_prices( $download_id );
-		$type   = edd_single_price_option_mode( $download_id ) ? 'checkbox' : 'radio';
+		$prices = edd_get_variable_prices( $download_id );		
 
 		do_action( 'edd_before_price_options', $download_id ); 
-		do_action( 'franklin_campaign_contribute_options', $prices, $type, $download_id );
+		do_action( 'franklin_campaign_contribute_options', $prices, $download_id );
 		do_action( 'edd_after_price_options', $download_id );
 	}
 }
@@ -50,7 +52,7 @@ if ( !function_exists('franklin_campaign_purchase_pricing') ) {
  * @return 	void
  * @since 	1.4.0
  */
-function franklin_atcf_campaign_contribute_options( $prices, $type, $campaign_id ) {
+function franklin_atcf_campaign_contribute_options( $prices, $campaign_id ) {
 	global $edd_options;
 
 	if ( franklin_is_rewardless_campaign( $campaign_id ) ) : ?>
@@ -60,7 +62,7 @@ function franklin_atcf_campaign_contribute_options( $prices, $type, $campaign_id
 	<?php
 	elseif ( count( $prices )) : 
 
-		$input_type = edd_single_price_option_mode( $campaign_id ) ? 'checkbox' : 'radio';
+		$input_type = 'radio';
 		?>
 
 		<ul class="campaign-pledge-levels">			
