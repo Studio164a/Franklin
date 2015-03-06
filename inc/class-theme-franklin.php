@@ -14,7 +14,7 @@ class Franklin_Theme {
     /**
      * Version number.
      */
-    const VERSION = '1.6.1';
+    const VERSION = '1.6.4';
 
     /**
      * @var Franklin_Theme
@@ -333,7 +333,8 @@ class Franklin_Theme {
 
         wp_register_script('audio-js', sprintf( "%s/media/js/audiojs/audio.min.js", $this->theme_uri ), array(), $this->get_theme_version(), true);
         wp_register_script('foundation', sprintf( "%s/media/js/foundation.min.js", $this->theme_uri ), array('jquery'), $this->get_theme_version(), true);
-        wp_register_script('sharrre', sprintf( "%s/media/js/jquery.sharrre-1.3.5.js", $this->theme_uri ), array('jquery'), $this->get_theme_version(), true );        
+        // wp_register_script('sharrre', sprintf( "%s/media/js/jquery.sharrre-1.3.5.js", $this->theme_uri ), array('jquery'), $this->get_theme_version(), true );        
+        wp_register_script('rrssb', sprintf( "%s/media/js/rrssb.min.js", $this->theme_uri ), array('jquery'), $this->get_theme_version(), true );
         
         // Allow other scripts to add their scripts to the dependencies.
         $franklin_script_dependencies = apply_filters( 'franklin_script_dependencies', array( 
@@ -341,7 +342,8 @@ class Franklin_Theme {
             'prettyPhoto', 
             'jquery-ui-accordion', 
             'audio-js', 
-            'sharrre', 
+            'rrssb',
+            // 'sharrre', 
             'hoverIntent', 
             'foundation', 
             'jquery' 
@@ -642,7 +644,7 @@ class Franklin_Theme {
             }
             else {
                 $class = new EDD_Slg_Shortcodes();
-                $login_form = $class->edd_slg_social_login( array( 'title' => ' ' ) );
+                $login_form = $class->edd_slg_social_login( array( 'title' => ' ' ), '' );
 
                 if ( strlen( $login_form ) ) {
                     $this->social_login_enabled = true;

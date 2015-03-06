@@ -19,12 +19,91 @@ if ( !function_exists('franklin_atcf_theme_variable_pricing')) {
 
 	function franklin_atcf_theme_variable_pricing() {
 		remove_action( 'edd_purchase_link_top', 'edd_purchase_variable_pricing' );
-		add_action( 'edd_purchase_link_top', 'atcf_purchase_variable_pricing' );
+		add_action( 'edd_purchase_link_top', 'franklin_campaign_purchase_pricing' );
 	}
 }
 
-remove_action( 'after_setup_theme', 'atcf_theme_custom_variable_pricing', 100 );
 add_action( 'init', 'franklin_atcf_theme_variable_pricing' );
+
+/**
+ * Display the pricing options for a campaign. 
+ *
+ * @return 	void
+ * @since 	1.7
+ */
+if ( !function_exists('franklin_campaign_purchase_pricing') ) {
+
+	function franklin_campaign_purchase_pricing( $download_id ) {
+		$prices = edd_get_variable_prices( $download_id );
+		$type   = edd_single_price_option_mode( $download_id ) ? 'checkbox' : 'radio';
+
+		do_action( 'edd_before_price_options', $download_id ); 
+		do_action( 'franklin_campaign_contribute_options', $prices, $type, $download_id );
+		do_action( 'edd_after_price_options', $download_id );
+	}
+}
+
+/**
+ * Displays the contribution options. 
+ * 
+ * @hook 	franklin_campaign_contribute_options
+ * @return 	void
+ * @since 	1.4.0
+ */
+function franklin_atcf_campaign_contribute_options( $prices, $type, $campaign_id ) {
+	global $edd_options;
+
+	if ( franklin_is_rewardless_campaign( $campaign_id ) ) : ?>
+		
+		<input type="radio" name="edd_options[price_id][]" id="edd_price_option_<?php echo $campaign_id ?>_0" class="edd_price_option_<?php echo $campaign_id ?> hidden" value="0" checked />
+
+	<?php
+	elseif ( count( $prices )) : 
+
+		$input_type = edd_single_price_option_mode( $campaign_id ) ? 'checkbox' : 'radio';
+		?>
+
+		<ul class="campaign-pledge-levels">			
+
+			<?php foreach ( $prices as $i => $price ) : ?>
+
+				<?php 
+					$has_limit = strlen( $price['limit'] ) > 0;
+					$remaining = $price['limit'] - $price['bought'];
+					$class = ! $has_limit ? 'limitless' : ( $remaining == 0 ? 'not-available' : 'available' );
+				?>
+
+				<li data-price="<?php echo edd_sanitize_amount( $price['amount'] )?>" class="pledge-level <?php echo $class ?>">
+					
+					<?php if ( ! $has_limit ) : ?>
+
+						<input type="<?php echo $input_type ?>" name="edd_options[price_id][]" id="edd_price_option_<?php echo $campaign_id ?>_<?php echo $i ?>" class="edd_price_option_<?php echo $campaign_id ?> edd_price_options_input" value="<?php echo $i ?>" />
+						<h3 class="pledge-title"><?php echo sofa_crowdfunding_get_pledge_amount_text( $price['amount'] ) ?></h3>
+						<span class="pledge-limit"><?php _e( 'Unlimited backers', 'franklin' ) ?></span>
+						<p class="pledge-description"><?php echo $price['name'] ?></p>
+
+					<?php else : ?>
+
+						<?php if ( $remaining > 0 ) : ?>
+							<input type="<?php echo $input_type ?>" name="edd_options[price_id][]" id="edd_price_option_<?php echo $campaign_id ?>_<?php echo $i ?>" class="edd_price_option_<?php echo $campaign_id ?> edd_price_options_input" value="<?php echo $i ?>" />
+						<?php endif ?>
+
+						<h3 class="pledge-title"><?php echo sofa_crowdfunding_get_pledge_amount_text( $price['amount'] ) ?></h3>
+						<span class="pledge-limit"><?php printf( __( '%d of %d remaining', 'franklin' ), $remaining, $price['limit'] ) ?></span>
+						<p class="pledge-description"><?php echo $price['name'] ?></p>
+
+					<?php endif ?>
+
+				</li>
+
+			<?php endforeach ?>
+
+		</ul>
+
+	<?php endif;
+}
+
+add_action('franklin_campaign_contribute_options', 'franklin_atcf_campaign_contribute_options', 10, 3);
 
 /**
  * Displays the title. 
@@ -45,69 +124,9 @@ if ( ! function_exists('franklin_edd_before_price_options') ) {
 add_action('edd_before_price_options', 'franklin_edd_before_price_options');
 
 /**
- * Displays the contribution options. 
+ * Display the custom price input field.
  * 
- * @see 	atcf_campaign_contribute_options
- * @return 	void
- * @since 	1.4.0
- */
-function franklin_atcf_campaign_contribute_options( $prices, $type, $campaign_id ) {
-	global $edd_options;
-
-	if ( franklin_is_rewardless_campaign( $campaign_id ) ) : ?>
-		
-		<input type="radio" name="edd_options[price_id][]" id="edd_price_option_<?php echo $campaign_id ?>_0" class="edd_price_option_<?php echo $campaign_id ?> hidden" value="0" checked />
-
-	<?php
-	elseif ( count( $prices )) : ?>
-
-		<ul class="campaign-pledge-levels">			
-
-			<?php foreach ( $prices as $i => $price ) : ?>
-
-				<?php 
-					$has_limit = strlen( $price['limit'] ) > 0;
-					$remaining = $price['limit'] - $price['bought'];
-					$class = ! $has_limit ? 'limitless' : ( $remaining == 0 ? 'not-available' : 'available' );
-				?>
-
-				<li data-price="<?php echo edd_sanitize_amount( $price['amount'] )?>" class="pledge-level <?php echo $class ?>">
-					
-					<?php if ( ! $has_limit ) : ?>
-
-						<input type="radio" name="edd_options[price_id][]" id="edd_price_option_<?php echo $campaign_id ?>_<?php echo $i ?>" class="edd_price_option_<?php echo $campaign_id ?> edd_price_options_input" value="<?php echo $i ?>" />
-						<h3 class="pledge-title"><?php echo sofa_crowdfunding_get_pledge_amount_text( $price['amount'] ) ?></h3>
-						<span class="pledge-limit"><?php _e( 'Unlimited backers', 'franklin' ) ?></span>
-						<p class="pledge-description"><?php echo $price['name'] ?></p>
-
-					<?php else : ?>
-
-						<?php if ( $remaining > 0 ) : ?>
-							<input type="radio" name="edd_options[price_id][]" id="edd_price_option_<?php echo $campaign_id ?>_<?php echo $i ?>" class="edd_price_option_<?php echo $campaign_id ?> edd_price_options_input" value="<?php echo $i ?>" />
-						<?php endif ?>
-
-						<h3 class="pledge-title"><?php echo sofa_crowdfunding_get_pledge_amount_text( $price['amount'] ) ?></h3>
-						<span class="pledge-limit"><?php printf( __( '%d of %d remaining', 'franklin' ), $remaining, $price['limit'] ) ?></span>
-						<p class="pledge-description"><?php echo $price['name'] ?></p>
-
-					<?php endif ?>
-
-				</li>
-
-			<?php endforeach ?>
-
-		</ul>
-
-	<?php endif;
-}
-
-remove_action('atcf_campaign_contribute_options', 'atcf_campaign_contribute_options', 10, 3);
-add_action('atcf_campaign_contribute_options', 'franklin_atcf_campaign_contribute_options', 10, 3);
-
-/**
- * Display the list of pledge options. 
- * 
- * @see 	edd_purchase_link_end
+ * @see 	edd_after_price_options
  * @param 	int 	$campaign_id
  * @return 	void
  * @since 	1.0.0
@@ -119,7 +138,9 @@ if ( !function_exists('franklin_edd_after_price_options') ) {
 
 		<!-- Text field with pledge button -->
 		<div class="campaign-price-input">
-			<div class="price-wrapper"><span class="currency"><?php echo sofa_crowdfunding_edd_get_currency_symbol() ?></span><input type="text" name="atcf_custom_price" id="franklin_custom_price" value="" /></div>
+			<div class="price-wrapper">
+				<span class="currency"><?php echo sofa_crowdfunding_edd_get_currency_symbol() ?></span><input type="text" name="atcf_custom_price" id="franklin_custom_price" value="" />
+			</div>
 
 		<?php
 	}
@@ -127,29 +148,6 @@ if ( !function_exists('franklin_edd_after_price_options') ) {
 }
 
 add_action('edd_after_price_options', 'franklin_edd_after_price_options', 10, 2);
-
-/**
- * 
- * 
- */
-if ( !function_exists('franklin_edd_purchase_link_top') ) {
-
-	function franklin_edd_purchase_link_top($campaign_id) {
-	
-		// If it's donations only, add custom price input field
-		if ( franklin_is_rewardless_campaign( $campaign_id ) && get_post_meta( $campaign_id, '_variable_pricing', true ) != 1 ) {
-
-			// Display the modal title
-			franklin_edd_before_price_options();
-
-			// Then display the custom input field
-			franklin_edd_after_price_options();
-		}
-	}
-}
-remove_action( 'edd_purchase_link_top', 'atcf_purchase_variable_pricing' );
-remove_action( 'edd_purchase_link_top', 'atcf_campaign_contribute_custom_price', 5 );
-add_action('edd_purchase_link_top', 'franklin_edd_purchase_link_top');
 
 /**
  * Display the list of pledge options. 
@@ -298,7 +296,10 @@ if ( !function_exists('franklin_pledge_levels') ) {
 
 			<div id="campaign-pledge-levels-<?php echo $campaign_id ?>" <?php echo $wrapper_atts ?>>
 
-				<?php if ($campaign->is_donations_only()) : ?>
+				<?php if ($campaign->is_donations_only()) : 
+
+					$price = $prices[0]; 
+					?>
 
 					<p><a class="pledge-button button button-alt button-large accent" data-reveal-id="campaign-form-<?php echo $campaign_id ?>" data-price="<?php echo $price['amount'] ?>" href="#"><?php _e( 'Pledge', 'franklin' ) ?></a></p>
 
@@ -335,16 +336,7 @@ if ( !function_exists('franklin_pledge_levels') ) {
 
 			</div>
 
-			<?php if ( get_the_ID() != $campaign_id && ! in_array( get_page_template(), array( 'homepage-campaigns.php', 'page-single-campaign.php' ) ) ) : ?>
-
-				<!-- Support modal -->
-				<div id="campaign-form-<?php echo $campaign_id ?>" class="campaign-form reveal-modal content-block block">
-			        <a class="close-reveal-modal icon"><i class="icon-remove-sign"></i></a>
-			        <?php echo edd_get_purchase_link( array( 'download_id' => $campaign_id ) ); ?>
-			    </div>
-			    <!-- End support modal -->
-
-			<?php endif ?>
+			<?php get_template_part( 'campaign-support-modal' ) ?>
 
 		<?php endif;
 
@@ -655,7 +647,7 @@ if ( ! function_exists( 'franklin_modal_social_login' ) ) {
 		if ( get_franklin_theme()->is_using_social_login() ) {
 			$class = new EDD_Slg_Shortcodes();
 			
-			echo $class->edd_slg_social_login( array( 'title' => ' ' ) );
+			echo $class->edd_slg_social_login( array( 'title' => ' ' ), '' );
 
 			// Display a heading before the login / registration form.
 			if ( 'franklin_login_tab_before_form' == current_filter() ) {
