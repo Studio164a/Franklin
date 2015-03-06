@@ -642,7 +642,7 @@ class Franklin_Theme {
             }
             else {
                 $class = new EDD_Slg_Shortcodes();
-                $login_form = $class->edd_slg_social_login( array( 'title' => ' ' ) );
+                $login_form = $class->edd_slg_social_login( array( 'title' => ' ' ), '' );
 
                 if ( strlen( $login_form ) ) {
                     $this->social_login_enabled = true;

@@ -655,7 +655,7 @@ if ( ! function_exists( 'franklin_modal_social_login' ) ) {
 		if ( get_franklin_theme()->is_using_social_login() ) {
 			$class = new EDD_Slg_Shortcodes();
 			
-			echo $class->edd_slg_social_login( array( 'title' => ' ' ) );
+			echo $class->edd_slg_social_login( array( 'title' => ' ' ), '' );
 
 			// Display a heading before the login / registration form.
 			if ( 'franklin_login_tab_before_form' == current_filter() ) {

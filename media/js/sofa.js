@@ -15,14 +15,20 @@ var Sofa = ( function( $ ) {
 				var active = document.activeElement;
 
 				$form_elements.focus( function() {
-					if ( $(this).attr('placeholder') != null ) {
-						$(this).val('');
-						if ( $(this).val() !== $(this).attr('placeholder') ) {
+					if ( 'undefined' !== typeof $(this).attr('placeholder') ) {
+
+						// Clear val if it's equal to the placeholder. 
+						if ( $(this).val() === $(this).attr('placeholder') ) {
+							$(this).val('');	
+						}
+						
+						// Remove .hasPlaceholder class if val does not equal placeholder or the placeholder is empty.
+						if ( $(this).val() !== $(this).attr('placeholder') || '' === $(this).attr('placeholder') ) {
 							$(this).removeClass('hasPlaceholder');
 						}
 					}
 				}).blur( function() {
-					if ( $(this).attr('placeholder') != null && ($(this).val() === '' || $(this).val() === $(this).attr('placeholder'))) {
+					if ( 'undefined' !== typeof $(this).attr('placeholder') && ( $(this).val() === '' || $(this).val() === $(this).attr('placeholder') ) ) {
 						$(this).val($(this).attr('placeholder')).addClass('hasPlaceholder');
 					}
 				});
@@ -30,7 +36,7 @@ var Sofa = ( function( $ ) {
 				$(active).focus();
 				$('form').submit(function () {
 					$(this).find('.hasPlaceholder').each(function() { $(this).val(''); });
-				});
+				});	
 			}
 		}
 	}, 
