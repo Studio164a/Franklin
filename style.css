@@ -4,7 +4,7 @@ Theme URI: 		http://164a.com/product/franklin-wordpress-crowdfunding-theme/
 Author: 		Studio164a
 Author URI: 	http://164a.com
 Description: 	A responsive, retina ready Wordpress crowdfunding theme.
-Version: 		1.7.0
+Version: 		1.6.7
 License: 		GNU General Public License v2 or later
 License URI: 	http://www.gnu.org/licenses/gpl-2.0.html
 Tags: 
@@ -331,7 +331,7 @@ select {
 
 .chrome .select-wrapper::after, 
 .safari .select-wrapper::after {
-	font-family: 'fontawesome';
+	font-family: "FontAwesome";
 	content: "\F0D7";	
 	display: block;
 	position: absolute;
@@ -726,7 +726,7 @@ pre {
 
 /* Icons */
 [data-icon]::before {
-	font-family: 'fontawesome';
+	font-family: "FontAwesome";
 	content: attr(data-icon);
 	speak: none;
 	font-weight: normal;
@@ -960,6 +960,11 @@ pre {
 	float: left;
 	padding: 12px 20px 12px 0; padding-top: 1.2rem; padding-right: 2rem; padding-bottom: 1.2rem;
 	text-transform: uppercase;
+}
+
+.no-title.no-tagline .site-identity {
+    padding-left: 0;
+    max-width: 100%;
 }
 
 .home-link {
@@ -1798,6 +1803,7 @@ h2.block-title,
 
 /* jQuery effects
 ================================================== */
+.widget .campaign-pledge-levels h3,
 .accordion h3 {	
 	position: relative;
 	display: block;
@@ -1810,11 +1816,13 @@ h2.block-title,
 	cursor: pointer;
 }
 
+.widget .campaign-pledge-levels h3::before,
 .accordion h3::before {
 	float: right;
 	margin-right: 4%;
 }
 
+.widget .campaign-pledge-levels h3:active,
 .accordion h3:active {
 	outline: 0;
 }

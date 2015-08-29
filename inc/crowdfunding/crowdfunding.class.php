@@ -53,14 +53,16 @@ class Sofa_Crowdfunding_Helper {
         add_action('atcf_found_widget', array(&$this, 'atcf_found_widget'));
         add_action('edd_purchase_form_before_submit', array(&$this, 'edd_purchase_form_before_submit'), 100 );
         add_action('edd_complete_purchase', array(&$this, 'delete_transients_after_purchase'));
+        add_action('edd_update_payment_status', array(&$this, 'delete_transients_after_purchase'));
+        remove_action( 'init', 'atcf_disable_custom_pledging' );
 
         add_filter('franklin_script_dependencies', array( $this, 'franklin_script_dependencies_filter' ) );
         add_filter('body_class', array(&$this, 'body_class_filter'));
         add_filter('page_template', array(&$this, 'page_template_filter'));
         add_filter('edd_purchase_link_defaults', array(&$this, 'edd_purchase_link_defaults_filter'));
         add_filter('edd_templates_dir', array(&$this, 'edd_templates_dir_filter'));
-        add_filter('edd_add_to_cart_item', array(&$this, 'edd_add_to_cart_item_filter'));
-        add_filter('edd_cart_item_price', array(&$this, 'edd_cart_item_price_filter'), 10, 3);
+        // add_filter('edd_add_to_cart_item', array(&$this, 'edd_add_to_cart_item_filter'));
+        // add_filter('edd_cart_item_price', array(&$this, 'edd_cart_item_price_filter'), 10, 3);
         add_filter('edd_checkout_image_size', array(&$this, 'edd_checkout_image_size_filter'));
         add_filter('edd_checkout_button_purchase', array(&$this, 'edd_checkout_button_purchase_filter'));
         add_filter('franklin_pledge_levels_wrapper_atts', array(&$this, 'franklin_pledge_levels_wrapper_atts_filter'));
@@ -530,46 +532,6 @@ class Sofa_Crowdfunding_Helper {
      */
     public function edd_templates_dir_filter($default) {   
         return 'templates/edd';
-    }
-
-    /**
-     * Filter the item array that is stored in the user session.
-     *
-     * @param array $item
-     * @return array
-     * @since Franklin 1.0
-     */
-    public function edd_add_to_cart_item_filter($item) {
-
-        // If post_data is not set, return. Not sure this would ever happen, but saves any notices occuring.
-        if ( !isset($_POST['post_data']))
-            return $item;
-
-        // Parse the post_data array 
-        parse_str( urldecode( $_POST['post_data'] ), $query_args );
-
-        if ( isset( $query_args['atcf_custom_price'] ) ) {
-            $item['options']['price_id'] = 0;
-            $item['options']['custom_price'] = $query_args['atcf_custom_price'];
-        }
-        
-        return $item;
-    }
-
-    /**
-     * Filter the item's price based on the custom price set in the options array
-     * 
-     * @param 
-     * @param
-     * @param
-     * @return 
-     * @since Franklin 1.0
-     */
-    public function edd_cart_item_price_filter($price, $item_id, $options) {
-        if ( isset( $options['custom_price']) && $options['custom_price'] != $price )
-            return $options['custom_price'];
-
-        return $price;        
     }
 
     /**

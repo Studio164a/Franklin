@@ -31,7 +31,7 @@ function franklin_atcf_shortcode_profile_contributions( $user ) {
 		<li>
 			<?php foreach ( $cart as $download ) : ?>
 				<?php 
-					$payment_url 	= add_query_arg( 'payment_key', $key, get_permalink( $edd_options[ 'success_page' ] ) );
+					$payment_url 	= esc_url( add_query_arg( 'payment_key', $key, get_permalink( $edd_options[ 'success_page' ] ) ) );
 					$payment_amount	= edd_currency_filter( edd_format_amount( $download[ 'price' ] ) );
 				
 					printf( _x('%s pledge to %s', 'price for download (payment history)', 'franklin'), 

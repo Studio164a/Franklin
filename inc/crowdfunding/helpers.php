@@ -178,7 +178,7 @@ function sofa_crowdfunding_get_time_left( ATCF_Campaign $campaign ) {
 		if ( $days_remaining >= 1 ) {
 
 			$value = sprintf("<span>%s</span>%s", 
-				_n('1', $days_remaining, $days_remaining, 'franklin'), 
+				$days_remaining, 
 				_n('day left', 'days left', $days_remaining, 'franklin')
 			);
 		}
@@ -191,8 +191,8 @@ function sofa_crowdfunding_get_time_left( ATCF_Campaign $campaign ) {
 			// At least an hour left
 			if ( $hours_remaining >= 1 ) {
 
-				$value = sprintf("<span>%s</span>%s", 
-					_n('1', $hours_remaining, $hours_remaining, 'franklin'), 
+				$value = sprintf("<span>%d</span>%s", 
+					$hours_remaining,
 					_n('hour left', 'hours left', $hours_remaining, 'franklin')
 				);
 			}
@@ -202,7 +202,7 @@ function sofa_crowdfunding_get_time_left( ATCF_Campaign $campaign ) {
 				$minutes_remaining = ceil( $seconds_left / 60 );
 
 				$value = sprintf("<span>%s</span>%s", 
-					_n('One', $minutes_remaining, $minutes_remaining, 'franklin'), 
+					$minutes_remaining > 1 ? $minutes_remaining : __( 'One', 'franklin' ),
 					_n('minute left', 'minutes left', $minutes_remaining, 'franklin')
 				);
 			}

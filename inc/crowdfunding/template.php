@@ -32,7 +32,7 @@ add_action( 'init', 'franklin_atcf_theme_variable_pricing' );
  * Display the pricing options for a campaign. 
  *
  * @return 	void
- * @since 	1.7.0
+ * @since 	1.6.4
  */
 if ( !function_exists('franklin_campaign_purchase_pricing') ) {
 

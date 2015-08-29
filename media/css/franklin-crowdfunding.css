@@ -384,48 +384,57 @@
 
 /* 4.0 - Pledges accordion 
 ================================================== */
-.campaign-pledge-levels.accordion {
+.widget .campaign-pledge-levels {
 	margin-bottom: 36px; margin-bottom: 3.6rem;	
 	padding-top: 0;
 }
 
-.campaign-pledge-levels.accordion h3 {
+.widget .campaign-pledge-levels h3 {
+	display: block;
 	border-top: 1px solid;
+}
+
+.widget .campaign-pledge-levels h3::before {
+	display: none;
+}
+
+.widget .accordion.campaign-pledge-levels h3::before {
+	display: block;
 }
 
 .campaign-pledge-levels .ui-accordion-header-active {
 	border-radius: 0.4rem 0.4rem 0 0;
 }
 
-.campaign-pledge-levels.accordion h3:first-of-type {
+.widget .campaign-pledge-levels h3:first-of-type {
 	margin-top: 0;
 }
 
-.campaign-pledge-levels.accordion .pledge-level {	
+.widget .campaign-pledge-levels .pledge-level {	
 	padding: 12px 4%; padding-top: 1.2rem; padding-bottom: 1.2rem;
 	border-width: 0 1px 1px 1px; border-width-right: 0.1rem; border-bottom: 0.1rem; border-left: 0.1rem;
 	border-style: solid;
 	border-radius: 0 0 0.4rem 0.4rem;	
 }
 
-.campaign-pledge-levels.accordion .pledge-description {
+.widget .campaign-pledge-levels .pledge-description {
 	margin-left: 0;
 }
 
-.campaign-pledge-levels.accordion .pledge-limit {
+.widget .campaign-pledge-levels .pledge-limit {
 	display: block;
 	float: none;	
 	margin-bottom: 12px; margin-bottom: 1.2rem;	
 	text-align: left;
 }
 
-.campaign-pledge-levels.accordion .pledge-button {
+.widget .campaign-pledge-levels .pledge-button {
 	display: block;
 	margin: 3px auto; margin-top: 0.3rem; margin-bottom: 0.3rem;
 	text-align: center;
 }
 
-.campaign-pledge-levels.accordion .pledge-button .button {
+.widget .campaign-pledge-levels .pledge-button .button {
 	display: inline-block;
 	max-width: 100%;
 }

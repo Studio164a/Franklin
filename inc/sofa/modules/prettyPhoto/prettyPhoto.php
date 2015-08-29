@@ -41,10 +41,10 @@ class Sofa_PrettyPhoto {
 	}
 
 	public function wp_enqueue_scripts() {	
-		wp_register_script('prettyPhoto', sprintf( "%s/modules/prettyPhoto/media/jquery.prettyPhoto.js", $this->plugin_dir ), array( 'jquery' ), 0.1, true );
+		wp_register_script('prettyPhoto', sprintf( "%s/modules/prettyPhoto/media/jquery.prettyPhoto.js", $this->plugin_dir ), array( 'jquery' ), '3.1.6', true );
 		wp_enqueue_script('prettyPhoto');
 
-        wp_register_style('prettyPhoto', sprintf( "%s/modules/prettyPhoto/media/prettyPhoto.css", $this->plugin_dir ), array(), 0.1 );
+        wp_register_style('prettyPhoto', sprintf( "%s/modules/prettyPhoto/media/prettyPhoto.css", $this->plugin_dir ), array(), '3.1.6' );
         wp_enqueue_style('prettyPhoto');
 	}
 }

@@ -5,7 +5,6 @@
  * Free to use under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
 */
-
 (function ($, window, document, undefined) {
   'use strict';
 
