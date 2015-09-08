@@ -14,7 +14,7 @@ class Franklin_Theme {
     /**
      * Version number.
      */
-    const VERSION = '1.6.7';
+    const VERSION = '1.6.8';
 
     /**
      * @var Franklin_Theme

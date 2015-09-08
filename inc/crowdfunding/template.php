@@ -310,8 +310,9 @@ if ( !function_exists('franklin_pledge_levels') ) {
 					foreach ( $prices as $i => $price ) :			
 						
 						$has_limit = strlen( $price['limit'] ) > 0;
-						$remaining = isset( $price['bought'] ) ? $price['limit'] - count($price['bought']) + 1 : $price['limit'];
+						$remaining = isset( $price['bought'] ) ? $price['limit'] - $price['bought'] : $price['limit'];
 						$class = !$has_limit ? 'limitless' : ( $remaining == 0 ? 'not-available' : 'available' );
+						
 						?>
 
 						<h3 class="pledge-title" data-icon="&#xf0d7;"><?php echo sofa_crowdfunding_get_pledge_amount_text( $price['amount'] ) ?></h3>
